@@ -1,0 +1,65 @@
+/* ============================================================
+   Ä°Ã§É™riÅŸÉ™hÉ™r â€” Design Tokens
+   MÉ™nbÉ™: Figma "Icherisheher-Web" (tJ0lCzuMMZdMygPz8nwZEs)
+   home_page: 1523:4706 (web 1440px) / 1523:5735 (mobile 393px)
+   BÃ¼tÃ¼n dÉ™yÉ™rlÉ™r Figma-dan birbaÅŸa oxunub.
+   ============================================================ */
+
+:root {
+  /* ---------- RÉ™nglÉ™r (Figma paint styles) ---------- */
+  --c-brand:      #886D46;   /* "brand" â€” bÃ¼rÃ¼nc/brass, É™sas CTA */
+  --c-orange:     #FD6310;   /* "orange" â€” vurÄŸu, aktiv elementlÉ™r */
+  --c-black:      #222222;   /* "black" â€” É™sas mÉ™tn */
+  --c-gray:       #818181;   /* "gray" â€” ikinci dÉ™rÉ™cÉ™li mÉ™tn */
+  --c-light-gray: #E5E5E5;   /* "light-gray" â€” ayÄ±rÄ±cÄ±lar, sÉ™rhÉ™dlÉ™r */
+  --c-white:      #FFFFFF;
+
+  /* ---------- RÉ™nglÉ™r (sÉ™hifÉ™dÉ™n oxunan) ---------- */
+  --c-page-bg:    #F5F4F2;   /* home_page frame fill */
+  --c-footer-bg:  #E1E1E0;   /* Frame 610 (footer bloku) */
+  --c-panel-bg:   #E3E3E2;   /* Rectangle 30 (app promo) â€” 89% opacity ilÉ™ */
+  --c-surface:    #EAEAEA;   /* kart daxili aÃ§Ä±q sÉ™th */
+  --c-text-soft:  #62615F;   /* yumÅŸaq mÉ™tn variantÄ± */
+  --c-text-dark:  #211C16;   /* isti-tÃ¼nd baÅŸlÄ±q variantÄ± */
+  --c-ivory:      #FAFAF5;   /* aÃ§Ä±q mÉ™tn (tÃ¼nd fonda) */
+
+  /* ÅžÃ¼ÅŸÉ™ effektli Ã§iplÉ™r (hero Ã¼zÉ™rindÉ™) */
+  --c-glass-12:   rgba(255, 255, 255, 0.12);
+  --c-glass-16:   rgba(255, 255, 255, 0.16);
+  --c-shadow-10:  rgba(0, 0, 0, 0.10);
+  --c-shadow-06:  rgba(0, 0, 0, 0.06);
+
+  /* ---------- Tipoqrafiya ----------
+     Æsas ailÉ™: Vela Sans (Regular 400 / Medium 500 / SemiBold 600)
+     Fayllar assets/fonts/ altÄ±nda self-host olunacaq. */
+  --font-main: "Vela Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+
+  /* Ã–lÃ§Ã¼ ÅŸkalasÄ± (Figma-dan: size/line-height) */
+  --t-hero:      48px; --t-hero-lh:      56px;  /* hero baÅŸlÄ±q (Medium/Regular) */
+  --t-h2:        36px; --t-h2-lh:        44px;  /* bÃ¶lmÉ™ baÅŸlÄ±qlarÄ± (Medium) */
+  --t-h3:        28px; --t-h3-lh:        36px;  /* alt baÅŸlÄ±qlar (Medium) */
+  --t-h4:        24px; --t-h4-lh:        28px;  /* kart baÅŸlÄ±qlarÄ± (Medium) */
+  --t-h5:        22px; --t-h5-lh:        28px;
+  --t-lead:      18px; --t-lead-lh:      24px;  /* Ã¶nÉ™ Ã§Ä±xan mÉ™tn (Medium) */
+  --t-body:      16px; --t-body-lh:      24px;  /* gÃ¶vdÉ™ (Regular) â€” dominant */
+  --t-body-tight-lh: 20px;                      /* sÄ±x gÃ¶vdÉ™ (Ã§iplÉ™r, meta) */
+  --t-small:     14px; --t-small-lh:     20px;
+  --t-caption:   12px; --t-caption-lh:   16px;
+
+  /* ---------- Radius sistemi ---------- */
+  --r-pill:  1000px;  /* Ã§iplÉ™r, dÃ¼ymÉ™lÉ™r (É™n Ã§ox iÅŸlÉ™nÉ™n) */
+  --r-xl:    48px;    /* bÃ¶yÃ¼k bloklar: footer, app promo, hero panellÉ™ri */
+  --r-lg:    32px;    /* bÃ¶lmÉ™ konteynerlÉ™ri, bÃ¶yÃ¼k kartlar */
+  --r-md:    24px;    /* kartlar */
+  --r-sm:    12px;    /* kiÃ§ik elementlÉ™r */
+  --r-xs:    8px;
+
+  /* ---------- Layout (web 1440 kanvas) ---------- */
+  --page-pad:      24px;    /* kÉ™nar boÅŸluq (hero, footer bloklarÄ± 1392px) */
+  --content-w:     1136px;  /* mÉ™tn/kart bÃ¶lmÉ™lÉ™rinin eni (152px yan boÅŸluq) */
+  --block-w:       1392px;  /* tam-en yuvarlaq bloklar */
+
+  /* ---------- KeÃ§idlÉ™r ---------- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur:  0.25s;
+}
