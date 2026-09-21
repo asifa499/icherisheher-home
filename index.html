@@ -7,12 +7,69 @@
   <meta name="description" content="Icherisheher is Baku's historic heart — a UNESCO World Heritage Site. Museums, routes, events and the City Pass.">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/hero.css">
 </head>
 <body>
 
-  <!-- ETAP 1 · Header + Hero · Figma: 1523:4707 -->
-  <section id="hero" class="section is-placeholder block" data-figma="1523:4707">
-    <p class="ph-label"><strong>Etap 1 — Header + Hero</strong>Naviqasiya, "Welcome to Icherisheher", axtarış paneli və çiplər</p>
+  <!-- ETAP 1 · Header + Hero · Figma: 1523:4707
+       Qeyd: axtarış/çip paneli ("What would you like to explore?") hero frame-inin (1523:4707)
+       özündə deyil — Figma MCP vasitəsilə node ID-si tapılmadı (home_page node-u 8127px hündürlükdə,
+       MCP metadata sorğuları övladları qaytarmadı). Markup ekran görüntüsü ölçmələri əsasında
+       reallaşdırılıb; Asif Figma ilə tutuşdurarkən dəqiq node tapılarsa spacing yenilənəcək. -->
+  <section id="hero" class="hero-section block" data-figma="1523:4707">
+    <div class="hero">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__scrim-top" aria-hidden="true"></div>
+      <div class="hero__scrim-bottom" aria-hidden="true"></div>
+
+      <header class="hero__nav container">
+        <a class="hero__logo" href="#" aria-label="Icherisheher">
+          <img src="assets/img/hero-logo.svg" alt="Icherisheher — Administration of State Historical-Architectural Reserve" width="125" height="80">
+        </a>
+
+        <nav class="hero__links" aria-label="Primary">
+          <button class="hero__link" type="button">Explore<img class="hero__chevron" src="assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
+          <button class="hero__link" type="button">Things to do<img class="hero__chevron" src="assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
+          <button class="hero__link" type="button">Eat and sleep<img class="hero__chevron" src="assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
+          <button class="hero__link" type="button">What's on<img class="hero__chevron" src="assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
+          <button class="hero__link" type="button">Visitor Information<img class="hero__chevron" src="assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
+        </nav>
+
+        <div class="hero__actions">
+          <button class="hero__lang" type="button">
+            <span class="hero__flag" aria-hidden="true">🇬🇧</span>
+            <span>EN</span>
+            <img src="assets/img/hero-icon-lang.svg" alt="" width="16" height="16">
+          </button>
+          <button class="hero__icon-btn" type="button" aria-label="Search">
+            <img src="assets/img/hero-icon-search.svg" alt="" width="16" height="16">
+          </button>
+          <button class="hero__icon-btn" type="button" aria-label="Menu">
+            <img src="assets/img/hero-icon-menu.svg" alt="" width="16" height="16">
+          </button>
+        </div>
+      </header>
+
+      <h1 class="hero__title">Welcome to Icherisheher</h1>
+    </div>
+
+    <div class="hero__explore container">
+      <div class="hero__explore-main">
+        <p class="hero__explore-heading">What would you like to explore?</p>
+        <div class="hero__chips">
+          <button class="chip" type="button"><span class="chip__icon" aria-hidden="true">🚩</span>Tours</button>
+          <button class="chip" type="button"><span class="chip__icon" aria-hidden="true">🛏</span>Stay</button>
+          <button class="chip" type="button"><span class="chip__icon" aria-hidden="true">🍽</span>Eat &amp; drink</button>
+          <button class="chip" type="button"><span class="chip__icon" aria-hidden="true">🗺</span>Open map</button>
+          <button class="chip" type="button"><span class="chip__icon" aria-hidden="true">✨</span>City Pass</button>
+          <button class="chip chip--count" type="button">+24</button>
+        </div>
+      </div>
+      <div class="hero__explore-aside">
+        <p class="hero__explore-aside-text">You have no idea what to do in Icherisheher?</p>
+        <button class="btn-inspire" type="button"><span aria-hidden="true">✨</span>Inspire me please!</button>
+      </div>
+    </div>
   </section>
 
   <!-- ETAP 2 · UNESCO intro + foto kollaj · Figma: 1523:5620 -->

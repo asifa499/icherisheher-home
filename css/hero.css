@@ -1,0 +1,244 @@
+/* ============================================================
+   Etap 1 — Header + Hero
+   Figma: 1523:4707 (web 1440) · 1523:5735 (mobile 393, hero hissəsi)
+   Naviqasiya + "Welcome to Icherisheher" + explore paneli (çiplər)
+
+   Qeyd: explore paneli ("What would you like to explore?") ayrıca
+   Figma node kimi MCP vasitəsilə tapılmadı — spacing ekran
+   görüntüsündən ölçülüb (bax: index.html şərhi).
+   ============================================================ */
+
+.hero-section {
+  margin-top: var(--page-pad);
+  margin-bottom: 24px;
+}
+
+/* ---------- Media (foto + naviqasiya + başlıq) ---------- */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  border-radius: var(--r-lg);
+  overflow: clip;
+  background: var(--c-black);
+  isolation: isolate;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background: var(--c-surface) center / cover no-repeat;
+  z-index: -3;
+}
+.hero__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.hero__scrim-top,
+.hero__scrim-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 120px;
+  pointer-events: none;
+  z-index: -2;
+}
+.hero__scrim-top {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
+}
+.hero__scrim-bottom {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0));
+}
+
+/* ---------- Naviqasiya ---------- */
+.hero__nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-top: var(--page-pad);
+}
+
+.hero__logo img {
+  display: block;
+  width: 125px;
+  height: 80px;
+}
+
+.hero__links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-inline: auto;
+}
+.hero__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--c-white);
+  font-size: var(--t-nav);
+  line-height: var(--t-nav-lh);
+  white-space: nowrap;
+}
+.hero__chevron { width: 16px; height: 16px; }
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.hero__lang,
+.hero__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  border-radius: var(--r-pill);
+  background: var(--c-glass-12);
+  border: 1px solid var(--c-glass-04);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
+  color: var(--c-white);
+}
+.hero__lang { padding: 8px 12px; }
+.hero__icon-btn { width: 48px; padding: 0; flex-shrink: 0; }
+.hero__flag { font-size: var(--t-body); line-height: var(--t-body-lh); }
+.hero__lang span:not(.hero__flag) { font-size: var(--t-small); }
+
+/* ---------- Başlıq ---------- */
+.hero__title {
+  margin-top: auto;
+  padding-bottom: 118px;
+  padding-inline: var(--page-pad);
+  text-align: center;
+  color: var(--c-white);
+  font-size: var(--t-hero);
+  line-height: var(--t-hero-lh);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+/* ---------- Explore paneli ---------- */
+.hero__explore {
+  position: relative;
+  z-index: 1;
+  margin-top: -86px;
+  display: flex;
+  align-items: stretch;
+  gap: 32px;
+  background: var(--c-white);
+  border-radius: var(--r-md);
+  padding: 32px;
+  box-shadow: 0 24px 48px var(--c-shadow-10);
+}
+
+.hero__explore-main {
+  flex: 1;
+  min-width: 0;
+}
+.hero__explore-heading {
+  font-size: var(--t-lead);
+  line-height: var(--t-lead-lh);
+  font-weight: 500;
+  color: var(--c-black);
+  margin-bottom: 16px;
+}
+
+.hero__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-brand);
+  color: var(--c-black);
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+  white-space: nowrap;
+}
+.chip__icon { font-size: var(--t-small); line-height: 1; }
+.chip--count {
+  border-color: var(--c-light-gray);
+  color: var(--c-gray);
+  padding: 0 14px;
+}
+
+.hero__explore-aside {
+  flex: 0 0 auto;
+  width: 344px;
+  padding-left: 32px;
+  border-left: 1px solid var(--c-light-gray);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+.hero__explore-aside-text {
+  font-size: var(--t-lead);
+  line-height: var(--t-lead-lh);
+  font-weight: 500;
+  color: var(--c-black);
+}
+
+.btn-inspire {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-orange);
+  color: var(--c-black);
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+  font-weight: 500;
+}
+
+/* ---------- Responsive (mobil, 393px etalon) ---------- */
+@media (max-width: 768px) {
+  .hero-section { margin-top: 8px; }
+
+  .hero { height: 520px; }
+  .hero__nav {
+    gap: 12px;
+    padding-top: var(--page-pad);
+  }
+  .hero__logo img { width: 96px; height: 62px; }
+  .hero__links { display: none; }
+  .hero__actions { margin-inline-start: auto; }
+  .hero__lang span:not(.hero__flag) { display: none; }
+  .hero__lang { width: 48px; padding: 0; }
+
+  .hero__title { padding-bottom: 72px; }
+
+  .hero__explore {
+    flex-direction: column;
+    gap: 24px;
+    margin-top: -48px;
+    padding: 24px;
+    border-radius: var(--r-md);
+  }
+  .hero__explore-aside {
+    width: auto;
+    padding-left: 0;
+    padding-top: 24px;
+    border-left: 0;
+    border-top: 1px solid var(--c-light-gray);
+  }
+}

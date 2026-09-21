@@ -28,6 +28,7 @@
   --c-glass-16:   rgba(255, 255, 255, 0.16);
   --c-shadow-10:  rgba(0, 0, 0, 0.10);
   --c-shadow-06:  rgba(0, 0, 0, 0.06);
+  --c-glass-04:   rgba(255, 255, 255, 0.04);
 
   /* ---------- Tipoqrafiya ----------
      Æsas ailÉ™: Vela Sans (Regular 400 / Medium 500 / SemiBold 600)
@@ -45,6 +46,7 @@
   --t-body-tight-lh: 20px;                      /* sÄ±x gÃ¶vdÉ™ (Ã§iplÉ™r, meta) */
   --t-small:     14px; --t-small-lh:     20px;
   --t-caption:   12px; --t-caption-lh:   16px;
+  --t-nav:       15px; --t-nav-lh:       24px;
 
   /* ---------- Radius sistemi ---------- */
   --r-pill:  1000px;  /* Ã§iplÉ™r, dÃ¼ymÉ™lÉ™r (É™n Ã§ox iÅŸlÉ™nÉ™n) */
@@ -62,4 +64,7 @@
   /* ---------- KeÃ§idlÉ™r ---------- */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --dur:  0.25s;
+
+  /* ---------- Effektlər ---------- */
+  --blur-nav: 40px;  /* hero naviqasiya şüşə effekti */
 }
