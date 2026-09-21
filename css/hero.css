@@ -28,7 +28,7 @@
 .hero__bg {
   position: absolute;
   inset: 0;
-  background: var(--c-surface) center / cover no-repeat;
+  background: var(--c-surface) url("../assets/img/hero-bg.jpg") center / cover no-repeat;
   z-index: -3;
 }
 .hero__bg::after {
