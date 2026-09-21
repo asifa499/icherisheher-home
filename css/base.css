@@ -4,9 +4,7 @@
    ============================================================ */
 
 /* ---------- Vela Sans (self-hosted) ----------
-   Fayllar hÉ™lÉ™ yÃ¼klÉ™nmÉ™yib: woff2-lÉ™r assets/fonts/ altÄ±na
-   dÃ¼ÅŸÉ™ndÉ™ bu bloklar avtomatik iÅŸÉ™ dÃ¼ÅŸÉ™cÉ™k. O vaxta qÉ™dÉ™r
-   fallback stack gÃ¶rÃ¼nÃ¼r. */
+   woff2 fayllari assets/fonts/ altindadir (TTF-dan cevrilib). */
 @font-face {
   font-family: "Vela Sans";
   src: url("../assets/fonts/VelaSans-Regular.woff2") format("woff2");
