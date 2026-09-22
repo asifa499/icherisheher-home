@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/intro.css">
 </head>
 <body>
 
@@ -71,9 +72,28 @@
     </div>
   </section>
 
-  <!-- ETAP 2 · UNESCO intro + foto kollaj · Figma: 1523:5620 -->
-  <section id="intro" class="section is-placeholder block" data-figma="1523:5620">
-    <p class="ph-label"><strong>Etap 2 — UNESCO Intro</strong>Tanıtım mətni, City Pass / Experiences düymələri, foto kollaj</p>
+  <!-- ETAP 2 · UNESCO intro + foto kollaj · Figma: 1523:5620 (web) / 1523:5917 (mobile) -->
+  <section id="intro" class="intro-section" data-figma="1523:5620">
+    <div class="intro__top container">
+      <p class="intro__eyebrow">Where History Still Lives</p>
+      <p class="intro__lead">Icherisheher is Baku&rsquo;s historic heart, surrounded by ancient walls and listed as a UNESCO World Heritage Site since 2000. <span class="intro__lead-muted">Home to landmarks like the Maiden Tower and Shirvanshah&rsquo;s Palace, the Old City remains a living neighborhood with more than 3,000 residents.</span></p>
+      <div class="intro__ctas">
+        <button class="intro__btn intro__btn--outline" type="button">
+          <img src="assets/img/hero-chip-city-pass.svg" alt="" width="20" height="20">City Pass
+        </button>
+        <button class="intro__btn intro__btn--solid" type="button">Explore now</button>
+      </div>
+    </div>
+    <div class="intro__collage-wrap">
+      <div class="intro__collage">
+        <img class="intro__photo intro__photo--statue" src="assets/img/intro-statue.jpg" alt="Historic monument in the Old City" width="205" height="204">
+        <img class="intro__photo intro__photo--tower" src="assets/img/intro-tower.jpg" alt="Maiden Tower at golden hour" width="245" height="327">
+        <img class="intro__photo intro__photo--instruments" src="assets/img/intro-instruments.jpg" alt="Traditional Azerbaijani musical instruments on display" width="272" height="280">
+        <img class="intro__photo intro__photo--dress" src="assets/img/intro-dress.jpg" alt="Traditional Azerbaijani dress on a mannequin" width="272" height="407">
+        <img class="intro__photo intro__photo--carpets" src="assets/img/intro-carpets.jpg" alt="Carpets displayed in an Old City courtyard" width="367" height="245">
+        <img class="intro__photo intro__photo--tourists" src="assets/img/intro-tourists.jpg" alt="Visitors exploring the Old City" width="231" height="308">
+      </div>
+    </div>
   </section>
 
   <!-- ETAP 3 · Museums of Icherisheher & Gala · Figma: 1523:5419 -->

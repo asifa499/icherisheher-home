@@ -1,0 +1,121 @@
+/* ============================================================
+   Etap 2 — UNESCO intro + foto kollaj
+   Figma: 1523:5620 (web 1440) · 1523:5917 (mobile 393)
+   ============================================================ */
+
+.intro-section {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+}
+
+.intro__top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.intro__eyebrow {
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--c-brand);
+}
+
+.intro__lead {
+  max-width: 803px;
+  font-size: var(--t-statement);
+  line-height: var(--t-statement-lh);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  text-align: center;
+  color: var(--c-text-dark);
+}
+.intro__lead-muted { color: var(--c-text-muted); }
+
+.intro__ctas {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.intro__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: var(--r-pill);
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+.intro__btn--outline {
+  border: 1.5px solid var(--c-brand);
+  color: var(--c-brand);
+}
+.intro__btn--solid {
+  padding: 8px 16px;
+  border: 2px solid var(--c-brand);
+  background: var(--c-brand);
+  color: var(--c-white);
+}
+
+/* ---------- Foto kollaj (kənarlara "bleed" edən zolaq) ---------- */
+.intro__collage-wrap {
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  overflow: hidden;
+}
+
+.intro__collage {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.intro__photo {
+  display: block;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: var(--r-sm);
+}
+.intro__photo--statue      { width: 205px; height: 204px; }
+.intro__photo--tower       { width: 245px; height: 327px; }
+.intro__photo--instruments { width: 272px; height: 280px; }
+.intro__photo--dress       { width: 272px; height: 407px; }
+.intro__photo--carpets     { width: 367px; height: 245px; }
+.intro__photo--tourists    { width: 231px; height: 308px; }
+
+/* ---------- Responsive (mobil, 393px etalon) ---------- */
+@media (max-width: 768px) {
+  .intro-section { gap: 24px; }
+  .intro__top { gap: 16px; }
+
+  .intro__lead {
+    max-width: 358px;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .intro__btn { font-size: var(--t-small); line-height: var(--t-small-lh); }
+
+  .intro__collage { gap: 8px; }
+  .intro__photo { border-radius: var(--r-xs); }
+  .intro__photo--statue      { width: 102px; height: 101px; }
+  .intro__photo--tower       { width: 121px; height: 162px; }
+  .intro__photo--instruments { width: 135px; height: 139px; }
+  .intro__photo--dress       { width: 135px; height: 202px; }
+  .intro__photo--carpets     { width: 182px; height: 122px; }
+  .intro__photo--tourists    { width: 115px; height: 153px; }
+}

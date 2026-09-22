@@ -43,8 +43,8 @@ assets/img/         — şəkillər, bölmə-prefiksli adlar: hero-bg.jpg, museu
 | # | Bölmə | Figma node | Status |
 |---|-------|-----------|--------|
 | 0 | Tokens + skelet | — | ✅ Hazır |
-| 1 | Header + Hero (axtarış paneli, çiplər) | 1523:4707 | ⬜ |
-| 2 | UNESCO intro + foto kollaj | 1523:5620 | ⬜ |
+| 1 | Header + Hero (axtarış paneli, çiplər) | 1523:4707 | ✅ |
+| 2 | UNESCO intro + foto kollaj | 1523:5620 | ✅ |
 | 3 | Museums of Icherisheher & Gala | 1523:5419 | ⬜ |
 | 4 | Ready-made routes | 1523:5063 | ⬜ |
 | 5 | This season in the Old City | 1523:4992 | ⬜ |

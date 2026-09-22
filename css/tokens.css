@@ -22,6 +22,7 @@
   --c-text-soft:  #62615F;   /* yumÅŸaq mÉ™tn variantÄ± */
   --c-text-dark:  #211C16;   /* isti-tÃ¼nd baÅŸlÄ±q variantÄ± */
   --c-ivory:      #FAFAF5;   /* aÃ§Ä±q mÉ™tn (tÃ¼nd fonda) */
+  --c-text-muted: #AFAFAF;   /* UNESCO intro — ötəri mətn rəngi (Etap 2) */
 
   /* ÅžÃ¼ÅŸÉ™ effektli Ã§iplÉ™r (hero Ã¼zÉ™rindÉ™) */
   --c-glass-12:   rgba(255, 255, 255, 0.12);
@@ -46,6 +47,7 @@
   --t-h5:        22px; --t-h5-lh:        28px;
   --t-lead:      18px; --t-lead-lh:      24px;  /* Ã¶nÉ™ Ã§Ä±xan mÉ™tn (Medium) */
   --t-panel:     20px; --t-panel-lh:     24px;  /* hero explore paneli başlığı (Medium) */
+  --t-statement: 32px; --t-statement-lh: 40px;  /* UNESCO intro mətni (Etap 2, Regular) */
   --t-body:      16px; --t-body-lh:      24px;  /* gÃ¶vdÉ™ (Regular) â€” dominant */
   --t-body-tight-lh: 20px;                      /* sÄ±x gÃ¶vdÉ™ (Ã§iplÉ™r, meta) */
   --t-small:     14px; --t-small-lh:     20px;
