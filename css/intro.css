@@ -76,7 +76,10 @@
   transform: translateX(-50%);
   overflow: hidden;
   display: flex;
-  justify-content: center;
+  /* Kollaj burada MƏRKƏZLƏŞDİRİLMİR: sonsuz marquee üçün zolaq wrap-ın sol
+     kənarına bitişik olmalıdır, yoxsa translateX(-50%) dövrü kollajın həqiqi
+     enindən (2 track) uzağa çıxır və sağda boş sahə görünür. Statik (hərəkətsiz)
+     görünüş üçün mərkəzləmə aşağıdakı prefers-reduced-motion bloklunda qaytarılır. */
 }
 
 /* .intro__collage-track iki dəfə təkrarlanır (bax: index.html) ki, translateX(-50%)
@@ -143,6 +146,9 @@
 
 /* ---------- Hərəkət azaltma seçimi ---------- */
 @media (prefers-reduced-motion: reduce) {
+  .intro__collage-wrap {
+    justify-content: center;
+  }
   .intro__collage {
     animation: none;
   }
