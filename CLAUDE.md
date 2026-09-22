@@ -69,7 +69,7 @@ Etap tamamlananda bu cədvəldə statusu ✅ et və commit-ə daxil et.
 
 Etap 3-dən başlayaraq bölmələr **data-driven**-dir: məzmun HTML-ə hardcode yazılmır, `data/<section>.json`-dan vanilla JS modulu (`js/<section>.js`) ilə render olunur.
 
-- **Backend:** öz API-mizi qururuq — repo `icherisheher-api`, Node.js/Express + PostgreSQL, Railway-də host olunur.
+- **Backend:** öz API-mizi qururuq — repo `icherisheher-api`, Node.js/Express + PostgreSQL, Railway-də host olunur: `icherisheher-api-production.up.railway.app`.
 - **Ödənişlər** kənar sistemdə qalır (client-in mövcud ödəniş provayderi) — frontend yalnız `ticket_url`-a yönləndirir, ödəniş axınını özü idarə etmir.
 - **Trilingual sxem:** mətn sahələri (`name`, `short_description`, `address` və s.) `{ "az": "...", "en": "...", "ru": "..." }` formatındadır. Hazırkı dil sabit `en`-dir (`js/<section>.js` daxilində `LANG` sabiti); real i18n seçicisi gələcək bir etapda əlavə olunacaq.
 - **Fallback tələbdir:** hər modul əvvəlcə öz `data/<section>.json`-unu (mock/local) çəkir; `API_URL` Etap 3b-də `icherisheher-api`-yə yönləndiriləndə də bu fayl fallback olaraq saxlanılır — fetch uğursuz olarsa səhifə boş qalmır, `data-state="error"` ilə boş vəziyyət göstərilir.

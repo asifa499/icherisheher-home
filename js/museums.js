@@ -3,7 +3,8 @@
 // Etap 3b-də API_URL öz backend-imizə (icherisheher-api, Railway) yönləndiriləcək;
 // fetch uğursuz olarsa local JSON fallback qalacaq.
 
-// TODO(Etap 3b): will be switched to our own icherisheher-api on Railway.
+// TODO(Etap 3b): will be switched to our own icherisheher-api on Railway
+// (https://icherisheher-api-production.up.railway.app).
 const API_URL = "data/museums.json";
 const LANG = "en"; // hazırkı dil: EN. Gələcəkdə i18n seçicisindən oxunacaq.
 
