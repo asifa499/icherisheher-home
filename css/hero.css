@@ -1,11 +1,7 @@
 /* ============================================================
    Etap 1 — Header + Hero
-   Figma: 1523:4707 (web 1440) · 1523:5735 (mobile 393, hero hissəsi)
-   Naviqasiya + "Welcome to Icherisheher" + explore paneli (çiplər)
-
-   Qeyd: explore paneli ("What would you like to explore?") ayrıca
-   Figma node kimi MCP vasitəsilə tapılmadı — spacing ekran
-   görüntüsündən ölçülüb (bax: index.html şərhi).
+   Figma: 1523:4707 (nav + başlıq, web 1440) · 1523:5137 (explore paneli, 1136×156)
+   1523:5735 (mobile 393, hero hissəsi)
    ============================================================ */
 
 .hero-section {
@@ -26,16 +22,12 @@
 }
 
 .hero__bg {
+  /* Figma node 1523:4709 "image 42" fotonun özündə 30% qara tint (rgba(0,0,0,0.3))
+     birləşdirilib (bax: figma export), ona görə burada ayrıca overlay tətbiq olunmur. */
   position: absolute;
   inset: 0;
   background: var(--c-surface) url("../assets/img/hero-bg.jpg") center / cover no-repeat;
   z-index: -3;
-}
-.hero__bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.3);
 }
 
 .hero__scrim-top,
@@ -126,28 +118,28 @@
   letter-spacing: -0.03em;
 }
 
-/* ---------- Explore paneli ---------- */
+/* ---------- Explore paneli (Figma 1523:5137, 1136×156) ---------- */
 .hero__explore {
   position: relative;
   z-index: 1;
   margin-top: -86px;
   display: flex;
   align-items: stretch;
-  gap: 32px;
   background: var(--c-white);
-  border-radius: var(--r-md);
-  padding: 32px;
-  box-shadow: 0 24px 48px var(--c-shadow-10);
+  border-radius: var(--r-lg);
+  box-shadow: 0 16px 50px var(--c-shadow-08);
 }
 
 .hero__explore-main {
-  flex: 1;
+  flex: 1 0 0;
   min-width: 0;
+  padding: 24px 32px;
 }
 .hero__explore-heading {
-  font-size: var(--t-lead);
-  line-height: var(--t-lead-lh);
+  font-size: var(--t-panel);
+  line-height: var(--t-panel-lh);
   font-weight: 500;
+  letter-spacing: -0.03em;
   color: var(--c-black);
   margin-bottom: 16px;
 }
@@ -155,43 +147,46 @@
 .hero__chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
 }
 
 .chip {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  height: 40px;
-  padding: 0 16px;
+  gap: 8px;
+  padding: 10px 16px;
   border-radius: var(--r-pill);
-  border: 1px solid var(--c-brand);
-  color: var(--c-black);
-  font-size: var(--t-small);
-  line-height: var(--t-small-lh);
+  border: 1.5px solid var(--c-brand);
+  color: var(--c-brand);
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
   white-space: nowrap;
 }
-.chip__icon { font-size: var(--t-small); line-height: 1; }
-.chip--count {
-  border-color: var(--c-light-gray);
-  color: var(--c-gray);
-  padding: 0 14px;
+.chip__icon { display: block; flex-shrink: 0; }
+
+.hero__explore-divider {
+  flex: 0 0 auto;
+  width: 1px;
+  align-self: stretch;
+  background: var(--c-hairline);
 }
 
 .hero__explore-aside {
   flex: 0 0 auto;
-  width: 344px;
-  padding-left: 32px;
-  border-left: 1px solid var(--c-light-gray);
+  width: 336px;
+  padding: 24px 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 16px;
 }
 .hero__explore-aside-text {
-  font-size: var(--t-lead);
-  line-height: var(--t-lead-lh);
+  font-size: var(--t-panel);
+  line-height: var(--t-panel-lh);
   font-weight: 500;
+  letter-spacing: -0.03em;
   color: var(--c-black);
 }
 
@@ -200,14 +195,17 @@
   align-items: center;
   gap: 8px;
   align-self: flex-start;
-  height: 44px;
-  padding: 0 20px;
+  padding: 8px 16px;
   border-radius: var(--r-pill);
-  border: 1px solid var(--c-orange);
-  color: var(--c-black);
-  font-size: var(--t-small);
-  line-height: var(--t-small-lh);
-  font-weight: 500;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--c-white), var(--c-white)) padding-box,
+    linear-gradient(90deg, var(--c-brand), var(--c-gold)) border-box;
+  color: var(--c-brand);
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
 }
 
 /* ---------- Responsive (mobil, 393px etalon) ---------- */
@@ -229,16 +227,19 @@
 
   .hero__explore {
     flex-direction: column;
-    gap: 24px;
     margin-top: -48px;
-    padding: 24px;
     border-radius: var(--r-md);
+  }
+  .hero__explore-main,
+  .hero__explore-aside {
+    padding: 24px;
+  }
+  .hero__explore-divider {
+    width: auto;
+    height: 1px;
+    align-self: auto;
   }
   .hero__explore-aside {
     width: auto;
-    padding-left: 0;
-    padding-top: 24px;
-    border-left: 0;
-    border-top: 1px solid var(--c-light-gray);
   }
 }

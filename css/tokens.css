@@ -27,8 +27,11 @@
   --c-glass-12:   rgba(255, 255, 255, 0.12);
   --c-glass-16:   rgba(255, 255, 255, 0.16);
   --c-shadow-10:  rgba(0, 0, 0, 0.10);
+  --c-shadow-08:  rgba(0, 0, 0, 0.08);
   --c-shadow-06:  rgba(0, 0, 0, 0.06);
   --c-glass-04:   rgba(255, 255, 255, 0.04);
+  --c-hairline:   #ECECEC;   /* hero explore paneli ayırıcısı */
+  --c-gold:       #F5B90E;   /* "ai" gradient bitiş rəngi (Inspire me düyməsi) */
 
   /* ---------- Tipoqrafiya ----------
      Æsas ailÉ™: Vela Sans (Regular 400 / Medium 500 / SemiBold 600)
@@ -42,6 +45,7 @@
   --t-h4:        24px; --t-h4-lh:        28px;  /* kart baÅŸlÄ±qlarÄ± (Medium) */
   --t-h5:        22px; --t-h5-lh:        28px;
   --t-lead:      18px; --t-lead-lh:      24px;  /* Ã¶nÉ™ Ã§Ä±xan mÉ™tn (Medium) */
+  --t-panel:     20px; --t-panel-lh:     24px;  /* hero explore paneli başlığı (Medium) */
   --t-body:      16px; --t-body-lh:      24px;  /* gÃ¶vdÉ™ (Regular) â€” dominant */
   --t-body-tight-lh: 20px;                      /* sÄ±x gÃ¶vdÉ™ (Ã§iplÉ™r, meta) */
   --t-small:     14px; --t-small-lh:     20px;

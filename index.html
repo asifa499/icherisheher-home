@@ -12,10 +12,8 @@
 <body>
 
   <!-- ETAP 1 · Header + Hero · Figma: 1523:4707
-       Qeyd: axtarış/çip paneli ("What would you like to explore?") hero frame-inin (1523:4707)
-       özündə deyil — Figma MCP vasitəsilə node ID-si tapılmadı (home_page node-u 8127px hündürlükdə,
-       MCP metadata sorğuları övladları qaytarmadı). Markup ekran görüntüsü ölçmələri əsasında
-       reallaşdırılıb; Asif Figma ilə tutuşdurarkən dəqiq node tapılarsa spacing yenilənəcək. -->
+       Explore/çip paneli ("What would you like to explore?") home_page-in ayrıca
+       (1523:4707-in bacısı) node-udur: 1523:5137 — 1136×156, left:152 top:538. -->
   <section id="hero" class="hero-section block" data-figma="1523:4707">
     <div class="hero">
       <div class="hero__bg" aria-hidden="true"></div>
@@ -50,24 +48,25 @@
         </div>
       </header>
 
-      <h1 class="hero__title">Welcome to Icherisheher</h1>
+      <h1 class="hero__title">Discover Icherisheher</h1>
     </div>
 
-    <div class="hero__explore container">
+    <div class="hero__explore container" data-figma="1523:5137">
       <div class="hero__explore-main">
-        <p class="hero__explore-heading">What would you like to explore?</p>
+        <p class="hero__explore-heading">What would you<br>like to explore?</p>
         <div class="hero__chips">
-          <button class="chip" type="button"><span class="chip__icon" aria-hidden="true">🚩</span>Tours</button>
-          <button class="chip" type="button"><span class="chip__icon" aria-hidden="true">🛏</span>Stay</button>
-          <button class="chip" type="button"><span class="chip__icon" aria-hidden="true">🍽</span>Eat &amp; drink</button>
-          <button class="chip" type="button"><span class="chip__icon" aria-hidden="true">🗺</span>Open map</button>
-          <button class="chip" type="button"><span class="chip__icon" aria-hidden="true">✨</span>City Pass</button>
-          <button class="chip chip--count" type="button">+24</button>
+          <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-tours.svg" alt="" width="14" height="18">Tours</button>
+          <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-stay.svg" alt="" width="18" height="14">Stay</button>
+          <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-eat-drink.svg" alt="" width="17" height="17">Eat &amp; drink</button>
+          <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-open-map.svg" alt="" width="17" height="17">Open map</button>
+          <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-city-pass.svg" alt="" width="19" height="19">City Pass</button>
+          <button class="chip" type="button">+24</button>
         </div>
       </div>
+      <div class="hero__explore-divider" aria-hidden="true"></div>
       <div class="hero__explore-aside">
-        <p class="hero__explore-aside-text">You have no idea what to do in Icherisheher?</p>
-        <button class="btn-inspire" type="button"><span aria-hidden="true">✨</span>Inspire me please!</button>
+        <p class="hero__explore-aside-text">You have no idea what<br>to do in Icheriseher?</p>
+        <button class="btn-inspire" type="button"><img src="assets/img/hero-icon-sparkle.svg" alt="" width="24" height="24">Inspire me please!</button>
       </div>
     </div>
   </section>
