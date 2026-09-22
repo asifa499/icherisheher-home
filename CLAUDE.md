@@ -72,8 +72,8 @@ Etap 3-dən başlayaraq bölmələr **data-driven**-dir: məzmun HTML-ə hardcod
 - **Backend:** öz API-mizi qururuq — repo `icherisheher-api`, Node.js/Express + PostgreSQL, Railway-də host olunur: `icherisheher-api-production.up.railway.app`.
 - **Ödənişlər** kənar sistemdə qalır (client-in mövcud ödəniş provayderi) — frontend yalnız `ticket_url`-a yönləndirir, ödəniş axınını özü idarə etmir.
 - **Trilingual sxem:** mətn sahələri (`name`, `short_description`, `address` və s.) `{ "az": "...", "en": "...", "ru": "..." }` formatındadır. Hazırkı dil sabit `en`-dir (`js/<section>.js` daxilində `LANG` sabiti); real i18n seçicisi gələcək bir etapda əlavə olunacaq.
-- **Fallback tələbdir:** hər modul əvvəlcə öz `data/<section>.json`-unu (mock/local) çəkir; `API_URL` Etap 3b-də `icherisheher-api`-yə yönləndiriləndə də bu fayl fallback olaraq saxlanılır — fetch uğursuz olarsa səhifə boş qalmır, `data-state="error"` ilə boş vəziyyət göstərilir.
-- **Nümunə:** `data/museums.json` + `js/museums.js` (Etap 3). Yeni data-driven bölmə əlavə edəndə bu nümunəni təkrarla: JSON faylında yuxarıdakı trilingual sxemi saxla, `API_URL` sabitinin üstündə "Etap 3b-də dəyişəcək" qeydini yaz.
+- **Fallback tələbdir:** `API_URL` `icherisheher-api`-yə (Railway) işarə edir; sorğu uğursuz olarsa (server yatıb, CORS və s.) modul avtomatik olaraq öz `data/<section>.json`-unu (mock/local) çəkir. Hər ikisi də alınmasa səhifə boş qalmır, `data-state="error"` ilə boş vəziyyət göstərilir.
+- **Nümunə:** `data/museums.json` + `js/museums.js` (Etap 3). Yeni data-driven bölmə əlavə edəndə bu nümunəni təkrarla: JSON faylında yuxarıdakı trilingual sxemi saxla, `API_URL`-i `icherisheher-api`-nin uyğun endpoint-inə yönləndir, `FALLBACK_URL`-i local JSON-a saxla.
 
 ## Design tokens xülasəsi (tam siyahı: css/tokens.css)
 

@@ -1,11 +1,9 @@
 // Etap 3 — Museums of Icherisheher & Gala
-// Data-driven kart render: hazırda data/museums.json (local mock) istifadə olunur.
-// Etap 3b-də API_URL öz backend-imizə (icherisheher-api, Railway) yönləndiriləcək;
-// fetch uğursuz olarsa local JSON fallback qalacaq.
-
-// TODO(Etap 3b): will be switched to our own icherisheher-api on Railway
-// (https://icherisheher-api-production.up.railway.app).
-const API_URL = "data/museums.json";
+// Data-driven kart render: öz backend-imizdən (icherisheher-api, Railway) çəkilir.
+// API sorğusu uğursuz olarsa (server yatıb, CORS və s.), avtomatik olaraq
+// local data/museums.json fallback-ına keçilir — səhifə heç vaxt boş qalmır.
+const API_URL = "https://icherisheher-api-production.up.railway.app/api/museums";
+const FALLBACK_URL = "data/museums.json";
 const LANG = "en"; // hazırkı dil: EN. Gələcəkdə i18n seçicisindən oxunacaq.
 
 function pickText(field) {
@@ -67,18 +65,28 @@ function renderFallback(row) {
   row.innerHTML = "";
 }
 
+async function fetchMuseums(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
 async function initMuseums() {
   const row = document.querySelector("[data-museums-row]");
   if (!row) return;
 
   try {
-    const res = await fetch(API_URL);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const museums = await res.json();
+    const museums = await fetchMuseums(API_URL);
     renderMuseums(row, museums);
-  } catch (err) {
-    console.error("Museums fetch failed:", err);
-    renderFallback(row);
+  } catch (apiErr) {
+    console.error("Museums API fetch failed, falling back to local JSON:", apiErr);
+    try {
+      const museums = await fetchMuseums(FALLBACK_URL);
+      renderMuseums(row, museums);
+    } catch (fallbackErr) {
+      console.error("Museums fallback fetch failed:", fallbackErr);
+      renderFallback(row);
+    }
   }
 }
 
