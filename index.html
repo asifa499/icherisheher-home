@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/hero.css">
   <link rel="stylesheet" href="css/intro.css">
+  <link rel="stylesheet" href="css/museums.css">
 </head>
 <body>
 
@@ -106,9 +107,12 @@
     </div>
   </section>
 
-  <!-- ETAP 3 · Museums of Icherisheher & Gala · Figma: 1523:5419 -->
-  <section id="museums" class="section is-placeholder container" data-figma="1523:5419">
-    <p class="ph-label"><strong>Etap 3 — Museums</strong>Muzey kartları + "Get a ticket"</p>
+  <!-- ETAP 3 · Museums of Icherisheher & Gala · Figma: 1523:5419
+       Kartlar data/museums.json-dan js/museums.js ilə render olunur (bax: API integration, CLAUDE.md). -->
+  <section id="museums" class="museums-section container" data-figma="1523:5419">
+    <h2 class="museums__title">Museums of Icherisheher &amp; Gala</h2>
+    <a class="museums__view-all" href="#">View all museums</a>
+    <div class="museums__row" data-museums-row aria-live="polite"></div>
   </section>
 
   <!-- ETAP 4 · Ready-made routes · Figma: 1523:5063 -->
@@ -151,5 +155,6 @@
     <p class="ph-label"><strong>Etap 11 — Footer</strong>Link sütunları, əlaqə, panoram qala divarı fotosu</p>
   </footer>
 
+  <script type="module" src="js/museums.js"></script>
 </body>
 </html>

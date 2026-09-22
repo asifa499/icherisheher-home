@@ -45,7 +45,7 @@ assets/img/         — şəkillər, bölmə-prefiksli adlar: hero-bg.jpg, museu
 | 0 | Tokens + skelet | — | ✅ Hazır |
 | 1 | Header + Hero (axtarış paneli, çiplər) | 1523:4707 | ✅ |
 | 2 | UNESCO intro + foto kollaj | 1523:5620 | ✅ |
-| 3 | Museums of Icherisheher & Gala | 1523:5419 | ⬜ |
+| 3 | Museums of Icherisheher & Gala | 1523:5419 | ✅ |
 | 4 | Ready-made routes | 1523:5063 | ⬜ |
 | 5 | This season in the Old City | 1523:4992 | ⬜ |
 | 6 | Resources (tabs + kartlar) | 1523:8262 | ⬜ |
@@ -64,6 +64,16 @@ Etap tamamlananda bu cədvəldə statusu ✅ et və commit-ə daxil et.
 3. Markup + CSS yaz (`css/<section>.css`), placeholder-i əvəz et.
 4. Şəkil lazımdırsa: Asifdən dəqiq siyahı ilə istə (hansı layer, hansı format). Fayllar `assets/img/`-ə bölmə-prefiksli adla düşür; gələnə qədər `--c-surface` fonlu placeholder div işlət.
 5. Commit + push → Asif canlı linki Figma ilə tutuşdurur → düzəlişlər → təsdiq → cədvəldə status yenilə → növbəti etap.
+
+## API inteqrasiyası
+
+Etap 3-dən başlayaraq bölmələr **data-driven**-dir: məzmun HTML-ə hardcode yazılmır, `data/<section>.json`-dan vanilla JS modulu (`js/<section>.js`) ilə render olunur.
+
+- **Backend:** öz API-mizi qururuq — repo `icherisheher-api`, Node.js/Express + PostgreSQL, Railway-də host olunur.
+- **Ödənişlər** kənar sistemdə qalır (client-in mövcud ödəniş provayderi) — frontend yalnız `ticket_url`-a yönləndirir, ödəniş axınını özü idarə etmir.
+- **Trilingual sxem:** mətn sahələri (`name`, `short_description`, `address` və s.) `{ "az": "...", "en": "...", "ru": "..." }` formatındadır. Hazırkı dil sabit `en`-dir (`js/<section>.js` daxilində `LANG` sabiti); real i18n seçicisi gələcək bir etapda əlavə olunacaq.
+- **Fallback tələbdir:** hər modul əvvəlcə öz `data/<section>.json`-unu (mock/local) çəkir; `API_URL` Etap 3b-də `icherisheher-api`-yə yönləndiriləndə də bu fayl fallback olaraq saxlanılır — fetch uğursuz olarsa səhifə boş qalmır, `data-state="error"` ilə boş vəziyyət göstərilir.
+- **Nümunə:** `data/museums.json` + `js/museums.js` (Etap 3). Yeni data-driven bölmə əlavə edəndə bu nümunəni təkrarla: JSON faylında yuxarıdakı trilingual sxemi saxla, `API_URL` sabitinin üstündə "Etap 3b-də dəyişəcək" qeydini yaz.
 
 ## Design tokens xülasəsi (tam siyahı: css/tokens.css)
 
