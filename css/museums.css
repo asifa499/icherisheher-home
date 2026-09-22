@@ -47,12 +47,19 @@
   white-space: nowrap;
 }
 
-/* ---------- Kart cərgəsi (üfüqi scroll) ---------- */
+/* ---------- Kart cərgəsi (üfüqi scroll) ----------
+   Figma-da cərgə "container"-in sağ kənarından kənara (canvas kənarına)
+   qədər "bleed" edir ki, sonrakı kart bir qədər görünsün (scroll işarəsi).
+   Sol kənar başlıqla bir xəttdə qalır, sağ kənar isə həqiqi viewport
+   kənarına qədər uzanır — bunun üçün .container-in real sağ boşluğu
+   qədər mənfi margin verilir (intro.css-dəki marquee bleed texnikasının
+   eynisi, sadəcə tək tərəfli). */
 .museums__row {
   grid-area: row;
   display: flex;
   gap: 16px;
-  width: 100%;
+  margin-right: calc(-1 * max(var(--page-pad), (100vw - var(--content-w)) / 2));
+  padding-right: max(var(--page-pad), (100vw - var(--content-w)) / 2);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
