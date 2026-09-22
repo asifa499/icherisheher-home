@@ -68,20 +68,40 @@
   color: var(--c-white);
 }
 
-/* ---------- Foto kollaj (kənarlara "bleed" edən zolaq) ---------- */
+/* ---------- Foto kollaj (kənarlara "bleed" edən, sağdan-sola avtomatik sürüşən zolaq) ---------- */
 .intro__collage-wrap {
   position: relative;
   left: 50%;
   width: 100vw;
   transform: translateX(-50%);
   overflow: hidden;
-}
-
-.intro__collage {
   display: flex;
   justify-content: center;
+}
+
+/* .intro__collage-track iki dəfə təkrarlanır (bax: index.html) ki, translateX(-50%)
+   fasiləsiz (görünməz tikişli) dövr yaratsın. Yalnız transform animasiya olunur —
+   layout xüsusiyyətlərinə toxunulmur, GPU-dostu qalır. */
+.intro__collage {
+  display: flex;
+  flex-shrink: 0;
   align-items: flex-start;
   gap: 16px;
+  animation: intro-marquee 60s linear infinite;
+  will-change: transform;
+}
+.intro__collage:hover { animation-play-state: paused; }
+
+.intro__collage-track {
+  display: flex;
+  flex-shrink: 0;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+@keyframes intro-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 .intro__photo {
@@ -110,7 +130,8 @@
 
   .intro__btn { font-size: var(--t-small); line-height: var(--t-small-lh); }
 
-  .intro__collage { gap: 8px; }
+  .intro__collage,
+  .intro__collage-track { gap: 8px; }
   .intro__photo { border-radius: var(--r-xs); }
   .intro__photo--statue      { width: 102px; height: 101px; }
   .intro__photo--tower       { width: 121px; height: 162px; }
@@ -118,4 +139,14 @@
   .intro__photo--dress       { width: 135px; height: 202px; }
   .intro__photo--carpets     { width: 182px; height: 122px; }
   .intro__photo--tourists    { width: 115px; height: 153px; }
+}
+
+/* ---------- Hərəkət azaltma seçimi ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .intro__collage {
+    animation: none;
+  }
+  .intro__collage-track[aria-hidden="true"] {
+    display: none;
+  }
 }
