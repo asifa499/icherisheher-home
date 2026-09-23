@@ -53,6 +53,8 @@
   --t-small:     14px; --t-small-lh:     20px;
   --t-caption:   12px; --t-caption-lh:   16px;
   --t-nav:       15px; --t-nav-lh:       24px;
+  --t-date:      28px; --t-date-lh:      36px;  /* tədbir tarix nişanı — gün rəqəmi (Etap 5, Medium)
+                                                  web və mobildə eyni qalır, ona görə --t-h3-dən ayrıdır */
 
   /* ---------- Radius sistemi ---------- */
   --r-pill:  1000px;  /* Ã§iplÉ™r, dÃ¼ymÉ™lÉ™r (É™n Ã§ox iÅŸlÉ™nÉ™n) */

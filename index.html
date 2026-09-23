@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/intro.css">
   <link rel="stylesheet" href="css/museums.css">
   <link rel="stylesheet" href="css/routes.css">
+  <link rel="stylesheet" href="css/season.css">
 </head>
 <body>
 
@@ -128,9 +129,12 @@
     <div class="routes__card" data-routes-card aria-live="polite"></div>
   </section>
 
-  <!-- ETAP 5 · This season in the Old City · Figma: 1523:4992 -->
-  <section id="season" class="section is-placeholder container" data-figma="1523:4992">
-    <p class="ph-label"><strong>Etap 5 — This season</strong>Tədbir təqvimi kartları</p>
+  <!-- ETAP 5 · This season in the Old City · Figma: 1523:4992 (web) / 1523:6166 (mobile)
+       Tədbir kartları data/events.json-dan js/events.js ilə render olunur. -->
+  <section id="season" class="season-section container" data-figma="1523:4992">
+    <h2 class="season__title">This season in the Old City</h2>
+    <a class="season__calendar" href="#">Full events calendar</a>
+    <div class="season__grid" data-events-grid aria-live="polite"></div>
   </section>
 
   <!-- ETAP 6 · Resources · Figma: 1523:8262 -->
@@ -165,5 +169,6 @@
 
   <script type="module" src="js/museums.js"></script>
   <script type="module" src="js/routes.js"></script>
+  <script type="module" src="js/events.js"></script>
 </body>
 </html>
