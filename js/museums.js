@@ -71,17 +71,30 @@ async function fetchMuseums(url, options) {
   return res.json();
 }
 
+// API cavabı bəzən bare array deyil, wrapper object ola bilər
+// (məs. { count, data: [...] }). Hər iki formatı dəstəklə; siyahı
+// boş çıxarsa uğursuz sorğu kimi rəftar et ki, fallback işə düşsün.
+function unwrapMuseumsList(json) {
+  const list = Array.isArray(json) ? json : (json && (json.data || json.museums || json.items)) || [];
+  if (!Array.isArray(list) || list.length === 0) {
+    throw new Error("Museums payload is empty or in an unrecognized shape");
+  }
+  return list;
+}
+
 async function initMuseums() {
   const row = document.querySelector("[data-museums-row]");
   if (!row) return;
 
   try {
-    const museums = await fetchMuseums(API_URL, { cache: "no-store" });
+    const json = await fetchMuseums(API_URL, { cache: "no-store" });
+    const museums = unwrapMuseumsList(json);
     renderMuseums(row, museums);
   } catch (apiErr) {
     console.error("Museums API fetch failed, falling back to local JSON:", apiErr);
     try {
-      const museums = await fetchMuseums(FALLBACK_URL);
+      const json = await fetchMuseums(FALLBACK_URL);
+      const museums = unwrapMuseumsList(json);
       renderMuseums(row, museums);
     } catch (fallbackErr) {
       console.error("Museums fallback fetch failed:", fallbackErr);
