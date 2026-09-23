@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/hero.css">
   <link rel="stylesheet" href="css/intro.css">
   <link rel="stylesheet" href="css/museums.css">
+  <link rel="stylesheet" href="css/routes.css">
 </head>
 <body>
 
@@ -115,9 +116,16 @@
     <div class="museums__row" data-museums-row aria-live="polite"></div>
   </section>
 
-  <!-- ETAP 4 · Ready-made routes · Figma: 1523:5063 -->
-  <section id="routes" class="section is-placeholder container" data-figma="1523:5063">
-    <p class="ph-label"><strong>Etap 4 — Ready-made routes</strong>Filter çipləri + marşrut dayanacaqları</p>
+  <!-- ETAP 4 · Ready-made routes · Figma: 1523:5063 (web) / 1523:5937 (mobile)
+       Çiplər və marşrut kartı data/routes.json-dan js/routes.js ilə render olunur. -->
+  <section id="routes" class="routes-section container" data-figma="1523:5063">
+    <div class="routes__intro">
+      <h2 class="routes__title">Ready-made routes,<br class="routes__br"> made for the time you have.</h2>
+      <p class="routes__lead">Pick how you travel and follow a mapped route through the Old City - every stop links to tickets, hours and directions.</p>
+    </div>
+    <div class="routes__chips" data-routes-chips role="group" aria-label="Route filters"></div>
+    <a class="routes__all" href="#">All tours</a>
+    <div class="routes__card" data-routes-card aria-live="polite"></div>
   </section>
 
   <!-- ETAP 5 · This season in the Old City · Figma: 1523:4992 -->
@@ -156,5 +164,6 @@
   </footer>
 
   <script type="module" src="js/museums.js"></script>
+  <script type="module" src="js/routes.js"></script>
 </body>
 </html>

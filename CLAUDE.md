@@ -46,7 +46,7 @@ assets/img/         — şəkillər, bölmə-prefiksli adlar: hero-bg.jpg, museu
 | 1 | Header + Hero (axtarış paneli, çiplər) | 1523:4707 | ✅ |
 | 2 | UNESCO intro + foto kollaj | 1523:5620 | ✅ |
 | 3 | Museums of Icherisheher & Gala | 1523:5419 | ✅ |
-| 4 | Ready-made routes | 1523:5063 | ⬜ |
+| 4 | Ready-made routes | 1523:5063 | ✅ |
 | 5 | This season in the Old City | 1523:4992 | ⬜ |
 | 6 | Resources (tabs + kartlar) | 1523:8262 | ⬜ |
 | 7 | See What's Nearby (xəritə) | 1523:8263 | ⬜ |
@@ -73,7 +73,7 @@ Etap 3-dən başlayaraq bölmələr **data-driven**-dir: məzmun HTML-ə hardcod
 - **Ödənişlər** kənar sistemdə qalır (client-in mövcud ödəniş provayderi) — frontend yalnız `ticket_url`-a yönləndirir, ödəniş axınını özü idarə etmir.
 - **Trilingual sxem:** mətn sahələri (`name`, `short_description`, `address` və s.) `{ "az": "...", "en": "...", "ru": "..." }` formatındadır. Hazırkı dil sabit `en`-dir (`js/<section>.js` daxilində `LANG` sabiti); real i18n seçicisi gələcək bir etapda əlavə olunacaq.
 - **Fallback tələbdir:** `API_URL` `icherisheher-api`-yə (Railway) işarə edir; sorğu uğursuz olarsa (server yatıb, CORS və s.) modul avtomatik olaraq öz `data/<section>.json`-unu (mock/local) çəkir. Hər ikisi də alınmasa səhifə boş qalmır, `data-state="error"` ilə boş vəziyyət göstərilir.
-- **Nümunə:** `data/museums.json` + `js/museums.js` (Etap 3). Yeni data-driven bölmə əlavə edəndə bu nümunəni təkrarla: JSON faylında yuxarıdakı trilingual sxemi saxla, `API_URL`-i `icherisheher-api`-nin uyğun endpoint-inə yönləndir, `FALLBACK_URL`-i local JSON-a saxla.
+- **Nümunə:** `data/museums.json` + `js/museums.js` (Etap 3), `data/routes.json` + `js/routes.js` (Etap 4). Yeni data-driven bölmə əlavə edəndə bu nümunəni təkrarla: JSON faylında yuxarıdakı trilingual sxemi saxla, `API_URL`-i `icherisheher-api`-nin uyğun endpoint-inə yönləndir, `FALLBACK_URL`-i local JSON-a saxla.
 
 ## Design tokens xülasəsi (tam siyahı: css/tokens.css)
 

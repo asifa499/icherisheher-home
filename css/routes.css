@@ -1,0 +1,295 @@
+/* ============================================================
+   Etap 4 — Ready-made routes
+   Figma: 1523:5063 (web 1440) / 1523:5937 (mobile 393)
+   Qeydlər:
+   · Mobil node üçün get_metadata yenə server xətası verdi, amma
+     get_design_context işlədi — mobil tipoqrafiya/paddinq dəyərləri
+     node property-lərindən götürülüb; yalnız bölmədaxili boşluqlar
+     və "All tours" çipinin ölçüsü Figma render-indən piksel ölçülüb.
+   · Şəkil Figma-dan 464×352 (2x) export edilib — 20% qara overlay
+     export-un içində "bişib", ona görə CSS-də ayrıca scrim yoxdur.
+   · Badge mətni Figma-da Host Grotesk-dir (idxal olunmuş komponentin
+     qalığı); burada sayt boyu olduğu kimi Vela Sans işlənir.
+   ============================================================ */
+
+.routes-section {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "intro intro"
+    "chips all"
+    "card  card";
+  column-gap: 16px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+/* ---------- Başlıq bloku ---------- */
+.routes__intro {
+  grid-area: intro;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.routes__title {
+  font-size: var(--t-h2);
+  line-height: var(--t-h2-lh);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--c-black);
+}
+
+.routes__br { display: none; }
+
+.routes__lead {
+  font-size: var(--t-lead);
+  line-height: var(--t-lead-lh);
+  letter-spacing: -0.03em;
+  color: var(--c-gray);
+}
+
+/* ---------- Filter çipləri ---------- */
+.routes__chips {
+  grid-area: chips;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.routes__chips::-webkit-scrollbar { display: none; }
+
+.routes__chip,
+.routes__all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 8px 18px;              /* +2px border = Figma 10/20 paddinqi */
+  border: 2px solid transparent;
+  border-radius: var(--r-pill);
+  background: var(--c-light-gray);
+  color: var(--c-black);
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease);
+}
+
+.routes__chip.is-active {
+  background: transparent;
+  border-color: var(--c-brand);
+  color: var(--c-brand);
+}
+
+.routes__all {
+  grid-area: all;
+  justify-self: end;
+  margin-top: 16px;
+}
+
+/* ---------- Marşrut kartı ---------- */
+.routes__card {
+  grid-area: card;
+  display: flex;
+  align-items: stretch;
+  margin-top: 24px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--c-white);
+}
+
+.routes-card__media {
+  position: relative;
+  flex: 0 1 464px;
+  min-width: 0;
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+.routes-card__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.routes-card__badges {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.routes-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 11px 3px 9px;   /* +1px border = Figma 4/12/4/10 paddinqi */
+  border-radius: var(--r-pill);
+  background: var(--c-glass-16);
+  border: 1px solid var(--c-glass-04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--c-white);
+  font-size: var(--t-small);
+  line-height: var(--t-body-lh);
+  white-space: nowrap;
+}
+.routes-card__badge img { flex-shrink: 0; }
+
+.routes-card__body {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px;
+}
+
+.routes-card__stops {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.routes-card__stop {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.routes-card__marker {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid var(--c-orange);
+  border-radius: var(--r-pill);
+  color: var(--c-orange);
+  font-size: var(--t-body);
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.routes-card__stop-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.routes-card__stop-name {
+  font-size: var(--t-lead);
+  line-height: var(--t-lead-lh);
+  letter-spacing: -0.03em;
+  color: var(--c-black);
+}
+
+.routes-card__stop-desc {
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+  letter-spacing: -0.03em;
+  color: var(--c-gray);
+}
+
+.routes-card__cta {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 2px solid var(--c-brand);
+  border-radius: var(--r-pill);
+  background: var(--c-brand);
+  color: var(--c-white);
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.routes-card__cta img { flex-shrink: 0; }
+
+/* ---------- Fallback (JS-siz / fetch alınmayanda) ---------- */
+.routes__card[data-state="error"] {
+  display: block;
+  padding: 24px;
+  color: var(--c-gray);
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+}
+.routes__card[data-state="error"]::before {
+  content: "Marşrutlar yüklənmədi. Bir az sonra yenidən cəhd edin.";
+}
+
+/* ---------- Responsive (mobil, 393px etalon) ---------- */
+@media (max-width: 768px) {
+  .routes-section {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "intro"
+      "chips"
+      "card"
+      "all";
+  }
+
+  .routes__intro { gap: 4px; }
+
+  .routes__title {
+    font-size: var(--t-h4);
+    line-height: var(--t-h4-lh);
+  }
+
+  /* Figma mobil variantda başlıq "routes," sözündən sonra sətri kəsir. */
+  .routes__br { display: inline; }
+
+  .routes__lead {
+    font-size: var(--t-small);
+    line-height: var(--t-small-lh);
+  }
+
+  .routes__chip {
+    padding: 6px 10px;            /* +2px border = Figma 8/12 paddinqi */
+    font-size: var(--t-caption);
+    line-height: var(--t-caption-lh);
+  }
+
+  /* "All tours" mobil variantda kartın altına, mərkəzə düşür.
+     Ölçüsü (80×40) Figma render-indən ölçülüb. */
+  .routes__all {
+    justify-self: center;
+    padding: 8px 12px;
+    font-size: var(--t-small);
+    line-height: var(--t-small-lh);
+  }
+
+  .routes__card {
+    flex-direction: column;
+    margin-top: 16px;
+  }
+
+  .routes-card__media {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 281px;
+  }
+
+  .routes-card__badges {
+    left: 16px;
+    bottom: 16px;
+  }
+
+  .routes-card__body { padding: 20px; }
+
+  .routes-card__stop { gap: 12px; }
+}
