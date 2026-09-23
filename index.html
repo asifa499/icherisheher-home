@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/museums.css">
   <link rel="stylesheet" href="css/routes.css">
   <link rel="stylesheet" href="css/season.css">
+  <link rel="stylesheet" href="css/resources.css">
 </head>
 <body>
 
@@ -137,9 +138,23 @@
     <div class="season__grid" data-events-grid aria-live="polite"></div>
   </section>
 
-  <!-- ETAP 6 · Resources · Figma: 1523:8262 -->
-  <section id="resources" class="section is-placeholder container" data-figma="1523:8262">
-    <p class="ph-label"><strong>Etap 6 — Resources</strong>The Review / News / Announcements tabları + məqalə kartları</p>
+  <!-- ETAP 6 · Resources · Figma: 1523:8262 (başlıq qrupu 1523:5127, kart cərgəsi 1523:5697)
+       Kartlar data/news.json-dan js/news.js ilə render olunur; tab dəyişəndə
+       yalnız uyğun "type" (review / news / announcement) göstərilir. -->
+  <section id="resources" class="resources-section container" data-figma="1523:8262">
+    <h2 class="resources__title">Resources</h2>
+
+    <div class="resources__tabs" data-resources-tabs role="tablist" aria-label="Resources">
+      <button class="resources__tab" type="button" role="tab" id="resources-tab-review"
+              data-resources-tab="review" aria-controls="resources-panel" aria-selected="true">The Stories</button>
+      <button class="resources__tab" type="button" role="tab" id="resources-tab-news"
+              data-resources-tab="news" aria-controls="resources-panel" aria-selected="false">News</button>
+      <button class="resources__tab" type="button" role="tab" id="resources-tab-announcement"
+              data-resources-tab="announcement" aria-controls="resources-panel" aria-selected="false">Announcements</button>
+    </div>
+
+    <div class="resources__track" id="resources-panel" data-resources-track
+         role="tabpanel" aria-live="polite"></div>
   </section>
 
   <!-- ETAP 7 · See What's Nearby · Figma: 1523:8263 -->
@@ -170,5 +185,6 @@
   <script type="module" src="js/museums.js"></script>
   <script type="module" src="js/routes.js"></script>
   <script type="module" src="js/events.js"></script>
+  <script type="module" src="js/news.js"></script>
 </body>
 </html>

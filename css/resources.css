@@ -1,0 +1,185 @@
+/* ============================================================
+   Etap 6 — Resources
+   Figma: 1523:8262 (web 1440)
+   Qeydlər:
+   · Başlıq qrupu 1523:5127 (left 152, top 3628), kart cərgəsi
+     1523:5697 (left 146, top 3757, en 1292 → sağa "bleed" edir).
+   · Kart iki qatdan ibarətdir: kənarda 224×292 halqa (2px
+     #F3503A, radius 28), içində 212×280 şəkil (radius 24).
+     Halqa şəklin 6px kənarındadır, ona görə cərgə məzmun
+     xəttindən (152) 6px sola sürüşüb — margin-left: -6px.
+   · Şəkil üzərində iki qat var: bütöv rgba(0,0,0,.2) tint və
+     altdan 111px hündürlüyündə çox zəif qradiyent (0.04).
+   · Mobil node: Figma MCP metadata çağırışı bu sənəd üçün yenə
+     server tərəfində JSON parse xətası qaytardı (museums.css-dəki
+     eyni problem), ona görə mobil ölçülər digər bölmələrin
+     mobil qaydaları ilə uzlaşdırılıb, node property panelindən
+     oxunmayıb. Figma ilə tutuşduranda dəqiqləşdirilə bilər.
+   ============================================================ */
+
+.resources-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+/* ---------- Başlıq ---------- */
+.resources__title {
+  font-size: var(--t-h2);
+  line-height: var(--t-h2-lh);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--c-black);
+}
+
+/* ---------- Tab cərgəsi ---------- */
+.resources__tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.resources__tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: var(--r-pill);
+  background: var(--c-light-gray);
+  color: var(--c-black);
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+/* Aktiv çip: fon yox, 2px brend haşiyə + brend mətn.
+   Figma-da haşiyə çipi 4px böyüdür, cərgə mərkəzə düzülür — eyni saxlanılıb. */
+.resources__tab[aria-selected="true"] {
+  background: transparent;
+  border: 2px solid var(--c-brand);
+  color: var(--c-brand);
+}
+
+/* ---------- Kart cərgəsi (üfüqi scroll) ----------
+   museums.css-dəki bleed texnikası: sol kənar məzmun xətti ilə
+   (halqanın 6px-i nəzərə alınmaqla), sağ kənar viewport kənarına. */
+.resources__track {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  margin-left: -6px;
+  margin-right: calc(-1 * max(var(--page-pad), (100vw - var(--content-w)) / 2));
+  padding-right: max(var(--page-pad), (100vw - var(--content-w)) / 2);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.resources__track::-webkit-scrollbar { display: none; }
+
+/* ---------- Kart ---------- */
+.resource-card {
+  display: block;
+  position: relative;
+  flex: 0 0 224px;
+  width: 224px;
+  height: 292px;
+  padding: 4px;                                  /* 2px haşiyə + 4px = 6px boşluq */
+  border: 2px solid var(--c-card-ring);
+  border-radius: calc(var(--r-md) + 4px);
+  scroll-snap-align: start;
+}
+
+.resource-card__media {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+.resource-card__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.resource-card__tint {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.resource-card__scrim {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 111px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0));
+}
+
+.resource-card__title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  text-align: center;
+  font-size: var(--t-lead);
+  line-height: var(--t-lead-lh);
+  font-weight: 500;
+  color: var(--c-white);
+}
+
+/* ---------- Boş / xəta vəziyyəti (JS-siz və ya fetch alınmayanda) ---------- */
+.resources__track[data-state="error"]::before {
+  content: "Materiallar yüklənmədi. Bir az sonra yenidən cəhd edin.";
+  color: var(--c-gray);
+  font-size: var(--t-small);
+  padding: 24px 0;
+}
+.resources__track[data-state="empty"]::before {
+  content: "Bu bölmədə hələ material yoxdur.";
+  color: var(--c-gray);
+  font-size: var(--t-small);
+  padding: 24px 0;
+}
+
+/* ---------- Responsive (mobil, 393px etalon) ---------- */
+@media (max-width: 768px) {
+  .resources__tabs {
+    gap: 8px;
+    margin-right: calc(-1 * var(--page-pad));
+    padding-right: var(--page-pad);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .resources__tabs::-webkit-scrollbar { display: none; }
+
+  .resources__tab {
+    padding: 8px 16px;
+    font-size: var(--t-small);
+    line-height: var(--t-small-lh);
+  }
+
+  .resources__track {
+    gap: 12px;
+    margin-top: 20px;
+    margin-right: calc(-1 * var(--page-pad));
+    padding-right: var(--page-pad);
+  }
+
+  .resource-card__title {
+    font-size: var(--t-body);
+    line-height: var(--t-body-lh);
+    bottom: 16px;
+  }
+}

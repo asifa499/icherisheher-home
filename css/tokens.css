@@ -23,6 +23,8 @@
   --c-text-dark:  #211C16;   /* isti-tÃ¼nd baÅŸlÄ±q variantÄ± */
   --c-ivory:      #FAFAF5;   /* aÃ§Ä±q mÉ™tn (tÃ¼nd fonda) */
   --c-text-muted: #AFAFAF;   /* UNESCO intro — ötəri mətn rəngi (Etap 2) */
+  --c-card-ring:  #F3503A;   /* Resources kart halqası (Etap 6) — bu node-da "orange" paint stili
+                                bu dəyəri qaytarır, home_page-dəki --c-orange (#FD6310) ilə eyni deyil */
 
   /* ÅžÃ¼ÅŸÉ™ effektli Ã§iplÉ™r (hero Ã¼zÉ™rindÉ™) */
   --c-glass-12:   rgba(255, 255, 255, 0.12);
