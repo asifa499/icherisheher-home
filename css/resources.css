@@ -72,6 +72,11 @@
 .resources__track {
   display: flex;
   align-items: center;
+  /* Bölmə flex-column + align-items:flex-start olduğuna görə cərgə
+     öz məzmununa görə enləşir və overflow-x işə düşmür (bütün səhifə
+     üfüqi sürüşür). stretch onu konteyner eninə bağlayır — museums__row
+     grid-də necə uzanırsa, burada da eyni. */
+  align-self: stretch;
   gap: 16px;
   margin-top: 24px;
   margin-left: -6px;
@@ -156,6 +161,7 @@
 /* ---------- Responsive (mobil, 393px etalon) ---------- */
 @media (max-width: 768px) {
   .resources__tabs {
+    align-self: stretch;
     gap: 8px;
     margin-right: calc(-1 * var(--page-pad));
     padding-right: var(--page-pad);
