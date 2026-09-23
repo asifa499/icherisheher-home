@@ -65,8 +65,8 @@ function renderFallback(row) {
   row.innerHTML = "";
 }
 
-async function fetchMuseums(url) {
-  const res = await fetch(url);
+async function fetchMuseums(url, options) {
+  const res = await fetch(url, options);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
 }
@@ -76,7 +76,7 @@ async function initMuseums() {
   if (!row) return;
 
   try {
-    const museums = await fetchMuseums(API_URL);
+    const museums = await fetchMuseums(API_URL, { cache: "no-store" });
     renderMuseums(row, museums);
   } catch (apiErr) {
     console.error("Museums API fetch failed, falling back to local JSON:", apiErr);
