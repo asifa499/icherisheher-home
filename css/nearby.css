@@ -29,7 +29,6 @@
   border-radius: var(--r-lg);
   /* Xəritə gələnə qədər (və kənarlarda) görünən fon */
   background: rgba(227, 227, 226, 0.89);
-  overflow: hidden;
   isolation: isolate;
 }
 
@@ -55,9 +54,25 @@
   width: 100%;
   height: 100%;
   border: 0;
-  /* Figma-dakı illüstrasiya solğun-boz tondadır; canlı xəritəni
-     ona yaxınlaşdırmaq üçün rəng doyumu bir az azaldılır. */
-  filter: saturate(0.72) contrast(0.96);
+}
+
+/* Kross-origin iframe ana elementin `overflow:hidden` + border-radius
+   kəsiminə etibarlı tabe olmur (Chrome onu ayrıca kompozit qatda çəkir):
+   ya künclər kvadrat qalır, ya da xəritə ümumiyyətlə görünmür.
+   Ona görə iframe heç kəsilmir — bunun əvəzinə bu qat blokun yuvarlaq
+   konturundan kənarda qalan sahəni səhifə fonu ilə örtür, yəni dörd künc
+   hər halda yuvarlaq görünür. iframe blokun ölçüsündədir (inset:0), ona
+   görə künclərdən başqa heç yerə daşmır.
+   Kölgənin yayılması blokun öz kənar boşluğu (24px) qədərdir — qonşu
+   bölmələrin üstünə düşmür. */
+.nearby-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  box-shadow: 0 0 0 var(--page-pad) var(--c-page-bg);
+  pointer-events: none;
 }
 
 /* ---------- "Google maps" nişanı (1523:5645) ---------- */
@@ -148,6 +163,13 @@
 }
 .nearby__chip.is-active .nearby__chip-x { display: block; }
 
+.nearby__chip:focus-visible,
+.nearby__btn:focus-visible,
+.nearby__close:focus-visible {
+  outline: 2px solid var(--c-brand);
+  outline-offset: 2px;
+}
+
 /* ---------- Məkan kartı (1523:5650) ---------- */
 .nearby__card {
   position: absolute;
@@ -196,8 +218,9 @@
 
 .nearby__close {
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
+  padding: 2px;      /* ikon 20px qalır, toxunma sahəsi 24px olur */
+  margin: -2px;
+  line-height: 0;
 }
 
 .nearby__desc {

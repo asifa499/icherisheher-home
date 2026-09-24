@@ -6,14 +6,13 @@ const API_URL = "https://icherisheher-api-production.up.railway.app/api/places";
 const FALLBACK_URL = "data/places.json";
 const LANG = "en"; // hazırkı dil: EN. Gələcəkdə i18n seçicisindən oxunacaq.
 
-// Xəritənin başlanğıc mərkəzi — İçərişəhər (Figma-dakı kadr ilə eyni).
-const MAP_CENTER = { lat: 40.3665, lng: 49.8352 };
-const MAP_ZOOM = 16;
-
-// Figma 1523:8263-də kart "Muhammad Mosque"-u göstərir; "All" seçili olanda
-// eyni məkanla açılırıq ki, canlı səhifə dizaynla üst-üstə düşsün.
-// Məkan siyahıda yoxdursa sort_order-ə görə birinci məkan götürülür.
-const DEFAULT_SLUG = "muhammad-mosque";
+// Xəritə: Figma-da olduğu kimi sabit İçərişəhər görünüşüdür və HTML-dəki
+// <iframe> ilə bir dəfə yüklənir — bu modul ona toxunmur.
+// Səbəb: iframe-i JS ilə əvəz etmək (və ya src-ni dəyişmək) həm brauzer
+// tarixçəsini çirkləndirir, həm də kross-origin iframe-in yenidən
+// kompozisiyasına görə xəritə blokun kənarlarından daşıb çıxırdı.
+// Mərkəz/zoom index.html-dəki iframe URL-indədir; məkanın öz koordinatına
+// yaxınlaşma lazım olsa, açarlı Maps JS API ilə əlavə olunmalıdır.
 
 function pickText(field) {
   if (!field) return "";
@@ -26,33 +25,6 @@ function escapeHtml(value) {
   ));
 }
 
-// Keyless Google Maps embed — API açarı tələb etmir.
-function mapSrc(lat, lng, zoom) {
-  const hasPin = Number.isFinite(lat) && Number.isFinite(lng);
-  const point = hasPin
-    ? `${lat},${lng}`
-    : `${MAP_CENTER.lat},${MAP_CENTER.lng}`;
-  return `https://www.google.com/maps?q=${encodeURIComponent(point)}&z=${zoom}&hl=${LANG}&output=embed`;
-}
-
-// iframe-in src-ni dəyişmək brauzer tarixçəsinə yazı əlavə edir (geri düyməsi
-// xəritə addımlarını gəzməyə başlayır), ona görə elementin özünü əvəz edirik.
-function setMap(mapEl, place) {
-  const frame = document.createElement("iframe");
-  frame.src = mapSrc(place && place.lat, place && place.lng, MAP_ZOOM);
-  frame.title = place
-    ? `${pickText(place.name)} — map`
-    : "Map of Icherisheher";
-  frame.loading = "lazy";
-  frame.referrerPolicy = "no-referrer-when-downgrade";
-  frame.setAttribute("allowfullscreen", "");
-  mapEl.replaceChildren(frame);
-}
-
-// Figma kartında iki 228×136 foto var (image 79 / image 80). API sxemində
-// hələ yalnız tək `image` sütunu var, ona görə `images` massivi olmayanda
-// mövcud tək foto bütün cərgəni tutur (boş yuva göstərmirik).
-// Backend `images` sütununu əlavə edəndə kart avtomatik 2 fotoya keçir.
 function photosMarkup(place, alt) {
   const images = (Array.isArray(place.images) && place.images.length
     ? place.images
@@ -122,20 +94,25 @@ function cardMarkup(place) {
   `;
 }
 
-function renderCard(cardEl, mapEl, place) {
+function closeCard(cardEl) {
+  cardEl.hidden = true;
+  cardEl.innerHTML = "";
+  cardEl.removeAttribute("data-state");
+}
+
+function renderCard(cardEl, place) {
+  cardEl.hidden = false;
   if (!place) {
     cardEl.innerHTML = "<p>No places in this category yet.</p>";
     cardEl.setAttribute("data-state", "empty");
-    setMap(mapEl, null);
     return;
   }
   cardEl.innerHTML = cardMarkup(place);
   cardEl.removeAttribute("data-state");
-  cardEl.hidden = false;
-  setMap(mapEl, place);
 }
 
 function renderError(cardEl) {
+  cardEl.hidden = false;
   cardEl.innerHTML = "<p>Places could not be loaded right now.</p>";
   cardEl.setAttribute("data-state", "error");
 }
@@ -149,7 +126,7 @@ function placesOfCategory(items, category) {
 
 // Çiplər HTML-də statikdir (data gəlməsə də görünməlidirlər); burada yalnız
 // seçim vəziyyəti və kartın yenilənməsi idarə olunur.
-function initChips(chipsEl, cardEl, mapEl, items) {
+function initChips(chipsEl, cardEl, items) {
   const chips = [...chipsEl.querySelectorAll("[data-places-category]")];
 
   function select(chip) {
@@ -160,9 +137,12 @@ function initChips(chipsEl, cardEl, mapEl, items) {
     });
 
     const category = chip.dataset.placesCategory || "";
-    const list = placesOfCategory(items, category);
-    const preferred = !category && list.find((item) => item.slug === DEFAULT_SLUG);
-    renderCard(cardEl, mapEl, preferred || list[0] || null);
+    // "All" — filtr yoxdur, ona görə kart da göstərilmir: sadəcə xəritə.
+    if (!category) {
+      closeCard(cardEl);
+      return;
+    }
+    renderCard(cardEl, placesOfCategory(items, category)[0] || null);
   }
 
   chipsEl.addEventListener("click", (event) => {
@@ -176,9 +156,9 @@ function initChips(chipsEl, cardEl, mapEl, items) {
     select(chip);
   });
 
-  // Kartdakı "×" yalnız kartı bağlayır, filtri dəyişmir.
+  // Kartdakı "×" kartı bağlayır və seçimi başlanğıc "All" vəziyyətinə qaytarır.
   cardEl.addEventListener("click", (event) => {
-    if (event.target.closest("[data-places-close]")) cardEl.hidden = true;
+    if (event.target.closest("[data-places-close]")) select(chips[0]);
   });
 
   select(chips.find((el) => el.classList.contains("is-active")) || chips[0]);
@@ -203,8 +183,7 @@ function unwrapPlaceList(json) {
 async function initPlaces() {
   const cardEl = document.querySelector("[data-places-card]");
   const chipsEl = document.querySelector("[data-places-chips]");
-  const mapEl = document.querySelector("[data-places-map]");
-  if (!cardEl || !chipsEl || !mapEl) return;
+  if (!cardEl || !chipsEl) return;
 
   let items;
   try {
@@ -220,7 +199,7 @@ async function initPlaces() {
     }
   }
 
-  initChips(chipsEl, cardEl, mapEl, items);
+  initChips(chipsEl, cardEl, items);
 }
 
 document.addEventListener("DOMContentLoaded", initPlaces);

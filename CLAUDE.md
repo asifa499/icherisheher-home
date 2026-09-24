@@ -80,9 +80,16 @@ Etap 3-dən başlayaraq bölmələr **data-driven**-dir: məzmun HTML-ə hardcod
 - "See What's Nearby" bölməsindəki xəritə açar tələb etməyən Google Maps embed
   iframe-idir (`https://www.google.com/maps?q=<lat>,<lng>&z=<zoom>&output=embed`).
   Mərkəz və zoom `js/places.js` içindəki `MAP_CENTER` / `MAP_ZOOM` sabitlərindədir.
-- Çip seçiləndə həmin kateqoriyanın ilk məkanı göstərilir və xəritə onun
-  koordinatına keçir; iframe-in `src`-si dəyişdirilmir, element tam əvəz olunur
-  (brauzer tarixçəsi çirklənməsin deyə).
+- Başlanğıc görünüş ("All"): yalnız xəritə — məkan kartı bağlıdır. Kart ancaq
+  konkret kateqoriya çipinə basılanda açılır; kartdakı və ya çipdəki "×" onu
+  bağlayıb "All"-a qaytarır.
+- Xəritə sabitdir: JS iframe-ə toxunmur. Səbəb — iframe-i JS ilə əvəz etmək
+  (və ya `src`-ni dəyişmək) həm brauzer tarixçəsini çirkləndirir, həm də
+  kross-origin iframe-in yenidən kompozisiyası zamanı xəritə blokun
+  kənarlarından daşırdı. Məkana yaxınlaşma lazım olsa, açarlı Maps JS API ilə.
+- Kross-origin iframe ana elementin `overflow:hidden` + `border-radius`
+  kəsiminə etibarlı tabe olmur. Ona görə künclər `.nearby-section::after`
+  qatındakı `box-shadow` maskası ilə örtülür (bax: css/nearby.css).
 - Figma-dakı xəritə əl ilə çəkilmiş 3D illüstrasiyadır — canlı xəritə ilə birəbir
   eyni görünmür. Kart, çiplər və başlıq isə piksel-dəqiq Figma-dandır.
 
