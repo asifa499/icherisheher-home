@@ -25,22 +25,40 @@ function escapeHtml(value) {
   ));
 }
 
-function photosMarkup(place, alt) {
-  const images = (Array.isArray(place.images) && place.images.length
+// Backend hələ "source": "placeholder" olan məkanlar üçün fayl adı
+// qaytarır ki, repo-da real şəkil kimi mövcud deyil (məs.
+// assets/img/place-miniature-book-museum.jpg — 404). Bu iki slug üçün
+// artıq Museums bölməsindən (Etap 3) real foto var, ona görə API-nin
+// path-i sınıq olsa belə həmin faylları burada da işlədirik.
+// Digər slug-larda hələ real foto yoxdur (Asifdən export gözlənilir) —
+// belə olanda --c-surface fonlu boş yuva qalır (CLAUDE.md, qayda 4),
+// kart tamamilə fotosuz görünmür.
+const REAL_PHOTO_OVERRIDES = {
+  "maiden-tower": ["assets/img/museum-maiden-tower.jpg"],
+  "shirvanshahs-palace": ["assets/img/museum-shirvanshahs.jpg"],
+};
+
+function resolvePhotos(place) {
+  const override = REAL_PHOTO_OVERRIDES[place.slug];
+  if (override) return override;
+  return (Array.isArray(place.images) && place.images.length
     ? place.images
     : [place.image]).filter(Boolean).slice(0, 2);
+}
 
+function photosMarkup(place, alt) {
+  const images = resolvePhotos(place);
   if (!images.length) return "";
 
   const tiles = images.map((src) => `
     <div class="nearby__photo">
       <img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy"
-           width="228" height="136" onerror="this.closest('.nearby__photo').remove()">
+           width="228" height="136" onerror="this.remove()">
     </div>
   `).join("");
 
-  // Şəkil yüklənmirsə həmin yuva tamamilə silinir; cərgə boşalsa
-  // (.nearby__photos:empty) CSS onu gizlədir — boş boz blok qalmır.
+  // Şəkil yüklənmirsə yalnız <img> silinir, yuvanın özü qalır — belə ki
+  // --c-surface fonlu boş səth görünsün, kart tamamilə fotosuz qalmasın.
   return `<div class="nearby__photos"${images.length === 1 ? ' data-single' : ""}>${tiles}</div>`;
 }
 

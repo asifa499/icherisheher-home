@@ -19,7 +19,7 @@
       "en": "1 Maiden Tower Street, Icherisheher",
       "ru": "Улица Девичьей башни 1, Ичеришехер"
     },
-    "image": "assets/img/place-maiden-tower.jpg",
+    "image": "assets/img/museum-maiden-tower.jpg",
     "open_hours": "10:00 – 18:00",
     "status": "open",
     "lat": 40.366389,
@@ -46,7 +46,7 @@
       "en": "76 Gulle Street, Icherisheher",
       "ru": "Улица Гюлле 76, Ичеришехер"
     },
-    "image": "assets/img/place-shirvanshahs-palace.jpg",
+    "image": "assets/img/museum-shirvanshahs.jpg",
     "open_hours": "10:00 – 18:00",
     "status": "open",
     "lat": 40.366111,
