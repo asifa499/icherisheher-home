@@ -78,25 +78,40 @@ Etap 3-dən başlayaraq bölmələr **data-driven**-dir: məzmun HTML-ə hardcod
 ### Xəritə (Etap 7)
 
 - "See What's Nearby" bölməsindəki xəritə açar tələb etməyən Google Maps embed
-  iframe-idir (`https://www.google.com/maps?q=<lat>,<lng>&z=<zoom>&output=embed`),
-  `index.html`-də statik yazılıb (mərkəz/zoom orada, `js/places.js`-də deyil).
-- Başlanğıc görünüş ("All"): yalnız xəritə — məkan kartı bağlıdır, "All"
-  çipində "×" yoxdur (təmizlənəcək filtr olmadığı üçün). Kart ancaq konkret
-  kateqoriya çipinə basılanda açılır; kartdakı və ya çipdəki "×" onu bağlayıb
-  "All"-a qaytarır.
+  iframe-idir (`https://www.google.com/maps?q=<lat>,<lng>&z=<zoom>&output=embed`).
+  Başlanğıc mərkəz/zoom `index.html`-dəki iframe URL-indədir (`DEFAULT_MAP`
+  `js/places.js`-də eyni dəyərləri saxlayır).
+- **Çip ↔ kart ↔ xəritə ↔ URL hash sinxronu:** dördü də `js/places.js`-dəki
+  tək `showPlace(chip, place)` funksiyasından keçir, ona görə heç vaxt
+  sinxrondan çıxa bilmirlər:
+  - Kateqoriya çipinə basılanda o kateqoriyanın ilk (`sort_order`) məkanı
+    kartda açılır, xəritə onun `lat`/`lng`-inə köçür, URL hash məkanın
+    slug-una yenilənir (`#boutique-hotel-in-the-walls` kimi).
+  - Səhifə hash ilə açılsa (məs. paylaşılan link) və hash tanınan bir məkan
+    slug-una uyğun gəlsə, o məkan və onun kateqoriya çipi birbaşa aktiv açılır
+    (`initChips`-in son bloku). Tanınmayan/boş hash-də "All" ilə başlanır və
+    xəritəyə toxunulmur (ilkin statik görünüş qalır, lazımsız reload olmasın).
+  - Runtime-da hash başqa yolla dəyişsə (brauzerin geri/irəli düymələri,
+    "More details" linki, əl ilə URL redaktəsi) `hashchange` dinləyicisi
+    eyni sinxronu təkrarlayır.
+  - "All" çipinə (və ya kartın "×"-inə) qayıdanda kart bağlanır, xəritə
+    `DEFAULT_MAP`-ə qayıdır, hash təmizlənir.
+- Xəritəni köçürmək üçün `iframe.src`-i dəyişmək və ya elementi yenidən
+  yaratmaq əvəzinə `iframe.contentWindow.location.replace(...)` işlədilir
+  (`navigateMap`, `js/places.js`): kross-origin frame üçün naviqasiya icazəlidir
+  (yalnız oxuma bloklanır), və `location.replace` semantikası parent-in brauzer
+  tarixçəsinə YENİ sətir əlavə etmir (adi `src=` təyini əlavə edərdi — buna görə
+  URL hash-i də `history.replaceState` ilə yazılır, `location.hash = …` yox).
+- Kross-origin iframe ana elementin `overflow:hidden` + `border-radius`
+  kəsiminə etibarlı tabe olmur. Ona görə künclər `.nearby-section::after`
+  qatındakı `box-shadow` maskası ilə örtülür (bax: css/nearby.css) — bu, iframe
+  naviqasiya edəndə də etibarlıdır, çünki elementin özündən asılı deyil.
 - Foto yuvası: API-nin `image`/`images` sahəsi 404 versə (backend hələ
   `"source": "placeholder"` üçün real fayl yükləməyib) bütün foto bloku
   silinir — boş boz yuva qalmır (`js/places.js`, `wirePhotoFallback`).
   `maiden-tower` və `shirvanshahs-palace` üçün Museums bölməsindən (Etap 3)
   real foto var, `REAL_PHOTO_OVERRIDES` bunları API-nin sınıq path-i əvəzinə
   göstərir. Digər slug-lar üçün real foto Asifdən gözlənilir.
-- Xəritə sabitdir: JS iframe-ə toxunmur. Səbəb — iframe-i JS ilə əvəz etmək
-  (və ya `src`-ni dəyişmək) həm brauzer tarixçəsini çirkləndirir, həm də
-  kross-origin iframe-in yenidən kompozisiyası zamanı xəritə blokun
-  kənarlarından daşırdı. Məkana yaxınlaşma lazım olsa, açarlı Maps JS API ilə.
-- Kross-origin iframe ana elementin `overflow:hidden` + `border-radius`
-  kəsiminə etibarlı tabe olmur. Ona görə künclər `.nearby-section::after`
-  qatındakı `box-shadow` maskası ilə örtülür (bax: css/nearby.css).
 - Figma-dakı xəritə əl ilə çəkilmiş 3D illüstrasiyadır — canlı xəritə ilə birəbir
   eyni görünmür. Kart, çiplər və başlıq isə piksel-dəqiq Figma-dandır.
 

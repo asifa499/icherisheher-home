@@ -6,13 +6,52 @@ const API_URL = "https://icherisheher-api-production.up.railway.app/api/places";
 const FALLBACK_URL = "data/places.json";
 const LANG = "en"; // hazırkı dil: EN. Gələcəkdə i18n seçicisindən oxunacaq.
 
-// Xəritə: Figma-da olduğu kimi sabit İçərişəhər görünüşüdür və HTML-dəki
-// <iframe> ilə bir dəfə yüklənir — bu modul ona toxunmur.
-// Səbəb: iframe-i JS ilə əvəz etmək (və ya src-ni dəyişmək) həm brauzer
-// tarixçəsini çirkləndirir, həm də kross-origin iframe-in yenidən
-// kompozisiyasına görə xəritə blokun kənarlarından daşıb çıxırdı.
-// Mərkəz/zoom index.html-dəki iframe URL-indədir; məkanın öz koordinatına
-// yaxınlaşma lazım olsa, açarlı Maps JS API ilə əlavə olunmalıdır.
+// Xəritə İçərişəhərin ümumi görünüşü (HTML-dəki ilkin <iframe src>-lə eyni) —
+// "All" seçiləndə və ya heç bir hash-place tapılmayanda bura qayıdılır.
+const DEFAULT_MAP = { lat: 40.3665, lng: 49.8352, zoom: 16 };
+
+function mapEmbedSrc(lat, lng, zoom) {
+  return `https://www.google.com/maps?q=${lat},${lng}&z=${zoom}&hl=${LANG}&output=embed`;
+}
+
+// Xəritəni yeni mərkəzə köçürür. `iframe.src`-i birbaşa dəyişmək (və ya
+// elementi əvəz etmək) əvəzinə `contentWindow.location.replace(...)`
+// işlədilir: bu, kross-origin iframe üçün icazəlidir (yalnız naviqasiyadır,
+// oxuma deyil) və — `location.replace` semantikasına uyğun olaraq — parent
+// pəncərənin brauzer tarixçəsinə YENİ sətir əlavə etmir (adi `src=` təyini
+// və ya elementi yenidən yaratmaq əlavə edərdi). Künc kəsimi məsələsi
+// (bax: css/nearby.css, `.nearby-section::after`) elementin özündən asılı
+// olmayan ayrıca CSS maskasıdır, ona görə naviqasiyadan təsirlənmir.
+function navigateMap(lat, lng, zoom) {
+  const iframe = document.querySelector(".nearby__map iframe");
+  if (!iframe || !Number.isFinite(lat) || !Number.isFinite(lng)) return;
+  const src = mapEmbedSrc(lat, lng, zoom);
+  try {
+    iframe.contentWindow.location.replace(src);
+  } catch (err) {
+    // Kross-origin girişi gözlənilməz səbəbdən bloklanarsa (məs. sandbox
+    // atributu dəyişərsə), adi src təyini fallback-dır.
+    iframe.src = src;
+  }
+}
+
+function resetMap() {
+  navigateMap(DEFAULT_MAP.lat, DEFAULT_MAP.lng, DEFAULT_MAP.zoom);
+}
+
+// URL hash-i cari məkanın slug-una uyğunlaşdırır. `location.hash = …`
+// əvəzinə `history.replaceState` işlədilir ki, hər çip/kart klikində
+// "geri" düyməsi üçün ayrıca tarixçə sətri yaranmasın — filtr vəziyyəti
+// sadəcə cari sətirdə əvəzlənir.
+function setHash(slug) {
+  const { pathname, search } = location;
+  const next = slug ? `${pathname}${search}#${slug}` : `${pathname}${search}`;
+  history.replaceState(history.state, "", next);
+}
+
+function currentHashSlug() {
+  return decodeURIComponent(location.hash.replace(/^#/, ""));
+}
 
 function pickText(field) {
   if (!field) return "";
@@ -162,24 +201,44 @@ function placesOfCategory(items, category) {
 }
 
 // Çiplər HTML-də statikdir (data gəlməsə də görünməlidirlər); burada yalnız
-// seçim vəziyyəti və kartın yenilənməsi idarə olunur.
+// seçim vəziyyəti, kartın, xəritənin və URL hash-inin sinxronu idarə olunur.
 function initChips(chipsEl, cardEl, items) {
   const chips = [...chipsEl.querySelectorAll("[data-places-category]")];
+  const bySlug = new Map(items.map((item) => [item.slug, item]));
 
-  function select(chip) {
+  function chipForCategory(category) {
+    return chips.find((el) => el.dataset.placesCategory === category) || chips[0];
+  }
+
+  function activateChip(chip) {
     chips.forEach((el) => {
       const active = el === chip;
       el.classList.toggle("is-active", active);
       el.setAttribute("aria-pressed", active ? "true" : "false");
     });
+  }
 
-    const category = chip.dataset.placesCategory || "";
-    // "All" — filtr yoxdur, ona görə kart da göstərilmir: sadəcə xəritə.
-    if (!category) {
+  // Çip + kart + xəritə + hash — dörd görünüş də bu tək funksiyadan keçir,
+  // ona görə heç vaxt sinxrondan çıxa bilmirlər.
+  function showPlace(chip, place) {
+    activateChip(chip);
+    if (!place) {
       closeCard(cardEl);
+      resetMap();
+      setHash("");
       return;
     }
-    renderCard(cardEl, placesOfCategory(items, category)[0] || null);
+    renderCard(cardEl, place);
+    navigateMap(place.lat, place.lng, DEFAULT_MAP.zoom);
+    setHash(place.slug);
+  }
+
+  // İstifadəçi klikləri: çip öz kateqoriyasının ilk (sort_order) məkanını seçir.
+  function selectCategory(chip) {
+    const category = chip.dataset.placesCategory || "";
+    // "All" — filtr yoxdur, ona görə kart da göstərilmir: sadəcə xəritə.
+    const place = category ? placesOfCategory(items, category)[0] || null : null;
+    showPlace(chip, place);
   }
 
   chipsEl.addEventListener("click", (event) => {
@@ -187,18 +246,35 @@ function initChips(chipsEl, cardEl, items) {
     if (!chip) return;
     // Aktiv çipdəki "×" seçimi "All"-a qaytarır (Figma: 1523:5684).
     if (chip.classList.contains("is-active") && event.target.closest("[data-places-clear]")) {
-      select(chips[0]);
+      selectCategory(chips[0]);
       return;
     }
-    select(chip);
+    selectCategory(chip);
   });
 
   // Kartdakı "×" kartı bağlayır və seçimi başlanğıc "All" vəziyyətinə qaytarır.
   cardEl.addEventListener("click", (event) => {
-    if (event.target.closest("[data-places-close]")) select(chips[0]);
+    if (event.target.closest("[data-places-close]")) selectCategory(chips[0]);
   });
 
-  select(chips.find((el) => el.classList.contains("is-active")) || chips[0]);
+  // Runtime hash dəyişikliyi (məs. "More details" linki, əl ilə URL
+  // redaktəsi, brauzerin geri/irəli düymələri) eyni sinxronla nəticələnsin.
+  window.addEventListener("hashchange", () => {
+    const place = bySlug.get(currentHashSlug());
+    if (place) showPlace(chipForCategory(place.category), place);
+  });
+
+  // Başlanğıc: hash-də tanınan bir məkan slug-u varsa, onu və onun
+  // kateqoriya çipini aktivləşdir (xəritə də ora köçür); olmasa "All"
+  // ilə başla — bu halda xəritəyə toxunulmur (ilkin statik görünüş qalır).
+  const initialPlace = bySlug.get(currentHashSlug());
+  if (initialPlace) {
+    activateChip(chipForCategory(initialPlace.category));
+    renderCard(cardEl, initialPlace);
+    navigateMap(initialPlace.lat, initialPlace.lng, DEFAULT_MAP.zoom);
+  } else {
+    activateChip(chips.find((el) => el.classList.contains("is-active")) || chips[0]);
+  }
 }
 
 async function fetchPlaces(url, options) {
