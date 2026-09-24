@@ -36,6 +36,16 @@
   --c-hairline:   #ECECEC;   /* hero explore paneli ayırıcısı */
   --c-gold:       #F5B90E;   /* "ai" gradient bitiş rəngi (Inspire me düyməsi) */
 
+  /* See What's Nearby — xəritə bloku (Etap 7, Figma 1523:8263) */
+  --c-map-panel:   #E3E3E2;  /* blok fonu (web-də 89% şəffaflıqla) */
+  --c-map-panel-m: #E0E0DF;  /* eyni blok, mobil variant (1523:6238) */
+  --c-map-pill:    #111112;  /* "Google maps" nişanı — content/primary */
+  --c-map-pill-tx: #EDEDED;  /* həmin nişanın mətni */
+  --c-place-title: #272727;  /* məkan kartı başlığı */
+  --c-place-body:  #636260;  /* məkan kartı təsviri */
+  --c-label:       #717178;  /* content/tertiary — "Open hours" etiketi */
+  --c-value:       #414145;  /* content/secondary — etiketin dəyəri */
+
   /* ---------- Tipoqrafiya ----------
      Æsas ailÉ™: Vela Sans (Regular 400 / Medium 500 / SemiBold 600)
      Fayllar assets/fonts/ altÄ±nda self-host olunacaq. */

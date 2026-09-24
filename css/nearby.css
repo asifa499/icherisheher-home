@@ -1,0 +1,360 @@
+/* ============================================================
+   Etap 7 — See What's Nearby
+   Figma: 1523:8263 (web 1440) / 1523:6238 (mobile 393)
+   Qeydlər:
+   · Blok 1392×766, radius 32, fon rgba(227,227,226,.89) —
+     xəritə yüklənənə qədər görünən "loading" fonu da budur.
+   · Figma-dakı xəritə əl ilə çəkilmiş 3D illüstrasiyadır; burada
+     onun yerinə açar tələb etməyən Google Maps embed iframe-i
+     işlənir (İçərişəhər mərkəzi 40.3665, 49.8352, zoom 16).
+     Başlıq, çiplər və məkan kartı xəritənin ÜSTÜNDƏ HTML qatıdır.
+   · Web: başlıq left 128 / top 50, çiplər top 107, kart
+     left 128 / top 210 (512×452, padding 24).
+     Bunlar 1392 enli bloka nisbətəndir → 128 - 24(blok kənarı) = 104
+     daxili sol boşluq; burada var(--map-inset) kimi saxlanılır.
+   · Mobil (1523:6238): blok 390 en, 393-lük kanvasda sağ kənara
+     dayanır → praktikada tam-en (full-bleed) bloku deməkdir.
+     Başlıq left 20 / top 25, çiplər sarılır (wrap), kart aşağıda
+     12px kənar boşluqla, 20px paddinqlə və fotosuz.
+   ============================================================ */
+
+.nearby-section {
+  --map-inset: 104px;     /* blok kənarından başlıq/kart xəttinə qədər */
+  --map-h: 766px;
+
+  position: relative;
+  height: var(--map-h);
+  margin-top: 24px;
+  margin-bottom: 24px;
+  border-radius: var(--r-lg);
+  /* Xəritə gələnə qədər (və kənarlarda) görünən fon */
+  background: rgba(227, 227, 226, 0.89);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ---------- Xəritə qatı ---------- */
+.nearby__map {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* iframe yüklənənə qədər altda yumşaq keçidli fon dursun */
+.nearby__map::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, var(--c-map-panel) 0%, var(--c-surface) 100%);
+}
+
+.nearby__map iframe {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  /* Figma-dakı illüstrasiya solğun-boz tondadır; canlı xəritəni
+     ona yaxınlaşdırmaq üçün rəng doyumu bir az azaldılır. */
+  filter: saturate(0.72) contrast(0.96);
+}
+
+/* ---------- "Google maps" nişanı (1523:5645) ---------- */
+.nearby__credit {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border: 1px solid var(--c-glass-04);
+  border-radius: var(--r-pill);
+  background: var(--c-map-pill);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
+  color: var(--c-map-pill-tx);
+  font-size: var(--t-lead);
+  line-height: var(--t-lead-lh);
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+/* ---------- Başlıq + çiplər ---------- */
+.nearby__head {
+  position: absolute;
+  left: var(--map-inset);
+  top: 50px;
+  z-index: 2;
+  width: calc(100% - var(--map-inset) * 2);
+}
+
+.nearby__title {
+  font-size: var(--t-h2);
+  line-height: var(--t-h2-lh);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--c-black);
+}
+
+.nearby__chips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 13px;        /* Figma: başlıq 50+44=94, çiplər 107 */
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nearby__chips::-webkit-scrollbar { display: none; }
+
+/* routes/resources ilə eyni texnika: passiv çipdə də 2px şəffaf
+   haşiyə var ki, aktiv olanda sətir yerini dəyişməsin. */
+.nearby__chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 8px 18px;       /* +2px haşiyə = Figma 10/20 paddinqi */
+  border: 2px solid transparent;
+  border-radius: var(--r-pill);
+  background: var(--c-white);
+  color: var(--c-black);
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease);
+}
+
+.nearby__chip.is-active {
+  background: var(--c-glass-04);
+  border-color: var(--c-brand);
+  color: var(--c-brand);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Aktiv çipin "×" nişanı (iconoir:xmark, 1523:5684) — yalnız
+   aktiv çipdə görünür və seçimi "All"-a qaytarır. */
+.nearby__chip-x {
+  display: none;
+  width: 20px;
+  height: 20px;
+}
+.nearby__chip.is-active .nearby__chip-x { display: block; }
+
+/* ---------- Məkan kartı (1523:5650) ---------- */
+.nearby__card {
+  position: absolute;
+  left: var(--map-inset);
+  top: 210px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 512px;
+  padding: 24px;
+  border-radius: var(--r-lg);
+  background: var(--c-white);
+}
+
+/* display:flex `hidden` atributunu üstələyir — kartı bağlaya bilmək üçün lazımdır */
+.nearby__card[hidden] { display: none; }
+
+.nearby__card[data-state="empty"],
+.nearby__card[data-state="error"] {
+  color: var(--c-gray);
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+}
+
+.nearby__card-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nearby__card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.nearby__name {
+  font-size: var(--t-h3);
+  line-height: var(--t-h3-lh);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--c-place-title);
+}
+
+.nearby__close {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.nearby__desc {
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  color: var(--c-place-body);
+}
+
+/* ---------- Meta sətri: Open hours / Ticket price ---------- */
+.nearby__meta {
+  display: flex;
+  gap: 40px;
+  padding-block: 8px;
+}
+
+.nearby__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nearby__meta-label {
+  font-size: var(--t-body);
+  line-height: var(--t-body-tight-lh);
+  color: var(--c-label);
+}
+
+.nearby__meta-value {
+  font-size: var(--t-body);
+  line-height: var(--t-body-tight-lh);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--c-value);
+}
+
+/* ---------- Foto cütlüyü (1523:5666) ---------- */
+.nearby__photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* Tək foto varsa cərgəni tam tutur (boş yuva göstərmirik) */
+.nearby__photos[data-single] { grid-template-columns: 1fr; }
+
+/* Bütün şəkillər yüklənməyibsə cərgə boşalır — onda ümumiyyətlə göstərilmir */
+.nearby__photos:empty { display: none; }
+
+.nearby__photo {
+  height: 136px;
+  border-radius: var(--r-sm);
+  background: var(--c-surface);   /* şəkil gəlməyibsə görünən səth */
+  overflow: hidden;
+}
+
+.nearby__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;    /* Figma: kadr 152px-dən 8px yuxarı sürüşüb */
+}
+
+/* ---------- Düymələr (1523:5671) ---------- */
+.nearby__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nearby__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: var(--r-pill);
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.nearby__btn--ghost {
+  padding: 8.5px 14.5px;          /* +1.5px haşiyə = Figma 10/16 paddinqi */
+  border: 1.5px solid var(--c-brand);
+  color: var(--c-brand);
+}
+
+.nearby__btn--solid {
+  padding: 8px 14px;              /* +2px haşiyə = Figma 8/16 paddinqi */
+  border: 2px solid var(--c-brand);
+  background: var(--c-brand);
+  color: var(--c-white);
+}
+
+/* ============================================================
+   Mobil (Figma 1523:6238 — 390×832)
+   ============================================================ */
+@media (max-width: 768px) {
+  .nearby-section {
+    --map-h: 832px;
+    /* Figma-da blok 393-lük kanvasda x=3, en=390 → sağ kənara dayanır.
+       Praktikada bu tam-en blokdur, ona görə .block-un yan boşluğu ləğv edilir. */
+    width: 100%;
+    background: var(--c-map-panel-m);
+  }
+
+  /* Mobil variantda xəritənin üzərində zəif tünd örtük var
+     (rgba(0,0,0,.1)) — başlıq və çiplərin oxunaqlılığı üçün. */
+  .nearby__map::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+  }
+
+  .nearby__credit { display: none; }   /* mobil node-da bu nişan yoxdur */
+
+  .nearby__head {
+    left: 20px;
+    top: 25px;
+    width: calc(100% - 40px);
+  }
+
+  .nearby__title {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .nearby__chips {
+    flex-wrap: wrap;
+    margin-top: 16px;
+    overflow-x: visible;
+  }
+
+  .nearby__chip { padding: 6px 18px; }  /* Figma mobil: 8/20 */
+
+  /* Mobil çipdə "×" nişanı yoxdur (1523:6270) */
+  .nearby__chip.is-active .nearby__chip-x { display: none; }
+
+  .nearby__card {
+    left: 12px;
+    top: auto;
+    bottom: 18px;
+    gap: 12px;
+    width: calc(100% - 24px);
+    padding: 20px;
+  }
+
+  .nearby__card-head { gap: 4px; }
+
+  .nearby__name {
+    font-size: var(--t-h4);
+    line-height: var(--t-h3-lh);
+  }
+
+  /* Mobil kartda foto cütlüyü yoxdur */
+  .nearby__photos { display: none; }
+}

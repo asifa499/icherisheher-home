@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="css/routes.css">
   <link rel="stylesheet" href="css/season.css">
   <link rel="stylesheet" href="css/resources.css">
+  <link rel="stylesheet" href="css/nearby.css">
 </head>
 <body>
 
@@ -157,9 +158,38 @@
          role="tabpanel" aria-live="polite"></div>
   </section>
 
-  <!-- ETAP 7 · See What's Nearby · Figma: 1523:8263 -->
-  <section id="nearby" class="section is-placeholder block" data-figma="1523:8263">
-    <p class="ph-label"><strong>Etap 7 — See What's Nearby</strong>Xəritə + kateqoriya çipləri + məkan kartı</p>
+  <!-- ETAP 7 · See What's Nearby · Figma: 1523:8263 (web) / 1523:6238 (mobile)
+       Xəritə açar tələb etməyən Google Maps embed-idir; məkan kartı
+       data/places.json-dan js/places.js ilə render olunur. Çiplərin
+       etiketləri Figma-dandır, data-places-category isə API-dəki
+       mövcud kateqoriyalara bağlanır (landmark / museum / cafe / shop / hotel). -->
+  <section id="nearby" class="nearby-section block" data-figma="1523:8263">
+    <div class="nearby__map" data-places-map aria-label="Map of Icherisheher">
+      <iframe title="Map of Icherisheher" loading="lazy" allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=40.3665,49.8352&amp;z=16&amp;hl=en&amp;output=embed"></iframe>
+    </div>
+
+    <div class="nearby__head">
+      <h2 class="nearby__title">See What&rsquo;s Nearby</h2>
+
+      <div class="nearby__chips" data-places-chips role="group" aria-label="Place categories">
+        <button class="nearby__chip is-active" type="button" aria-pressed="true" data-places-category="">All<img
+                class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="museum">Museum<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="shop">Shop<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="landmark">Institutional building<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="cafe">Restaurant<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="hotel">Hotel<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="park">Park<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+      </div>
+    </div>
+
+    <div class="nearby__card" data-places-card aria-live="polite"></div>
+
+    <span class="nearby__credit">
+      <img src="assets/img/nearby-icon-gmaps.svg" alt="" width="20" height="20">Google maps
+    </span>
   </section>
 
   <!-- ETAP 8 · One QR. The whole Old City (City Pass) · Figma: 1523:4878 -->
@@ -186,5 +216,6 @@
   <script type="module" src="js/routes.js"></script>
   <script type="module" src="js/events.js"></script>
   <script type="module" src="js/news.js"></script>
+  <script type="module" src="js/places.js"></script>
 </body>
 </html>
