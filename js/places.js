@@ -52,14 +52,32 @@ function photosMarkup(place, alt) {
 
   const tiles = images.map((src) => `
     <div class="nearby__photo">
-      <img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy"
-           width="228" height="136" onerror="this.remove()">
+      <img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" width="228" height="136">
     </div>
   `).join("");
 
-  // Şəkil yüklənmirsə yalnız <img> silinir, yuvanın özü qalır — belə ki
-  // --c-surface fonlu boş səth görünsün, kart tamamilə fotosuz qalmasın.
   return `<div class="nearby__photos"${images.length === 1 ? ' data-single' : ""}>${tiles}</div>`;
+}
+
+// Şəkil linki cavabda olsa da fayl serverdə tapılmaya bilər (backend hələ
+// "source":"placeholder" olan məkanlar üçün real fayl yükləməyib — 404).
+// Belə halda boş boz yuva qalmasın deyə foto tam silinir: əvvəlcə sınan
+// tile, sonra (heç bir foto qalmayıbsa) bütün foto bloku. Tək foto qalarsa
+// cərgə "data-single" ilə tam eninə keçir.
+function wirePhotoFallback(cardEl) {
+  const wrap = cardEl.querySelector(".nearby__photos");
+  if (!wrap) return;
+  wrap.querySelectorAll("img").forEach((img) => {
+    img.addEventListener("error", () => {
+      img.closest(".nearby__photo")?.remove();
+      if (!wrap.isConnected) return;
+      if (!wrap.children.length) {
+        wrap.remove();
+      } else if (wrap.children.length === 1) {
+        wrap.setAttribute("data-single", "");
+      }
+    }, { once: true });
+  });
 }
 
 // Figma kartında ikinci sütun "Ticket price"dır, amma API sxemində hələ belə
@@ -127,6 +145,7 @@ function renderCard(cardEl, place) {
   }
   cardEl.innerHTML = cardMarkup(place);
   cardEl.removeAttribute("data-state");
+  wirePhotoFallback(cardEl);
 }
 
 function renderError(cardEl) {

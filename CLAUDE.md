@@ -85,11 +85,11 @@ Etap 3-dən başlayaraq bölmələr **data-driven**-dir: məzmun HTML-ə hardcod
   kateqoriya çipinə basılanda açılır; kartdakı və ya çipdəki "×" onu bağlayıb
   "All"-a qaytarır.
 - Foto yuvası: API-nin `image`/`images` sahəsi 404 versə (backend hələ
-  `"source": "placeholder"` üçün real fayl yükləməyib) `<img>` silinir, amma
-  yuva (`--c-surface` fon) qalır — kart tamamilə fotosuz görünmür. `maiden-tower`
-  və `shirvanshahs-palace` üçün Museums bölməsindən (Etap 3) real foto var,
-  `js/places.js` içindəki `REAL_PHOTO_OVERRIDES` bunları API-nin sınıq path-i
-  əvəzinə göstərir. Digər slug-lar üçün real foto Asifdən gözlənilir.
+  `"source": "placeholder"` üçün real fayl yükləməyib) bütün foto bloku
+  silinir — boş boz yuva qalmır (`js/places.js`, `wirePhotoFallback`).
+  `maiden-tower` və `shirvanshahs-palace` üçün Museums bölməsindən (Etap 3)
+  real foto var, `REAL_PHOTO_OVERRIDES` bunları API-nin sınıq path-i əvəzinə
+  göstərir. Digər slug-lar üçün real foto Asifdən gözlənilir.
 - Xəritə sabitdir: JS iframe-ə toxunmur. Səbəb — iframe-i JS ilə əvəz etmək
   (və ya `src`-ni dəyişmək) həm brauzer tarixçəsini çirkləndirir, həm də
   kross-origin iframe-in yenidən kompozisiyası zamanı xəritə blokun
