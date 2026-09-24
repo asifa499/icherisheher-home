@@ -182,7 +182,7 @@
 
 /* ---------- Responsive (mobil, 393px etalon) ----------
    Üç kart bərabər enli sıra yerinə üfüqi scroll-snap cərgə: Explorer
-   (featured) səhifə yüklənəndə mərkəzə skролл olunur (bax: js/passes.js
+   (featured) səhifə yüklənəndə mərkəzə scroll olunur (bax: js/passes.js
    renderPasses → scrollIntoView), Core/Premium yanlarda "peek" qalır. */
 @media (max-width: 768px) {
   .citypass__row {
