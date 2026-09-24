@@ -1,0 +1,204 @@
+/* ============================================================
+   Etap 8 — One QR. The whole Old City (City Pass)
+   Figma: 1523:4878 (web 1440)
+   Qeydlər:
+   · Kartlar data/passes.json-dan js/passes.js ilə render olunur.
+   · Orta (Explorer) kart "is_featured" ilə seçilir: 4px #F3503A
+     haşiyə (--c-card-ring, Resources bölməsindəki halqa ilə eyni
+     rəng) — sərhədsiz kartlarla müqayisədə bir az hündür/enli
+     çıxır, bu, Figma-dakı elevasiya effektinin özüdür (əlavə
+     kölgə yoxdur, sadəcə haşiyə).
+   · Mobil node: Figma MCP metadata çağırışı bu bölmə üçün də
+     server tərəfində JSON parse xətası qaytardı (museums.css və
+     resources.css-dəki eyni məlum problem — bax orada qeydlər),
+     tam node ölçüləri oxunmadı. Screenshot-dan göründü ki, mobildə
+     kartlar üfüqi sürüşən cərgədir (Explorer mərkəzdə, Core və
+     Premium yanlarda "peek" olaraq görünür) — Resources
+     bölməsindəki eyni scroll-snap texnikası tətbiq olunub, en
+     dəyəri screenshot-dan ölçülüb (~278px / 393 kanvas ≈ 78%).
+   ============================================================ */
+
+.citypass-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.citypass__title {
+  font-size: var(--t-h2);
+  line-height: var(--t-h2-lh);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--c-black);
+}
+
+/* ---------- Kart cərgəsi ---------- */
+.citypass__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+.citypass__row[data-state="error"]::before {
+  content: "Bilet paketləri yüklənmədi. Bir az sonra yenidən cəhd edin.";
+  color: var(--c-gray);
+  font-size: var(--t-small);
+  padding: 24px 0;
+}
+
+/* ---------- Kart ---------- */
+.pass-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+  flex: 1 1 0;
+  min-width: 0;
+  background: var(--c-white);
+  border-radius: var(--r-md);
+  padding: 24px;
+}
+
+.pass-card--featured {
+  border: 4px solid var(--c-card-ring);
+}
+
+.pass-card__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
+}
+
+.pass-card__name-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pass-card__name {
+  font-size: var(--t-h5);
+  line-height: var(--t-h5-lh);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--c-black);
+  white-space: nowrap;
+}
+
+.pass-card__duration {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: var(--r-pill);
+  background: var(--c-shadow-06);
+  color: var(--c-text-dark);
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.pass-card__tagline {
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  letter-spacing: -0.03em;
+  color: var(--c-gray);
+  width: 100%;
+}
+
+.pass-card__price {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  width: 100%;
+}
+
+.pass-card__price-value {
+  font-size: var(--t-price);
+  line-height: var(--t-price-lh);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--c-black);
+  white-space: nowrap;
+}
+
+.pass-card__price-unit {
+  font-size: var(--t-lead);
+  line-height: var(--t-body-lh);
+  letter-spacing: -0.03em;
+  color: var(--c-gray);
+}
+
+.pass-card__features {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  width: 100%;
+}
+
+.pass-card__feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pass-card__feature-icon {
+  flex-shrink: 0;
+}
+
+.pass-card__feature span {
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  color: var(--c-black);
+}
+
+.pass-card__feature[data-state="excluded"] span {
+  color: var(--c-gray);
+}
+
+.pass-card__buy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 8px 16px;
+  border: 2px solid var(--c-black);
+  border-radius: var(--r-pill);
+  background: var(--c-black);
+  color: var(--c-white);
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+/* ---------- Responsive (mobil, 393px etalon) ----------
+   Üç kart bərabər enli sıra yerinə üfüqi scroll-snap cərgə: Explorer
+   (featured) səhifə yüklənəndə mərkəzə skролл olunur (bax: js/passes.js
+   renderPasses → scrollIntoView), Core/Premium yanlarda "peek" qalır. */
+@media (max-width: 768px) {
+  .citypass__row {
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-right: calc(-1 * var(--page-pad));
+    padding-right: var(--page-pad);
+  }
+  .citypass__row::-webkit-scrollbar { display: none; }
+
+  .pass-card {
+    flex: 0 0 78%;
+    max-width: 300px;
+    scroll-snap-align: center;
+  }
+}

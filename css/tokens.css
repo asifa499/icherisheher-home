@@ -46,6 +46,10 @@
   --c-label:       #717178;  /* content/tertiary — "Open hours" etiketi */
   --c-value:       #414145;  /* content/secondary — etiketin dəyəri */
 
+  /* City Pass kartları (Etap 8, Figma 1523:4878) */
+  --t-price:    32px; --t-price-lh:    28px;  /* kart qiyməti — 32px ölçü/28px sətirarası
+                                                 Figma-da tam belədir (sıx başlıq effekti) */
+
   /* ---------- Tipoqrafiya ----------
      Æsas ailÉ™: Vela Sans (Regular 400 / Medium 500 / SemiBold 600)
      Fayllar assets/fonts/ altÄ±nda self-host olunacaq. */

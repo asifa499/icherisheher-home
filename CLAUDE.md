@@ -50,7 +50,7 @@ assets/img/         — şəkillər, bölmə-prefiksli adlar: hero-bg.jpg, museu
 | 5 | This season in the Old City | 1523:4992 | ✅ |
 | 6 | Resources (tabs + kartlar) | 1523:8262 | ✅ |
 | 7 | See What's Nearby (xəritə) | 1523:8263 | ✅ |
-| 8 | City Pass (Core/Explore/Premium) | 1523:4878 | ⬜ |
+| 8 | City Pass (Core/Explore/Premium) | 1523:4878 | ✅ |
 | 9 | App promo + AR Time Machine | 1523:5169, 1523:5341, 1523:5340, 1523:5322 | ⬜ |
 | 10 | Sosial feed | 1523:5297, 1523:5313 | ⬜ |
 | 11 | Footer + panoram foto | 1523:5170, 1523:5358, 1523:5408 | ⬜ |
@@ -73,7 +73,7 @@ Etap 3-dən başlayaraq bölmələr **data-driven**-dir: məzmun HTML-ə hardcod
 - **Ödənişlər** kənar sistemdə qalır (client-in mövcud ödəniş provayderi) — frontend yalnız `ticket_url`-a yönləndirir, ödəniş axınını özü idarə etmir.
 - **Trilingual sxem:** mətn sahələri (`name`, `short_description`, `address` və s.) `{ "az": "...", "en": "...", "ru": "..." }` formatındadır. Hazırkı dil sabit `en`-dir (`js/<section>.js` daxilində `LANG` sabiti); real i18n seçicisi gələcək bir etapda əlavə olunacaq.
 - **Fallback tələbdir:** `API_URL` `icherisheher-api`-yə (Railway) işarə edir; sorğu uğursuz olarsa (server yatıb, CORS və s.) modul avtomatik olaraq öz `data/<section>.json`-unu (mock/local) çəkir. Hər ikisi də alınmasa səhifə boş qalmır, `data-state="error"` ilə boş vəziyyət göstərilir.
-- **Nümunə:** `data/museums.json` + `js/museums.js` (Etap 3), `data/routes.json` + `js/routes.js` (Etap 4), `data/events.json` + `js/events.js` (Etap 5), `data/news.json` + `js/news.js` (Etap 6), `data/places.json` + `js/places.js` (Etap 7). Yeni data-driven bölmə əlavə edəndə bu nümunəni təkrarla: JSON faylında yuxarıdakı trilingual sxemi saxla, `API_URL`-i `icherisheher-api`-nin uyğun endpoint-inə yönləndir, `FALLBACK_URL`-i local JSON-a saxla.
+- **Nümunə:** `data/museums.json` + `js/museums.js` (Etap 3), `data/routes.json` + `js/routes.js` (Etap 4), `data/events.json` + `js/events.js` (Etap 5), `data/news.json` + `js/news.js` (Etap 6), `data/places.json` + `js/places.js` (Etap 7), `data/passes.json` + `js/passes.js` (Etap 8). Yeni data-driven bölmə əlavə edəndə bu nümunəni təkrarla: JSON faylında yuxarıdakı trilingual sxemi saxla, `API_URL`-i `icherisheher-api`-nin uyğun endpoint-inə yönləndir, `FALLBACK_URL`-i local JSON-a saxla.
 
 ### Xəritə (Etap 7)
 
