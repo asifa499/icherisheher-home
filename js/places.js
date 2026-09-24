@@ -218,9 +218,20 @@ function initChips(chipsEl, cardEl, items) {
     });
   }
 
+  // Hazırda göstərilən məkanın slug-u (heç biri yoxdursa null). Google Maps
+  // embed-i naviqasiya EDƏNDƏ öz daxili mini-tətbiqini tam yenidən yükləyir
+  // (GetViewportInfo, csp_test ping, vector tile sorğuları) — ona görə eyni
+  // məkan artıq göstərilirsə (məs. hash ilə açılıb, sonra həmin məkanın
+  // kateqoriya çipinə də basılıb) xəritəni/kartı təkrar yükləməməliyik.
+  let currentSlug; // undefined = hələ heç nə göstərilməyib (ilkin sentinel)
+
   // Çip + kart + xəritə + hash — dörd görünüş də bu tək funksiyadan keçir,
   // ona görə heç vaxt sinxrondan çıxa bilmirlər.
   function showPlace(chip, place) {
+    const nextSlug = place ? place.slug : null;
+    if (nextSlug === currentSlug) return; // eyni məkan — lazımsız reload yox
+    currentSlug = nextSlug;
+
     activateChip(chip);
     if (!place) {
       closeCard(cardEl);
@@ -265,14 +276,16 @@ function initChips(chipsEl, cardEl, items) {
   });
 
   // Başlanğıc: hash-də tanınan bir məkan slug-u varsa, onu və onun
-  // kateqoriya çipini aktivləşdir (xəritə də ora köçür); olmasa "All"
-  // ilə başla — bu halda xəritəyə toxunulmur (ilkin statik görünüş qalır).
+  // kateqoriya çipini showPlace ilə aktivləşdir (xəritə də ora köçür, eyni
+  // yerdə currentSlug da düzgün işarələnir); olmasa "All" ilə başla — bu
+  // halda xəritəyə toxunulmur (ilkin statik görünüş qalır, lazımsız reload
+  // olmasın), amma currentSlug yenə də null kimi qeyd olunur ki, istifadəçi
+  // sonradan "All"-a yenidən bassa təkrar reload getməsin.
   const initialPlace = bySlug.get(currentHashSlug());
   if (initialPlace) {
-    activateChip(chipForCategory(initialPlace.category));
-    renderCard(cardEl, initialPlace);
-    navigateMap(initialPlace.lat, initialPlace.lng, DEFAULT_MAP.zoom);
+    showPlace(chipForCategory(initialPlace.category), initialPlace);
   } else {
+    currentSlug = null;
     activateChip(chips.find((el) => el.classList.contains("is-active")) || chips[0]);
   }
 }

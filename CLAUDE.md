@@ -102,6 +102,12 @@ Etap 3-dən başlayaraq bölmələr **data-driven**-dir: məzmun HTML-ə hardcod
   (yalnız oxuma bloklanır), və `location.replace` semantikası parent-in brauzer
   tarixçəsinə YENİ sətir əlavə etmir (adi `src=` təyini əlavə edərdi — buna görə
   URL hash-i də `history.replaceState` ilə yazılır, `location.hash = …` yox).
+- Google Maps embed-i naviqasiya EDƏNDƏ öz daxili mini-tətbiqini tam yenidən
+  yükləyir (bir neçə `GetViewportInfo` / `gen_204?csp_test` / vector-tile
+  sorğusu DevTools Network-də görünür) — bu, keyless `output=embed` yanaşmasının
+  qaçılmaz xərcidir. Ona görə `showPlace` eyni məkan artıq göstərilirsə (məs.
+  hash ilə açılıb, sonra həmin məkanın kateqoriya çipinə də basılıb) heç nə
+  etmir — `currentSlug` ilə müqayisə edib təkrar reload-un qarşısını alır.
 - Kross-origin iframe ana elementin `overflow:hidden` + `border-radius`
   kəsiminə etibarlı tabe olmur. Ona görə künclər `.nearby-section::after`
   qatındakı `box-shadow` maskası ilə örtülür (bax: css/nearby.css) — bu, iframe
