@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="css/citypass.css">
   <link rel="stylesheet" href="css/appar.css">
   <link rel="stylesheet" href="css/social.css">
+  <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
 
@@ -308,9 +309,97 @@
     </a>
   </section>
 
-  <!-- ETAP 11 · Footer · Figma: 1523:5170 (daxilində 1523:5358, 1523:5408) -->
-  <footer id="footer" class="section is-placeholder block" data-figma="1523:5170,1523:5358,1523:5408">
-    <p class="ph-label"><strong>Etap 11 — Footer</strong>Link sütunları, əlaqə, panoram qala divarı fotosu</p>
+  <!-- ETAP 11 · Footer · Figma: 1523:5170 (fon + loqo + müəllif hüququ + panoram foto) +
+       1523:5358 (link sütunları) + 1523:5408 (əlaqə + informasiya ofisləri).
+       Mobil (1523:5735): metadata sorğusu JSON parse xətası qaytardı (əvvəlki
+       bölmələrdəki eyni məlum problem), ölçülər screenshot-dan çıxarılıb.
+       Nav linkləri hələ "#"-ə işarə edir (daxili səhifələr yoxdur). -->
+  <footer id="footer" class="footer-section block" data-figma="1523:5170,1523:5358,1523:5408">
+    <div class="footer__nav">
+      <nav class="footer__col" aria-label="Explore">
+        <p class="footer__heading">Explore</p>
+        <ul class="footer__links">
+          <li><a href="#">About Icherisheher</a></li>
+          <li><a href="#">History</a></li>
+          <li><a href="#">Top Sights</a></li>
+          <li><a href="#">Culture &amp; Heritage</a></li>
+          <li><a href="#">Museums &amp; Galleries</a></li>
+          <li><a href="#">Architecture</a></li>
+          <li><a href="#">Stories &amp; Legends</a></li>
+        </ul>
+      </nav>
+      <nav class="footer__col" aria-label="Things to do">
+        <p class="footer__heading">Things to do</p>
+        <ul class="footer__links">
+          <li><a href="#">Tours</a></li>
+          <li><a href="#">Experiences</a></li>
+          <li><a href="#">Shopping</a></li>
+          <li><a href="#">Arts &amp; Crafts</a></li>
+          <li><a href="#">Photography Spots</a></li>
+          <li><a href="#">Family Activities</a></li>
+          <li><a href="#">Explore Nearby</a></li>
+        </ul>
+      </nav>
+      <nav class="footer__col" aria-label="What's on">
+        <p class="footer__heading">What&rsquo;s on</p>
+        <ul class="footer__links">
+          <li><a href="#">Events Calendar</a></li>
+          <li><a href="#">Exhibitions</a></li>
+          <li><a href="#">Festivals</a></li>
+          <li><a href="#">Concerts</a></li>
+          <li><a href="#">Workshops</a></li>
+          <li><a href="#">This Week</a></li>
+        </ul>
+      </nav>
+      <nav class="footer__col" aria-label="Eat and sleep">
+        <p class="footer__heading">Eat and sleep</p>
+        <ul class="footer__links">
+          <li><a href="#">Restaurants</a></li>
+          <li><a href="#">Cafés</a></li>
+          <li><a href="#">Traditional Cuisine</a></li>
+          <li><a href="#">Rooftops &amp; Terraces</a></li>
+          <li><a href="#">Hotels</a></li>
+          <li><a href="#">Boutique Stays</a></li>
+        </ul>
+      </nav>
+      <nav class="footer__col" aria-label="Visitor Information">
+        <p class="footer__heading">Visitor Information</p>
+        <ul class="footer__links">
+          <li><a href="#">Getting Here</a></li>
+          <li><a href="#">Getting Around</a></li>
+          <li><a href="#">Tickets &amp; Prices</a></li>
+          <li><a href="#">Visitor Information</a></li>
+          <li><a href="#">Accessibility</a></li>
+          <li><a href="#">Maps &amp; Guides</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer__info">
+      <div class="footer__col">
+        <p class="footer__heading">Contact</p>
+        <div class="footer__info-lines">
+          <p class="footer__info-line">+994 (00)000 00 00</p>
+          <p class="footer__info-line">icerisheheradmin@gmail.com</p>
+        </div>
+      </div>
+      <div class="footer__col">
+        <p class="footer__heading">Information offices</p>
+        <div class="footer__info-lines">
+          <p class="footer__info-line">Gazi Mahammad Street, 1095</p>
+          <p class="footer__info-line">08:00-18:00</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__photo">
+      <img class="footer__photo-img" src="assets/img/footer-panorama.png" alt="">
+      <div class="footer__brand">
+        <img class="footer__logo" src="assets/img/footer-logo.svg" alt="Icherisheher — Administration of State Historical-Architectural Reserve" width="101" height="64">
+        <p class="footer__copyright">© 2026 Icharishahar</p>
+      </div>
+    </div>
   </footer>
 
   <script type="module" src="js/museums.js"></script>

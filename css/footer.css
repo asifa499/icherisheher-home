@@ -1,0 +1,170 @@
+/* ============================================================
+   Etap 11 — Footer
+   Figma: 1523:5170 (fon + loqo + müəllif hüququ + panoram foto) ·
+          1523:5358 (link sütunları) · 1523:5408 (əlaqə + informasiya ofisləri)
+   Statik bölmə — data layer yoxdur. Nav linkləri hələ "#"-ə işarə edir.
+
+   Qeyd (koordinatlar): 1523:5358 və 1523:5408 Figma-da 1523:5170-in
+   OVLADI DEYİL — home_page kanvasında eyni koordinat sistemində üst-üstə
+   yerləşdirilmiş bacı layer-lərdir (1523:5170-in metadata-sı yalnız foto
+   + loqo qrupunu göstərir). Bura bir HTML bölməsi kimi birləşdirilib;
+   boşluqlar Figma-nın mütləq y-koordinatlarının fərqindən hesablanıb
+   (məs. nav başlığından əvvəlki 562px boş fon sahəsi dəqiq bu fərqdəndir).
+
+   Qeyd (mobil): 1523:5735 altında bu bölmə üçün metadata sorğusu JSON
+   parse xətası qaytardı (əvvəlki bölmələrdəki eyni məlum problem),
+   ölçülər screenshot-dan çıxarılıb — sütun sayı/tərtibat dəqiqdir,
+   boşluq/foto hündürlüyü təxminidir.
+   ============================================================ */
+
+.footer-section {
+  position: relative;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  background: var(--c-footer-bg);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  /* alt padding = boş boşluq (134px) + foto (442px) + alt kənar (2px) —
+     foto/loqo bloku bu sahəyə position:absolute ilə "oturur" (bax aşağı). */
+  padding: 562px 128px 578px;
+}
+
+/* ---------- Link sütunları (1523:5358) ---------- */
+.footer__nav {
+  display: flex;
+  gap: 16px;
+}
+
+.footer__col {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.footer__heading {
+  font-size: var(--t-body);
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--c-gray);
+  letter-spacing: -0.48px;
+  text-transform: uppercase;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.footer__links a {
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  color: var(--c-black);
+  letter-spacing: -0.64px;
+}
+
+.footer__links a:hover { text-decoration: underline; }
+
+/* ---------- Əlaqə + informasiya ofisləri (1523:5408) ---------- */
+.footer__info {
+  display: flex;
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.footer__info-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.footer__info-line {
+  font-size: var(--t-h4);
+  line-height: var(--t-h4-lh);
+  font-weight: 500;
+  color: var(--c-black);
+  letter-spacing: -0.96px;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Panoram qala divarı fotosu + üzərindəki loqo/müəllif hüququ ----------
+   Figma-da hər ikisi (foto və loqo qrupu) konteynerin eyni y-nöqtəsindən
+   başlayır (loqo fotonun üstünə "oturur"), ona görə bir blokda birləşdirilib. */
+.footer__photo {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: calc(100% + 66px);
+  height: 442px;
+  transform: translateX(-50%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer__photo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  pointer-events: none;
+}
+
+.footer__brand {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer__logo { width: 101px; height: 64px; max-width: none; }
+
+.footer__copyright {
+  margin-top: 16px;
+  font-size: 17px;
+  line-height: 23px;
+  font-weight: 500;
+  color: var(--c-black);
+  letter-spacing: -0.51px;
+}
+
+/* ---------- Responsive (mobil, 393px etalon) ---------- */
+@media (max-width: 768px) {
+  .footer-section {
+    /* alt padding = foto hündürlüyü (160px) + alt kənar (2px) —
+       foto/loqo bloku bu sahəyə position:absolute ilə "oturur". */
+    padding: 40px 24px 162px;
+  }
+
+  .footer__nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 32px;
+    column-gap: 16px;
+  }
+
+  .footer__col:nth-child(5) { grid-column: 1 / -1; }
+
+  .footer__heading { font-size: var(--t-caption); line-height: var(--t-caption-lh); }
+
+  .footer__links { gap: 16px; margin-top: 16px; }
+  .footer__links a { font-size: var(--t-small); line-height: var(--t-small-lh); letter-spacing: -0.28px; }
+
+  .footer__info {
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 32px;
+  }
+
+  .footer__info-lines { gap: 8px; margin-top: 16px; }
+  .footer__info-line { font-size: 20px; line-height: 26px; letter-spacing: -0.4px; }
+
+  .footer__logo { width: 84px; height: 53px; max-width: none; }
+  .footer__copyright { font-size: 14px; line-height: 20px; }
+
+  .footer__photo { width: 100%; height: 160px; justify-content: flex-start; padding-top: 24px; }
+}
