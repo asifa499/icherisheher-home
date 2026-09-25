@@ -8,8 +8,14 @@
    OVLADI DEYİL — home_page kanvasında eyni koordinat sistemində üst-üstə
    yerləşdirilmiş bacı layer-lərdir (1523:5170-in metadata-sı yalnız foto
    + loqo qrupunu göstərir). Bura bir HTML bölməsi kimi birləşdirilib;
-   boşluqlar Figma-nın mütləq y-koordinatlarının fərqindən hesablanıb
-   (məs. nav başlığından əvvəlki 562px boş fon sahəsi dəqiq bu fərqdəndir).
+   daxili boşluqlar (nav↔contact, contact↔foto) Figma-nın mütləq
+   y-koordinatlarının fərqindən hesablanıb.
+   DİQQƏT: 1523:5170-in öz hündürlüyü (1585px) home_page-də sosial feed
+   bölməsinin (Etap 10) ARXASINDA başlayır (Frame 610 y=6518, sosial
+   fotoların y-aralığı 6816-7032) — yəni Frame 610-un boy hissəsi sosial
+   bölmənin öz kontenti ilə örtülüb, görünmür. Həqiqi görünən boşluq
+   sosial fotoların sonu (7032) ilə "Explore" başlığının başı (7080)
+   arasındadır: cəmi 48px, 562px yox. Padding-top buna görə 48px-dir.
 
    Qeyd (mobil): 1523:5735 altında bu bölmə üçün metadata sorğusu JSON
    parse xətası qaytardı (əvvəlki bölmələrdəki eyni məlum problem),
@@ -24,9 +30,10 @@
   background: var(--c-footer-bg);
   border-radius: var(--r-xl);
   overflow: hidden;
-  /* alt padding = boş boşluq (134px) + foto (442px) + alt kənar (2px) —
+  /* üst padding: sosial fotoların sonu ilə "Explore" arası həqiqi boşluq (bax yuxarı).
+     alt padding = boş boşluq (134px) + foto (442px) + alt kənar (2px) —
      foto/loqo bloku bu sahəyə position:absolute ilə "oturur" (bax aşağı). */
-  padding: 562px 128px 578px;
+  padding: 48px 128px 578px;
 }
 
 /* ---------- Link sütunları (1523:5358) ---------- */
