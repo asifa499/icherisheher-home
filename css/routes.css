@@ -83,8 +83,8 @@
 
 .routes__chip.is-active {
   background: transparent;
-  border-color: var(--c-brand);
-  color: var(--c-brand);
+  border-color: var(--c-card-ring);
+  color: var(--c-card-ring);
 }
 
 .routes__all {
@@ -209,9 +209,9 @@
   justify-content: center;
   gap: 8px;
   padding: 8px 16px;
-  border: 2px solid var(--c-brand);
+  border: 2px solid var(--c-card-ring);
   border-radius: var(--r-pill);
-  background: var(--c-brand);
+  background: var(--c-card-ring);
   color: var(--c-white);
   font-size: var(--t-small);
   line-height: var(--t-small-lh);
@@ -264,11 +264,10 @@
     line-height: var(--t-caption-lh);
   }
 
-  /* "All tours" mobil variantda kartın altına, mərkəzə düşür.
-     Ölçüsü (80×40) Figma render-indən ölçülüb. */
+  /* "All tours" mobil variantda kartın altına, mərkəzə düşür. Paddinqi
+     desktop ilə eynidir (Figma-da kiçilmir), yalnız mətn 16px→14px düşür. */
   .routes__all {
     justify-self: center;
-    padding: 8px 12px;
     font-size: var(--t-small);
     line-height: var(--t-small-lh);
   }
