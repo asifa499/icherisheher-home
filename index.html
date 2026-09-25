@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="css/nearby.css">
   <link rel="stylesheet" href="css/citypass.css">
   <link rel="stylesheet" href="css/appar.css">
+  <link rel="stylesheet" href="css/social.css">
 </head>
 <body>
 
@@ -248,9 +249,63 @@
     </div>
   </section>
 
-  <!-- ETAP 10 · Sosial feed · Figma: 1523:5297 + 1523:5313 -->
-  <section id="social" class="section is-placeholder container" data-figma="1523:5297,1523:5313">
-    <p class="ph-label"><strong>Etap 10 — Sosial feed</strong>Instagram qalereyası + Follow</p>
+  <!-- ETAP 10 · Sosial feed · Figma: 1523:5297 (başlıq) + 1523:5313 (foto grid)
+       Mobil (1523:5735): metadata sorğusu bu node üçün də JSON parse xətası
+       qaytardı (əvvəlki bölmələrdə olan eyni məlum problem), ölçülər
+       screenshot-dan çıxarılıb. Mobil yalnız 3 foto göstərir (statue və
+       artist/video fotoları gizlədilir) və "video" nişanı carrace fotosuna
+       keçir — bax css/social.css qeydi. -->
+  <section id="social" class="social-section container" data-figma="1523:5297,1523:5313">
+    <div class="social__header">
+      <div class="social__profile">
+        <div class="social__avatar">
+          <img class="social__avatar-photo" src="assets/img/social-avatar.jpg" alt="">
+          <img class="social__avatar-ring" src="assets/img/social-avatar-ring.svg" alt="" aria-hidden="true">
+        </div>
+        <div class="social__names">
+          <p class="social__name">icherisheher dovlet tarix-memarliq qoruguhu</p>
+          <p class="social__handle">@icherisheher_living_history</p>
+        </div>
+      </div>
+      <div class="social__followers">
+        <p class="social__followers-count">41,1 K</p>
+        <p class="social__followers-label">followers</p>
+      </div>
+      <a class="social__follow" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
+        <img class="social__follow-icon" src="assets/img/social-icon-instagram.svg" alt="">
+        <span>Follow</span>
+      </a>
+    </div>
+
+    <div class="social__grid">
+      <a class="social__photo social__photo--statue" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
+        <img src="assets/img/social-photo-statue.jpg" alt="">
+      </a>
+      <a class="social__photo social__photo--tower" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
+        <img src="assets/img/social-photo-tower.jpg" alt="">
+      </a>
+      <a class="social__photo social__photo--instruments" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
+        <img src="assets/img/social-photo-instruments.jpg" alt="">
+      </a>
+      <a class="social__photo social__photo--artist" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
+        <img src="assets/img/social-photo-artist.jpg" alt="">
+        <span class="social__scrim" aria-hidden="true"></span>
+        <span class="social__play social__play--desktop" aria-hidden="true">
+          <img src="assets/img/social-icon-play.svg" alt="">
+        </span>
+      </a>
+      <a class="social__photo social__photo--carrace" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
+        <img src="assets/img/social-photo-carrace.jpg" alt="">
+        <span class="social__play social__play--mobile" aria-hidden="true">
+          <img src="assets/img/social-icon-play.svg" alt="">
+        </span>
+      </a>
+    </div>
+
+    <a class="social__follow social__follow--mobile" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
+      <img class="social__follow-icon" src="assets/img/social-icon-instagram.svg" alt="">
+      <span>Follow</span>
+    </a>
   </section>
 
   <!-- ETAP 11 · Footer · Figma: 1523:5170 (daxilində 1523:5358, 1523:5408) -->

@@ -1,0 +1,216 @@
+/* ============================================================
+   Etap 10 — Sosial feed
+   Figma: 1523:5297 (profil başlığı) · 1523:5313 (foto grid)
+   Statik bölmə — data layer yoxdur. Follow düyməsi və foto linkləri
+   Instagram hesabına yönəlir: @icherisheher_living_history.
+
+   Qeyd (mobil foto seçimi): desktop-da 5 foto var (statue, tower,
+   instruments, artist/video, carrace). Mobil ekranda (screenshot-dan
+   ölçülüb, metadata sorğusu bu node üçün də JSON parse xətası
+   qaytardı) yalnız 3-ü görünür — statue və artist gizlənir, "video"
+   nişanı (play + qara skrim) artist-dən carrace fotosuna keçir. Hər
+   iki nişan HTML-də mövcuddur, breakpoint-ə görə CSS-lə göstərilib-
+   gizlədilir ki, DOM iki dəfə təkrarlanmasın.
+   ============================================================ */
+
+.social-section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+/* ---------- Başlıq sırası ---------- */
+.social__header {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.social__profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.social__avatar {
+  position: relative;
+  flex-shrink: 0;
+  width: 70px;
+  height: 70px;
+}
+
+.social__avatar-photo {
+  position: absolute;
+  inset: 2.763px;
+  width: 64.474px;
+  height: 64.474px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.social__avatar-ring {
+  position: absolute;
+  inset: 0;
+  width: 70px;
+  height: 70px;
+}
+
+.social__names {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.social__name {
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 500;
+  color: var(--c-black);
+}
+
+.social__handle {
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.social__followers {
+  flex-shrink: 0;
+  text-align: right;
+  white-space: nowrap;
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+}
+
+.social__followers-count { color: var(--c-black); }
+.social__followers-label { color: rgba(0, 0, 0, 0.5); }
+
+.social__follow {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 11px 20px;
+  border-radius: var(--r-pill);
+  background: var(--c-map-pill);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
+}
+
+.social__follow-icon { width: 24px; height: 24px; }
+
+.social__follow span {
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  color: var(--c-map-pill-tx);
+}
+
+.social__follow--mobile { display: none; }
+
+/* ---------- Foto grid ---------- */
+.social__grid {
+  display: flex;
+  gap: 12.76px;
+}
+
+.social__photo {
+  position: relative;
+  display: block;
+  flex: 1 1 0;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+.social__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.social__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.social__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.11);
+  border: 1.25px solid rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(6.25px);
+  -webkit-backdrop-filter: blur(6.25px);
+}
+
+.social__play img { width: 14px; height: auto; }
+
+.social__play--mobile { display: none; }
+
+/* ---------- Responsive (mobil, 393px etalon) ----------
+   Figma mobile node-u (1523:5735) üçün metadata sorğusu JSON parse
+   xətası qaytardı (museums/resources/citypass/appar-dəki eyni məlum
+   problem), ölçülər screenshot-dan çıxarılıb. Foto grid konteynerin
+   kənar boşluğunu keçib tam-en (edge-to-edge) yayılır. */
+@media (max-width: 768px) {
+  .social-section { gap: 20px; }
+
+  .social__header { gap: 9px; }
+
+  .social__avatar { width: 56px; height: 56px; }
+
+  .social__avatar-photo {
+    inset: 2.2px;
+    width: 51.6px;
+    height: 51.6px;
+  }
+
+  .social__avatar-ring { width: 56px; height: 56px; }
+
+  .social__names { white-space: normal; }
+
+  .social__name { font-size: 14px; line-height: 20px; }
+  .social__handle { font-size: 13px; line-height: 18px; }
+
+  .social__followers { display: none; }
+  .social__follow { display: none; }
+
+  .social__follow--mobile {
+    display: flex;
+    width: 100%;
+  }
+
+  .social__grid {
+    gap: 8px;
+    margin-inline: calc(-1 * var(--page-pad));
+  }
+
+  .social__photo { border-radius: var(--r-md); }
+
+  .social__photo--statue,
+  .social__photo--artist {
+    display: none;
+  }
+
+  .social__photo--tower { flex: 2; }
+  .social__photo--instruments { flex: 3; }
+  .social__photo--carrace { flex: 2; }
+
+  .social__play--desktop { display: none; }
+  .social__play--mobile { display: flex; }
+}
