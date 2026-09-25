@@ -51,7 +51,7 @@ assets/img/         — şəkillər, bölmə-prefiksli adlar: hero-bg.jpg, museu
 | 6 | Resources (tabs + kartlar) | 1523:8262 | ✅ |
 | 7 | See What's Nearby (xəritə) | 1523:8263 | ✅ |
 | 8 | City Pass (Core/Explore/Premium) | 1523:4878 | ✅ |
-| 9 | App promo + AR Time Machine | 1523:5169, 1523:5341, 1523:5340, 1523:5322 | ⬜ |
+| 9 | App promo + AR Time Machine | 1523:5169, 1523:5341, 1523:5340, 1523:5322 | ✅ |
 | 10 | Sosial feed | 1523:5297, 1523:5313 | ⬜ |
 | 11 | Footer + panoram foto | 1523:5170, 1523:5358, 1523:5408 | ⬜ |
 

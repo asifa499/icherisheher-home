@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/resources.css">
   <link rel="stylesheet" href="css/nearby.css">
   <link rel="stylesheet" href="css/citypass.css">
+  <link rel="stylesheet" href="css/appar.css">
 </head>
 <body>
 
@@ -204,9 +205,47 @@
     <div class="citypass__row" data-passes-row aria-live="polite"></div>
   </section>
 
-  <!-- ETAP 9 · App promo + AR Time Machine · Figma: 1523:5169 + 1523:5322 -->
-  <section id="app-ar" class="section is-placeholder block" data-figma="1523:5169,1523:5341,1523:5340,1523:5322">
-    <p class="ph-label"><strong>Etap 9 — App Promo + AR Time Machine</strong>"Take Icherisheher with you" + Maiden Tower AR bloku</p>
+  <!-- ETAP 9 · App promo + AR Time Machine · Figma: 1523:5169 (panel bg) + 1523:5341
+       (mətn+nişanlar) + 1523:5340 (telefon mokapı) + 1523:5322 (AR bloku, tam) -->
+  <section id="app-ar" class="appar-section block" data-figma="1523:5169,1523:5341,1523:5340,1523:5322">
+    <div class="appar-promo">
+      <div class="appar-promo__col">
+        <div class="appar-promo__copy">
+          <h2 class="appar-promo__title">Take Icherisheher with you</h2>
+          <p class="appar-promo__text">Your personal Old City guide in your pocket - works offline, includes audio guides in 6 languages, AR Time Machine at 10+ historical points, and exclusive in-app deals.</p>
+        </div>
+        <div class="appar-promo__badges">
+          <div class="appar-qr">
+            <img src="assets/img/appar-qr.svg" alt="" width="60" height="60">
+          </div>
+          <div class="appar-stores">
+            <a class="appar-store" href="#">
+              <img src="assets/img/appar-icon-appstore.svg" alt="" width="24" height="24">
+              <span>App store</span>
+            </a>
+            <a class="appar-store" href="#">
+              <img src="assets/img/appar-icon-googleplay.svg" alt="" width="24" height="24">
+              <span>Google play</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <img class="appar-promo__phone" src="assets/img/appar-phone-mockup.png" alt="Icherisheher app running on a phone" width="368" height="393">
+    </div>
+
+    <div class="appar-time">
+      <div class="appar-time__scrim"></div>
+      <div class="appar-time__content">
+        <div class="appar-time__copy">
+          <h2 class="appar-time__title">AR Time Machine<br><span>at the Maiden Tower.</span></h2>
+          <p class="appar-time__text">Travel back to 12th-century Baku through augmented reality at 10 historical points across the Old City.</p>
+        </div>
+        <div class="appar-time__actions">
+          <a class="appar-time__btn appar-time__btn--light" href="#">Explore</a>
+          <a class="appar-time__btn appar-time__btn--glass" href="#">Get your pass</a>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ETAP 10 · Sosial feed · Figma: 1523:5297 + 1523:5313 -->

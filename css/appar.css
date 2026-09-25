@@ -1,0 +1,261 @@
+/* ============================================================
+   Etap 9 — App promo + AR Time Machine
+   Figma: 1523:5169 (panel bg) · 1523:5341 (mətn+nişanlar) ·
+          1523:5340 (telefon mokapı) · 1523:5322 (AR bloku, tam)
+   Statik bölmə — data layer yoxdur, "App store"/"Google play"
+   düymələri hələ "#"-ə işarə edir (tətbiq hələ dərc olunmayıb).
+
+   Qeyd (overlap): Figma-da panel arxa fonu (Rectangle 30) 668px
+   hündürdür, amma real məzmun (mətn+telefon) yalnız üst ~425px-i
+   tutur — qalan hissə sadəcə boş fondur ki, AR bloku onun üstünə
+   mənfi margin ilə "oturur" və iki bloku tikişsiz birləşdirir.
+   Telefon mokapının özü artıq öz kəsiyi ilə (368×393 export) gəlir,
+   AR bloku ONU kəsmir — sadəcə arxadakı boş fonu örtür.
+   ============================================================ */
+
+.appar-section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+/* ---------- App promo paneli ---------- */
+.appar-promo {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  background: rgba(227, 227, 226, 0.89); /* Rectangle 30 — 89% şəffaf --c-panel-bg */
+  border-radius: var(--r-xl);
+  padding: 32px 128px 0;
+  overflow: hidden;
+}
+
+.appar-promo__col {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 628px;
+  padding-top: 73px; /* Figma: mətn y=105, telefon y=32 → fərq 73px */
+  padding-bottom: 32px;
+}
+
+.appar-promo__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.appar-promo__title {
+  font-size: var(--t-hero);
+  line-height: var(--t-hero-lh);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--c-text-dark);
+}
+
+.appar-promo__text {
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  letter-spacing: -0.03em;
+  color: var(--c-text-soft);
+}
+
+.appar-promo__badges {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.appar-qr {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 104px;
+  height: 104px;
+  border-radius: var(--r-md);
+  background: var(--c-black);
+}
+
+.appar-stores {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.appar-store {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: var(--r-pill);
+  background: var(--c-black);
+  border: 1px solid var(--c-glass-04);
+  backdrop-filter: blur(var(--blur-nav));
+  white-space: nowrap;
+}
+
+.appar-store span {
+  font-size: 18px;
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--c-map-pill-tx); /* #EDEDED — nearby bölməsindəki eyni ton */
+}
+
+.appar-promo__phone {
+  flex-shrink: 0;
+  align-self: flex-end;
+  width: 368px;
+  height: 393px;
+}
+
+/* ---------- AR Time Machine bloku ---------- */
+.appar-time {
+  position: relative;
+  margin-top: -24px;
+  height: 489px;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--c-black) url("../assets/img/appar-tower-bg.jpg") center 62% / cover no-repeat;
+  isolation: isolate;
+}
+
+.appar-time__scrim {
+  position: absolute;
+  inset: 0;
+  width: 55%;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.appar-time__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  height: 100%;
+  padding: 124px 128px 0;
+}
+
+.appar-time__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 455px;
+}
+
+.appar-time__title {
+  font-size: var(--t-hero);
+  line-height: var(--t-hero-lh);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--c-white);
+}
+
+.appar-time__title span {
+  color: var(--c-ivory); /* "at the Maiden Tower." — #FAFAF5 */
+}
+
+.appar-time__text {
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  letter-spacing: -0.03em;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 455px;
+}
+
+.appar-time__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.appar-time__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-glass-04);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
+  font-size: 15px;
+  line-height: var(--t-body-lh);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.appar-time__btn--light {
+  background: var(--c-white);
+  color: var(--c-black);
+}
+
+.appar-time__btn--glass {
+  background: var(--c-glass-12);
+  color: var(--c-white);
+}
+
+/* ---------- Responsive (mobil, 393px etalon) ----------
+   Figma mobile node-ları üçün metadata sorğusu JSON parse xətası
+   qaytardı (museums/resources/citypass-dəki eyni bilinən problem),
+   ona görə screenshot-dan ölçülüb: panel məzmunu mərkəzləşir,
+   telefon mətn+nişanların altına düşür; AR bloku eyni "üst-üstə
+   düşmə" məntiqi ilə davam edir, sadəcə daha kiçik miqyasda. */
+@media (max-width: 768px) {
+  .appar-promo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 32px 24px 0;
+  }
+
+  .appar-promo__col {
+    align-items: center;
+    max-width: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+    gap: 24px;
+  }
+
+  .appar-promo__badges {
+    justify-content: center;
+  }
+
+  .appar-promo__phone {
+    align-self: center;
+    width: min(280px, 100%);
+    height: auto;
+    margin-top: 8px;
+  }
+
+  .appar-time {
+    margin-top: -16px;
+    height: 420px;
+    background-position: 66% 55%;
+  }
+
+  .appar-time__scrim {
+    inset: auto 0 0 0;
+    top: 45%;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 100%);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .appar-time__content {
+    justify-content: flex-end;
+    padding: 0 16px 24px;
+    max-width: 100%;
+  }
+
+  .appar-time__text {
+    max-width: 100%;
+  }
+}
