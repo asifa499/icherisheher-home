@@ -48,6 +48,8 @@
   --c-hairline:   #ECECEC;   /* hero explore paneli ayırıcısı */
   --c-chip-peach: #FFEEE5;   /* hero explore paneli çiplərinin fonu (2026-09-25, node 1615:3176) —
                                 çip mətn/ikon rəngi --c-card-ring (#F3503A) ilə eynidir */
+  --c-cta-peach:  #FEE2D2;   /* museums kart "Get a ticket" CTA fonu (2026-09-25, node 1615:3486) —
+                                mətn/ikon rəngi də --c-card-ring (#F3503A) */
   --c-gold:       #EE25A3;   /* "ai" gradient bitiş rəngi (Inspire me düyməsi) — 2026-09-25:
                                 Figma-da #F5B90E (qızılı) əvəzinə #EE25A3 (magenta) qaytarır
                                 (node 1615:3196, linear-gradient #FB6310→#EE25A3). Ad artıq
