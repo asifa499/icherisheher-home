@@ -147,11 +147,9 @@
 }
 
 .nearby__chip.is-active {
-  background: var(--c-glass-04);
-  border-color: var(--c-brand);
-  color: var(--c-brand);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: var(--c-white);
+  border-color: var(--c-card-ring);
+  color: var(--c-card-ring);
 }
 
 /* Aktiv çipin "×" nişanı (iconoir:xmark, 1523:5684) — yalnız
@@ -304,15 +302,15 @@
 }
 
 .nearby__btn--ghost {
-  padding: 8.5px 14.5px;          /* +1.5px haşiyə = Figma 10/16 paddinqi */
-  border: 1.5px solid var(--c-brand);
-  color: var(--c-brand);
+  padding: 10px 16px;
+  background: var(--c-audio-peach);
+  color: var(--c-card-ring);
 }
 
 .nearby__btn--solid {
   padding: 8px 14px;              /* +2px haşiyə = Figma 8/16 paddinqi */
-  border: 2px solid var(--c-brand);
-  background: var(--c-brand);
+  border: 2px solid var(--c-card-ring);
+  background: var(--c-card-ring);
   color: var(--c-white);
 }
 
@@ -359,6 +357,13 @@
 
   .nearby__chip { padding: 6px 18px; }  /* Figma mobil: 8/20 */
 
+  /* Mobil aktiv çip şüşə fonu saxlayır (desktop-da yoxdur, node 1627:2746). */
+  .nearby__chip.is-active {
+    background: var(--c-glass-04);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
   /* Mobil çipdə "×" nişanı yoxdur (1523:6270) */
   .nearby__chip.is-active .nearby__chip-x { display: none; }
 
@@ -380,4 +385,13 @@
 
   /* Mobil kartda foto cütlüyü yoxdur */
   .nearby__photos { display: none; }
+
+  /* Mobildə "Audio guide" düyməsi dolğun fon yox, nazik haşiyə saxlayır
+     (desktopdan fərqli, node 1627:2737) — 1.5px haşiyə üçün paddinq
+     kompensasiya olunur (10/16 → 8.5/14.5). */
+  .nearby__btn--ghost {
+    padding: 8.5px 14.5px;
+    background: transparent;
+    border: 1.5px solid var(--c-card-ring);
+  }
 }

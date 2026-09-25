@@ -52,6 +52,8 @@
                                 mətn/ikon rəngi də --c-card-ring (#F3503A) */
   --c-date-day-bg:   #F6DBCC; /* season tədbir kartı — gün rəqəmi fonu (2026-09-25, node 1615:3030) */
   --c-date-month-bg: #F2F0F0; /* eyni nişan — ay adı fonu (2026-09-25, node 1615:3032) */
+  --c-audio-peach:   #F7DCCD; /* nearby məkan kartı "Audio guide" düyməsinin fonu (2026-09-25,
+                                node 1615:3651) — mətn/ikon rəngi də --c-card-ring (#F3503A) */
   --c-gold:       #EE25A3;   /* "ai" gradient bitiş rəngi (Inspire me düyməsi) — 2026-09-25:
                                 Figma-da #F5B90E (qızılı) əvəzinə #EE25A3 (magenta) qaytarır
                                 (node 1615:3196, linear-gradient #FB6310→#EE25A3). Ad artıq
