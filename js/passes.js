@@ -6,6 +6,12 @@ const API_URL = "https://icherisheher-api-production.up.railway.app/api/passes";
 const FALLBACK_URL = "data/passes.json";
 const LANG = "en"; // hazırkı dil: EN. Gələcəkdə i18n seçicisindən oxunacaq.
 
+// Backend "/adult" kimi bir vahid etiketi qaytarmır (bu, məzmun sahəsi deyil,
+// sabit UI şəkilçisidir) — ona görə client tərəfdə saxlanılır, museums.js-dəki
+// "ticket_price" kimi plain string sahələr üçün də eyni yanaşma tətbiq olunub.
+const CURRENCY_SYMBOLS = { AZN: "₼" };
+const PRICE_UNIT = { az: "/nəfər", en: "/adult", ru: "/чел." };
+
 function pickText(field) {
   if (!field) return "";
   return field[LANG] || field.en || "";
@@ -19,15 +25,16 @@ function featureMarkup(feature) {
   return `
     <li class="pass-card__feature" data-state="${state}">
       ${icon}
-      <span>${pickText(feature.text)}</span>
+      <span>${pickText(feature.label)}</span>
     </li>
   `;
 }
 
 function passCardMarkup(pass) {
   const name = pickText(pass.name);
-  const tagline = pickText(pass.tagline);
-  const unit = pickText(pass.price_unit);
+  const description = pickText(pass.description);
+  const symbol = CURRENCY_SYMBOLS[pass.currency] || pass.currency;
+  const unit = PRICE_UNIT[LANG] || PRICE_UNIT.en;
   const featured = pass.is_featured ? " pass-card--featured" : "";
 
   return `
@@ -35,12 +42,12 @@ function passCardMarkup(pass) {
       <div class="pass-card__head">
         <div class="pass-card__name-row">
           <h3 class="pass-card__name">${name}</h3>
-          <span class="pass-card__duration">${pass.duration_label}</span>
+          <span class="pass-card__duration">${pass.duration}</span>
         </div>
-        <p class="pass-card__tagline">${tagline}</p>
+        <p class="pass-card__tagline">${description}</p>
       </div>
       <p class="pass-card__price">
-        <span class="pass-card__price-value">${pass.price_symbol} ${pass.price}</span>
+        <span class="pass-card__price-value">${symbol} ${pass.price}</span>
         <span class="pass-card__price-unit">${unit}</span>
       </p>
       <ul class="pass-card__features">
