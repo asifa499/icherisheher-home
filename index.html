@@ -21,10 +21,13 @@
 </head>
 <body>
 
-  <!-- ETAP 1 · Header + Hero · Figma: 1523:4707
+  <!-- ETAP 1 · Header + Hero · Figma: 1615:2716 (əvvəlki: 1523:4707)
        Explore/çip paneli ("What would you like to explore?") home_page-in ayrıca
-       (1523:4707-in bacısı) node-udur: 1523:5137 — 1136×156, left:152 top:538. -->
-  <section id="hero" class="hero-section block" data-figma="1523:4707">
+       (1615:2716-nın bacısı) node-udur: 1615:3171 (əvvəlki: 1523:5137) — left:152 top:538.
+       2026-09-25 Figma yoxlaması: hero naviqasiyasında yeni bir WhatsApp düyməsi
+       görünür (lang + WhatsApp + 2 ikon = 4 düymə, əvvəl 3 idi) — struktur fərqi,
+       rebuild edilməyib, nəzərdən keçirilməlidir. -->
+  <section id="hero" class="hero-section block" data-figma="1615:2716">
     <div class="hero">
       <div class="hero__bg" aria-hidden="true"></div>
       <div class="hero__scrim-top" aria-hidden="true"></div>
@@ -61,7 +64,7 @@
       <h1 class="hero__title">Discover Icherisheher</h1>
     </div>
 
-    <div class="hero__explore container" data-figma="1523:5137">
+    <div class="hero__explore container" data-figma="1615:3171">
       <div class="hero__explore-main">
         <p class="hero__explore-heading">What would you<br>like to explore?</p>
         <div class="hero__chips">
@@ -81,8 +84,8 @@
     </div>
   </section>
 
-  <!-- ETAP 2 · UNESCO intro + foto kollaj · Figma: 1523:5620 (web) / 1523:5917 (mobile) -->
-  <section id="intro" class="intro-section" data-figma="1523:5620">
+  <!-- ETAP 2 · UNESCO intro + foto kollaj · Figma: 1615:3596 (əvvəlki: 1523:5620) -->
+  <section id="intro" class="intro-section" data-figma="1615:3596">
     <div class="intro__top container">
       <p class="intro__eyebrow">Where History Still Lives</p>
       <p class="intro__lead">Icherisheher is Baku&rsquo;s historic heart, surrounded by ancient walls and listed as a UNESCO World Heritage Site since 2000. <span class="intro__lead-muted">Home to landmarks like the Maiden Tower and Shirvanshah&rsquo;s Palace, the Old City remains a living neighborhood with more than 3,000 residents.</span></p>
@@ -115,17 +118,17 @@
     </div>
   </section>
 
-  <!-- ETAP 3 · Museums of Icherisheher & Gala · Figma: 1523:5419
+  <!-- ETAP 3 · Museums of Icherisheher & Gala · Figma: 1615:3450 (əvvəlki: 1523:5419)
        Kartlar data/museums.json-dan js/museums.js ilə render olunur (bax: API integration, CLAUDE.md). -->
-  <section id="museums" class="museums-section container" data-figma="1523:5419">
+  <section id="museums" class="museums-section container" data-figma="1615:3450">
     <h2 class="museums__title">Museums of Icherisheher &amp; Gala</h2>
     <a class="museums__view-all" href="#">View all museums</a>
     <div class="museums__row" data-museums-row aria-live="polite"></div>
   </section>
 
-  <!-- ETAP 4 · Ready-made routes · Figma: 1523:5063 (web) / 1523:5937 (mobile)
+  <!-- ETAP 4 · Ready-made routes · Figma: 1615:3089 (əvvəlki: 1523:5063)
        Çiplər və marşrut kartı data/routes.json-dan js/routes.js ilə render olunur. -->
-  <section id="routes" class="routes-section container" data-figma="1523:5063">
+  <section id="routes" class="routes-section container" data-figma="1615:3089">
     <div class="routes__intro">
       <h2 class="routes__title">Ready-made routes,<br class="routes__br"> made for the time you have.</h2>
       <p class="routes__lead">Pick how you travel and follow a mapped route through the Old City - every stop links to tickets, hours and directions.</p>
@@ -135,18 +138,19 @@
     <div class="routes__card" data-routes-card aria-live="polite"></div>
   </section>
 
-  <!-- ETAP 5 · This season in the Old City · Figma: 1523:4992 (web) / 1523:6166 (mobile)
+  <!-- ETAP 5 · This season in the Old City · Figma: 1615:3017 (əvvəlki: 1523:4992)
        Tədbir kartları data/events.json-dan js/events.js ilə render olunur. -->
-  <section id="season" class="season-section container" data-figma="1523:4992">
+  <section id="season" class="season-section container" data-figma="1615:3017">
     <h2 class="season__title">This season in the Old City</h2>
     <a class="season__calendar" href="#">Full events calendar</a>
     <div class="season__grid" data-events-grid aria-live="polite"></div>
   </section>
 
-  <!-- ETAP 6 · Resources · Figma: 1523:8262 (başlıq qrupu 1523:5127, kart cərgəsi 1523:5697)
+  <!-- ETAP 6 · Resources · Figma: 1615:3675 (əvvəlki: 1523:8262, başlıq qrupu 1523:5127,
+       kart cərgəsi 1523:5697)
        Kartlar data/news.json-dan js/news.js ilə render olunur; tab dəyişəndə
        yalnız uyğun "type" (review / news / announcement) göstərilir. -->
-  <section id="resources" class="resources-section container" data-figma="1523:8262">
+  <section id="resources" class="resources-section container" data-figma="1615:3675">
     <h2 class="resources__title">Resources</h2>
 
     <div class="resources__tabs" data-resources-tabs role="tablist" aria-label="Resources">
@@ -162,7 +166,7 @@
          role="tabpanel" aria-live="polite"></div>
   </section>
 
-  <!-- ETAP 7 · See What's Nearby · Figma: 1523:8263 (web) / 1523:6238 (mobile)
+  <!-- ETAP 7 · See What's Nearby · Figma: 1615:3617 (əvvəlki: 1523:8263)
        Xəritə açar tələb etməyən Google Maps embed-idir; məkan kartı
        data/places.json-dan js/places.js ilə render olunur. data-places-category
        backend-in xam `category` sahəsi DEYİL — özümüzün UI kateqoriya
@@ -170,7 +174,7 @@
        kateqoriyalarla (xüsusən hərtərəfli "landmark") uyğunlaşdırma
        js/places.js-dəki CATEGORY_BY_DB / PLACE_CATEGORY_OVERRIDES
        cədvəllərində açıq şəkildə edilir — bax orada olan izahat. -->
-  <section id="nearby" class="nearby-section block" data-figma="1523:8263">
+  <section id="nearby" class="nearby-section block" data-figma="1615:3617">
     <div class="nearby__map" data-places-map aria-label="Map of Icherisheher">
       <iframe title="Map of Icherisheher" loading="lazy" allowfullscreen
               referrerpolicy="no-referrer-when-downgrade"
@@ -200,16 +204,22 @@
     </span>
   </section>
 
-  <!-- ETAP 8 · One QR. The whole Old City (City Pass) · Figma: 1523:4878
+  <!-- ETAP 8 · One QR. The whole Old City (City Pass) · Figma: 1615:2894 (əvvəlki: 1523:4878)
        Kartlar data/passes.json-dan js/passes.js ilə render olunur. -->
-  <section id="citypass" class="citypass-section container" data-figma="1523:4878">
+  <section id="citypass" class="citypass-section container" data-figma="1615:2894">
     <h2 class="citypass__title">One QR. The whole Old City.</h2>
     <div class="citypass__row" data-passes-row aria-live="polite"></div>
   </section>
 
-  <!-- ETAP 9 · App promo + AR Time Machine · Figma: 1523:5169 (panel bg) + 1523:5341
-       (mətn+nişanlar) + 1523:5340 (telefon mokapı) + 1523:5322 (AR bloku, tam) -->
-  <section id="app-ar" class="appar-section block" data-figma="1523:5169,1523:5341,1523:5340,1523:5322">
+  <!-- 2026-09-25 Figma yoxlaması: CityPass ilə App promo arasında YENİ bir bölmə peyda olub —
+       "Archives to keep with you" (node 1615:3864): arxiv rəsm/foto satışı, tab-lar
+       (All archives / Paintings / Photography) + kart grid-i. Yuxarıdakı 11 etapın
+       heç birinə uyğun gəlmir, buraya əlavə edilməyib — Asifdən qərar gözlənilir. -->
+
+  <!-- ETAP 9 · App promo + AR Time Machine · Figma: 1615:3200 (panel bg) + 1615:3372
+       (mətn+nişanlar) + 1615:3371 (telefon mokapı) + 1615:3353 (AR bloku, tam)
+       (əvvəlki: 1523:5169 + 1523:5341 + 1523:5340 + 1523:5322) -->
+  <section id="app-ar" class="appar-section block" data-figma="1615:3200,1615:3372,1615:3371,1615:3353">
     <div class="appar-promo">
       <div class="appar-promo__col">
         <div class="appar-promo__copy">
@@ -250,13 +260,18 @@
     </div>
   </section>
 
-  <!-- ETAP 10 · Sosial feed · Figma: 1523:5297 (başlıq) + 1523:5313 (foto grid)
+  <!-- ETAP 10 · Sosial feed · Figma: 1615:3328 (başlıq) + 1615:3344 (foto grid)
+       (əvvəlki: 1523:5297 + 1523:5313)
+       2026-09-25 Figma yoxlaması: bu iki node indi vizual olaraq Footer-in fon
+       panelinin (1615:3201, üzü #E1E1E0) içinə düşür — əvvəlki ayrı ağ fon yoxdur,
+       Sosial + Footer indi bir davamlı boz blokdadır. Struktur fərqidir, rebuild
+       edilməyib.
        Mobil (1523:5735): metadata sorğusu bu node üçün də JSON parse xətası
        qaytardı (əvvəlki bölmələrdə olan eyni məlum problem), ölçülər
        screenshot-dan çıxarılıb. Mobil yalnız 3 foto göstərir (statue və
        artist/video fotoları gizlədilir) və "video" nişanı carrace fotosuna
        keçir — bax css/social.css qeydi. -->
-  <section id="social" class="social-section container" data-figma="1523:5297,1523:5313">
+  <section id="social" class="social-section container" data-figma="1615:3328,1615:3344">
     <div class="social__header">
       <div class="social__profile">
         <div class="social__avatar">
@@ -309,12 +324,13 @@
     </a>
   </section>
 
-  <!-- ETAP 11 · Footer · Figma: 1523:5170 (fon + loqo + müəllif hüququ + panoram foto) +
-       1523:5358 (link sütunları) + 1523:5408 (əlaqə + informasiya ofisləri).
+  <!-- ETAP 11 · Footer · Figma: 1615:3201 (fon + loqo + müəllif hüququ + panoram foto) +
+       1615:3389 (link sütunları) + 1615:3439 (əlaqə + informasiya ofisləri).
+       (əvvəlki: 1523:5170 + 1523:5358 + 1523:5408)
        Mobil (1523:5735): metadata sorğusu JSON parse xətası qaytardı (əvvəlki
        bölmələrdəki eyni məlum problem), ölçülər screenshot-dan çıxarılıb.
        Nav linkləri hələ "#"-ə işarə edir (daxili səhifələr yoxdur). -->
-  <footer id="footer" class="footer-section block" data-figma="1523:5170,1523:5358,1523:5408">
+  <footer id="footer" class="footer-section block" data-figma="1615:3201,1615:3389,1615:3439">
     <div class="footer__nav">
       <nav class="footer__col" aria-label="Explore">
         <p class="footer__heading">Explore</p>

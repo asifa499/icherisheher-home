@@ -11,10 +11,11 @@
 ## Figma mənbəyi
 
 - **Fayl:** `tJ0lCzuMMZdMygPz8nwZEs` ("Icherisheher-Web")
-- **Home web (1440px):** node `1523:4706`
-- **Home mobile (393px):** node `1523:5735`
+- **Home web (1440px):** node `1615:2715` (2026-09-25-dən əvvəl: `1523:4706` — fayl daxilində yeni frame-ə köçürülüb)
+- **Home mobile (393px):** node `1627:2200` (əvvəlki: `1523:5735`)
 - Hər `<section>`-ın `data-figma` atributunda öz node ID-si yazılıb. Bu atributları **heç vaxt silmə**.
 - Figma-dan oxumaq üçün Figma MCP connector istifadə olunur. Dəyər tərəddüdü olanda screenshot-a yox, node-un faktiki property-lərinə əsaslan.
+- **Bilinən MCP məhdudiyyəti:** bu fayl üçün `get_metadata` və (default) `get_design_context` böyük frame-lərdə (~9000px hündürlük) boş və ya kəsik (JSON parse xətası) cavab qaytarır. İşləyən yol: `get_design_context` `forceCode: true` + `excludeScreenshot: true` ilə tam kod dump-ı almaq (nəticə fayla yazılır), sonra `data-node-id` / `top-[…px]` / mətn məzmununa görə bölmələri əl ilə uyğunlaşdırmaq — screenshot yalnız vizual təsdiq üçün əlavə istifadə olunur.
 
 ## Struktur
 
@@ -43,19 +44,42 @@ assets/img/         — şəkillər, bölmə-prefiksli adlar: hero-bg.jpg, museu
 | # | Bölmə | Figma node | Status |
 |---|-------|-----------|--------|
 | 0 | Tokens + skelet | — | ✅ Hazır |
-| 1 | Header + Hero (axtarış paneli, çiplər) | 1523:4707 | ✅ |
-| 2 | UNESCO intro + foto kollaj | 1523:5620 | ✅ |
-| 3 | Museums of Icherisheher & Gala | 1523:5419 | ✅ |
-| 4 | Ready-made routes | 1523:5063 | ✅ |
-| 5 | This season in the Old City | 1523:4992 | ✅ |
-| 6 | Resources (tabs + kartlar) | 1523:8262 | ✅ |
-| 7 | See What's Nearby (xəritə) | 1523:8263 | ✅ |
-| 8 | City Pass (Core/Explore/Premium) | 1523:4878 | ✅ |
-| 9 | App promo + AR Time Machine | 1523:5169, 1523:5341, 1523:5340, 1523:5322 | ✅ |
-| 10 | Sosial feed | 1523:5297, 1523:5313 | ✅ |
-| 11 | Footer + panoram foto | 1523:5170, 1523:5358, 1523:5408 | ✅ |
+| 1 | Header + Hero (axtarış paneli, çiplər) | 1615:2716, 1615:3171 | ✅ |
+| 2 | UNESCO intro + foto kollaj | 1615:3596 | ✅ |
+| 3 | Museums of Icherisheher & Gala | 1615:3450 | ✅ |
+| 4 | Ready-made routes | 1615:3089 | ✅ |
+| 5 | This season in the Old City | 1615:3017 | ✅ |
+| 6 | Resources (tabs + kartlar) | 1615:3675 | ✅ |
+| 7 | See What's Nearby (xəritə) | 1615:3617 | ✅ |
+| 8 | City Pass (Core/Explorer/Premium) | 1615:2894 | ✅ |
+| 9 | App promo + AR Time Machine | 1615:3200, 1615:3372, 1615:3371, 1615:3353 | ✅ |
+| 10 | Sosial feed | 1615:3328, 1615:3344 | ✅ |
+| 11 | Footer + panoram foto | 1615:3201, 1615:3389, 1615:3439 | ✅ |
 
 Etap tamamlananda bu cədvəldə statusu ✅ et və commit-ə daxil et.
+
+**2026-09-25 node ID yenilənməsi:** Figma faylı eyni qalıb (`tJ0lCzuMMZdMygPz8nwZEs`), amma
+home_page yeni frame-ə köçürülüb (bax "Figma mənbəyi") və bütün bölmə node ID-ləri dəyişib.
+Yuxarıdakı cədvəl və `index.html`-dəki `data-figma` atributları yeni ID-lərlə (yalnız web
+`1615:xxxx` seriyası) yenilənib; status ✅ saxlanılıb, çünki mövcud markup/CSS hələ dəqiqliyini
+itirməyib (yalnız bəzi token dəyərləri dəyişib — bax `css/tokens.css`). Aşağıdakı iki bənd
+istisnadır:
+
+- **Yeni, uyğunsuz bölmə:** "Archives to keep with you" (arxiv rəsm/foto satışı, tab-lar +
+  kart grid-i) — Figma-da CityPass ilə App promo arasında peyda olub (node `1615:3864`).
+  Yuxarıdakı 11 etapın heç birinə uyğun gəlmir, sayta əlavə edilməyib. Əlavə etmək qərarı və
+  yeri Asifdən gözlənilir.
+- **Struktur fərqləri (rebuild edilməyib, sadəcə nəzərdən keçirilməlidir):**
+  - Hero naviqasiyasında yeni bir WhatsApp düyməsi görünür (lang + WhatsApp + 2 ikon = 4
+    düymə, əvvəl 3 idi).
+  - "Inspire me please!" düyməsinin (`.btn-inspire`, `css/hero.css`) bütün vizual üslubu
+    dəyişib: hazırkı tətbiq ağ fon + nazik `--c-brand`→`--c-gold` gradient sərhəd + brend
+    rəngli mətn göstərir, yeni Figma isə tam dolğun `#FB6310`→`#EE25A3` gradient fon + ağ
+    mətn göstərir (`--c-gold` dəyəri bu tapşırıqda yeniləndi, amma düymənin fon/mətn quruluşu
+    dəyişdirilmədi — bax `css/tokens.css`).
+  - Sosial feed (`1615:3328`/`1615:3344`) indi vizual olaraq Footer-in fon panelinin
+    (`1615:3201`, üzü `#E1E1E0`) içinə düşür — əvvəlki ayrı ağ fon yoxdur, ikisi bir davamlı
+    boz blokdadır.
 
 ## Etap iş axını
 
@@ -64,6 +88,27 @@ Etap tamamlananda bu cədvəldə statusu ✅ et və commit-ə daxil et.
 3. Markup + CSS yaz (`css/<section>.css`), placeholder-i əvəz et.
 4. Şəkil lazımdırsa: Asifdən dəqiq siyahı ilə istə (hansı layer, hansı format). Fayllar `assets/img/`-ə bölmə-prefiksli adla düşür; gələnə qədər `--c-surface` fonlu placeholder div işlət.
 5. Commit + push → Asif canlı linki Figma ilə tutuşdurur → düzəlişlər → təsdiq → cədvəldə status yenilə → növbəti etap.
+
+## Dizayn dəyişikliyi iş axını
+
+Figma mənbəyi dəyişəndə (yeni fayl/link, rəng-tipoqrafiya yenilənməsi, node köçürülməsi və s.)
+iki fərqli səviyyə var, qarışdırılmamalıdır:
+
+- **Token səviyyəli dəyişiklik** — rəng/ölçü/radius *dəyəri* dəyişib, amma layout, element sayı
+  və yerləşməsi eynidir: YALNIZ `css/tokens.css` yenilənir. Heç bir `<section>`-ın markup-ı və
+  ya öz CSS faylı (`css/<bölmə>.css`) toxunulmur. Yeni dəyər Figma-dan (paint/text style və ya
+  faktiki node property-si — bax "Bilinən MCP məhdudiyyəti" yuxarıda) təsdiqlənmədən token
+  yazılmır; naməlum/qərarsız hallar dəyişdirilmədən qeyd (comment) kimi saxlanılır.
+- **Bölmə səviyyəli dəyişiklik** — layout, elementlərin sayı/yerləşməsi, yeni və ya silinmiş
+  element: həmin bölmənin Figma node-u yenidən çəkilir və YALNIZ o bölmənin öz CSS faylı
+  (+ lazım gələrsə markup-ı) düzəlişlənir. Digər bölmələrə toxunulmur. Belə bir dəyişiklik
+  aşkarlananda (məs. yeni bölmə, yeni element) dərhal rebuild edilmir — CLAUDE.md-də qeyd
+  olunur və Asifin qərarı gözlənilir (bax yuxarıdakı etap cədvəlinin qeydləri).
+- Heç vaxt rəng/ölçü/radius-u CSS-də hardcode yazma — hamısı `tokens.css`-dəki dəyişənlərdən
+  keçir (bax Qayda 2).
+- Figma root node ID-ləri dəyişəndə (fayl köçürülüb və ya yeni frame yaradılıb) `## Figma
+  mənbəyi` bölməsi və etap cədvəlinin node ID-ləri yenilənir, `index.html`-dəki bütün
+  `data-figma` atributları uyğunlaşdırılır.
 
 ## API inteqrasiyası
 

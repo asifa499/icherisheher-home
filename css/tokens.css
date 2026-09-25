@@ -1,7 +1,9 @@
 /* ============================================================
    Ä°Ã§É™riÅŸÉ™hÉ™r â€” Design Tokens
    MÉ™nbÉ™: Figma "Icherisheher-Web" (tJ0lCzuMMZdMygPz8nwZEs)
-   home_page: 1523:4706 (web 1440px) / 1523:5735 (mobile 393px)
+   home_page: 1615:2715 (web 1440px) / 1627:2200 (mobile 393px)
+   ÆvvÉ™lki node-lar (1523:4706 / 1523:5735) 2026-09-25-dÉ™ fayl daxilindÉ™ yeni
+   frame-É™ kÃ¶Ã§Ã¼rÃ¼lÃ¼b — bax CLAUDE.md "Figma mÉ™nbÉ™yi".
    BÃ¼tÃ¼n dÉ™yÉ™rlÉ™r Figma-dan birbaÅŸa oxunub.
    ============================================================ */
 
@@ -15,16 +17,26 @@
   --c-white:      #FFFFFF;
 
   /* ---------- RÉ™nglÉ™r (sÉ™hifÉ™dÉ™n oxunan) ---------- */
-  --c-page-bg:    #F5F4F2;   /* home_page frame fill */
-  --c-footer-bg:  #E1E1E0;   /* Frame 610 (footer bloku) */
+  --c-page-bg:    #F5F4F2;   /* home_page frame fill (web). 2026-09-25: mobil frame-in
+                                (home_page_mobile, 1627:2200) öz fonu #EFEEED oxunur — kiçik
+                                fərq, təsdiqlənməyənə qədər tək dəyər saxlanılır */
+  --c-footer-bg:  #E1E1E0;   /* Frame 610 (footer bloku, web). 2026-09-25: mobildə footer fonu
+                                #E4E4E3 oxunur (node 1627:2760) — kiçik fərq, təsdiqlənməyənə
+                                qədər tək dəyər saxlanılır */
   --c-panel-bg:   #E3E3E2;   /* Rectangle 30 (app promo) â€” 89% opacity ilÉ™ */
-  --c-surface:    #EAEAEA;   /* kart daxili aÃ§Ä±q sÉ™th */
+  --c-surface:    #EAEAEA;   /* kart daxili aÃ§Ä±q sÉ™th — 2026-09-25 Figma yenilənməsində
+                                bu dəyər web home_page-də tapılmadı (istifadəsi görünmür),
+                                təsdiqlənməyənə qədər dəyişməyib */
   --c-text-soft:  #62615F;   /* yumÅŸaq mÉ™tn variantÄ± */
-  --c-text-dark:  #211C16;   /* isti-tÃ¼nd baÅŸlÄ±q variantÄ± */
+  --c-text-dark:  #221D17;   /* isti-tÃ¼nd baÅŸlÄ±q variantÄ± — 2026-09-25: Figma-da #211C16-dan
+                                #221D17-yə yenilənib (UNESCO intro mətni, node 1615:3601) */
   --c-ivory:      #FAFAF5;   /* aÃ§Ä±q mÉ™tn (tÃ¼nd fonda) */
   --c-text-muted: #AFAFAF;   /* UNESCO intro — ötəri mətn rəngi (Etap 2) */
   --c-card-ring:  #F3503A;   /* Resources kart halqası (Etap 6) — bu node-da "orange" paint stili
-                                bu dəyəri qaytarır, home_page-dəki --c-orange (#FD6310) ilə eyni deyil */
+                                bu dəyəri qaytarır, home_page-dəki --c-orange (#FD6310) ilə eyni deyil.
+                                2026-09-25: yeni dizaynda bu dəyər (#F3503A) artıq CTA/border/qiymət
+                                mətni boyu dominant rəngdir (47 istifadə), --c-orange (#FD6310) isə
+                                yalnız Museums bölməsinin kiçik səhifələmə nöqtələrində qalıb (7 istifadə) */
 
   /* ÅžÃ¼ÅŸÉ™ effektli Ã§iplÉ™r (hero Ã¼zÉ™rindÉ™) */
   --c-glass-12:   rgba(255, 255, 255, 0.12);
@@ -34,11 +46,16 @@
   --c-shadow-06:  rgba(0, 0, 0, 0.06);
   --c-glass-04:   rgba(255, 255, 255, 0.04);
   --c-hairline:   #ECECEC;   /* hero explore paneli ayırıcısı */
-  --c-gold:       #F5B90E;   /* "ai" gradient bitiş rəngi (Inspire me düyməsi) */
+  --c-gold:       #EE25A3;   /* "ai" gradient bitiş rəngi (Inspire me düyməsi) — 2026-09-25:
+                                Figma-da #F5B90E (qızılı) əvəzinə #EE25A3 (magenta) qaytarır
+                                (node 1615:3196, linear-gradient #FB6310→#EE25A3). Ad artıq
+                                dəyəri əks etdirmir ("gold" adı saxlanılıb, struktur dəyişikliyi
+                                bu tapşırığın hüdudundan kənardır) — adın dəyişdirilməsi Asifdən
+                                təsdiq gözləyir */
 
-  /* See What's Nearby — xəritə bloku (Etap 7, Figma 1523:8263) */
+  /* See What's Nearby — xəritə bloku (Etap 7, Figma 1615:3617) */
   --c-map-panel:   #E3E3E2;  /* blok fonu (web-də 89% şəffaflıqla) */
-  --c-map-panel-m: #E0E0DF;  /* eyni blok, mobil variant (1523:6238) */
+  --c-map-panel-m: #E0E0DF;  /* eyni blok, mobil variant (2026-09-25: unchanged, 1627:2714) */
   --c-map-pill:    #111112;  /* "Google maps" nişanı — content/primary */
   --c-map-pill-tx: #EDEDED;  /* həmin nişanın mətni */
   --c-place-title: #272727;  /* məkan kartı başlığı */
@@ -46,7 +63,7 @@
   --c-label:       #717178;  /* content/tertiary — "Open hours" etiketi */
   --c-value:       #414145;  /* content/secondary — etiketin dəyəri */
 
-  /* City Pass kartları (Etap 8, Figma 1523:4878) */
+  /* City Pass kartları (Etap 8, Figma 1615:2894) */
   --t-price:    32px; --t-price-lh:    28px;  /* kart qiyməti — 32px ölçü/28px sətirarası
                                                  Figma-da tam belədir (sıx başlıq effekti) */
 
