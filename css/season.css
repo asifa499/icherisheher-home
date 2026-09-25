@@ -135,15 +135,15 @@
 
 .event-card__day {
   padding-block: 2px;
-  background: var(--c-brand);
-  color: var(--c-white);
+  background: var(--c-date-day-bg);
+  color: var(--c-card-ring);
   font-size: var(--t-date);
   line-height: var(--t-date-lh);
 }
 
 .event-card__month {
   padding-block: 4px;
-  background: var(--c-surface);
+  background: var(--c-date-month-bg);
   color: var(--c-gray);
   font-size: var(--t-body);
   line-height: var(--t-body-tight-lh);
@@ -164,7 +164,7 @@
   font-weight: 600;
   letter-spacing: -0.03em;
   text-transform: uppercase;
-  color: var(--c-brand);
+  color: var(--c-card-ring);
 }
 
 .event-card__title {
