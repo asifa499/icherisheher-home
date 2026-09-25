@@ -232,16 +232,22 @@
     justify-content: center;
   }
 
+  .appar-promo__title,
+  .appar-time__title {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
   .appar-promo__phone {
     align-self: center;
-    width: min(280px, 100%);
+    width: min(368px, 100%);
     height: auto;
     margin-top: 8px;
   }
 
   .appar-time {
     margin-top: -16px;
-    height: 420px;
+    height: 481px;
     background-position: 66% 55%;
   }
 
