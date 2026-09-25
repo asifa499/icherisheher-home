@@ -146,6 +146,37 @@ Etap 3-dən başlayaraq bölmələr **data-driven**-dir: məzmun HTML-ə hardcod
 - Figma-dakı xəritə əl ilə çəkilmiş 3D illüstrasiyadır — canlı xəritə ilə birəbir
   eyni görünmür. Kart, çiplər və başlıq isə piksel-dəqiq Figma-dandır.
 
+### Bölmə feature toggle-ları (`js/config.js`)
+
+Səhifə yüklənəndə `js/config.js` `GET /api/config`-i (`icherisheher-api`,
+Railway) çağırır. Cavab formatı `{ "sections": { "<flag>": true|false, ... } }`-dur.
+`false` olan hər flag `SECTION_ID_BY_FLAG` map-i (`js/config.js`) vasitəsilə
+uyğun `<section>` (və ya `<footer>`) `id`-sinə köçürülür və o element
+`.section-hidden` sinfi (`display:none`, `css/base.css`) ilə gizlədilir —
+DOM-dan silinmir. Əksər flag açarları bölmə `id`-si ilə eynidir, iki istisna
+API-nin öz resurs adlandırmasını izləyir:
+
+| Flag açarı (API) | Bölmə `id` | Bölmə |
+|---|---|---|
+| `hero` | `hero` | Header + Hero |
+| `intro` | `intro` | UNESCO intro + foto kollaj |
+| `museums` | `museums` | Museums of Icherisheher & Gala |
+| `routes` | `routes` | Ready-made routes |
+| `events` | `season` | This season in the Old City (Etap 5 resursu `js/events.js` ilə eyni adı daşıyır) |
+| `resources` | `resources` | Resources (tabs + kartlar) |
+| `nearby` | `nearby` | See What's Nearby (xəritə) |
+| `citypass` | `citypass` | City Pass |
+| `appar` | `app-ar` | App promo + AR Time Machine (defisiz) |
+| `social` | `social` | Sosial feed |
+| `footer` | `footer` | Footer + panoram foto |
+
+**FAIL-OPEN qaydası:** sorğu uğursuz olarsa, 2 saniyədən çox çəkərsə
+(`AbortController` ilə timeout), cavab JSON deyilsə, `sections` obyekti
+yoxdursa, ya da hər hansı flag obyektdə yoxdursa — o bölmə (və ya bütün
+bölmələr) görünən qalır. Bölmə yalnız uyğun flag **açıq şəkildə `false`**
+olanda gizlədilir. `config.js` `index.html`-də digər bölmə skriptlərindən
+(`js/museums.js` və s.) ƏVVƏL yüklənir.
+
 ## Design tokens xülasəsi (tam siyahı: css/tokens.css)
 
 - **Rənglər:** brand `#886D46` · orange `#FD6310` · black `#222222` · gray `#818181` · light-gray `#E5E5E5` · page-bg `#F5F4F2` · footer-bg `#E1E1E0`

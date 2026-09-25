@@ -82,6 +82,15 @@ ul, ol { list-style: none; }
   margin-bottom: 4px;
 }
 
+/* ---------- Feature toggle (js/config.js) ---------- */
+/* /api/config-dan gÉ™lÉ™n flag false olanda bÃ¶lmÉ™ DOM-da qalÄ±r, sadÉ™cÉ™ gizlÉ™dilir.
+   !important: bÃ¶lmÉ™-spesifik CSS fayllarÄ± (css/<section>.css) eyni spesifiklikdÉ™
+   Ã¶z `display` dÉ™yÉ™rini tÉ™yin edir vÉ™ base.css-dÉ™n sonra yÃ¼klÉ™ndiyi Ã¼Ã§Ã¼n kaskadda
+   qazanardÄ± â€” !important olmasa gizlÉ™tmÉ™ effektsiz qalÄ±r. */
+.section-hidden {
+  display: none !important;
+}
+
 /* ---------- Ãœmumi baÅŸlÄ±q stili ---------- */
 .section-title {
   font-size: var(--t-h2);
