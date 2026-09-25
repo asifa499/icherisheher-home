@@ -62,8 +62,8 @@
    Figma-da haşiyə çipi 4px böyüdür, cərgə mərkəzə düzülür — eyni saxlanılıb. */
 .resources__tab[aria-selected="true"] {
   background: transparent;
-  border: 2px solid var(--c-brand);
-  color: var(--c-brand);
+  border: 2px solid var(--c-card-ring);
+  color: var(--c-card-ring);
 }
 
 /* ---------- Kart cərgəsi (üfüqi scroll) ----------
@@ -160,6 +160,11 @@
 
 /* ---------- Responsive (mobil, 393px etalon) ---------- */
 @media (max-width: 768px) {
+  .resources__title {
+    font-size: var(--t-h4);
+    line-height: var(--t-h4-lh);
+  }
+
   .resources__tabs {
     align-self: stretch;
     gap: 8px;
@@ -171,21 +176,31 @@
   .resources__tabs::-webkit-scrollbar { display: none; }
 
   .resources__tab {
-    padding: 8px 16px;
-    font-size: var(--t-small);
-    line-height: var(--t-small-lh);
+    padding: 6px 10px;
+    font-size: var(--t-caption);
+    line-height: var(--t-caption-lh);
   }
 
   .resources__track {
-    gap: 12px;
+    gap: 8px;
     margin-top: 20px;
     margin-right: calc(-1 * var(--page-pad));
     padding-right: var(--page-pad);
   }
 
+  .resource-card {
+    flex-basis: 169px;
+    width: 169px;
+    height: 220px;
+    padding: 4px;
+    border-width: 1.5px;
+    border-radius: 22px;
+  }
+  .resource-card__media { border-radius: 18px; }
+
   .resource-card__title {
-    font-size: var(--t-body);
-    line-height: var(--t-body-lh);
-    bottom: 16px;
+    font-size: var(--t-small);
+    line-height: var(--t-small-lh);
+    bottom: 12px;
   }
 }
