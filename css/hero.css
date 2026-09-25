@@ -52,8 +52,14 @@
 .hero__nav {
   display: flex;
   align-items: center;
-  gap: 24px;
+  justify-content: space-between;
   padding-top: var(--page-pad);
+}
+
+.hero__nav-start {
+  display: flex;
+  align-items: center;
+  gap: 40px;
 }
 
 .hero__logo img {
@@ -66,7 +72,6 @@
   display: flex;
   align-items: center;
   gap: 24px;
-  margin-inline: auto;
 }
 .hero__link {
   display: inline-flex;
@@ -156,8 +161,8 @@
   gap: 8px;
   padding: 10px 16px;
   border-radius: var(--r-pill);
-  border: 1.5px solid var(--c-brand);
-  color: var(--c-brand);
+  background: var(--c-chip-peach);
+  color: var(--c-card-ring);
   font-size: var(--t-body);
   line-height: var(--t-body-lh);
   font-weight: 600;
@@ -217,9 +222,9 @@
   }
   .hero__logo img { width: 96px; height: 62px; }
   .hero__links { display: none; }
-  .hero__actions { margin-inline-start: auto; }
   .hero__lang span:not(.hero__flag) { display: none; }
-  .hero__lang { width: 48px; padding: 0; }
+  .hero__lang,
+  .hero__icon-btn { width: 40px; height: 40px; padding: 0; }
 
   .hero__title { padding-bottom: 72px; }
 
@@ -230,7 +235,7 @@
   }
   .hero__explore-main,
   .hero__explore-aside {
-    padding: 24px;
+    padding: 20px;
   }
   .hero__explore-divider {
     width: auto;
@@ -239,5 +244,9 @@
   }
   .hero__explore-aside {
     width: auto;
+  }
+  .btn-inspire {
+    font-size: var(--t-small);
+    line-height: var(--t-small-lh);
   }
 }

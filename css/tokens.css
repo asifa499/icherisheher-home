@@ -46,6 +46,8 @@
   --c-shadow-06:  rgba(0, 0, 0, 0.06);
   --c-glass-04:   rgba(255, 255, 255, 0.04);
   --c-hairline:   #ECECEC;   /* hero explore paneli ayırıcısı */
+  --c-chip-peach: #FFEEE5;   /* hero explore paneli çiplərinin fonu (2026-09-25, node 1615:3176) —
+                                çip mətn/ikon rəngi --c-card-ring (#F3503A) ilə eynidir */
   --c-gold:       #EE25A3;   /* "ai" gradient bitiş rəngi (Inspire me düyməsi) — 2026-09-25:
                                 Figma-da #F5B90E (qızılı) əvəzinə #EE25A3 (magenta) qaytarır
                                 (node 1615:3196, linear-gradient #FB6310→#EE25A3). Ad artıq
