@@ -13,12 +13,28 @@
    gizlədilir ki, DOM iki dəfə təkrarlanmasın.
    ============================================================ */
 
+/* 2026-09-25 Figma yenilənməsi: sosial feed artıq footer-in fon panelinin
+   (--c-footer-bg) içinə düşür — ayrı ağ fon yoxdur, ikisi bir davamlı boz
+   blokdadır. Hər ikisi öz DOM elementində qalır (feature flag-lar
+   müstəqildir, bax js/config.js), amma :has()/+ ilə qonşuluq aşkarlanır:
+   hər ikisi görünəndə tikişsiz birləşir (sosial yalnız üst künclər, footer
+   yalnız alt künclər), hər hansı tək başına görünəndə tam yuvarlaq qalır. */
 .social-section {
   display: flex;
   flex-direction: column;
   gap: 32px;
   margin-top: 24px;
   margin-bottom: 24px;
+  background: var(--c-footer-bg);
+  border-radius: var(--r-xl);
+  padding: 48px 128px;
+}
+
+.social-section:has(+ .footer-section:not(.section-hidden)) {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 /* ---------- Başlıq sırası ---------- */
@@ -109,7 +125,7 @@
   font-size: var(--t-body);
   line-height: var(--t-body-lh);
   font-weight: 600;
-  color: var(--c-map-pill-tx);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .social__follow--mobile { display: none; }
@@ -168,7 +184,7 @@
    problem), ölçülər screenshot-dan çıxarılıb. Foto grid konteynerin
    kənar boşluğunu keçib tam-en (edge-to-edge) yayılır. */
 @media (max-width: 768px) {
-  .social-section { gap: 20px; }
+  .social-section { gap: 20px; padding: 32px 24px; }
 
   .social__header { gap: 9px; }
 
@@ -197,7 +213,7 @@
 
   .social__grid {
     gap: 8px;
-    margin-inline: calc(-1 * var(--page-pad));
+    margin-inline: -24px;
   }
 
   .social__photo { border-radius: var(--r-md); }

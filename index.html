@@ -270,16 +270,19 @@
 
   <!-- ETAP 10 · Sosial feed · Figma: 1615:3328 (başlıq) + 1615:3344 (foto grid)
        (əvvəlki: 1523:5297 + 1523:5313)
-       2026-09-25 Figma yoxlaması: bu iki node indi vizual olaraq Footer-in fon
-       panelinin (1615:3201, üzü #E1E1E0) içinə düşür — əvvəlki ayrı ağ fon yoxdur,
-       Sosial + Footer indi bir davamlı boz blokdadır. Struktur fərqidir, rebuild
-       edilməyib.
+       2026-09-26 Resync: bu iki node vizual olaraq Footer-in fon panelinin
+       (1615:3201, üzü #E1E1E0) içinə düşür — indi eyni --c-footer-bg fonu və
+       üst künc radiusu ilə birbaşa Footer-in üstündə oturur (bax
+       css/social.css + css/footer.css, .social-section:has(+ .footer-section)
+       texnikası). Hər iki bölmə öz DOM elementində qalır ki, feature
+       flag-lar (js/config.js) müstəqil işləsin — biri gizlənəndə digəri
+       yenidən tam yuvarlaq panelə çevrilir.
        Mobil (1523:5735): metadata sorğusu bu node üçün də JSON parse xətası
        qaytardı (əvvəlki bölmələrdə olan eyni məlum problem), ölçülər
        screenshot-dan çıxarılıb. Mobil yalnız 3 foto göstərir (statue və
        artist/video fotoları gizlədilir) və "video" nişanı carrace fotosuna
        keçir — bax css/social.css qeydi. -->
-  <section id="social" class="social-section container" data-figma="1615:3328,1615:3344">
+  <section id="social" class="social-section block" data-figma="1615:3328,1615:3344">
     <div class="social__header">
       <div class="social__profile">
         <div class="social__avatar">

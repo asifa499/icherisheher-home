@@ -36,6 +36,15 @@
   padding: 48px 128px 578px;
 }
 
+/* Sosial feed görünən şəkildə əvvəlində gələndə (2026-09-25 Figma
+   yenilənməsi — bax css/social.css) tikişsiz birləşmək üçün üst künclər
+   düzləşir və araya boşluq qoyulmur. */
+.social-section:not(.section-hidden) + .footer-section {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 /* ---------- Link sütunları (1523:5358) ---------- */
 .footer__nav {
   display: flex;
