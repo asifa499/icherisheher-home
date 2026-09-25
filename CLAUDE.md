@@ -81,16 +81,41 @@ Etap 3-dən başlayaraq bölmələr **data-driven**-dir: məzmun HTML-ə hardcod
   iframe-idir (`https://www.google.com/maps?q=<lat>,<lng>&z=<zoom>&output=embed`).
   Başlanğıc mərkəz/zoom `index.html`-dəki iframe URL-indədir (`DEFAULT_MAP`
   `js/places.js`-də eyni dəyərləri saxlayır).
+- **Çip ↔ data kateqoriya xəritəsi (`js/places.js`, `CATEGORY_BY_DB` /
+  `PLACE_CATEGORY_OVERRIDES` / `uiCategoryOf(place)`):** Figma-nın çip
+  etiketləri backend-in xam `category` sahəsi ilə 1-ə-1 uyğun gəlmir —
+  ən problemlisi "landmark"dır, backend HƏR tarixi obyekti (qüllə, saray,
+  məscid, qapı, seyrgah) eyni etiketlə qaytarır. Ona görə xəritələmə iki
+  qatlıdır: birbaşa uyğun gələn xam kateqoriyalar (`museum`, `shop`, `hotel`,
+  `cafe`→`restaurant`) `CATEGORY_BY_DB`-də, "landmark" kimi qarışıq
+  kateqoriyalar isə HƏR məkan üçün əl ilə (təsvirinə görə) `PLACE_CATEGORY_OVERRIDES`-də
+  təsnif olunur:
+  - `shirvanshahs-palace`, `muhammad-mosque` → **Institutional building**
+    (saray kompleksi / məscid — əsl bina, dini/dövlət institutu).
+  - `multani-caravanserai` → **Restaurant** (öz təsvirində "today a
+    restaurant" yazılıb, xam kateqoriyası "landmark" olsa da).
+  - `maiden-tower`, `double-gates`, `hajinski-house-viewpoint` → **heç bir
+    çipə uyğun gəlmir** (qüllə/qapı/seyrgah — açıq struktur, bina deyil).
+    Bunlar yalnız "All"-da (və birbaşa hash linki ilə, məs. `#maiden-tower`)
+    görünür — çip klikləməklə əlçatan deyillər, bu qəsdən belədir.
+  - Yeni məkan/kateqoriya gələndə: xam kateqoriya birmənalı bir çipə uyğun
+    gəlirsə `CATEGORY_BY_DB`-ə əlavə et; gəlmirsə slug üzrə
+    `PLACE_CATEGORY_OVERRIDES`-ə əl ilə əlavə et.
 - **Çip ↔ kart ↔ xəritə ↔ URL hash sinxronu:** dördü də `js/places.js`-dəki
-  tək `showPlace(chip, place)` funksiyasından keçir, ona görə heç vaxt
-  sinxrondan çıxa bilmirlər:
-  - Kateqoriya çipinə basılanda o kateqoriyanın ilk (`sort_order`) məkanı
-    kartda açılır, xəritə onun `lat`/`lng`-inə köçür, URL hash məkanın
-    slug-una yenilənir (`#boutique-hotel-in-the-walls` kimi).
+  tək `showPlace(chip, place)` funksiyasından keçir (kateqoriyanı çipin özündən
+  oxuyur), ona görə heç vaxt sinxrondan çıxa bilmirlər:
+  - Kateqoriya çipinə basılanda o çipə (`uiCategoryOf`) uyğun məkanların ilki
+    (`sort_order`) kartda açılır, xəritə onun `lat`/`lng`-inə köçür, URL hash
+    məkanın slug-una yenilənir (`#boutique-hotel-in-the-walls` kimi).
+  - Çipə uyğun HEÇ BİR məkan yoxdursa (məs. Park) kart AÇIQ qalır və xoş boş
+    vəziyyət mesajı göstərir ("No places in this category yet.") — "All"
+    seçiləndə isə (filtr ümumiyyətlə yoxdur) kart tamamilə bağlanır. Bu iki
+    fərqli hal eyni görünməsin deyə ayrı sentinel dəyərlərlə izlənilir.
   - Səhifə hash ilə açılsa (məs. paylaşılan link) və hash tanınan bir məkan
-    slug-una uyğun gəlsə, o məkan və onun kateqoriya çipi birbaşa aktiv açılır
-    (`initChips`-in son bloku). Tanınmayan/boş hash-də "All" ilə başlanır və
-    xəritəyə toxunulmur (ilkin statik görünüş qalır, lazımsız reload olmasın).
+    slug-una uyğun gəlsə, o məkan açılır; məkan hər hansı çipə uyğun gəlirsə
+    həmin çip, gəlmirsə (yuxarıdakı "heç bir çipə uyğun gəlməyən" siyahı)
+    "All" aktivləşir. Tanınmayan/boş hash-də "All" ilə başlanır və xəritəyə
+    toxunulmur (ilkin statik görünüş qalır, lazımsız reload olmasın).
   - Runtime-da hash başqa yolla dəyişsə (brauzerin geri/irəli düymələri,
     "More details" linki, əl ilə URL redaktəsi) `hashchange` dinləyicisi
     eyni sinxronu təkrarlayır.

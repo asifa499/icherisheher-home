@@ -53,6 +53,52 @@ function currentHashSlug() {
   return decodeURIComponent(location.hash.replace(/^#/, ""));
 }
 
+// ---------- Çip ↔ data kateqoriya xəritəsi ----------
+// Figma-nın çip etiketləri (Museum / Shop / Institutional building /
+// Restaurant / Hotel / Park) backend-in xam `category` sahəsi ilə 1-ə-1
+// uyğun gəlmir — ən problemli hal "landmark"dır: backend HƏR tarixi
+// obyekti (qüllə, saray, məscid, qapı, seyrgah) eyni "landmark" etiketi
+// ilə qaytarır, halbuki bunların yalnız BİR HİSSƏSİ həqiqətən "Institutional
+// building"dir (məs. məscid, saray) — qalanı isə açıq strukturdur (qapı,
+// seyrgah) və heç bir çipə uyğun gəlmir. Ona görə xəritələmə İKİ addımlıdır:
+//
+// 1) CATEGORY_BY_DB — birbaşa uyğun gələn xam kateqoriyalar (museum/shop/
+//    hotel/cafe) burada bir dəfə yazılır.
+// 2) PLACE_CATEGORY_OVERRIDES — "landmark" kimi hərtərəfli kateqoriyalar
+//    üçün HƏR məkan öz təsvirinə görə əl ilə təsnif olunur (aşağıdakı
+//    şərhlərə bax). Burada YAZILMAYAN "landmark" məkan heç bir çipə aid
+//    edilmir — yalnız "All"-da (və birbaşa hash linki ilə) görünür.
+//
+// Yeni məkan/kateqoriya gələndə: xam kateqoriya birmənalı bir çipə uyğun
+// gəlirsə CATEGORY_BY_DB-ə əlavə et; gəlmirsə (və ya "landmark" kimi qarışıqsa)
+// PLACE_CATEGORY_OVERRIDES-ə slug üzrə əl ilə əlavə et.
+const CATEGORY_BY_DB = {
+  museum: "museum",
+  shop: "shop",
+  hotel: "hotel",
+  cafe: "restaurant", // Figma-da ayrıca "Cafe" çipi yoxdur, "Restaurant" ilə eynidir
+};
+
+const PLACE_CATEGORY_OVERRIDES = {
+  // Əsl bina, dövlət/dini institutu — "Institutional building" bura tam uyğun gəlir.
+  "shirvanshahs-palace": "institutional", // saray kompleksi (divanxana, türbə, hamam, məscid)
+  "muhammad-mosque": "institutional",     // məscid — dini institusional bina
+
+  // Təsvirdə açıq yazılıb ki, bu gün restoran kimi işləyir — "Restaurant"a aiddir,
+  // xam kateqoriyası "landmark" olsa da.
+  "multani-caravanserai": "restaurant",   // "today a restaurant around an open courtyard"
+
+  // maiden-tower (qüllə), double-gates (qapı), hajinski-house-viewpoint (seyrgah)
+  // qəsdən BURADA YOXDUR: bunlar açıq strukturlar/abidələrdir, "bina" deyil —
+  // heç bir Figma çipinə uyğun gəlmir, ona görə yalnız "All"-da görünürlər.
+};
+
+// Məkanın hansı ÇİP kateqoriyasına aid olduğunu qaytarır (chip-in
+// data-places-category dəyəri ilə eyni), heç birinə uyğun gəlmirsə null.
+function uiCategoryOf(place) {
+  return PLACE_CATEGORY_OVERRIDES[place.slug] ?? CATEGORY_BY_DB[place.category] ?? null;
+}
+
 function pickText(field) {
   if (!field) return "";
   return field[LANG] || field.en || "";
@@ -193,9 +239,11 @@ function renderError(cardEl) {
   cardEl.setAttribute("data-state", "error");
 }
 
+// `category` burada çip-in UI kateqoriyasıdır (uiCategoryOf(...) ilə eyni
+// açarlar), API-nin xam `item.category` sahəsi DEYİL — bax yuxarıdakı xəritə.
 function placesOfCategory(items, category) {
   const list = category
-    ? items.filter((item) => item.category === category)
+    ? items.filter((item) => uiCategoryOf(item) === category)
     : items.slice();
   return list.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
 }
@@ -226,22 +274,42 @@ function initChips(chipsEl, cardEl, items) {
   let currentSlug; // undefined = hələ heç nə göstərilməyib (ilkin sentinel)
 
   // Çip + kart + xəritə + hash — dörd görünüş də bu tək funksiyadan keçir,
-  // ona görə heç vaxt sinxrondan çıxa bilmirlər.
+  // ona görə heç vaxt sinxrondan çıxa bilmirlər. `chip` özü hansı
+  // kateqoriyanın seçildiyini daşıyır (data-places-category), ona görə
+  // ayrıca "boş kateqoriyadır" arqumenti lazım deyil.
   function showPlace(chip, place) {
-    const nextSlug = place ? place.slug : null;
-    if (nextSlug === currentSlug) return; // eyni məkan — lazımsız reload yox
+    const category = chip.dataset.placesCategory || "";
+    // Üç fərqli vəziyyəti ayırd etmək üçün sentinel: real məkan → onun öz
+    // slug-u; filtr aktivdir amma nəticə yoxdur (məs. Park) → "<kateqoriya>:empty";
+    // "All" (filtr yoxdur) → null. Bunlar heç vaxt bir-birini üstələməsin deyə
+    // fərqli sentinel-lər işlədilir — məs. "Park"dan sonra başqa boş
+    // kateqoriyaya keçəndə belə çip və mesaj düzgün yenilənir.
+    const nextSlug = place ? place.slug : (category ? `${category}:empty` : null);
+    if (nextSlug === currentSlug) return; // heç nə dəyişməyib — lazımsız reload yox
     currentSlug = nextSlug;
-
     activateChip(chip);
-    if (!place) {
-      closeCard(cardEl);
-      resetMap();
+
+    if (place) {
+      renderCard(cardEl, place);
+      navigateMap(place.lat, place.lng, DEFAULT_MAP.zoom);
+      setHash(place.slug);
+      return;
+    }
+
+    if (category) {
+      // Filtr aktivdir, sadəcə bu kateqoriyada hələ məkan yoxdur (məs. Park) —
+      // kart AÇIQ qalır və xoş boş vəziyyət mesajı göstərir (renderCard-ın
+      // öz "No places in this category yet." qaydası), xəritəyə toxunulmur
+      // (naviqasiya ediləcək koordinat yoxdur, default görünüşdə qalır).
+      renderCard(cardEl, null);
       setHash("");
       return;
     }
-    renderCard(cardEl, place);
-    navigateMap(place.lat, place.lng, DEFAULT_MAP.zoom);
-    setHash(place.slug);
+
+    // "All" — filtr yoxdur, kart tamamilə bağlanır, xəritə default görünüşə qayıdır.
+    closeCard(cardEl);
+    resetMap();
+    setHash("");
   }
 
   // İstifadəçi klikləri: çip öz kateqoriyasının ilk (sort_order) məkanını seçir.
@@ -272,7 +340,7 @@ function initChips(chipsEl, cardEl, items) {
   // redaktəsi, brauzerin geri/irəli düymələri) eyni sinxronla nəticələnsin.
   window.addEventListener("hashchange", () => {
     const place = bySlug.get(currentHashSlug());
-    if (place) showPlace(chipForCategory(place.category), place);
+    if (place) showPlace(chipForCategory(uiCategoryOf(place)), place);
   });
 
   // Başlanğıc: hash-də tanınan bir məkan slug-u varsa, onu və onun
@@ -283,7 +351,7 @@ function initChips(chipsEl, cardEl, items) {
   // sonradan "All"-a yenidən bassa təkrar reload getməsin.
   const initialPlace = bySlug.get(currentHashSlug());
   if (initialPlace) {
-    showPlace(chipForCategory(initialPlace.category), initialPlace);
+    showPlace(chipForCategory(uiCategoryOf(initialPlace)), initialPlace);
   } else {
     currentSlug = null;
     activateChip(chips.find((el) => el.classList.contains("is-active")) || chips[0]);

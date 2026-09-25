@@ -161,9 +161,12 @@
 
   <!-- ETAP 7 · See What's Nearby · Figma: 1523:8263 (web) / 1523:6238 (mobile)
        Xəritə açar tələb etməyən Google Maps embed-idir; məkan kartı
-       data/places.json-dan js/places.js ilə render olunur. Çiplərin
-       etiketləri Figma-dandır, data-places-category isə API-dəki
-       mövcud kateqoriyalara bağlanır (landmark / museum / cafe / shop / hotel). -->
+       data/places.json-dan js/places.js ilə render olunur. data-places-category
+       backend-in xam `category` sahəsi DEYİL — özümüzün UI kateqoriya
+       açarlarıdır (museum/shop/institutional/restaurant/hotel/park); xam
+       kateqoriyalarla (xüsusən hərtərəfli "landmark") uyğunlaşdırma
+       js/places.js-dəki CATEGORY_BY_DB / PLACE_CATEGORY_OVERRIDES
+       cədvəllərində açıq şəkildə edilir — bax orada olan izahat. -->
   <section id="nearby" class="nearby-section block" data-figma="1523:8263">
     <div class="nearby__map" data-places-map aria-label="Map of Icherisheher">
       <iframe title="Map of Icherisheher" loading="lazy" allowfullscreen
@@ -178,8 +181,8 @@
         <button class="nearby__chip is-active" type="button" aria-pressed="true" data-places-category="">All</button>
         <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="museum">Museum<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
         <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="shop">Shop<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
-        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="landmark">Institutional building<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
-        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="cafe">Restaurant<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="institutional">Institutional building<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="restaurant">Restaurant<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
         <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="hotel">Hotel<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
         <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="park">Park<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
       </div>
