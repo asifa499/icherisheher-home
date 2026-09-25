@@ -127,9 +127,14 @@
   position: absolute;
   inset: 0;
   width: 55%;
-  background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35));
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  /* Figma "Rectangle 48": gradient #000 0% → #000 10% (çox zəif tündləşmə,
+     oxunaqlılıq əsasən blur-dan gəlir, qaranlıqdan yox). Figma-nın "Background
+     blur: 12" dəyəri CSS backdrop-filter-ə birbaşa px kimi köçürüləndə (12px)
+     şəkli qeyri-mütənasib tündləşdirir/bulandırır — canlı müqayisədə test
+     edilib, 3px vizual olaraq Figma-nın faktiki görünüşünə uyğun gəlir. */
+  background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 
 .appar-time__content {
