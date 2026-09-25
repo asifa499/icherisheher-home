@@ -52,6 +52,11 @@
                                 dəyəri əks etdirmir ("gold" adı saxlanılıb, struktur dəyişikliyi
                                 bu tapşırığın hüdudundan kənardır) — adın dəyişdirilməsi Asifdən
                                 təsdiq gözləyir */
+  --c-flame:      #FB6310;   /* "ai" gradient başlanğıc rəngi + sərhəd (Inspire me düyməsi,
+                                node 1615:3196) — --c-orange (#FD6310) ilə demək olar eyni
+                                (2 vahid fərq), amma node property-si məhz bu dəyəri qaytarır,
+                                bağlı bir stil dəyişəninə bağlı olmadığı üçün ayrı token kimi
+                                saxlanılıb */
 
   /* See What's Nearby — xəritə bloku (Etap 7, Figma 1615:3617) */
   --c-map-panel:   #E3E3E2;  /* blok fonu (web-də 89% şəffaflıqla) */

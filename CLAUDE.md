@@ -69,17 +69,19 @@ istisnadır:
   kart grid-i) — Figma-da CityPass ilə App promo arasında peyda olub (node `1615:3864`).
   Yuxarıdakı 11 etapın heç birinə uyğun gəlmir, sayta əlavə edilməyib. Əlavə etmək qərarı və
   yeri Asifdən gözlənilir.
-- **Struktur fərqləri (rebuild edilməyib, sadəcə nəzərdən keçirilməlidir):**
-  - Hero naviqasiyasında yeni bir WhatsApp düyməsi görünür (lang + WhatsApp + 2 ikon = 4
-    düymə, əvvəl 3 idi).
-  - "Inspire me please!" düyməsinin (`.btn-inspire`, `css/hero.css`) bütün vizual üslubu
-    dəyişib: hazırkı tətbiq ağ fon + nazik `--c-brand`→`--c-gold` gradient sərhəd + brend
-    rəngli mətn göstərir, yeni Figma isə tam dolğun `#FB6310`→`#EE25A3` gradient fon + ağ
-    mətn göstərir (`--c-gold` dəyəri bu tapşırıqda yeniləndi, amma düymənin fon/mətn quruluşu
-    dəyişdirilmədi — bax `css/tokens.css`).
+- **Struktur fərqləri:**
+  - ✅ **Tətbiq edilib (2026-09-25):** Hero naviqasiyasına WhatsApp düyməsi əlavə olundu
+    (lang + WhatsApp + search + menu = 4 düymə) — `assets/img/hero-icon-whatsapp.svg`
+    (node 1615:2879/2881, Figma-dan çəkilib), link hələ `#`-ə işarə edir, nömrə
+    Asifdən gözlənilir. "Inspire me please!" düyməsi (`.btn-inspire`, `css/hero.css`)
+    yeni Figma-ya uyğun yenidən quruldu: tam dolğun `--c-flame`(#FB6310)→`--c-gold`
+    (#EE25A3) gradient fon (265.43deg, node 1615:3196) + 1px `--c-flame` sərhəd + ağ
+    mətn/ikon (`hero-icon-sparkle.svg` fill-i də ağa dəyişdi). Yeni `--c-flame` tokeni
+    əlavə olundu (bax `css/tokens.css`) — `--c-orange` (#FD6310) ilə demək olar eyni,
+    amma node property-si fərqli xam dəyər qaytardığı üçün ayrıca saxlanılıb.
   - Sosial feed (`1615:3328`/`1615:3344`) indi vizual olaraq Footer-in fon panelinin
     (`1615:3201`, üzü `#E1E1E0`) içinə düşür — əvvəlki ayrı ağ fon yoxdur, ikisi bir davamlı
-    boz blokdadır.
+    boz blokdadır. (Hələ rebuild edilməyib.)
 
 ## Etap iş axını
 

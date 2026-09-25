@@ -197,11 +197,9 @@
   align-self: flex-start;
   padding: 8px 16px;
   border-radius: var(--r-pill);
-  border: 2px solid transparent;
-  background:
-    linear-gradient(var(--c-white), var(--c-white)) padding-box,
-    linear-gradient(90deg, var(--c-brand), var(--c-gold)) border-box;
-  color: var(--c-brand);
+  border: 1px solid var(--c-flame);
+  background: linear-gradient(265.43deg, var(--c-flame) 4.19%, var(--c-gold) 132.03%);
+  color: var(--c-white);
   font-size: var(--t-body);
   line-height: var(--t-body-lh);
   font-weight: 600;
