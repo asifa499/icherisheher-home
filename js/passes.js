@@ -53,7 +53,9 @@ function passCardMarkup(pass) {
       <ul class="pass-card__features">
         ${pass.features.map(featureMarkup).join("")}
       </ul>
-      <a class="pass-card__buy" href="${pass.buy_url}">Buy ${name}</a>
+      <a class="pass-card__buy" href="${pass.buy_url}">
+        <img src="assets/img/museum-icon-ticket-btn.svg" alt="" width="20" height="20">Buy ${name}
+      </a>
     </article>
   `;
 }
