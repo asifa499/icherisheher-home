@@ -90,6 +90,7 @@ istisnadır:
 3. Markup + CSS yaz (`css/<section>.css`), placeholder-i əvəz et.
 4. Şəkil lazımdırsa: Asifdən dəqiq siyahı ilə istə (hansı layer, hansı format). Fayllar `assets/img/`-ə bölmə-prefiksli adla düşür; gələnə qədər `--c-surface` fonlu placeholder div işlət.
 5. Commit + push → Asif canlı linki Figma ilə tutuşdurur → düzəlişlər → təsdiq → cədvəldə status yenilə → növbəti etap.
+6. **Hər tapşırıq push ilə bitir.** Commit(-lər) atılması tapşırığı bitirmir — hər commit-dən (və ya bir neçə ardıcıl commit-dən) sonra həmişə `origin main`-ə push et və uğurunu yoxla (məs. `git log origin/main` nəticədə gözlənilən commit-ləri göstərməlidir). Yalnız push təsdiqləndikdən sonra iş bitmiş kimi bildirilir.
 
 ## Dizayn dəyişikliyi iş axını
 

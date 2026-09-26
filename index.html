@@ -53,11 +53,25 @@
         </div>
 
         <div class="hero__actions">
-          <button class="hero__lang" type="button">
-            <span class="hero__flag" aria-hidden="true">🇬🇧</span>
-            <span>EN</span>
-            <img src="assets/img/hero-icon-lang.svg" alt="" width="16" height="16">
-          </button>
+          <!-- Dil seçici (Figma: 1641:11027, açıq vəziyyət 1641:12311). Hazırda yalnız UI —
+               real i18n tərcüməsi hələ bağlanmayıb (bax CLAUDE.md, API inteqrasiyası). -->
+          <div class="hero__lang-wrap" data-lang>
+            <button class="hero__lang" type="button" data-lang-trigger aria-haspopup="listbox" aria-expanded="false">
+              <span class="hero__flag" aria-hidden="true" data-lang-current-flag>🇬🇧</span>
+              <span data-lang-current-code>EN</span>
+              <img src="assets/img/hero-icon-lang.svg" alt="" width="16" height="16">
+            </button>
+            <div class="hero__lang-menu" role="listbox" data-lang-menu hidden>
+              <button class="hero__lang-option is-active" type="button" role="option" aria-selected="true" data-lang-code="EN" data-lang-flag="🇬🇧">
+                <span class="hero__lang-option-label"><span class="hero__flag" aria-hidden="true">🇬🇧</span>EN</span>
+                <img class="hero__lang-check" src="assets/img/hero-icon-check.svg" alt="" width="12" height="12">
+              </button>
+              <button class="hero__lang-option" type="button" role="option" aria-selected="false" data-lang-code="AZ" data-lang-flag="🇦🇿">
+                <span class="hero__lang-option-label"><span class="hero__flag" aria-hidden="true">🇦🇿</span>AZ</span>
+                <img class="hero__lang-check" src="assets/img/hero-icon-check.svg" alt="" width="12" height="12">
+              </button>
+            </div>
+          </div>
           <a class="hero__icon-btn" href="#" aria-label="WhatsApp">
             <img src="assets/img/hero-icon-whatsapp.svg" alt="" width="16" height="16">
           </a>
@@ -430,6 +444,7 @@
   </footer>
 
   <script type="module" src="js/config.js"></script>
+  <script type="module" src="js/lang.js"></script>
   <script type="module" src="js/museums.js"></script>
   <script type="module" src="js/routes.js"></script>
   <script type="module" src="js/events.js"></script>

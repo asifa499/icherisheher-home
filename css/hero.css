@@ -110,6 +110,51 @@
 .hero__flag { font-size: var(--t-body); line-height: var(--t-body-lh); }
 .hero__lang span:not(.hero__flag) { font-size: var(--t-small); }
 
+/* ---------- Dil seçici menyusu (Figma 1641:12311) ---------- */
+.hero__lang-wrap {
+  position: relative;
+}
+
+.hero__lang-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: max-content;
+  padding: 12px;
+  border-radius: var(--r-md);
+  background: var(--c-white);
+  box-shadow: 0 16px 50px var(--c-shadow-08);
+}
+.hero__lang-menu[hidden] { display: none; }
+
+.hero__lang-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  color: var(--c-gray);
+  font-size: var(--t-small);
+  line-height: var(--t-body-lh);
+  white-space: nowrap;
+}
+.hero__lang-option.is-active { color: var(--c-black); }
+
+.hero__lang-option-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.hero__lang-option-label .hero__flag { font-size: var(--t-body); line-height: var(--t-body-lh); }
+
+.hero__lang-check { flex-shrink: 0; visibility: hidden; }
+.hero__lang-option.is-active .hero__lang-check { visibility: visible; }
+
 /* ---------- Başlıq ---------- */
 .hero__title {
   margin-top: auto;
