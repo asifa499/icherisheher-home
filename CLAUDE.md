@@ -94,9 +94,13 @@ istisnadır:
     verilməyib, ona görə klikləndə eyni sitemap sütununun siyahısını göstərir — bu qərar Figma-da
     təsdiqlənməyib, sadəcə məntiqli defolt davranışdır), ayırıcı xətt, və (yalnız web) 4 foto
     kart + "Inspire me please!" CTA sırası (mobil-də bu sıra yoxdur, tək CTA sətri qalır).
-    Foto kartlar üçün hələ şəkil yoxdur — `--c-surface` fonlu placeholder (bax Qayda 4), siyahı:
-    "Popular stays" / "Happening today" / "Best restaurants" / "Hidden gems" (hər biri öz linki
-    üçün Asifdən URL/hədəf gözlənilir). Yeni assets: `hero-logo-dark.svg`,
+    ✅ **Foto kartlar (2026-09-27):** Figma node 1642:13754/13760/13765/13771-dən çəkilib —
+    `hero-menu-tile-{popular-stays,happening-today,best-restaurants,hidden-gems}.jpg`
+    (museums-card konvensiyasına uyğun: `<img>` + `.nav-menu__tile-scrim` qradient overlay,
+    ağ mətn). "Hidden gems" node-unda Figma-da iki qat var (fon: illüstrasiya xəritə, ön plan:
+    əsl foto, 20% qara tint) — sadəlik üçün yalnız ön plan foto (aslan üzlü divar freski)
+    istifadə olundu, arxa fon xəritə təkrarı ötürüldü. Kartların linkləri hələ `#`-ə işarə edir
+    (hədəf səhifələr Asifdən gözlənilir). Yeni assets: `hero-logo-dark.svg`,
     `hero-icon-{search,lang,whatsapp,chevron-down}-dark.svg`, `hero-icon-close.svg` (hamısı
     Figma-nın faktiki node ikonlarından, ağ→tünd (#222) rəng fərqi ilə) — panel ağ fon
     üzərində olduğu üçün hero-nun ağ ikonları görünməz qalırdı. JS: `js/nav-menu.js` (aç/bağla,

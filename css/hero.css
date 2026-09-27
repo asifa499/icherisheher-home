@@ -409,21 +409,35 @@
   flex: 1;
 }
 .nav-menu__tile {
+  position: relative;
   flex: 1 1 0;
   min-width: 0;
   height: 176px;
   border-radius: var(--r-md);
+  overflow: hidden;
   background: var(--c-surface);
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  padding-inline: 12px;
-  text-align: center;
+  padding-bottom: 12px;
+}
+.nav-menu__tile-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.nav-menu__tile-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0) 60%);
 }
 .nav-menu__tile-label {
+  position: relative;
   font-size: var(--t-body);
   font-weight: 500;
-  color: var(--c-black);
+  color: var(--c-white);
 }
 
 .nav-menu__cta {
