@@ -267,8 +267,11 @@
   }
   .hero__logo img { width: 96px; height: 62px; }
   .hero__links { display: none; }
-  .hero__lang span:not(.hero__flag) { display: none; }
-  .hero__lang,
+  /* Figma mobil (node 1627:2330): dil düyməsi "EN" mətnini saxlayır, yalnız
+     chevron 16px→12px kiçilir — digər ikon-düymələr (whatsapp/axtarış/menyu)
+     kimi kvadrat ikon-yalnız görünüşə düşmür. */
+  .hero__lang { height: 40px; }
+  .hero__lang img { width: 12px; height: 12px; }
   .hero__icon-btn { width: 40px; height: 40px; padding: 0; }
 
   .hero__title { padding-bottom: 72px; }
