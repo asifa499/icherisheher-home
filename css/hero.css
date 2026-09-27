@@ -256,6 +256,193 @@
   letter-spacing: -0.03em;
 }
 
+/* ============================================================
+   Burger menyu overlay — Figma web: 1627:4777, mobil: 1638:7180
+   ============================================================ */
+.nav-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+}
+.nav-menu[hidden] { display: none; }
+
+.nav-menu__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--c-scrim-a), var(--c-scrim-b));
+}
+
+.nav-menu__panel {
+  position: fixed;
+  top: var(--page-pad);
+  left: 0;
+  right: 0;
+  max-height: calc(100dvh - var(--page-pad) * 2);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 24px 40px 40px;
+  border-radius: var(--r-panel);
+  background: var(--c-white);
+  backdrop-filter: blur(var(--blur-panel));
+  -webkit-backdrop-filter: blur(var(--blur-panel));
+  box-shadow: 0 16px 50px var(--c-shadow-08);
+}
+
+/* ---------- Topbar (loqo + linklər + hərəkətlər) ---------- */
+.nav-menu__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.nav-menu__logo img { display: block; width: 115px; height: 80px; }
+
+.nav-menu__toplinks {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.nav-menu__toplink {
+  font-size: var(--t-nav);
+  line-height: var(--t-nav-lh);
+  color: var(--c-black);
+  white-space: nowrap;
+}
+
+.nav-menu__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-menu__lang-btn,
+.nav-menu__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  border-radius: var(--r-pill);
+  background: var(--c-glass-12);
+  border: 1px solid var(--c-glass-20);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
+  color: var(--c-black);
+}
+.nav-menu__lang-btn { padding: 8px 12px; }
+.nav-menu__icon-btn { width: 48px; padding: 0; flex-shrink: 0; }
+
+/* ---------- Accordion (yalnız mobil) ---------- */
+.nav-menu__accordion { display: none; }
+.nav-menu__accordion-item + .nav-menu__accordion-item { border-top: 1px solid var(--c-menu-divider); }
+.nav-menu__accordion-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-block: 12px;
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  color: var(--c-black);
+}
+.nav-menu__accordion-chevron { transition: transform var(--dur) var(--ease); }
+.nav-menu__accordion-row[aria-expanded="true"] .nav-menu__accordion-chevron { transform: rotate(180deg); }
+.nav-menu__accordion-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-block: 4px 16px;
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  color: var(--c-gray);
+}
+.nav-menu__accordion-panel[hidden] { display: none; }
+
+/* ---------- Sitemap (yalnız web) ---------- */
+.nav-menu__sitemap {
+  display: flex;
+  gap: 16px;
+}
+.nav-menu__col {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.nav-menu__col-title {
+  font-size: var(--t-body);
+  line-height: var(--t-small-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--c-gray);
+  text-transform: uppercase;
+}
+.nav-menu__col-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  letter-spacing: -0.04em;
+  color: var(--c-black);
+}
+
+.nav-menu__divider {
+  height: 1px;
+  background: var(--c-menu-divider);
+  flex-shrink: 0;
+}
+
+/* ---------- Foto kartlar (yalnız web) + CTA ---------- */
+.nav-menu__tiles-row {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+}
+.nav-menu__tiles {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+}
+.nav-menu__tile {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 176px;
+  border-radius: var(--r-md);
+  background: var(--c-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 12px;
+  text-align: center;
+}
+.nav-menu__tile-label {
+  font-size: var(--t-body);
+  font-weight: 500;
+  color: var(--c-black);
+}
+
+.nav-menu__cta {
+  flex: 0 0 354px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px 32px;
+}
+.nav-menu__cta-text {
+  font-size: var(--t-panel);
+  line-height: var(--t-panel-lh);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--c-black);
+}
+.nav-menu__cta-btn { align-self: flex-start; }
+
 /* ---------- Responsive (mobil, 393px etalon) ---------- */
 @media (max-width: 768px) {
   .hero-section { margin-top: 8px; }
@@ -297,4 +484,30 @@
     font-size: var(--t-small);
     line-height: var(--t-small-lh);
   }
+
+  /* ---------- Burger menyu overlay (mobil) ---------- */
+  .nav-menu__panel { padding: 24px 0; gap: 20px; }
+  .nav-menu__topbar,
+  .nav-menu__accordion,
+  .nav-menu__tiles-row { padding-inline: 16px; }
+
+  .nav-menu__logo img { width: 100px; height: 64px; }
+  .nav-menu__toplinks { display: none; }
+  .nav-menu__lang-btn,
+  .nav-menu__icon-btn { height: 40px; }
+  .nav-menu__icon-btn { width: 40px; }
+
+  .nav-menu__accordion { display: flex; flex-direction: column; }
+  .nav-menu__sitemap { display: none; }
+
+  .nav-menu__tiles { display: none; }
+  .nav-menu__cta {
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    gap: 16px;
+  }
+  .nav-menu__cta-text { font-size: var(--t-body); flex: 0 0 145px; }
+  .nav-menu__cta-btn { flex: 0 0 auto; }
 }

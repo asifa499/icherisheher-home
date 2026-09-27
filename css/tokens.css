@@ -121,4 +121,15 @@
 
   /* ---------- Effektlər ---------- */
   --blur-nav: 40px;  /* hero naviqasiya şüşə effekti */
+  --blur-panel: 50px; /* burger menyu overlay panelinin arxa fon bulanıqlığı (yalnız web,
+                         node 1642:13537 — mobil panelin (1638:7361) blur-u yoxdur) */
+
+  /* Burger menyu overlay (Figma web: 1627:4777, mobil: 1638:7180) */
+  --c-scrim-a:      rgba(43, 43, 43, 0.72); /* overlay scrim — yuxarı */
+  --c-scrim-b:      rgba(43, 43, 43, 0.56); /* overlay scrim — aşağı */
+  --c-glass-20:     rgba(124, 124, 124, 0.2); /* panel ağ fonu üzərindəki şüşə düymələrin
+                                                  sərhədi (hero-dəki --c-glass-04-ün ağ-fon qarşılığı) */
+  --c-menu-divider: #D6D6D6; /* panel daxilindəki ayırıcı xətt */
+  --r-panel:        32px; /* overlay panelinin radiusu — web (1627:4777) və mobil (1638:7180)
+                             eyni 32px qalır, --r-lg kimi 768px-də 24px-ə kiçilmir */
 }

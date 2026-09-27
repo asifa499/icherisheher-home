@@ -78,7 +78,7 @@
           <button class="hero__icon-btn" type="button" aria-label="Search">
             <img src="assets/img/hero-icon-search.svg" alt="" width="16" height="16">
           </button>
-          <button class="hero__icon-btn" type="button" aria-label="Menu">
+          <button class="hero__icon-btn" type="button" aria-label="Menu" data-nav-menu-trigger aria-haspopup="dialog" aria-expanded="false" aria-controls="nav-menu">
             <img src="assets/img/hero-icon-menu.svg" alt="" width="16" height="16">
           </button>
         </div>
@@ -102,6 +102,220 @@
       <div class="hero__explore-aside">
         <p class="hero__explore-aside-text">You have no idea what<br>to do in Icherisheher?</p>
         <button class="btn-inspire" type="button"><img src="assets/img/hero-icon-sparkle.svg" alt="" width="24" height="24">Inspire me please!</button>
+      </div>
+    </div>
+
+    <!-- Burger menyu overlay · Figma web: 1627:4777 · mobil: 1638:7180 -->
+    <div class="nav-menu" id="nav-menu" data-nav-menu hidden data-figma="1627:4777">
+      <div class="nav-menu__scrim" data-nav-menu-close aria-hidden="true"></div>
+
+      <div class="nav-menu__panel block" role="dialog" aria-modal="true" aria-label="Menu">
+        <div class="nav-menu__topbar">
+          <a class="nav-menu__logo" href="#" aria-label="Icherisheher">
+            <img src="assets/img/hero-logo-dark.svg" alt="Icherisheher — Administration of State Historical-Architectural Reserve" width="115" height="80">
+          </a>
+
+          <nav class="nav-menu__toplinks" aria-label="Primary">
+            <span class="nav-menu__toplink">Explore</span>
+            <span class="nav-menu__toplink">Things to do</span>
+            <span class="nav-menu__toplink">Eat and sleep</span>
+            <span class="nav-menu__toplink">What's on</span>
+            <span class="nav-menu__toplink">Visitor Information</span>
+          </nav>
+
+          <div class="nav-menu__actions">
+            <div class="hero__lang-wrap" data-lang>
+              <button class="hero__lang nav-menu__lang-btn" type="button" data-lang-trigger aria-haspopup="listbox" aria-expanded="false">
+                <span class="hero__flag" aria-hidden="true" data-lang-current-flag>🇬🇧</span>
+                <span data-lang-current-code>EN</span>
+                <img src="assets/img/hero-icon-lang-dark.svg" alt="" width="16" height="16">
+              </button>
+              <div class="hero__lang-menu" role="listbox" data-lang-menu hidden>
+                <button class="hero__lang-option is-active" type="button" role="option" aria-selected="true" data-lang-code="EN" data-lang-flag="🇬🇧">
+                  <span class="hero__lang-option-label"><span class="hero__flag" aria-hidden="true">🇬🇧</span>EN</span>
+                  <img class="hero__lang-check" src="assets/img/hero-icon-check.svg" alt="" width="12" height="12">
+                </button>
+                <button class="hero__lang-option" type="button" role="option" aria-selected="false" data-lang-code="AZ" data-lang-flag="🇦🇿">
+                  <span class="hero__lang-option-label"><span class="hero__flag" aria-hidden="true">🇦🇿</span>AZ</span>
+                  <img class="hero__lang-check" src="assets/img/hero-icon-check.svg" alt="" width="12" height="12">
+                </button>
+              </div>
+            </div>
+            <a class="nav-menu__icon-btn" href="#" aria-label="WhatsApp">
+              <img src="assets/img/hero-icon-whatsapp-dark.svg" alt="" width="16" height="16">
+            </a>
+            <button class="nav-menu__icon-btn" type="button" aria-label="Search">
+              <img src="assets/img/hero-icon-search-dark.svg" alt="" width="16" height="16">
+            </button>
+            <button class="nav-menu__icon-btn" type="button" aria-label="Close menu" data-nav-menu-close>
+              <img src="assets/img/hero-icon-close.svg" alt="" width="16" height="16">
+            </button>
+          </div>
+        </div>
+
+        <!-- Accordion (yalnız mobil, ≤768px) — hər sətir aşağıdakı sitemap sütunu ilə eyni siyahını açır -->
+        <div class="nav-menu__accordion">
+          <div class="nav-menu__accordion-item">
+            <button class="nav-menu__accordion-row" type="button" data-accordion-trigger aria-expanded="false">
+              <span>Explore</span>
+              <img class="nav-menu__accordion-chevron" src="assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16">
+            </button>
+            <ul class="nav-menu__accordion-panel" hidden>
+              <li>About Icherisheher</li>
+              <li>History</li>
+              <li>Top Sights</li>
+              <li>Culture &amp; Heritage</li>
+              <li>Museums &amp; Galleries</li>
+              <li>Architecture</li>
+              <li>Stories &amp; Legends</li>
+            </ul>
+          </div>
+          <div class="nav-menu__accordion-item">
+            <button class="nav-menu__accordion-row" type="button" data-accordion-trigger aria-expanded="false">
+              <span>Things to do</span>
+              <img class="nav-menu__accordion-chevron" src="assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16">
+            </button>
+            <ul class="nav-menu__accordion-panel" hidden>
+              <li>Tours</li>
+              <li>Experiences</li>
+              <li>Shopping</li>
+              <li>Arts &amp; Crafts</li>
+              <li>Photography Spots</li>
+              <li>Family Activities</li>
+              <li>Explore Nearby</li>
+            </ul>
+          </div>
+          <div class="nav-menu__accordion-item">
+            <button class="nav-menu__accordion-row" type="button" data-accordion-trigger aria-expanded="false">
+              <span>Eat and sleep</span>
+              <img class="nav-menu__accordion-chevron" src="assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16">
+            </button>
+            <ul class="nav-menu__accordion-panel" hidden>
+              <li>Restaurants</li>
+              <li>Cafés</li>
+              <li>Traditional Cuisine</li>
+              <li>Rooftops &amp; Terraces</li>
+              <li>Hotels</li>
+              <li>Boutique Stays</li>
+            </ul>
+          </div>
+          <div class="nav-menu__accordion-item">
+            <button class="nav-menu__accordion-row" type="button" data-accordion-trigger aria-expanded="false">
+              <span>What's on</span>
+              <img class="nav-menu__accordion-chevron" src="assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16">
+            </button>
+            <ul class="nav-menu__accordion-panel" hidden>
+              <li>Events Calendar</li>
+              <li>Exhibitions</li>
+              <li>Festivals</li>
+              <li>Concerts</li>
+              <li>Workshops</li>
+              <li>This Week</li>
+            </ul>
+          </div>
+          <div class="nav-menu__accordion-item">
+            <button class="nav-menu__accordion-row" type="button" data-accordion-trigger aria-expanded="false">
+              <span>Visitor Information</span>
+              <img class="nav-menu__accordion-chevron" src="assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16">
+            </button>
+            <ul class="nav-menu__accordion-panel" hidden>
+              <li>Getting Here</li>
+              <li>Getting Around</li>
+              <li>Tickets &amp; Prices</li>
+              <li>Visitor Information</li>
+              <li>Accessibility</li>
+              <li>Maps &amp; Guides</li>
+              <li>FAQ</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sitemap (yalnız web, >768px) -->
+        <div class="nav-menu__sitemap">
+          <div class="nav-menu__col">
+            <p class="nav-menu__col-title">Explore</p>
+            <ul class="nav-menu__col-list">
+              <li>About Icherisheher</li>
+              <li>History</li>
+              <li>Top Sights</li>
+              <li>Culture &amp; Heritage</li>
+              <li>Museums &amp; Galleries</li>
+              <li>Architecture</li>
+              <li>Stories &amp; Legends</li>
+            </ul>
+          </div>
+          <div class="nav-menu__col">
+            <p class="nav-menu__col-title">Things to do</p>
+            <ul class="nav-menu__col-list">
+              <li>Tours</li>
+              <li>Experiences</li>
+              <li>Shopping</li>
+              <li>Arts &amp; Crafts</li>
+              <li>Photography Spots</li>
+              <li>Family Activities</li>
+              <li>Explore Nearby</li>
+            </ul>
+          </div>
+          <div class="nav-menu__col">
+            <p class="nav-menu__col-title">What's on</p>
+            <ul class="nav-menu__col-list">
+              <li>Events Calendar</li>
+              <li>Exhibitions</li>
+              <li>Festivals</li>
+              <li>Concerts</li>
+              <li>Workshops</li>
+              <li>This Week</li>
+            </ul>
+          </div>
+          <div class="nav-menu__col">
+            <p class="nav-menu__col-title">Eat and sleep</p>
+            <ul class="nav-menu__col-list">
+              <li>Restaurants</li>
+              <li>Cafés</li>
+              <li>Traditional Cuisine</li>
+              <li>Rooftops &amp; Terraces</li>
+              <li>Hotels</li>
+              <li>Boutique Stays</li>
+            </ul>
+          </div>
+          <div class="nav-menu__col">
+            <p class="nav-menu__col-title">Visitor Information</p>
+            <ul class="nav-menu__col-list">
+              <li>Getting Here</li>
+              <li>Getting Around</li>
+              <li>Tickets &amp; Prices</li>
+              <li>Visitor Information</li>
+              <li>Accessibility</li>
+              <li>Maps &amp; Guides</li>
+              <li>FAQ</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="nav-menu__divider" aria-hidden="true"></div>
+
+        <!-- Foto kartlar yalnız web-də görünür (mobil Figma-da bu sıra yoxdur) —
+             şəkillər gələnə qədər --c-surface fonlu placeholder (bax CLAUDE.md, Qayda 4) -->
+        <div class="nav-menu__tiles-row">
+          <div class="nav-menu__tiles">
+            <a class="nav-menu__tile" href="#">
+              <span class="nav-menu__tile-label">Popular stays</span>
+            </a>
+            <a class="nav-menu__tile" href="#">
+              <span class="nav-menu__tile-label">Happening today</span>
+            </a>
+            <a class="nav-menu__tile" href="#">
+              <span class="nav-menu__tile-label">Best restaurants</span>
+            </a>
+            <a class="nav-menu__tile" href="#">
+              <span class="nav-menu__tile-label">Hidden gems</span>
+            </a>
+          </div>
+          <div class="nav-menu__cta">
+            <p class="nav-menu__cta-text">Still no idea what<br>to do in Icheriseher?</p>
+            <button class="btn-inspire nav-menu__cta-btn" type="button"><img src="assets/img/hero-icon-sparkle.svg" alt="" width="24" height="24">Inspire me please!</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -445,6 +659,7 @@
 
   <script type="module" src="js/config.js"></script>
   <script type="module" src="js/lang.js"></script>
+  <script type="module" src="js/nav-menu.js"></script>
   <script type="module" src="js/museums.js"></script>
   <script type="module" src="js/routes.js"></script>
   <script type="module" src="js/events.js"></script>

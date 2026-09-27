@@ -82,6 +82,25 @@ istisnadır:
   - Sosial feed (`1615:3328`/`1615:3344`) indi vizual olaraq Footer-in fon panelinin
     (`1615:3201`, üzü `#E1E1E0`) içinə düşür — əvvəlki ayrı ağ fon yoxdur, ikisi bir davamlı
     boz blokdadır. (Hələ rebuild edilməyib.)
+  - ✅ **Tətbiq edilib (2026-09-27):** Burger menyu (hero nav-dakı "Menu" düyməsi) davranışı
+    quruldu — Figma web `1627:4777` ("menu" frame) + mobil `1638:7180`. Klikləndə tam-ekran
+    overlay açılır: tünd scrim (`--c-scrim-a/b`, rgba(43,43,43,.72→.56)) + hero kartının üstündə
+    ağ, `backdrop-blur(--blur-panel:50px)` panel (`.nav-menu__panel`, radius `--r-panel:32px` —
+    bu, `--r-lg`-dən fərqli olaraq 768px-də kiçilmir, çünki Figma-da hər iki ölçüdə də sabit 32px
+    qalır). Panel daxilində: loqo + (yalnız web) plain-text nav linkləri + hərəkətlər sırası
+    (dil/whatsapp/axtarış/bağla — bağlama düyməsi ayrı "X" ikonu, hamburger-in özü deyil, çünki
+    fərqli DOM mövqeyindədir), altında 5 sütunlu sitemap (yalnız web, `.nav-menu__sitemap`) və ya
+    5 accordion sətri (yalnız mobil, `.nav-menu__accordion` — Figma-da accordion-un "açıq" halı
+    verilməyib, ona görə klikləndə eyni sitemap sütununun siyahısını göstərir — bu qərar Figma-da
+    təsdiqlənməyib, sadəcə məntiqli defolt davranışdır), ayırıcı xətt, və (yalnız web) 4 foto
+    kart + "Inspire me please!" CTA sırası (mobil-də bu sıra yoxdur, tək CTA sətri qalır).
+    Foto kartlar üçün hələ şəkil yoxdur — `--c-surface` fonlu placeholder (bax Qayda 4), siyahı:
+    "Popular stays" / "Happening today" / "Best restaurants" / "Hidden gems" (hər biri öz linki
+    üçün Asifdən URL/hədəf gözlənilir). Yeni assets: `hero-logo-dark.svg`,
+    `hero-icon-{search,lang,whatsapp,chevron-down}-dark.svg`, `hero-icon-close.svg` (hamısı
+    Figma-nın faktiki node ikonlarından, ağ→tünd (#222) rəng fərqi ilə) — panel ağ fon
+    üzərində olduğu üçün hero-nun ağ ikonları görünməz qalırdı. JS: `js/nav-menu.js` (aç/bağla,
+    Escape, scrim klik, accordion toggle — `js/lang.js` konvensiyasını təqib edir).
 
 ## Etap iş axını
 
