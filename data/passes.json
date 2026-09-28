@@ -3,9 +3,9 @@
     "id": 1,
     "slug": "core-pass",
     "name": {
-      "az": "Core Pass",
+      "az": "Əsas Pas",
       "en": "Core Pass",
-      "ru": "Core Pass"
+      "ru": "Базовый пропуск"
     },
     "description": {
       "az": "Həftəsonu səfəri üçün doğru balans",
@@ -31,9 +31,9 @@
     "id": 2,
     "slug": "explorer-pass",
     "name": {
-      "az": "Explorer Pass",
+      "az": "Kəşfiyyatçı Pas",
       "en": "Explorer Pass",
-      "ru": "Explorer Pass"
+      "ru": "Пропуск «Исследователь»"
     },
     "description": {
       "az": "Həftəsonu səfəri üçün doğru balans",
@@ -59,9 +59,9 @@
     "id": 3,
     "slug": "premium-pass",
     "name": {
-      "az": "Premium Pass",
+      "az": "Premium Pas",
       "en": "Premium Pass",
-      "ru": "Premium Pass"
+      "ru": "Премиум пропуск"
     },
     "description": {
       "az": "Həftəsonu səfəri üçün doğru balans",
