@@ -1,6 +1,8 @@
 // Burger menyu overlay (Figma web: 1627:4777, mobil: 1638:7180) — açma/bağlama
 // + mobil accordion sətirlərinin açılıb-bağlanması. Dil seçici (data-lang) artıq
 // lang.js tərəfindən ayrıca idarə olunur, panel daxilindəki nüsxə də ordan tutulur.
+// Markup partials/header.html-dədir — js/include.js inject edənə qədər gözlənilir.
+import { includesReady } from "./base-url.js";
 
 function wireNavMenu(root) {
   const trigger = document.querySelector("[data-nav-menu-trigger]");
@@ -39,4 +41,5 @@ function wireNavMenu(root) {
   });
 }
 
+await includesReady;
 document.querySelectorAll("[data-nav-menu]").forEach(wireNavMenu);

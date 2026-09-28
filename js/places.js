@@ -3,10 +3,12 @@
 // eyni nümunə — əvvəl öz backend-imiz (icherisheher-api, Railway), alınmasa
 // local data/places.json fallback-ı.
 import { getLang, onLangChange, t } from "./i18n.js";
+import { siteUrl, onReady } from "./base-url.js";
 import { picture } from "./picture.js";
 
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/places";
-const FALLBACK_URL = "data/places.json";
+const FALLBACK_URL = siteUrl("data/places.json");
+const IMG = siteUrl("assets/img/");
 let LANG = getLang();
 
 // Xəritə İçərişəhərin ümumi görünüşü (HTML-dəki ilkin <iframe src>-lə eyni) —
@@ -138,7 +140,7 @@ function photosMarkup(place, alt) {
   const images = resolvePhotos(place);
   if (!images.length) return "";
 
-  const tiles = images.map((src) => `
+  const tiles = images.map(siteUrl).map((src) => `
     <div class="nearby__photo">
       ${picture(src, `<img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" width="228" height="136">`)}
     </div>
@@ -190,7 +192,7 @@ function cardMarkup(place) {
       <div class="nearby__card-top">
         <h3 class="nearby__name">${escapeHtml(name)}</h3>
         <button class="nearby__close" type="button" data-places-close aria-label="${t("aria.close")}">
-          <img src="assets/img/nearby-icon-close.svg" alt="" width="20" height="20">
+          <img src="${IMG}nearby-icon-close.svg" alt="" width="20" height="20">
         </button>
       </div>
       <p class="nearby__desc">${escapeHtml(pickText(place.description))}</p>
@@ -211,7 +213,7 @@ function cardMarkup(place) {
 
     <div class="nearby__actions">
       <button class="nearby__btn nearby__btn--ghost" type="button">
-        <img src="assets/img/nearby-icon-audio.svg" alt="" width="20" height="20">${t("nearby.audioGuide")}
+        <img src="${IMG}nearby-icon-audio.svg" alt="" width="20" height="20">${t("nearby.audioGuide")}
       </button>
       <a class="nearby__btn nearby__btn--solid" href="#${escapeHtml(place.slug || "")}">${t("nearby.moreDetails")}</a>
     </div>
@@ -409,4 +411,4 @@ async function initPlaces() {
   initChips(chipsEl, cardEl, items);
 }
 
-document.addEventListener("DOMContentLoaded", initPlaces);
+onReady(initPlaces);

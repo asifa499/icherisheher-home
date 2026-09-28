@@ -4,6 +4,10 @@
 // (müvafiq atribut) ilə işarələnir. Data-driven bölmələr (museums.js və s.)
 // JSON-un öz trilingual sahələrini `getLang()`-la oxuyur, JS şablonlarındakı
 // sabit düymə mətnləri üçün isə bu modulun `t()` funksiyasından istifadə edir.
+// Səhifədən asılı deyil: hər səhifədə yüklənir. Səhifəyə xas açarlar
+// `window.ICH.pageDict`-də (eyni { key: { en, az, ru } } formatı) verilir —
+// modul skriptlərindən ƏVVƏL, klassik inline <script>-də (bax page-template.html).
+import { includesReady } from "./base-url.js";
 
 export const STORAGE_KEY = "ich-lang";
 export const DEFAULT_LANG = "en";
@@ -201,6 +205,13 @@ const DICT = {
   "footer.copyright": { en: "© 2026 Icharishahar", az: "© 2026 İçərişəhər", ru: "© 2026 Ичеришехер" },
 };
 
+// Səhifəyə xas açarlar ümumi açarların (nav.*, footer.* və s.) üstünə yazmır.
+const PAGE_DICT = (window.ICH && window.ICH.pageDict) || {};
+Object.entries(PAGE_DICT).forEach(([key, value]) => {
+  if (DICT[key]) console.warn(`i18n: page key "${key}" already exists — skipped`);
+  else DICT[key] = value;
+});
+
 function readStoredLang() {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
@@ -261,4 +272,7 @@ export function setLang(lang) {
   listeners.forEach((cb) => cb(currentLang));
 }
 
+// Başlıq/footer partial-ları (js/include.js) DOM-a düşəndən sonra tətbiq et —
+// əks halda onların data-i18n elementləri tərcüməsiz qalar.
+await includesReady;
 applyTranslations();

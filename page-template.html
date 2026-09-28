@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+  page-template.html — boş daxili səhifə şablonu (bax CLAUDE.md, "Yeni səhifə necə yaradılır").
+
+  Bu fayl kökdə durur ki, olduğu kimi açılıb yoxlanılsın. Yeni səhifə üçün:
+    1. <slug>/index.html kimi kopyala (URL: /<slug>/).
+    2. Bu faylda HƏR statik yol "./" ilə başlayır — kopyada hamısını "../" ilə əvəz et
+       (bir səviyyə dərinlik; iki səviyyədə "../../"). Başqa heç nə dəyişmir:
+       header/footer partial-ları və JS-in yaratdığı bütün yollar BASE_URL-dən keçir.
+    3. PAGE: ilə işarələnmiş yerləri doldur.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- PAGE: başlıq, təsvir, canonical (mütləq URL, sonunda "/") -->
+  <title>Page title — Icherisheher</title>
+  <meta name="description" content="PAGE: one-sentence description of this page.">
+  <link rel="canonical" href="https://asifa499.github.io/icherisheher-home/page-template.html">
+  <meta name="theme-color" content="#886D46">
+  <meta name="robots" content="noindex"><!-- PAGE: real səhifədə sil -->
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Icherisheher">
+  <meta property="og:title" content="Page title — Icherisheher">
+  <meta property="og:description" content="PAGE: one-sentence description of this page.">
+  <meta property="og:url" content="https://asifa499.github.io/icherisheher-home/page-template.html">
+  <meta property="og:image" content="https://asifa499.github.io/icherisheher-home/assets/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="./favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="manifest" href="./site.webmanifest">
+
+  <link rel="preconnect" href="https://icherisheher-api-production.up.railway.app" crossorigin>
+  <link rel="preload" as="font" href="./assets/fonts/VelaSans-Regular.woff2" type="font/woff2" crossorigin>
+
+  <!-- Paylaşılan stillər: tokens + base + header (hero.css) + footer (social.css, footer.css) -->
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/hero.css">
+  <link rel="stylesheet" href="./css/social.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  <!-- PAGE: səhifənin öz bölmə stilləri, məs. <link rel="stylesheet" href="./css/museums.css"> -->
+
+  <!-- Header/footer partial-ları (klassik skript, defer YOX — bax js/include.js) -->
+  <script src="./js/include.js"></script>
+
+  <!-- PAGE: səhifəyə xas i18n açarları (data-i18n="page.*"). Modul skriptlərindən
+       ƏVVƏL olmalıdır; ümumi açarlar (nav.*, footer.* …) js/i18n.js-dədir. -->
+  <script>
+    window.ICH.pageDict = {
+      "page.title": { en: "Page title", az: "Səhifə başlığı", ru: "Заголовок страницы" },
+      "page.placeholder": {
+        en: "Page content goes here.",
+        az: "Səhifənin məzmunu buraya gəlir.",
+        ru: "Здесь будет содержимое страницы.",
+      },
+    };
+  </script>
+</head>
+<body>
+
+  <!-- Başlıq: foto fonlu kart + partials/header.html (nav, dil seçici, burger menyu).
+       Hündürlük/fon hələlik Home hero-su ilə eynidir (css/hero.css) — daxili səhifə
+       başlığı üçün Figma dizaynı gələndə öz bölmə CSS-i ilə düzəlişlənəcək.
+       id="hero" QƏSDƏN yoxdur: "hero" feature flag-ı yalnız Home hero-sunu gizlədir. -->
+  <section class="hero-section block">
+    <div class="hero">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__scrim-top" aria-hidden="true"></div>
+      <div class="hero__scrim-bottom" aria-hidden="true"></div>
+
+      <div data-include="header"></div>
+
+      <h1 class="hero__title" data-i18n="page.title">Page title</h1>
+    </div>
+  </section>
+
+  <!-- PAGE: məzmun. Hər bölmə öz <section id="…" data-figma="…">-i ilə; feature flag
+       lazımdırsa js/config.js-dəki SECTION_ID_BY_FLAG-a əlavə et. -->
+  <main id="main">
+    <section class="section is-placeholder container">
+      <p class="ph-label"><strong data-i18n="page.title">Page title</strong><span data-i18n="page.placeholder">Page content goes here.</span></p>
+    </section>
+  </main>
+
+  <!-- Sosial feed + footer: partials/footer.html -->
+  <div data-include="footer"></div>
+
+  <!-- Paylaşılan (hər səhifədə) -->
+  <script type="module" src="./js/i18n.js"></script>
+  <script type="module" src="./js/config.js"></script>
+  <script type="module" src="./js/lang.js"></script>
+  <script type="module" src="./js/nav-menu.js"></script>
+  <!-- PAGE: yalnız bu səhifədə olan bölmələrin skriptləri, məs.
+       <script type="module" src="./js/museums.js"></script> -->
+</body>
+</html>

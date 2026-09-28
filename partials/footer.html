@@ -1,0 +1,164 @@
+<!-- partials/footer.html — bütün səhifələrin sonu: sosial feed + footer
+     (js/include.js ilə inject olunur, `<div data-include="footer"></div>`).
+     Hər iki element öz id-sini saxlayır ki, feature flag-lar (js/config.js:
+     "social", "footer") müstəqil işləsin. {{BASE}} = BASE_URL (bax js/base-url.js). -->
+<!-- ETAP 10 · Sosial feed · Figma: 1615:3328 (başlıq) + 1615:3344 (foto grid)
+     (əvvəlki: 1523:5297 + 1523:5313)
+     2026-09-26 Resync: bu iki node vizual olaraq Footer-in fon panelinin
+     (1615:3201, üzü #E1E1E0) içinə düşür — indi eyni --c-footer-bg fonu və
+     üst künc radiusu ilə birbaşa Footer-in üstündə oturur (bax
+     css/social.css + css/footer.css, .social-section:has(+ .footer-section)
+     texnikası). Hər iki bölmə öz DOM elementində qalır ki, feature
+     flag-lar (js/config.js) müstəqil işləsin — biri gizlənəndə digəri
+     yenidən tam yuvarlaq panelə çevrilir.
+     Mobil (1523:5735): metadata sorğusu bu node üçün də JSON parse xətası
+     qaytardı (əvvəlki bölmələrdə olan eyni məlum problem), ölçülər
+     screenshot-dan çıxarılıb. Mobil yalnız 3 foto göstərir (statue və
+     artist/video fotoları gizlədilir) və "video" nişanı carrace fotosuna
+     keçir — bax css/social.css qeydi. -->
+<section id="social" class="social-section block" data-figma="1615:3328,1615:3344">
+  <div class="social__header">
+    <div class="social__profile">
+      <div class="social__avatar">
+        <picture><source srcset="{{BASE}}assets/img/social-avatar.webp" type="image/webp"><img class="social__avatar-photo" src="{{BASE}}assets/img/social-avatar.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"></picture>
+        <img class="social__avatar-ring" src="{{BASE}}assets/img/social-avatar-ring.svg" alt="" aria-hidden="true" width="70" height="70">
+      </div>
+      <div class="social__names">
+        <p class="social__name">icherisheher dovlet tarix-memarliq qoruguhu</p>
+        <p class="social__handle">@icherisheher_living_history</p>
+      </div>
+    </div>
+    <div class="social__followers">
+      <p class="social__followers-count">41,1 K</p>
+      <p class="social__followers-label" data-i18n="social.followers">followers</p>
+    </div>
+    <a class="social__follow" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
+      <img class="social__follow-icon" src="{{BASE}}assets/img/social-icon-instagram.svg" alt="" width="24" height="24">
+      <span data-i18n="social.follow">Follow</span>
+    </a>
+  </div>
+
+  <div class="social__grid">
+    <a class="social__photo social__photo--statue" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener" data-i18n-aria-label="social.photoAria" aria-label="View this post on Instagram">
+      <picture><source srcset="{{BASE}}assets/img/social-photo-statue.webp" type="image/webp"><img src="{{BASE}}assets/img/social-photo-statue.jpg" alt="" width="700" height="698" loading="lazy" decoding="async"></picture>
+    </a>
+    <a class="social__photo social__photo--tower" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener" data-i18n-aria-label="social.photoAria" aria-label="View this post on Instagram">
+      <picture><source srcset="{{BASE}}assets/img/social-photo-tower.webp" type="image/webp"><img src="{{BASE}}assets/img/social-photo-tower.jpg" alt="" width="700" height="467" loading="lazy" decoding="async"></picture>
+    </a>
+    <a class="social__photo social__photo--instruments" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener" data-i18n-aria-label="social.photoAria" aria-label="View this post on Instagram">
+      <picture><source srcset="{{BASE}}assets/img/social-photo-instruments.webp" type="image/webp"><img src="{{BASE}}assets/img/social-photo-instruments.jpg" alt="" width="560" height="700" loading="lazy" decoding="async"></picture>
+    </a>
+    <a class="social__photo social__photo--artist" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener" data-i18n-aria-label="social.photoAria" aria-label="View this post on Instagram">
+      <picture><source srcset="{{BASE}}assets/img/social-photo-artist.webp" type="image/webp"><img src="{{BASE}}assets/img/social-photo-artist.jpg" alt="" width="700" height="467" loading="lazy" decoding="async"></picture>
+      <span class="social__scrim" aria-hidden="true"></span>
+      <span class="social__play social__play--desktop" aria-hidden="true">
+        <img src="{{BASE}}assets/img/social-icon-play.svg" alt="" width="14" height="18">
+      </span>
+    </a>
+    <a class="social__photo social__photo--carrace" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener" data-i18n-aria-label="social.photoAria" aria-label="View this post on Instagram">
+      <picture><source srcset="{{BASE}}assets/img/social-photo-carrace.webp" type="image/webp"><img src="{{BASE}}assets/img/social-photo-carrace.jpg" alt="" width="700" height="352" loading="lazy" decoding="async"></picture>
+      <span class="social__play social__play--mobile" aria-hidden="true">
+        <img src="{{BASE}}assets/img/social-icon-play.svg" alt="" width="14" height="18">
+      </span>
+    </a>
+  </div>
+
+  <a class="social__follow social__follow--mobile" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
+    <img class="social__follow-icon" src="{{BASE}}assets/img/social-icon-instagram.svg" alt="" width="24" height="24">
+    <span data-i18n="social.follow">Follow</span>
+  </a>
+</section>
+
+<!-- ETAP 11 · Footer · Figma: 1615:3201 (fon + loqo + müəllif hüququ + panoram foto) +
+     1615:3389 (link sütunları) + 1615:3439 (əlaqə + informasiya ofisləri).
+     (əvvəlki: 1523:5170 + 1523:5358 + 1523:5408)
+     Mobil (1523:5735): metadata sorğusu JSON parse xətası qaytardı (əvvəlki
+     bölmələrdəki eyni məlum problem), ölçülər screenshot-dan çıxarılıb.
+     Nav linkləri hələ "#"-ə işarə edir (daxili səhifələr yoxdur). -->
+<footer id="footer" class="footer-section block" data-figma="1615:3201,1615:3389,1615:3439">
+  <div class="footer__nav">
+    <nav class="footer__col" data-i18n-aria-label="nav.explore" aria-label="Explore">
+      <p class="footer__heading" data-i18n="nav.explore">Explore</p>
+      <ul class="footer__links">
+        <li><a href="#" data-i18n="col.aboutIcherisheher">About Icherisheher</a></li>
+        <li><a href="#" data-i18n="col.history">History</a></li>
+        <li><a href="#" data-i18n="col.topSights">Top Sights</a></li>
+        <li><a href="#" data-i18n="col.cultureHeritage">Culture &amp; Heritage</a></li>
+        <li><a href="#" data-i18n="col.museumsGalleries">Museums &amp; Galleries</a></li>
+        <li><a href="#" data-i18n="col.architecture">Architecture</a></li>
+        <li><a href="#" data-i18n="col.storiesLegends">Stories &amp; Legends</a></li>
+      </ul>
+    </nav>
+    <nav class="footer__col" data-i18n-aria-label="nav.thingsToDo" aria-label="Things to do">
+      <p class="footer__heading" data-i18n="nav.thingsToDo">Things to do</p>
+      <ul class="footer__links">
+        <li><a href="#" data-i18n="col.tours">Tours</a></li>
+        <li><a href="#" data-i18n="col.experiences">Experiences</a></li>
+        <li><a href="#" data-i18n="col.shopping">Shopping</a></li>
+        <li><a href="#" data-i18n="col.artsCrafts">Arts &amp; Crafts</a></li>
+        <li><a href="#" data-i18n="col.photographySpots">Photography Spots</a></li>
+        <li><a href="#" data-i18n="col.familyActivities">Family Activities</a></li>
+        <li><a href="#" data-i18n="col.exploreNearby">Explore Nearby</a></li>
+      </ul>
+    </nav>
+    <nav class="footer__col" data-i18n-aria-label="nav.whatsOn" aria-label="What's on">
+      <p class="footer__heading" data-i18n="nav.whatsOn">What&rsquo;s on</p>
+      <ul class="footer__links">
+        <li><a href="#" data-i18n="col.eventsCalendar">Events Calendar</a></li>
+        <li><a href="#" data-i18n="col.exhibitions">Exhibitions</a></li>
+        <li><a href="#" data-i18n="col.festivals">Festivals</a></li>
+        <li><a href="#" data-i18n="col.concerts">Concerts</a></li>
+        <li><a href="#" data-i18n="col.workshops">Workshops</a></li>
+        <li><a href="#" data-i18n="col.thisWeek">This Week</a></li>
+      </ul>
+    </nav>
+    <nav class="footer__col" data-i18n-aria-label="nav.eatSleep" aria-label="Eat and sleep">
+      <p class="footer__heading" data-i18n="nav.eatSleep">Eat and sleep</p>
+      <ul class="footer__links">
+        <li><a href="#" data-i18n="col.restaurants">Restaurants</a></li>
+        <li><a href="#" data-i18n="col.cafes">Cafés</a></li>
+        <li><a href="#" data-i18n="col.traditionalCuisine">Traditional Cuisine</a></li>
+        <li><a href="#" data-i18n="col.rooftopsTerraces">Rooftops &amp; Terraces</a></li>
+        <li><a href="#" data-i18n="col.hotels">Hotels</a></li>
+        <li><a href="#" data-i18n="col.boutiqueStays">Boutique Stays</a></li>
+      </ul>
+    </nav>
+    <nav class="footer__col" data-i18n-aria-label="nav.visitorInfo" aria-label="Visitor Information">
+      <p class="footer__heading" data-i18n="nav.visitorInfo">Visitor Information</p>
+      <ul class="footer__links">
+        <li><a href="#" data-i18n="col.gettingHere">Getting Here</a></li>
+        <li><a href="#" data-i18n="col.gettingAround">Getting Around</a></li>
+        <li><a href="#" data-i18n="col.ticketsPrices">Tickets &amp; Prices</a></li>
+        <li><a href="#" data-i18n="nav.visitorInfo">Visitor Information</a></li>
+        <li><a href="#" data-i18n="col.accessibility">Accessibility</a></li>
+        <li><a href="#" data-i18n="col.mapsGuides">Maps &amp; Guides</a></li>
+        <li><a href="#" data-i18n="col.faq">FAQ</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="footer__info">
+    <div class="footer__col">
+      <p class="footer__heading" data-i18n="footer.contact">Contact</p>
+      <div class="footer__info-lines">
+        <p class="footer__info-line">+994 (00)000 00 00</p>
+        <p class="footer__info-line">icerisheheradmin@gmail.com</p>
+      </div>
+    </div>
+    <div class="footer__col">
+      <p class="footer__heading" data-i18n="footer.infoOffices">Information offices</p>
+      <div class="footer__info-lines">
+        <p class="footer__info-line" data-i18n="footer.address">Gazi Mahammad Street, 1095</p>
+        <p class="footer__info-line" data-i18n="footer.hours">08:00-18:00</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__photo">
+    <picture><source srcset="{{BASE}}assets/img/footer-panorama.webp" type="image/webp"><img class="footer__photo-img" src="{{BASE}}assets/img/footer-panorama.png" alt="" width="2103" height="748" loading="lazy" decoding="async"></picture>
+    <div class="footer__brand">
+      <img class="footer__logo" src="{{BASE}}assets/img/footer-logo.svg" data-i18n-alt="brand.logoAlt" alt="Icherisheher — Administration of State Historical-Architectural Reserve" width="101" height="64">
+      <p class="footer__copyright" data-i18n="footer.copyright">© 2026 Icharishahar</p>
+    </div>
+  </div>
+</footer>

@@ -3,10 +3,12 @@
 // API sorğusu uğursuz olarsa (server yatıb, CORS və s.), avtomatik olaraq
 // local data/museums.json fallback-ına keçilir — səhifə heç vaxt boş qalmır.
 import { getLang, onLangChange, t } from "./i18n.js";
+import { siteUrl, onReady } from "./base-url.js";
 import { picture } from "./picture.js";
 
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/museums";
-const FALLBACK_URL = "data/museums.json";
+const FALLBACK_URL = siteUrl("data/museums.json");
+const IMG = siteUrl("assets/img/");
 let LANG = getLang();
 
 function pickText(field) {
@@ -22,17 +24,17 @@ function museumCardMarkup(museum) {
   return `
     <article class="museums-card" data-id="${museum.id}" data-slug="${museum.slug}">
       <div class="museums-card__media">
-        ${picture(museum.image, `<img class="museums-card__photo" src="${museum.image}" alt="${name}" loading="lazy" decoding="async" width="368" height="354">`)}
+        ${picture(siteUrl(museum.image), `<img class="museums-card__photo" src="${siteUrl(museum.image)}" alt="${name}" loading="lazy" decoding="async" width="368" height="354">`)}
         <div class="museums-card__scrim" aria-hidden="true"></div>
         <div class="museums-card__overlay">
           <h3 class="museums-card__title">${name}</h3>
           <div class="museums-card__badges">
             <span class="museums-card__badge">
-              <img src="assets/img/museum-icon-clock.svg" alt="" width="16" height="16">
+              <img src="${IMG}museum-icon-clock.svg" alt="" width="16" height="16">
               ${museum.working_hours}
             </span>
             <span class="museums-card__badge">
-              <img src="assets/img/museum-icon-star.svg" alt="" width="16" height="16">
+              <img src="${IMG}museum-icon-star.svg" alt="" width="16" height="16">
               ${museum.rating.toFixed(1)}
             </span>
           </div>
@@ -41,15 +43,15 @@ function museumCardMarkup(museum) {
       <div class="museums-card__body">
         <p class="museums-card__desc">${desc}</p>
         <p class="museums-card__meta">
-          <img src="assets/img/museum-icon-pin.svg" alt="" width="20" height="20">
+          <img src="${IMG}museum-icon-pin.svg" alt="" width="20" height="20">
           ${address}
         </p>
         <p class="museums-card__meta">
-          <img src="assets/img/museum-icon-ticket.svg" alt="" width="20" height="20">
+          <img src="${IMG}museum-icon-ticket.svg" alt="" width="20" height="20">
           ${museum.ticket_price}
         </p>
         <a class="museums-card__cta" href="${museum.ticket_url}">
-          <img src="assets/img/museum-icon-ticket-btn.svg" alt="" width="20" height="20">
+          <img src="${IMG}museum-icon-ticket-btn.svg" alt="" width="20" height="20">
           ${t("museums.getTicket")}
         </a>
       </div>
@@ -113,4 +115,4 @@ async function initMuseums() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", initMuseums);
+onReady(initMuseums);

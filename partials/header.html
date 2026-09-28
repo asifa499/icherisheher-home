@@ -1,0 +1,282 @@
+<!-- partials/header.html — bütün səhifələrin başlığı (js/include.js ilə inject olunur).
+     Etap 1 · Header · Figma: 1615:2716 (nav) · burger menyu web 1627:4777 / mobil 1638:7180.
+     Səhifədə `<div data-include="header"></div>` ilə, tünd/foto fonlu .hero kartının
+     İÇİNƏ qoyulur (ikonlar ağdır). Burger menyu (data-include-portal) avtomatik
+     <body>-nin sonuna köçürülür. {{BASE}} = BASE_URL (bax js/base-url.js).
+     Dil seçici: js/lang.js · menyu: js/nav-menu.js · mətnlər: js/i18n.js. -->
+<header class="hero__nav container">
+  <div class="hero__nav-start">
+    <a class="hero__logo" href="{{BASE}}" aria-label="Icherisheher">
+      <img src="{{BASE}}assets/img/hero-logo.svg" data-i18n-alt="brand.logoAlt" alt="Icherisheher — Administration of State Historical-Architectural Reserve" width="125" height="80">
+    </a>
+
+    <nav class="hero__links" data-i18n-aria-label="aria.primary" aria-label="Primary">
+      <button class="hero__link" type="button"><span data-i18n="nav.explore">Explore</span><img class="hero__chevron" src="{{BASE}}assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
+      <button class="hero__link" type="button"><span data-i18n="nav.thingsToDo">Things to do</span><img class="hero__chevron" src="{{BASE}}assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
+      <button class="hero__link" type="button"><span data-i18n="nav.eatSleep">Eat and sleep</span><img class="hero__chevron" src="{{BASE}}assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
+      <button class="hero__link" type="button"><span data-i18n="nav.whatsOn">What's on</span><img class="hero__chevron" src="{{BASE}}assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
+      <button class="hero__link" type="button"><span data-i18n="nav.visitorInfo">Visitor Information</span><img class="hero__chevron" src="{{BASE}}assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
+    </nav>
+  </div>
+
+  <div class="hero__actions">
+    <!-- Dil seçici (Figma: 1641:11027, açıq vəziyyət 1641:12311). js/i18n.js + js/lang.js
+         ilə bağlanıb (bax CLAUDE.md, API inteqrasiyası). -->
+    <div class="hero__lang-wrap" data-lang>
+      <button class="hero__lang" type="button" data-lang-trigger aria-haspopup="listbox" aria-expanded="false">
+        <span class="hero__flag" aria-hidden="true" data-lang-current-flag>🇬🇧</span>
+        <span data-lang-current-code>EN</span>
+        <img src="{{BASE}}assets/img/hero-icon-lang.svg" alt="" width="16" height="16">
+      </button>
+      <div class="hero__lang-menu" role="listbox" data-lang-menu hidden>
+        <button class="hero__lang-option is-active" type="button" role="option" aria-selected="true" data-lang-code="EN" data-lang-flag="🇬🇧">
+          <span class="hero__lang-option-label"><span class="hero__flag" aria-hidden="true">🇬🇧</span>EN</span>
+          <img class="hero__lang-check" src="{{BASE}}assets/img/hero-icon-check.svg" alt="" width="12" height="12">
+        </button>
+        <button class="hero__lang-option" type="button" role="option" aria-selected="false" data-lang-code="AZ" data-lang-flag="🇦🇿">
+          <span class="hero__lang-option-label"><span class="hero__flag" aria-hidden="true">🇦🇿</span>AZ</span>
+          <img class="hero__lang-check" src="{{BASE}}assets/img/hero-icon-check.svg" alt="" width="12" height="12">
+        </button>
+        <button class="hero__lang-option" type="button" role="option" aria-selected="false" data-lang-code="RU" data-lang-flag="🇷🇺">
+          <span class="hero__lang-option-label"><span class="hero__flag" aria-hidden="true">🇷🇺</span>RU</span>
+          <img class="hero__lang-check" src="{{BASE}}assets/img/hero-icon-check.svg" alt="" width="12" height="12">
+        </button>
+      </div>
+    </div>
+    <a class="hero__icon-btn" href="#" data-i18n-aria-label="aria.whatsapp" aria-label="WhatsApp">
+      <img src="{{BASE}}assets/img/hero-icon-whatsapp.svg" alt="" width="16" height="16">
+    </a>
+    <button class="hero__icon-btn" type="button" data-i18n-aria-label="aria.search" aria-label="Search">
+      <img src="{{BASE}}assets/img/hero-icon-search.svg" alt="" width="16" height="16">
+    </button>
+    <button class="hero__icon-btn" type="button" data-i18n-aria-label="aria.menu" aria-label="Menu" data-nav-menu-trigger aria-haspopup="dialog" aria-expanded="false" aria-controls="nav-menu">
+      <img src="{{BASE}}assets/img/hero-icon-menu.svg" alt="" width="16" height="16">
+    </button>
+  </div>
+</header>
+
+<!-- Burger menyu overlay · Figma web: 1627:4777 · mobil: 1638:7180 -->
+<div class="nav-menu" id="nav-menu" data-nav-menu data-include-portal hidden data-figma="1627:4777">
+  <div class="nav-menu__scrim" data-nav-menu-close aria-hidden="true"></div>
+
+  <div class="nav-menu__panel block" role="dialog" aria-modal="true" data-i18n-aria-label="aria.menu" aria-label="Menu">
+    <div class="nav-menu__topbar">
+      <a class="nav-menu__logo" href="{{BASE}}" aria-label="Icherisheher">
+        <img src="{{BASE}}assets/img/hero-logo-dark.svg" data-i18n-alt="brand.logoAlt" alt="Icherisheher — Administration of State Historical-Architectural Reserve" width="115" height="80">
+      </a>
+
+      <nav class="nav-menu__toplinks" data-i18n-aria-label="aria.primary" aria-label="Primary">
+        <span class="nav-menu__toplink" data-i18n="nav.explore">Explore</span>
+        <span class="nav-menu__toplink" data-i18n="nav.thingsToDo">Things to do</span>
+        <span class="nav-menu__toplink" data-i18n="nav.eatSleep">Eat and sleep</span>
+        <span class="nav-menu__toplink" data-i18n="nav.whatsOn">What's on</span>
+        <span class="nav-menu__toplink" data-i18n="nav.visitorInfo">Visitor Information</span>
+      </nav>
+
+      <div class="nav-menu__actions">
+        <div class="hero__lang-wrap" data-lang>
+          <button class="hero__lang nav-menu__lang-btn" type="button" data-lang-trigger aria-haspopup="listbox" aria-expanded="false">
+            <span class="hero__flag" aria-hidden="true" data-lang-current-flag>🇬🇧</span>
+            <span data-lang-current-code>EN</span>
+            <img src="{{BASE}}assets/img/hero-icon-lang-dark.svg" alt="" width="16" height="16">
+          </button>
+          <div class="hero__lang-menu" role="listbox" data-lang-menu hidden>
+            <button class="hero__lang-option is-active" type="button" role="option" aria-selected="true" data-lang-code="EN" data-lang-flag="🇬🇧">
+              <span class="hero__lang-option-label"><span class="hero__flag" aria-hidden="true">🇬🇧</span>EN</span>
+              <img class="hero__lang-check" src="{{BASE}}assets/img/hero-icon-check.svg" alt="" width="12" height="12">
+            </button>
+            <button class="hero__lang-option" type="button" role="option" aria-selected="false" data-lang-code="AZ" data-lang-flag="🇦🇿">
+              <span class="hero__lang-option-label"><span class="hero__flag" aria-hidden="true">🇦🇿</span>AZ</span>
+              <img class="hero__lang-check" src="{{BASE}}assets/img/hero-icon-check.svg" alt="" width="12" height="12">
+            </button>
+            <button class="hero__lang-option" type="button" role="option" aria-selected="false" data-lang-code="RU" data-lang-flag="🇷🇺">
+              <span class="hero__lang-option-label"><span class="hero__flag" aria-hidden="true">🇷🇺</span>RU</span>
+              <img class="hero__lang-check" src="{{BASE}}assets/img/hero-icon-check.svg" alt="" width="12" height="12">
+            </button>
+          </div>
+        </div>
+        <a class="nav-menu__icon-btn" href="#" data-i18n-aria-label="aria.whatsapp" aria-label="WhatsApp">
+          <img src="{{BASE}}assets/img/hero-icon-whatsapp-dark.svg" alt="" width="16" height="16">
+        </a>
+        <button class="nav-menu__icon-btn" type="button" data-i18n-aria-label="aria.search" aria-label="Search">
+          <img src="{{BASE}}assets/img/hero-icon-search-dark.svg" alt="" width="16" height="16">
+        </button>
+        <button class="nav-menu__icon-btn" type="button" data-i18n-aria-label="aria.closeMenu" aria-label="Close menu" data-nav-menu-close>
+          <img src="{{BASE}}assets/img/hero-icon-close.svg" alt="" width="16" height="16">
+        </button>
+      </div>
+    </div>
+
+    <!-- Accordion (yalnız mobil, ≤768px) — hər sətir aşağıdakı sitemap sütunu ilə eyni siyahını açır -->
+    <div class="nav-menu__accordion">
+      <div class="nav-menu__accordion-item">
+        <button class="nav-menu__accordion-row" type="button" data-accordion-trigger aria-expanded="false">
+          <span data-i18n="nav.explore">Explore</span>
+          <img class="nav-menu__accordion-chevron" src="{{BASE}}assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16">
+        </button>
+        <ul class="nav-menu__accordion-panel" hidden>
+          <li data-i18n="col.aboutIcherisheher">About Icherisheher</li>
+          <li data-i18n="col.history">History</li>
+          <li data-i18n="col.topSights">Top Sights</li>
+          <li data-i18n="col.cultureHeritage">Culture &amp; Heritage</li>
+          <li data-i18n="col.museumsGalleries">Museums &amp; Galleries</li>
+          <li data-i18n="col.architecture">Architecture</li>
+          <li data-i18n="col.storiesLegends">Stories &amp; Legends</li>
+        </ul>
+      </div>
+      <div class="nav-menu__accordion-item">
+        <button class="nav-menu__accordion-row" type="button" data-accordion-trigger aria-expanded="false">
+          <span data-i18n="nav.thingsToDo">Things to do</span>
+          <img class="nav-menu__accordion-chevron" src="{{BASE}}assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16">
+        </button>
+        <ul class="nav-menu__accordion-panel" hidden>
+          <li data-i18n="col.tours">Tours</li>
+          <li data-i18n="col.experiences">Experiences</li>
+          <li data-i18n="col.shopping">Shopping</li>
+          <li data-i18n="col.artsCrafts">Arts &amp; Crafts</li>
+          <li data-i18n="col.photographySpots">Photography Spots</li>
+          <li data-i18n="col.familyActivities">Family Activities</li>
+          <li data-i18n="col.exploreNearby">Explore Nearby</li>
+        </ul>
+      </div>
+      <div class="nav-menu__accordion-item">
+        <button class="nav-menu__accordion-row" type="button" data-accordion-trigger aria-expanded="false">
+          <span data-i18n="nav.eatSleep">Eat and sleep</span>
+          <img class="nav-menu__accordion-chevron" src="{{BASE}}assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16">
+        </button>
+        <ul class="nav-menu__accordion-panel" hidden>
+          <li data-i18n="col.restaurants">Restaurants</li>
+          <li data-i18n="col.cafes">Cafés</li>
+          <li data-i18n="col.traditionalCuisine">Traditional Cuisine</li>
+          <li data-i18n="col.rooftopsTerraces">Rooftops &amp; Terraces</li>
+          <li data-i18n="col.hotels">Hotels</li>
+          <li data-i18n="col.boutiqueStays">Boutique Stays</li>
+        </ul>
+      </div>
+      <div class="nav-menu__accordion-item">
+        <button class="nav-menu__accordion-row" type="button" data-accordion-trigger aria-expanded="false">
+          <span data-i18n="nav.whatsOn">What's on</span>
+          <img class="nav-menu__accordion-chevron" src="{{BASE}}assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16">
+        </button>
+        <ul class="nav-menu__accordion-panel" hidden>
+          <li data-i18n="col.eventsCalendar">Events Calendar</li>
+          <li data-i18n="col.exhibitions">Exhibitions</li>
+          <li data-i18n="col.festivals">Festivals</li>
+          <li data-i18n="col.concerts">Concerts</li>
+          <li data-i18n="col.workshops">Workshops</li>
+          <li data-i18n="col.thisWeek">This Week</li>
+        </ul>
+      </div>
+      <div class="nav-menu__accordion-item">
+        <button class="nav-menu__accordion-row" type="button" data-accordion-trigger aria-expanded="false">
+          <span data-i18n="nav.visitorInfo">Visitor Information</span>
+          <img class="nav-menu__accordion-chevron" src="{{BASE}}assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16">
+        </button>
+        <ul class="nav-menu__accordion-panel" hidden>
+          <li data-i18n="col.gettingHere">Getting Here</li>
+          <li data-i18n="col.gettingAround">Getting Around</li>
+          <li data-i18n="col.ticketsPrices">Tickets &amp; Prices</li>
+          <li data-i18n="nav.visitorInfo">Visitor Information</li>
+          <li data-i18n="col.accessibility">Accessibility</li>
+          <li data-i18n="col.mapsGuides">Maps &amp; Guides</li>
+          <li data-i18n="col.faq">FAQ</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sitemap (yalnız web, >768px) -->
+    <div class="nav-menu__sitemap">
+      <div class="nav-menu__col">
+        <p class="nav-menu__col-title" data-i18n="nav.explore">Explore</p>
+        <ul class="nav-menu__col-list">
+          <li data-i18n="col.aboutIcherisheher">About Icherisheher</li>
+          <li data-i18n="col.history">History</li>
+          <li data-i18n="col.topSights">Top Sights</li>
+          <li data-i18n="col.cultureHeritage">Culture &amp; Heritage</li>
+          <li data-i18n="col.museumsGalleries">Museums &amp; Galleries</li>
+          <li data-i18n="col.architecture">Architecture</li>
+          <li data-i18n="col.storiesLegends">Stories &amp; Legends</li>
+        </ul>
+      </div>
+      <div class="nav-menu__col">
+        <p class="nav-menu__col-title" data-i18n="nav.thingsToDo">Things to do</p>
+        <ul class="nav-menu__col-list">
+          <li data-i18n="col.tours">Tours</li>
+          <li data-i18n="col.experiences">Experiences</li>
+          <li data-i18n="col.shopping">Shopping</li>
+          <li data-i18n="col.artsCrafts">Arts &amp; Crafts</li>
+          <li data-i18n="col.photographySpots">Photography Spots</li>
+          <li data-i18n="col.familyActivities">Family Activities</li>
+          <li data-i18n="col.exploreNearby">Explore Nearby</li>
+        </ul>
+      </div>
+      <div class="nav-menu__col">
+        <p class="nav-menu__col-title" data-i18n="nav.whatsOn">What's on</p>
+        <ul class="nav-menu__col-list">
+          <li data-i18n="col.eventsCalendar">Events Calendar</li>
+          <li data-i18n="col.exhibitions">Exhibitions</li>
+          <li data-i18n="col.festivals">Festivals</li>
+          <li data-i18n="col.concerts">Concerts</li>
+          <li data-i18n="col.workshops">Workshops</li>
+          <li data-i18n="col.thisWeek">This Week</li>
+        </ul>
+      </div>
+      <div class="nav-menu__col">
+        <p class="nav-menu__col-title" data-i18n="nav.eatSleep">Eat and sleep</p>
+        <ul class="nav-menu__col-list">
+          <li data-i18n="col.restaurants">Restaurants</li>
+          <li data-i18n="col.cafes">Cafés</li>
+          <li data-i18n="col.traditionalCuisine">Traditional Cuisine</li>
+          <li data-i18n="col.rooftopsTerraces">Rooftops &amp; Terraces</li>
+          <li data-i18n="col.hotels">Hotels</li>
+          <li data-i18n="col.boutiqueStays">Boutique Stays</li>
+        </ul>
+      </div>
+      <div class="nav-menu__col">
+        <p class="nav-menu__col-title" data-i18n="nav.visitorInfo">Visitor Information</p>
+        <ul class="nav-menu__col-list">
+          <li data-i18n="col.gettingHere">Getting Here</li>
+          <li data-i18n="col.gettingAround">Getting Around</li>
+          <li data-i18n="col.ticketsPrices">Tickets &amp; Prices</li>
+          <li data-i18n="nav.visitorInfo">Visitor Information</li>
+          <li data-i18n="col.accessibility">Accessibility</li>
+          <li data-i18n="col.mapsGuides">Maps &amp; Guides</li>
+          <li data-i18n="col.faq">FAQ</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="nav-menu__divider" aria-hidden="true"></div>
+
+    <!-- Foto kartlar yalnız web-də görünür (mobil Figma-da bu sıra yoxdur).
+         Şəkillər Figma node 1642:13754/13760/13765/13771-dən çəkilib. -->
+    <div class="nav-menu__tiles-row">
+      <div class="nav-menu__tiles">
+        <a class="nav-menu__tile" href="#">
+          <picture><source srcset="{{BASE}}assets/img/hero-menu-tile-popular-stays.webp" type="image/webp"><img class="nav-menu__tile-photo" src="{{BASE}}assets/img/hero-menu-tile-popular-stays.jpg" alt="" width="480" height="600" loading="lazy" decoding="async"></picture>
+          <span class="nav-menu__tile-scrim" aria-hidden="true"></span>
+          <span class="nav-menu__tile-label" data-i18n="menu.tile.popularStays">Popular stays</span>
+        </a>
+        <a class="nav-menu__tile" href="#">
+          <picture><source srcset="{{BASE}}assets/img/hero-menu-tile-happening-today.webp" type="image/webp"><img class="nav-menu__tile-photo" src="{{BASE}}assets/img/hero-menu-tile-happening-today.jpg" alt="" width="600" height="399" loading="lazy" decoding="async"></picture>
+          <span class="nav-menu__tile-scrim" aria-hidden="true"></span>
+          <span class="nav-menu__tile-label" data-i18n="menu.tile.happeningToday">Happening today</span>
+        </a>
+        <a class="nav-menu__tile" href="#">
+          <picture><source srcset="{{BASE}}assets/img/hero-menu-tile-best-restaurants.webp" type="image/webp"><img class="nav-menu__tile-photo" src="{{BASE}}assets/img/hero-menu-tile-best-restaurants.jpg" alt="" width="600" height="441" loading="lazy" decoding="async"></picture>
+          <span class="nav-menu__tile-scrim" aria-hidden="true"></span>
+          <span class="nav-menu__tile-label" data-i18n="menu.tile.bestRestaurants">Best restaurants</span>
+        </a>
+        <a class="nav-menu__tile" href="#">
+          <picture><source srcset="{{BASE}}assets/img/hero-menu-tile-hidden-gems.webp" type="image/webp"><img class="nav-menu__tile-photo" src="{{BASE}}assets/img/hero-menu-tile-hidden-gems.jpg" alt="" width="450" height="600" loading="lazy" decoding="async"></picture>
+          <span class="nav-menu__tile-scrim" aria-hidden="true"></span>
+          <span class="nav-menu__tile-label" data-i18n="menu.tile.hiddenGems">Hidden gems</span>
+        </a>
+      </div>
+      <div class="nav-menu__cta">
+        <p class="nav-menu__cta-text" data-i18n="menu.ctaText">Still no idea what<br>to do in Icheriseher?</p>
+        <button class="btn-inspire nav-menu__cta-btn" type="button"><img src="{{BASE}}assets/img/hero-icon-sparkle.svg" alt="" width="24" height="24"><span data-i18n="hero.inspire">Inspire me please!</span></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,8 @@
+// Bölmə feature toggle-ları (bax CLAUDE.md). Səhifədən asılı deyil: səhifədə
+// olmayan bölmənin flag-ı sadəcə heç nə etmir. "social"/"footer" partials/footer.html-
+// dədir, ona görə flag-lar partial-lar inject olunandan sonra tətbiq edilir.
+import { includesReady } from "./base-url.js";
+
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/config";
 const TIMEOUT_MS = 2000;
 const HIDDEN_CLASS = "section-hidden";
@@ -40,6 +45,7 @@ async function loadConfig() {
     const res = await fetch(API_URL, { signal: controller.signal });
     if (!res.ok) return;
     const config = await res.json();
+    await includesReady;
     applyConfig(config);
   } catch {
     // fetch failed, aborted (timeout) or response wasn't JSON — fail-open, do nothing.

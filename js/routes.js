@@ -4,10 +4,12 @@
 // local data/routes.json fallback-ı. /api/routes endpoint-i hələ
 // yoxdur, ona görə hazırda praktiki olaraq həmişə fallback işləyir.
 import { getLang, onLangChange, t } from "./i18n.js";
+import { siteUrl, onReady } from "./base-url.js";
 import { picture } from "./picture.js";
 
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/routes";
-const FALLBACK_URL = "data/routes.json";
+const FALLBACK_URL = siteUrl("data/routes.json");
+const IMG = siteUrl("assets/img/");
 let LANG = getLang();
 
 function pickText(field) {
@@ -49,15 +51,15 @@ function cardMarkup(route) {
 
   return `
     <div class="routes-card__media">
-      ${picture(route.image, `<img class="routes-card__photo" src="${escapeHtml(route.image)}" alt="${escapeHtml(title)}"
+      ${picture(siteUrl(route.image), `<img class="routes-card__photo" src="${escapeHtml(siteUrl(route.image))}" alt="${escapeHtml(title)}"
            loading="lazy" decoding="async" width="464" height="352">`)}
       <div class="routes-card__badges">
         <span class="routes-card__badge">
-          <img src="assets/img/route-icon-clock.svg" alt="" width="16" height="16">
+          <img src="${IMG}route-icon-clock.svg" alt="" width="16" height="16">
           ${escapeHtml(pickText(route.duration))}
         </span>
         <span class="routes-card__badge">
-          <img src="assets/img/route-icon-distance.svg" alt="" width="20" height="20">
+          <img src="${IMG}route-icon-distance.svg" alt="" width="20" height="20">
           ${escapeHtml(pickText(route.distance))}
         </span>
       </div>
@@ -67,7 +69,7 @@ function cardMarkup(route) {
         ${stops.map(stopMarkup).join("")}
       </ol>
       <a class="routes-card__cta" href="${escapeHtml(route.pass_url || "#")}">
-        <img src="assets/img/route-icon-pass.svg" alt="" width="20" height="20">
+        <img src="${IMG}route-icon-pass.svg" alt="" width="20" height="20">
         ${t("routes.getPass")}
       </a>
     </div>
@@ -143,4 +145,4 @@ async function initRoutes() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", initRoutes);
+onReady(initRoutes);

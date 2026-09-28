@@ -3,9 +3,11 @@
 // API sorğusu uğursuz olarsa (server yatıb, CORS və s.), avtomatik olaraq
 // local data/passes.json fallback-ına keçilir — səhifə heç vaxt boş qalmır.
 import { getLang, onLangChange, t } from "./i18n.js";
+import { siteUrl, onReady } from "./base-url.js";
 
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/passes";
-const FALLBACK_URL = "data/passes.json";
+const FALLBACK_URL = siteUrl("data/passes.json");
+const IMG = siteUrl("assets/img/");
 let LANG = getLang();
 
 // Backend "/adult" kimi bir vahid etiketi qaytarmır (bu, məzmun sahəsi deyil,
@@ -21,8 +23,8 @@ function pickText(field) {
 
 function featureMarkup(feature) {
   const icon = feature.included
-    ? `<img class="pass-card__feature-icon" src="assets/img/citypass-icon-check.svg" alt="" width="20" height="20">`
-    : `<img class="pass-card__feature-icon" src="assets/img/citypass-icon-cross.svg" alt="" width="20" height="20">`;
+    ? `<img class="pass-card__feature-icon" src="${IMG}citypass-icon-check.svg" alt="" width="20" height="20">`
+    : `<img class="pass-card__feature-icon" src="${IMG}citypass-icon-cross.svg" alt="" width="20" height="20">`;
   const state = feature.included ? "included" : "excluded";
   return `
     <li class="pass-card__feature" data-state="${state}">
@@ -56,7 +58,7 @@ function passCardMarkup(pass) {
         ${pass.features.map(featureMarkup).join("")}
       </ul>
       <a class="pass-card__buy" href="${pass.buy_url}">
-        <img src="assets/img/museum-icon-ticket-btn.svg" alt="" width="20" height="20">${t("citypass.buy")} ${name}
+        <img src="${IMG}museum-icon-ticket-btn.svg" alt="" width="20" height="20">${t("citypass.buy")} ${name}
       </a>
     </article>
   `;
@@ -127,4 +129,4 @@ async function initPasses() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", initPasses);
+onReady(initPasses);

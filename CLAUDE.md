@@ -20,7 +20,11 @@
 ## Struktur
 
 ```
-index.html          — bütün bölmələr bir səhifədə
+index.html          — Home: bütün bölmələr bir səhifədə
+page-template.html  — boş daxili səhifə şablonu (bax "Yeni səhifə necə yaradılır")
+partials/           — header.html (nav + dil seçici + burger menyu), footer.html (sosial feed + footer)
+js/include.js       — partial-ları ilk paint-dən əvvəl inject edir (klassik skript, <head>-də)
+js/base-url.js      — BASE_URL, siteUrl(), includesReady, onReady() — paylaşılan yol köməkçiləri
 css/tokens.css      — design tokens (YEGANƏ həqiqət mənbəyi)
 css/base.css        — reset, @font-face, konteynerlər, breakpoint
 css/<section>.css   — hər etapın öz CSS faylı (etap başlayanda yaradılır)
@@ -133,7 +137,7 @@ iki fərqli səviyyə var, qarışdırılmamalıdır:
 - Heç vaxt rəng/ölçü/radius-u CSS-də hardcode yazma — hamısı `tokens.css`-dəki dəyişənlərdən
   keçir (bax Qayda 2).
 - Figma root node ID-ləri dəyişəndə (fayl köçürülüb və ya yeni frame yaradılıb) `## Figma
-  mənbəyi` bölməsi və etap cədvəlinin node ID-ləri yenilənir, `index.html`-dəki bütün
+  mənbəyi` bölməsi və etap cədvəlinin node ID-ləri yenilənir, `index.html` və `partials/*.html`-dəki bütün
   `data-figma` atributları uyğunlaşdırılır.
 
 ## API inteqrasiyası
@@ -279,6 +283,90 @@ yoxdursa, ya da hər hansı flag obyektdə yoxdursa — o bölmə (və ya bütü
 bölmələr) görünən qalır. Bölmə yalnız uyğun flag **açıq şəkildə `false`**
 olanda gizlədilir. `config.js` `index.html`-də digər bölmə skriptlərindən
 (`js/museums.js` və s.) ƏVVƏL yüklənir.
+
+## Səhifə arxitekturası (2026-09-28)
+
+Build addımı yoxdur. Çox-səhifəli sayt üçün üç paylaşılan hissə:
+
+- **Partial-lar:** `partials/header.html` (hero nav + dil seçici + burger menyu) və
+  `partials/footer.html` (sosial feed `#social` + footer `#footer`). Səhifədə
+  `<div data-include="header"></div>` / `<div data-include="footer"></div>` yazılır;
+  `js/include.js` placeholder-i partial-ın məzmunu ilə **əvəz edir** (wrapper qalmır →
+  DOM əvvəlki inline markup ilə eynidir). Header/footer markup-ını YALNIZ partial-da
+  dəyiş — `index.html`-də artıq nüsxəsi yoxdur.
+  - `include.js` `<head>`-də, CSS-dən sonra, `defer`/`async` OLMADAN yüklənir: partial
+    sorğuları parse-dan əvvəl başlayır, `<html class="is-including">` isə body-ni
+    inject bitənə qədər `visibility:hidden` saxlayır (layout flash yoxdur; şəbəkə
+    ilişsə 3 s sonra hər halda göstərilir).
+  - Partial-da `data-include-portal` olan top-level element placeholder yerinə
+    `<body>`-nin sonuna köçürülür — burger menyu (`#nav-menu`) belədir, çünki
+    `.hero`-nun `isolation:isolate` konteksti içində `z-index` sonrakı bölmələrin
+    altında qalardı.
+  - `window.ICH.includesReady` (Promise) inject bitəndə həll olunur. Partial DOM-una
+    toxunan modullar (`i18n.js`, `nav-menu.js`, `config.js`; `lang.js` və bölmə
+    skriptləri `i18n.js`-i import etdikləri üçün avtomatik) onu top-level `await` ilə
+    gözləyir. Bu səbəbdən modullarda `DOMContentLoaded` əvəzinə `onReady(fn)`
+    (`js/base-url.js`) işlədilir — TLA-dan sonra DCL artıq keçmiş ola bilər.
+- **URL/yol strategiyası (GitHub Pages project site):** sayt `/icherisheher-home/`
+  alt-qovluğunda, lokal serverdə isə `/`-dadır. `BASE_URL` hardcode edilmir — skriptin
+  öz URL-indən hesablanır (`js/` qovluğunun valideyni): `js/base-url.js`-də
+  `new URL("../", import.meta.url).pathname`, `js/include.js`-də eyni qayda
+  `document.currentScript.src`-dən (`window.ICH.BASE_URL`). Nəticə həmişə kök-nisbi
+  yoldur (`/icherisheher-home/` və ya `/`), domen/alt-qovluq dəyişəndə heç nə
+  redaktə olunmur.
+  - **Partial-lar:** bütün yollar `{{BASE}}assets/...` şəklindədir (`include.js` əvəz edir).
+  - **JS:** hər lokal yol `siteUrl("data/x.json")` / `siteUrl("assets/img/…")`-dən
+    keçir (API-dən gələn nisbi `image` sahələri də). Mütləq URL-lər (`https:`, `/…`,
+    `#…`) toxunulmur. `picture()` (`js/picture.js`) hər iki formanı tanıyır.
+  - **CSS:** `url("../assets/…")` CSS faylının özünə nisbidir — hər dərinlikdə işləyir.
+  - **Statik HTML (`<head>` link-ləri, səhifənin öz `<img>`-ləri):** build olmadığı
+    üçün sənəd-nisbi yazılır — kökdəki səhifədə `./`, bir səviyyə dərində `../`
+    (bax aşağıdakı addımlar). `<base href>` işlədilmir, çünki `href="#"` linklərini və
+    places.js-in hash sinxronunu sındırır (`404.html` istisnadır — orada heç bir hash
+    linki yoxdur).
+  - Loqo linki (`.hero__logo`, `.nav-menu__logo`) `{{BASE}}`-ə, yəni Home-a gedir.
+- **Paylaşılan vs bölmə skriptləri:** `include.js` (head), `i18n.js`, `config.js`,
+  `lang.js`, `nav-menu.js` HƏR səhifədə yüklənir və səhifədən asılı deyil (olmayan
+  elementi sadəcə ötürür). Bölmə skriptləri (`museums.js`, `routes.js`, `events.js`,
+  `news.js`, `places.js`, `passes.js`) yalnız həmin bölmə olan səhifədə qoşulur.
+  - `config.js`: səhifədə olmayan bölmənin flag-ı heç nə etmir; `social`/`footer`
+    flag-ları partial-dakı elementlərə tətbiq olunur (inject-dən sonra).
+  - `i18n.js`: səhifəyə xas açarlar `window.ICH.pageDict`-də verilir (modul
+    skriptlərindən əvvəl klassik inline `<script>`-də); ümumi açarların üstünə yazmır.
+- **Keş qeydi:** GitHub Pages HTML/JS-ə `max-age=600` qoyur — deploy-dan sonra ~10 dəq
+  ərzində köhnə/yeni fayl qarışığı mümkündür (məs. köhnə `config.js` + yeni `index.html`).
+  Lokal yoxlamada da brauzer köhnə JS-i keşdən verə bilər — hard reload et.
+
+## Yeni səhifə necə yaradılır
+
+1. **Qovluq + fayl:** `page-template.html`-i `<slug>/index.html` kimi kopyala
+   (URL `/<slug>/` olur, məs. `museums/index.html` → `/icherisheher-home/museums/`).
+2. **Yolları dərinliyə uyğunlaşdır:** şablonda HƏR statik yol `./` ilə başlayır —
+   kopyada hamısını `../` ilə əvəz et (iki səviyyə dərində `../../`):
+   ```bash
+   sed -i '' 's#="\./#="../#g' museums/index.html
+   ```
+   Partial-lar, data JSON-ları və JS-in render etdiyi şəkillər BASE_URL ilə avtomatik
+   həll olunur — onlara toxunma.
+3. **`PAGE:` işarələrini doldur:** `<title>`, `description`, `canonical` + `og:url`
+   (mütləq URL, sonunda `/`), `noindex` meta-nı sil.
+4. **Mətnlər:** `window.ICH.pageDict`-ə səhifənin açarlarını `{ en, az, ru }` ilə yaz
+   (`page.<slug>.*` prefiksi ilə), elementlərdə `data-i18n="…"` işlət. Nav/footer
+   açarları artıq `js/i18n.js`-dədir.
+5. **Bölmələr:** placeholder `<section class="section is-placeholder">`-i real
+   bölmələrlə əvəz et; hər `<section>`-a `id` + `data-figma` ver, stili
+   `css/<bölmə>.css`-də (tokens-dən kənar dəyər yox — Qayda 2). Home bölməsini təkrar
+   işlədirsənsə, onun CSS-ini `<head>`-ə, JS-ini (`<script type="module">`) paylaşılan
+   skriptlərdən SONRA əlavə et. Feature flag lazımdırsa `js/config.js`-in
+   `SECTION_ID_BY_FLAG`-ına və CLAUDE.md-dəki cədvələ əlavə et.
+6. **Yeni JS modulu** yazırsansa: lokal yolları `siteUrl()`-dən keçir, `DOMContentLoaded`
+   əvəzinə `onReady()` işlət (hər ikisi `js/base-url.js`), header/footer DOM-una
+   toxunursa əvvəlcə `await includesReady`.
+7. **Linklər:** header/footer-dəki müvafiq `href="#"`-i `partials/*.html`-də
+   `href="{{BASE}}<slug>/"` ilə əvəz et (bütün səhifələrdə birdən yenilənir).
+8. **Yoxla:** lokal serverdə (`.claude/launch.json` → `static`) `/<slug>/` aç — Network-də
+   404 olmamalı, dil dəyişəndə səhifə mətnləri də dəyişməli, burger menyu açılmalıdır.
+   Sonra commit + push, canlı linkdə `/icherisheher-home/<slug>/` yoxla.
 
 ## Performans və SEO (2026-09-28)
 
