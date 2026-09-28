@@ -3,6 +3,7 @@
 // əvvəl öz backend-imiz (icherisheher-api, Railway), alınmasa
 // local data/events.json fallback-ı.
 import { getLang, onLangChange } from "./i18n.js";
+import { picture } from "./picture.js";
 
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/events";
 const FALLBACK_URL = "data/events.json";
@@ -75,8 +76,8 @@ function featuredCardMarkup(event) {
   const title = escapeHtml(pickText(event.title));
   return `
     <a class="event-card event-card--featured" href="${escapeHtml(event.ticket_url || "#")}">
-      <img class="event-card__photo" src="${escapeHtml(event.image)}" alt="${title}"
-           loading="lazy" width="368" height="226">
+      ${picture(event.image, `<img class="event-card__photo" src="${escapeHtml(event.image)}" alt="${title}"
+           loading="lazy" decoding="async" width="368" height="226">`)}
       <span class="event-card__body">${bodyMarkup(event)}</span>
     </a>
   `;

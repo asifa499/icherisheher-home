@@ -4,7 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Icherisheher — Old City of Baku</title>
-  <meta name="description" content="Icherisheher is Baku's historic heart — a UNESCO World Heritage Site. Museums, routes, events and the City Pass.">
+  <meta name="description" content="Icherisheher is Baku's historic heart — a UNESCO World Heritage Site. Explore museums, ready-made routes, seasonal events and the City Pass.">
+  <link rel="canonical" href="https://asifa499.github.io/icherisheher-home/">
+  <meta name="theme-color" content="#886D46">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Icherisheher">
+  <meta property="og:title" content="Icherisheher — Old City of Baku">
+  <meta property="og:description" content="Baku's historic heart and a UNESCO World Heritage Site. Explore museums, ready-made routes, seasonal events and the City Pass.">
+  <meta property="og:url" content="https://asifa499.github.io/icherisheher-home/">
+  <meta property="og:image" content="https://asifa499.github.io/icherisheher-home/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Icherisheher, the Old City of Baku, with the Flame Towers on the skyline">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="az_AZ">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Icherisheher — Old City of Baku">
+  <meta name="twitter:description" content="Baku's historic heart and a UNESCO World Heritage Site. Explore museums, ready-made routes, seasonal events and the City Pass.">
+  <meta name="twitter:image" content="https://asifa499.github.io/icherisheher-home/assets/img/og-image.jpg">
+  <meta name="twitter:image:alt" content="Icherisheher, the Old City of Baku, with the Flame Towers on the skyline">
+
+  <!-- Favicons (scripts/build-images.mjs) -->
+  <link rel="icon" href="favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Performance: hero LCP image (css/hero.css image-set) + API origin -->
+  <link rel="preload" as="image" href="assets/img/hero-bg.webp" type="image/webp" fetchpriority="high">
+  <link rel="preconnect" href="https://icherisheher-api-production.up.railway.app" crossorigin>
+  <link rel="preload" as="font" href="assets/fonts/VelaSans-Regular.woff2" type="font/woff2" crossorigin>
+
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/hero.css">
@@ -307,22 +341,22 @@
         <div class="nav-menu__tiles-row">
           <div class="nav-menu__tiles">
             <a class="nav-menu__tile" href="#">
-              <img class="nav-menu__tile-photo" src="assets/img/hero-menu-tile-popular-stays.jpg" alt="">
+              <picture><source srcset="assets/img/hero-menu-tile-popular-stays.webp" type="image/webp"><img class="nav-menu__tile-photo" src="assets/img/hero-menu-tile-popular-stays.jpg" alt="" width="480" height="600" loading="lazy" decoding="async"></picture>
               <span class="nav-menu__tile-scrim" aria-hidden="true"></span>
               <span class="nav-menu__tile-label" data-i18n="menu.tile.popularStays">Popular stays</span>
             </a>
             <a class="nav-menu__tile" href="#">
-              <img class="nav-menu__tile-photo" src="assets/img/hero-menu-tile-happening-today.jpg" alt="">
+              <picture><source srcset="assets/img/hero-menu-tile-happening-today.webp" type="image/webp"><img class="nav-menu__tile-photo" src="assets/img/hero-menu-tile-happening-today.jpg" alt="" width="600" height="399" loading="lazy" decoding="async"></picture>
               <span class="nav-menu__tile-scrim" aria-hidden="true"></span>
               <span class="nav-menu__tile-label" data-i18n="menu.tile.happeningToday">Happening today</span>
             </a>
             <a class="nav-menu__tile" href="#">
-              <img class="nav-menu__tile-photo" src="assets/img/hero-menu-tile-best-restaurants.jpg" alt="">
+              <picture><source srcset="assets/img/hero-menu-tile-best-restaurants.webp" type="image/webp"><img class="nav-menu__tile-photo" src="assets/img/hero-menu-tile-best-restaurants.jpg" alt="" width="600" height="441" loading="lazy" decoding="async"></picture>
               <span class="nav-menu__tile-scrim" aria-hidden="true"></span>
               <span class="nav-menu__tile-label" data-i18n="menu.tile.bestRestaurants">Best restaurants</span>
             </a>
             <a class="nav-menu__tile" href="#">
-              <img class="nav-menu__tile-photo" src="assets/img/hero-menu-tile-hidden-gems.jpg" alt="">
+              <picture><source srcset="assets/img/hero-menu-tile-hidden-gems.webp" type="image/webp"><img class="nav-menu__tile-photo" src="assets/img/hero-menu-tile-hidden-gems.jpg" alt="" width="450" height="600" loading="lazy" decoding="async"></picture>
               <span class="nav-menu__tile-scrim" aria-hidden="true"></span>
               <span class="nav-menu__tile-label" data-i18n="menu.tile.hiddenGems">Hidden gems</span>
             </a>
@@ -351,20 +385,20 @@
     <div class="intro__collage-wrap">
       <div class="intro__collage">
         <div class="intro__collage-track">
-          <img class="intro__photo intro__photo--statue" src="assets/img/intro-statue.jpg" data-i18n-alt="intro.photoAlt.statue" alt="Historic monument in the Old City" width="205" height="204">
-          <img class="intro__photo intro__photo--tower" src="assets/img/intro-tower.jpg" data-i18n-alt="intro.photoAlt.tower" alt="Maiden Tower at golden hour" width="245" height="327">
-          <img class="intro__photo intro__photo--instruments" src="assets/img/intro-instruments.jpg" data-i18n-alt="intro.photoAlt.instruments" alt="Traditional Azerbaijani musical instruments on display" width="272" height="280">
-          <img class="intro__photo intro__photo--dress" src="assets/img/intro-dress.jpg" data-i18n-alt="intro.photoAlt.dress" alt="Traditional Azerbaijani dress on a mannequin" width="272" height="407">
-          <img class="intro__photo intro__photo--carpets" src="assets/img/intro-carpets.jpg" data-i18n-alt="intro.photoAlt.carpets" alt="Carpets displayed in an Old City courtyard" width="367" height="245">
-          <img class="intro__photo intro__photo--tourists" src="assets/img/intro-tourists.jpg" data-i18n-alt="intro.photoAlt.tourists" alt="Visitors exploring the Old City" width="231" height="308">
+          <picture><source srcset="assets/img/intro-statue.webp" type="image/webp"><img class="intro__photo intro__photo--statue" src="assets/img/intro-statue.jpg" data-i18n-alt="intro.photoAlt.statue" alt="Historic monument in the Old City" width="205" height="204" loading="lazy" decoding="async"></picture>
+          <picture><source srcset="assets/img/intro-tower.webp" type="image/webp"><img class="intro__photo intro__photo--tower" src="assets/img/intro-tower.jpg" data-i18n-alt="intro.photoAlt.tower" alt="Maiden Tower at golden hour" width="245" height="327" loading="lazy" decoding="async"></picture>
+          <picture><source srcset="assets/img/intro-instruments.webp" type="image/webp"><img class="intro__photo intro__photo--instruments" src="assets/img/intro-instruments.jpg" data-i18n-alt="intro.photoAlt.instruments" alt="Traditional Azerbaijani musical instruments on display" width="272" height="280" loading="lazy" decoding="async"></picture>
+          <picture><source srcset="assets/img/intro-dress.webp" type="image/webp"><img class="intro__photo intro__photo--dress" src="assets/img/intro-dress.jpg" data-i18n-alt="intro.photoAlt.dress" alt="Traditional Azerbaijani dress on a mannequin" width="272" height="407" loading="lazy" decoding="async"></picture>
+          <picture><source srcset="assets/img/intro-carpets.webp" type="image/webp"><img class="intro__photo intro__photo--carpets" src="assets/img/intro-carpets.jpg" data-i18n-alt="intro.photoAlt.carpets" alt="Carpets displayed in an Old City courtyard" width="367" height="245" loading="lazy" decoding="async"></picture>
+          <picture><source srcset="assets/img/intro-tourists.webp" type="image/webp"><img class="intro__photo intro__photo--tourists" src="assets/img/intro-tourists.jpg" data-i18n-alt="intro.photoAlt.tourists" alt="Visitors exploring the Old City" width="231" height="308" loading="lazy" decoding="async"></picture>
         </div>
         <div class="intro__collage-track" aria-hidden="true">
-          <img class="intro__photo intro__photo--statue" src="assets/img/intro-statue.jpg" alt="" width="205" height="204">
-          <img class="intro__photo intro__photo--tower" src="assets/img/intro-tower.jpg" alt="" width="245" height="327">
-          <img class="intro__photo intro__photo--instruments" src="assets/img/intro-instruments.jpg" alt="" width="272" height="280">
-          <img class="intro__photo intro__photo--dress" src="assets/img/intro-dress.jpg" alt="" width="272" height="407">
-          <img class="intro__photo intro__photo--carpets" src="assets/img/intro-carpets.jpg" alt="" width="367" height="245">
-          <img class="intro__photo intro__photo--tourists" src="assets/img/intro-tourists.jpg" alt="" width="231" height="308">
+          <picture><source srcset="assets/img/intro-statue.webp" type="image/webp"><img class="intro__photo intro__photo--statue" src="assets/img/intro-statue.jpg" alt="" width="205" height="204" loading="lazy" decoding="async"></picture>
+          <picture><source srcset="assets/img/intro-tower.webp" type="image/webp"><img class="intro__photo intro__photo--tower" src="assets/img/intro-tower.jpg" alt="" width="245" height="327" loading="lazy" decoding="async"></picture>
+          <picture><source srcset="assets/img/intro-instruments.webp" type="image/webp"><img class="intro__photo intro__photo--instruments" src="assets/img/intro-instruments.jpg" alt="" width="272" height="280" loading="lazy" decoding="async"></picture>
+          <picture><source srcset="assets/img/intro-dress.webp" type="image/webp"><img class="intro__photo intro__photo--dress" src="assets/img/intro-dress.jpg" alt="" width="272" height="407" loading="lazy" decoding="async"></picture>
+          <picture><source srcset="assets/img/intro-carpets.webp" type="image/webp"><img class="intro__photo intro__photo--carpets" src="assets/img/intro-carpets.jpg" alt="" width="367" height="245" loading="lazy" decoding="async"></picture>
+          <picture><source srcset="assets/img/intro-tourists.webp" type="image/webp"><img class="intro__photo intro__photo--tourists" src="assets/img/intro-tourists.jpg" alt="" width="231" height="308" loading="lazy" decoding="async"></picture>
         </div>
       </div>
     </div>
@@ -494,7 +528,7 @@
           </div>
         </div>
       </div>
-      <img class="appar-promo__phone" src="assets/img/appar-phone-mockup.png" data-i18n-alt="appar.phoneAlt" alt="Icherisheher app running on a phone" width="368" height="393">
+      <picture><source srcset="assets/img/appar-phone-mockup.webp" type="image/webp"><img class="appar-promo__phone" src="assets/img/appar-phone-mockup.png" data-i18n-alt="appar.phoneAlt" alt="Icherisheher app running on a phone" width="368" height="393" loading="lazy" decoding="async"></picture>
     </div>
 
     <div class="appar-time">
@@ -530,8 +564,8 @@
     <div class="social__header">
       <div class="social__profile">
         <div class="social__avatar">
-          <img class="social__avatar-photo" src="assets/img/social-avatar.jpg" alt="">
-          <img class="social__avatar-ring" src="assets/img/social-avatar-ring.svg" alt="" aria-hidden="true">
+          <picture><source srcset="assets/img/social-avatar.webp" type="image/webp"><img class="social__avatar-photo" src="assets/img/social-avatar.jpg" alt="" width="320" height="320" loading="lazy" decoding="async"></picture>
+          <img class="social__avatar-ring" src="assets/img/social-avatar-ring.svg" alt="" aria-hidden="true" width="70" height="70">
         </div>
         <div class="social__names">
           <p class="social__name">icherisheher dovlet tarix-memarliq qoruguhu</p>
@@ -543,38 +577,38 @@
         <p class="social__followers-label" data-i18n="social.followers">followers</p>
       </div>
       <a class="social__follow" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
-        <img class="social__follow-icon" src="assets/img/social-icon-instagram.svg" alt="">
+        <img class="social__follow-icon" src="assets/img/social-icon-instagram.svg" alt="" width="24" height="24">
         <span data-i18n="social.follow">Follow</span>
       </a>
     </div>
 
     <div class="social__grid">
-      <a class="social__photo social__photo--statue" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
-        <img src="assets/img/social-photo-statue.jpg" alt="">
+      <a class="social__photo social__photo--statue" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener" data-i18n-aria-label="social.photoAria" aria-label="View this post on Instagram">
+        <picture><source srcset="assets/img/social-photo-statue.webp" type="image/webp"><img src="assets/img/social-photo-statue.jpg" alt="" width="700" height="698" loading="lazy" decoding="async"></picture>
       </a>
-      <a class="social__photo social__photo--tower" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
-        <img src="assets/img/social-photo-tower.jpg" alt="">
+      <a class="social__photo social__photo--tower" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener" data-i18n-aria-label="social.photoAria" aria-label="View this post on Instagram">
+        <picture><source srcset="assets/img/social-photo-tower.webp" type="image/webp"><img src="assets/img/social-photo-tower.jpg" alt="" width="700" height="467" loading="lazy" decoding="async"></picture>
       </a>
-      <a class="social__photo social__photo--instruments" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
-        <img src="assets/img/social-photo-instruments.jpg" alt="">
+      <a class="social__photo social__photo--instruments" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener" data-i18n-aria-label="social.photoAria" aria-label="View this post on Instagram">
+        <picture><source srcset="assets/img/social-photo-instruments.webp" type="image/webp"><img src="assets/img/social-photo-instruments.jpg" alt="" width="560" height="700" loading="lazy" decoding="async"></picture>
       </a>
-      <a class="social__photo social__photo--artist" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
-        <img src="assets/img/social-photo-artist.jpg" alt="">
+      <a class="social__photo social__photo--artist" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener" data-i18n-aria-label="social.photoAria" aria-label="View this post on Instagram">
+        <picture><source srcset="assets/img/social-photo-artist.webp" type="image/webp"><img src="assets/img/social-photo-artist.jpg" alt="" width="700" height="467" loading="lazy" decoding="async"></picture>
         <span class="social__scrim" aria-hidden="true"></span>
         <span class="social__play social__play--desktop" aria-hidden="true">
-          <img src="assets/img/social-icon-play.svg" alt="">
+          <img src="assets/img/social-icon-play.svg" alt="" width="14" height="18">
         </span>
       </a>
-      <a class="social__photo social__photo--carrace" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
-        <img src="assets/img/social-photo-carrace.jpg" alt="">
+      <a class="social__photo social__photo--carrace" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener" data-i18n-aria-label="social.photoAria" aria-label="View this post on Instagram">
+        <picture><source srcset="assets/img/social-photo-carrace.webp" type="image/webp"><img src="assets/img/social-photo-carrace.jpg" alt="" width="700" height="352" loading="lazy" decoding="async"></picture>
         <span class="social__play social__play--mobile" aria-hidden="true">
-          <img src="assets/img/social-icon-play.svg" alt="">
+          <img src="assets/img/social-icon-play.svg" alt="" width="14" height="18">
         </span>
       </a>
     </div>
 
     <a class="social__follow social__follow--mobile" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
-      <img class="social__follow-icon" src="assets/img/social-icon-instagram.svg" alt="">
+      <img class="social__follow-icon" src="assets/img/social-icon-instagram.svg" alt="" width="24" height="24">
       <span data-i18n="social.follow">Follow</span>
     </a>
   </section>
@@ -665,7 +699,7 @@
     </div>
 
     <div class="footer__photo">
-      <img class="footer__photo-img" src="assets/img/footer-panorama.png" alt="">
+      <picture><source srcset="assets/img/footer-panorama.webp" type="image/webp"><img class="footer__photo-img" src="assets/img/footer-panorama.png" alt="" width="2103" height="748" loading="lazy" decoding="async"></picture>
       <div class="footer__brand">
         <img class="footer__logo" src="assets/img/footer-logo.svg" data-i18n-alt="brand.logoAlt" alt="Icherisheher — Administration of State Historical-Architectural Reserve" width="101" height="64">
         <p class="footer__copyright" data-i18n="footer.copyright">© 2026 Icharishahar</p>

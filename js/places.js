@@ -3,6 +3,7 @@
 // eyni nümunə — əvvəl öz backend-imiz (icherisheher-api, Railway), alınmasa
 // local data/places.json fallback-ı.
 import { getLang, onLangChange, t } from "./i18n.js";
+import { picture } from "./picture.js";
 
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/places";
 const FALLBACK_URL = "data/places.json";
@@ -139,7 +140,7 @@ function photosMarkup(place, alt) {
 
   const tiles = images.map((src) => `
     <div class="nearby__photo">
-      <img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" width="228" height="136">
+      ${picture(src, `<img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" width="228" height="136">`)}
     </div>
   `).join("");
 

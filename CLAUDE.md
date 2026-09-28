@@ -280,6 +280,28 @@ bölmələr) görünən qalır. Bölmə yalnız uyğun flag **açıq şəkildə 
 olanda gizlədilir. `config.js` `index.html`-də digər bölmə skriptlərindən
 (`js/museums.js` və s.) ƏVVƏL yüklənir.
 
+## Performans və SEO (2026-09-28)
+
+- **Şəkillər:** `assets/img`-dəki hər `.jpg`/`.png`-in yanında eyni adlı `.webp` var
+  (`scripts/build-images.mjs`, `npm i --no-save sharp && node scripts/build-images.mjs`).
+  Orijinal JPG/PNG toxunulmaz fallback kimi qalır. Yeni raster şəkil əlavə edəndə skripti
+  yenidən işlət. İstifadə qaydası:
+  - Statik `<img>` → `<picture><source srcset="….webp" type="image/webp"><img src="….jpg" …></picture>`.
+    `picture { display: contents }` (base.css) sayəsində layout birbaşa `<img>`-ə tətbiq olunur.
+  - JS-lə render olunan kartlar → `js/picture.js`-in `picture(src, imgHtml)` helper-i (yalnız
+    lokal `assets/img/*.jpg|png` yollarını bükür). `.webp` tapılmasa, helper `<source>`-u silib
+    JPG-yə qayıdır.
+  - CSS fonları (hero, AR Time Machine) → `image-set(… type("image/webp"), … type("image/jpeg"))`.
+  - Hero fonu (LCP) `<head>`-də `rel="preload"` ilə yüklənir; aşağıdakı bütün şəkillər
+    `loading="lazy"` + `width`/`height` atributları ilə.
+- **Meta:** description, canonical, Open Graph + Twitter (`assets/img/og-image.jpg`, 1200×630,
+  build skripti ilə hero fotosundan), favicon dəsti (loqodakı öküz başı emblemi, `--c-brand`
+  fonda; `favicon.ico`, `favicon-*.png`, `apple-touch-icon.png`, `android-chrome-*.png`,
+  `site.webmanifest` — hamısı kökdə). Domen dəyişəndə `index.html`-dəki mütləq
+  `og:url`/`og:image`/`canonical` URL-lərini yenilə.
+- **404.html:** GitHub Pages üçün; `<base href="/icherisheher-home/">` ilə işləyir (başqa
+  hosta/alt-qovluğa köçəndə base-i dəyiş). Üslub: `css/404.css`.
+
 ## Design tokens xülasəsi (tam siyahı: css/tokens.css)
 
 - **Rənglər:** brand `#886D46` · orange `#FD6310` · black `#222222` · gray `#818181` · light-gray `#E5E5E5` · page-bg `#F5F4F2` · footer-bg `#E1E1E0`

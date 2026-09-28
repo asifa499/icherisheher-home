@@ -3,6 +3,7 @@
 // əvvəl öz backend-imiz (icherisheher-api, Railway), alınmasa
 // local data/news.json fallback-ı.
 import { getLang, onLangChange } from "./i18n.js";
+import { picture } from "./picture.js";
 
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/news";
 const FALLBACK_URL = "data/news.json";
@@ -34,8 +35,8 @@ function cardMarkup(item) {
   return `
     <a class="resource-card" href="${href}">
       <span class="resource-card__media">
-        <img class="resource-card__photo" src="${escapeHtml(item.image || "")}"
-             alt="${escapeHtml(title)}" loading="lazy" width="212" height="280"${position}>
+        ${picture(item.image, `<img class="resource-card__photo" src="${escapeHtml(item.image || "")}"
+             alt="" loading="lazy" decoding="async" width="212" height="280"${position}>`)}
         <span class="resource-card__tint" aria-hidden="true"></span>
         <span class="resource-card__scrim" aria-hidden="true"></span>
         <span class="resource-card__title">${escapeHtml(title)}</span>

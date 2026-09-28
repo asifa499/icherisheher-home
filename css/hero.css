@@ -27,6 +27,8 @@
   position: absolute;
   inset: 0;
   background: var(--c-surface) url("../assets/img/hero-bg.jpg") center / cover no-repeat;
+  /* WebP (image-set type() dəstəklənməyən brauzerlərdə yuxarıdakı JPG qalır) */
+  background-image: image-set(url("../assets/img/hero-bg.webp") type("image/webp"), url("../assets/img/hero-bg.jpg") type("image/jpeg"));
   z-index: -3;
 }
 

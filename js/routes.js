@@ -4,6 +4,7 @@
 // local data/routes.json fallback-ı. /api/routes endpoint-i hələ
 // yoxdur, ona görə hazırda praktiki olaraq həmişə fallback işləyir.
 import { getLang, onLangChange, t } from "./i18n.js";
+import { picture } from "./picture.js";
 
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/routes";
 const FALLBACK_URL = "data/routes.json";
@@ -48,8 +49,8 @@ function cardMarkup(route) {
 
   return `
     <div class="routes-card__media">
-      <img class="routes-card__photo" src="${escapeHtml(route.image)}" alt="${escapeHtml(title)}"
-           loading="lazy" width="464" height="352">
+      ${picture(route.image, `<img class="routes-card__photo" src="${escapeHtml(route.image)}" alt="${escapeHtml(title)}"
+           loading="lazy" decoding="async" width="464" height="352">`)}
       <div class="routes-card__badges">
         <span class="routes-card__badge">
           <img src="assets/img/route-icon-clock.svg" alt="" width="16" height="16">

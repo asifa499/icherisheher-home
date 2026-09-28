@@ -3,6 +3,7 @@
 // API sorğusu uğursuz olarsa (server yatıb, CORS və s.), avtomatik olaraq
 // local data/museums.json fallback-ına keçilir — səhifə heç vaxt boş qalmır.
 import { getLang, onLangChange, t } from "./i18n.js";
+import { picture } from "./picture.js";
 
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/museums";
 const FALLBACK_URL = "data/museums.json";
@@ -21,7 +22,7 @@ function museumCardMarkup(museum) {
   return `
     <article class="museums-card" data-id="${museum.id}" data-slug="${museum.slug}">
       <div class="museums-card__media">
-        <img class="museums-card__photo" src="${museum.image}" alt="${name}" loading="lazy" width="368" height="354">
+        ${picture(museum.image, `<img class="museums-card__photo" src="${museum.image}" alt="${name}" loading="lazy" decoding="async" width="368" height="354">`)}
         <div class="museums-card__scrim" aria-hidden="true"></div>
         <div class="museums-card__overlay">
           <h3 class="museums-card__title">${name}</h3>

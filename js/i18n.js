@@ -189,6 +189,7 @@ const DICT = {
 
   "social.followers": { en: "followers", az: "izləyici", ru: "подписчиков" },
   "social.follow": { en: "Follow", az: "İzlə", ru: "Подписаться" },
+  "social.photoAria": { en: "View this post on Instagram", az: "Bu paylaşıma Instagram-da bax", ru: "Смотреть публикацию в Instagram" },
 
   "footer.contact": { en: "Contact", az: "Əlaqə", ru: "Контакты" },
   "footer.infoOffices": { en: "Information offices", az: "Məlumat ofisləri", ru: "Информационные офисы" },

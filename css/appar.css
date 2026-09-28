@@ -120,6 +120,8 @@
   border-radius: var(--r-xl);
   overflow: hidden;
   background: var(--c-black) url("../assets/img/appar-tower-bg.jpg") center 62% / cover no-repeat;
+  /* WebP (image-set type() dəstəklənməyən brauzerlərdə yuxarıdakı JPG qalır) */
+  background-image: image-set(url("../assets/img/appar-tower-bg.webp") type("image/webp"), url("../assets/img/appar-tower-bg.jpg") type("image/jpeg"));
   isolation: isolate;
 }
 

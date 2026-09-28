@@ -39,6 +39,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 img, svg, video { display: block; max-width: 100%; }
+/* <picture> yalnız WebP/JPG seçimi üçündür — öz qutusu olmasın ki, layout
+   (flex/grid/absolute) birbaşa <img>-ə tətbiq olunmağa davam etsin. */
+picture { display: contents; }
+picture > source { display: none; } /* əks halda flex/grid-də boş element (+gap) yaradır */
 a { color: inherit; text-decoration: none; }
 button {
   font: inherit; color: inherit; background: none;

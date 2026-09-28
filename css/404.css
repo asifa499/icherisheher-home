@@ -1,0 +1,76 @@
+/* 404.html — GitHub Pages "not found" səhifəsi. Home hero-nun dilini təkrarlayır
+   (foto fon + tünd scrim, ağ loqo, intro__btn--solid üslubunda CTA); yeni dəyər yoxdur,
+   hamısı tokens.css-dən. */
+.nf {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - 2 * var(--page-pad));
+  min-height: calc(100svh - 2 * var(--page-pad));
+  max-width: var(--block-w);
+  margin: var(--page-pad) auto;
+  padding: 32px 40px 56px;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  color: var(--c-white);
+  background: var(--c-black) url("../assets/img/hero-bg.jpg") center / cover no-repeat;
+  background-image: image-set(url("../assets/img/hero-bg.webp") type("image/webp"), url("../assets/img/hero-bg.jpg") type("image/jpeg"));
+}
+.nf::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, var(--c-scrim-a) 0%, var(--c-scrim-b) 100%);
+}
+.nf__logo img { width: 125px; height: 80px; }
+.nf__body { max-width: 640px; }
+.nf__code {
+  font-size: var(--t-lead);
+  line-height: var(--t-lead-lh);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--c-ivory);
+}
+.nf__title {
+  margin-top: 8px;
+  font-size: var(--t-hero);
+  line-height: var(--t-hero-lh);
+  font-weight: 500;
+}
+.nf__text {
+  margin-top: 16px;
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  color: var(--c-ivory);
+}
+.nf__btn {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 32px;
+  padding: 8px 16px;
+  border: 2px solid var(--c-card-ring);
+  border-radius: var(--r-pill);
+  background: var(--c-card-ring);
+  color: var(--c-white);
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  transition: opacity var(--dur) var(--ease);
+}
+.nf__btn:hover { opacity: 0.88; }
+
+@media (max-width: 768px) {
+  .nf {
+    margin: 16px;
+    min-height: calc(100svh - 32px);
+    padding: 24px 16px 40px;
+    border-radius: var(--r-lg);
+  }
+  .nf__logo img { width: 96px; height: 62px; }
+  .nf__title { font-size: var(--t-h3); line-height: var(--t-h3-lh); }
+  .nf__text, .nf__btn { font-size: var(--t-small); line-height: var(--t-small-lh); }
+}
