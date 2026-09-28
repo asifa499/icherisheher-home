@@ -68,7 +68,14 @@ function renderPasses(row, passes) {
   row.removeAttribute("data-state");
 
   const featured = row.querySelector(".pass-card--featured");
-  if (featured) featured.scrollIntoView({ block: "nearest", inline: "center" });
+  // Featured kartı yalnız sıranın ÖZ daxilində (üfüqi) mərkəzləşdir.
+  // scrollIntoView() səhifəni də şaquli sürüşdürürdü — refresh zamanı
+  // istifadəçini öz yerindən aşağı atırdı.
+  if (featured) {
+    const rowBox = row.getBoundingClientRect();
+    const cardBox = featured.getBoundingClientRect();
+    row.scrollLeft += (cardBox.left + cardBox.width / 2) - (rowBox.left + rowBox.width / 2);
+  }
 }
 
 function renderFallback(row) {
