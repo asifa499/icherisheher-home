@@ -2,9 +2,11 @@
 // Data-driven kart render: öz backend-imizdən (icherisheher-api, Railway) çəkilir.
 // API sorğusu uğursuz olarsa (server yatıb, CORS və s.), avtomatik olaraq
 // local data/passes.json fallback-ına keçilir — səhifə heç vaxt boş qalmır.
+import { getLang, onLangChange, t } from "./i18n.js";
+
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/passes";
 const FALLBACK_URL = "data/passes.json";
-const LANG = "en"; // hazırkı dil: EN. Gələcəkdə i18n seçicisindən oxunacaq.
+let LANG = getLang();
 
 // Backend "/adult" kimi bir vahid etiketi qaytarmır (bu, məzmun sahəsi deyil,
 // sabit UI şəkilçisidir) — ona görə client tərəfdə saxlanılır, museums.js-dəki
@@ -54,7 +56,7 @@ function passCardMarkup(pass) {
         ${pass.features.map(featureMarkup).join("")}
       </ul>
       <a class="pass-card__buy" href="${pass.buy_url}">
-        <img src="assets/img/museum-icon-ticket-btn.svg" alt="" width="20" height="20">Buy ${name}
+        <img src="assets/img/museum-icon-ticket-btn.svg" alt="" width="20" height="20">${t("citypass.buy")} ${name}
       </a>
     </article>
   `;
@@ -95,21 +97,27 @@ async function initPasses() {
   const row = document.querySelector("[data-passes-row]");
   if (!row) return;
 
+  let passes;
   try {
     const json = await fetchPasses(API_URL, { cache: "no-store" });
-    const passes = unwrapPassesList(json);
-    renderPasses(row, passes);
+    passes = unwrapPassesList(json);
   } catch (apiErr) {
     console.error("Passes API fetch failed, falling back to local JSON:", apiErr);
     try {
       const json = await fetchPasses(FALLBACK_URL);
-      const passes = unwrapPassesList(json);
-      renderPasses(row, passes);
+      passes = unwrapPassesList(json);
     } catch (fallbackErr) {
       console.error("Passes fallback fetch failed:", fallbackErr);
       renderFallback(row);
+      return;
     }
   }
+
+  renderPasses(row, passes);
+  onLangChange((lang) => {
+    LANG = lang;
+    renderPasses(row, passes);
+  });
 }
 
 document.addEventListener("DOMContentLoaded", initPasses);

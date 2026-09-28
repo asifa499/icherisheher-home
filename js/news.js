@@ -2,9 +2,11 @@
 // Data-driven məqalə bloku: museums.js / routes.js / events.js ilə eyni nümunə —
 // əvvəl öz backend-imiz (icherisheher-api, Railway), alınmasa
 // local data/news.json fallback-ı.
+import { getLang, onLangChange } from "./i18n.js";
+
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/news";
 const FALLBACK_URL = "data/news.json";
-const LANG = "en"; // hazırkı dil: EN. Gələcəkdə i18n seçicisindən oxunacaq.
+let LANG = getLang();
 
 function pickText(field) {
   if (!field) return "";
@@ -96,6 +98,13 @@ function initTabs(tabsEl, trackEl, items) {
 
   const initial = tabs.find((el) => el.getAttribute("aria-selected") === "true") || tabs[0];
   if (initial) select(initial);
+
+  // Dil dəyişəndə aktiv tab-ın siyahısı eyni data ilə yenidən çəkilir.
+  onLangChange((lang) => {
+    LANG = lang;
+    const active = tabs.find((el) => el.getAttribute("aria-selected") === "true") || tabs[0];
+    if (active) select(active);
+  });
 }
 
 async function fetchNews(url, options) {

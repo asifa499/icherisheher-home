@@ -2,9 +2,11 @@
 // Data-driven xəritə bloku: museums.js / routes.js / events.js / news.js ilə
 // eyni nümunə — əvvəl öz backend-imiz (icherisheher-api, Railway), alınmasa
 // local data/places.json fallback-ı.
+import { getLang, onLangChange, t } from "./i18n.js";
+
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/places";
 const FALLBACK_URL = "data/places.json";
-const LANG = "en"; // hazırkı dil: EN. Gələcəkdə i18n seçicisindən oxunacaq.
+let LANG = getLang();
 
 // Xəritə İçərişəhərin ümumi görünüşü (HTML-dəki ilkin <iframe src>-lə eyni) —
 // "All" seçiləndə və ya heç bir hash-place tapılmayanda bura qayıdılır.
@@ -169,12 +171,12 @@ function wirePhotoFallback(cardEl) {
 // sahə yoxdur — ticket_price gələnə qədər həmin yuvada `status` göstərilir.
 function secondFact(place) {
   if (place.ticket_price) {
-    return { label: "Ticket price", value: pickText(place.ticket_price) || place.ticket_price };
+    return { label: t("nearby.ticketPrice"), value: pickText(place.ticket_price) || place.ticket_price };
   }
   const status = String(place.status || "").toLowerCase();
   return {
-    label: "Status",
-    value: status === "open" ? "Open" : status === "closed" ? "Closed" : "—",
+    label: t("nearby.status"),
+    value: status === "open" ? t("nearby.open") : status === "closed" ? t("nearby.closed") : "—",
   };
 }
 
@@ -186,7 +188,7 @@ function cardMarkup(place) {
     <div class="nearby__card-head">
       <div class="nearby__card-top">
         <h3 class="nearby__name">${escapeHtml(name)}</h3>
-        <button class="nearby__close" type="button" data-places-close aria-label="Close">
+        <button class="nearby__close" type="button" data-places-close aria-label="${t("aria.close")}">
           <img src="assets/img/nearby-icon-close.svg" alt="" width="20" height="20">
         </button>
       </div>
@@ -195,7 +197,7 @@ function cardMarkup(place) {
 
     <div class="nearby__meta">
       <div class="nearby__meta-item">
-        <span class="nearby__meta-label">Open hours</span>
+        <span class="nearby__meta-label">${t("nearby.openHours")}</span>
         <span class="nearby__meta-value">${escapeHtml(place.open_hours || "—")}</span>
       </div>
       <div class="nearby__meta-item">
@@ -208,9 +210,9 @@ function cardMarkup(place) {
 
     <div class="nearby__actions">
       <button class="nearby__btn nearby__btn--ghost" type="button">
-        <img src="assets/img/nearby-icon-audio.svg" alt="" width="20" height="20">Audio guide
+        <img src="assets/img/nearby-icon-audio.svg" alt="" width="20" height="20">${t("nearby.audioGuide")}
       </button>
-      <a class="nearby__btn nearby__btn--solid" href="#${escapeHtml(place.slug || "")}">More details</a>
+      <a class="nearby__btn nearby__btn--solid" href="#${escapeHtml(place.slug || "")}">${t("nearby.moreDetails")}</a>
     </div>
   `;
 }
@@ -224,7 +226,7 @@ function closeCard(cardEl) {
 function renderCard(cardEl, place) {
   cardEl.hidden = false;
   if (!place) {
-    cardEl.innerHTML = "<p>No places in this category yet.</p>";
+    cardEl.innerHTML = `<p>${t("nearby.empty")}</p>`;
     cardEl.setAttribute("data-state", "empty");
     return;
   }
@@ -235,7 +237,7 @@ function renderCard(cardEl, place) {
 
 function renderError(cardEl) {
   cardEl.hidden = false;
-  cardEl.innerHTML = "<p>Places could not be loaded right now.</p>";
+  cardEl.innerHTML = `<p>${t("nearby.error")}</p>`;
   cardEl.setAttribute("data-state", "error");
 }
 
@@ -356,6 +358,16 @@ function initChips(chipsEl, cardEl, items) {
     currentSlug = null;
     activateChip(chips.find((el) => el.classList.contains("is-active")) || chips[0]);
   }
+
+  // Dil dəyişəndə açıq kart (real məkan və ya boş vəziyyət mesajı) eyni
+  // data ilə yenidən çəkilir; xəritə naviqasiya edilmir (kateqoriya/məkan
+  // dəyişməyib, sadəcə mətn dili).
+  onLangChange((lang) => {
+    LANG = lang;
+    if (currentSlug == null) return;
+    const place = bySlug.get(currentSlug);
+    renderCard(cardEl, place || null);
+  });
 }
 
 async function fetchPlaces(url, options) {

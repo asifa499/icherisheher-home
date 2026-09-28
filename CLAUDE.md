@@ -142,9 +142,41 @@ Etap 3-dən başlayaraq bölmələr **data-driven**-dir: məzmun HTML-ə hardcod
 
 - **Backend:** öz API-mizi qururuq — repo `icherisheher-api`, Node.js/Express + PostgreSQL, Railway-də host olunur: `icherisheher-api-production.up.railway.app`.
 - **Ödənişlər** kənar sistemdə qalır (client-in mövcud ödəniş provayderi) — frontend yalnız `ticket_url`-a yönləndirir, ödəniş axınını özü idarə etmir.
-- **Trilingual sxem:** mətn sahələri (`name`, `short_description`, `address` və s.) `{ "az": "...", "en": "...", "ru": "..." }` formatındadır. Hazırkı dil sabit `en`-dir (`js/<section>.js` daxilində `LANG` sabiti); real i18n seçicisi gələcək bir etapda əlavə olunacaq.
+- **Trilingual sxem:** mətn sahələri (`name`, `short_description`, `address` və s.) `{ "az": "...", "en": "...", "ru": "..." }` formatındadır. ✅ **2026-09-28 UI dil seçicisi bağlandı:** hər `js/<section>.js`-dəki `LANG` sabiti indi `let`-dir və `js/i18n.js`-in `getLang()`/`onLangChange()`-i ilə idarə olunur (bax aşağıdakı yeni bölmə).
 - **Fallback tələbdir:** `API_URL` `icherisheher-api`-yə (Railway) işarə edir; sorğu uğursuz olarsa (server yatıb, CORS və s.) modul avtomatik olaraq öz `data/<section>.json`-unu (mock/local) çəkir. Hər ikisi də alınmasa səhifə boş qalmır, `data-state="error"` ilə boş vəziyyət göstərilir.
 - **Nümunə:** `data/museums.json` + `js/museums.js` (Etap 3), `data/routes.json` + `js/routes.js` (Etap 4), `data/events.json` + `js/events.js` (Etap 5), `data/news.json` + `js/news.js` (Etap 6), `data/places.json` + `js/places.js` (Etap 7), `data/passes.json` + `js/passes.js` (Etap 8). Yeni data-driven bölmə əlavə edəndə bu nümunəni təkrarla: JSON faylında yuxarıdakı trilingual sxemi saxla, `API_URL`-i `icherisheher-api`-nin uyğun endpoint-inə yönləndir, `FALLBACK_URL`-i local JSON-a saxla.
+
+### Trilingual UI (AZ/EN/RU) — `js/i18n.js`
+
+✅ **2026-09-28 tətbiq edilib.** Statik mətn (nav, hero, başlıqlar, düymələr,
+footer sütunları, alt/aria-label-lar) `js/i18n.js`-dəki `DICT` obyektində
+`{ az, en, ru }` şəklində saxlanılır; `index.html`-dəki elementlər
+`data-i18n="<key>"` (innerHTML) və ya `data-i18n-alt` / `data-i18n-aria-label` /
+`data-i18n-placeholder` (uyğun atribut) ilə işarələnir. İkon+mətn kombinasiyaları
+(çiplər, `.btn-inspire` və s.) mətni ayrıca `<span data-i18n="…">`-də saxlayır ki,
+`innerHTML` təyini ikonu silməsin.
+
+- **Dil seçici:** hero nav-dakı və burger menyu panelindəki iki `[data-lang]`
+  nüsxəsi `js/lang.js` tərəfindən idarə olunur — hər ikisi `js/i18n.js`-in
+  `getLang()`/`setLang()`-inə bağlıdır, ona görə biri ilə dəyişəndə digəri də
+  avtomatik sinxronlaşır (`onLangChange` callback-i ilə). RU seçimi flag 🇷🇺
+  ilə hər iki dropdown-a əlavə olunub.
+- **Seçim yadda saxlanılır:** `localStorage["ich-lang"]`, defolt `en`. Hər dəyişiklikdə
+  `<html lang>` də yenilənir.
+- **Data-driven bölmələr** (museums/routes/events/news/places/passes):
+  `js/<section>.js`-dəki `LANG` sabiti indi `let`-dir, modul `js/i18n.js`-dən
+  `getLang()` ilə başlanğıc dəyəri oxuyur və `onLangChange()` ilə abunə olub
+  ARTIQ ÇƏKİLMİŞ data-nı (API-yə təkrar sorğu getmədən) yeni dildə yenidən
+  render edir; aktiv seçim vəziyyəti (aktiv çip/tab/kart) qorunur. JS
+  şablonlarındakı sabit düymə/etiket mətnləri (məs. "Get a ticket", "Open hours")
+  həmin modulda `t("<key>")` ilə `js/i18n.js`-in lüğətindən çəkilir.
+- **Şrift:** Vela Sans-ın hər üç faylı (Regular/Medium/SemiBold) Azərbaycan
+  xüsusi hərflərini (ə, ş, ç, ö, ü, ğ, ı) və kiril əlifbasını tam əhatə edir
+  (fontTools `getBestCmap()` ilə yoxlanılıb, 2026-09-28) — fallback lazım deyil.
+- **YOXLA (Asifin nəzərdən keçirməsi lazımdır):** `js/i18n.js`-dəki
+  `footer.address` (küçə adının rəsmi RU transliterasiyası) və
+  `footer.copyright` (EN mətni orijinal "Icharishahar" yazılışını olduğu kimi
+  saxlayır) açarları — DICT-də "// YOXLA:" şərhi ilə işarələnib.
 
 ### Xəritə (Etap 7)
 

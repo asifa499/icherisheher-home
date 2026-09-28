@@ -3,9 +3,11 @@
 // əvvəl öz backend-imiz (icherisheher-api, Railway), alınmasa
 // local data/routes.json fallback-ı. /api/routes endpoint-i hələ
 // yoxdur, ona görə hazırda praktiki olaraq həmişə fallback işləyir.
+import { getLang, onLangChange, t } from "./i18n.js";
+
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/routes";
 const FALLBACK_URL = "data/routes.json";
-const LANG = "en"; // hazırkı dil: EN. Gələcəkdə i18n seçicisindən oxunacaq.
+let LANG = getLang();
 
 function pickText(field) {
   if (!field) return "";
@@ -65,7 +67,7 @@ function cardMarkup(route) {
       </ol>
       <a class="routes-card__cta" href="${escapeHtml(route.pass_url || "#")}">
         <img src="assets/img/route-icon-pass.svg" alt="" width="20" height="20">
-        Get a Pass
+        ${t("routes.getPass")}
       </a>
     </div>
   `;
@@ -131,6 +133,12 @@ async function initRoutes() {
     const chip = event.target.closest("[data-route-slug]");
     if (!chip || chip.classList.contains("is-active")) return;
     renderRoutes(chipsEl, cardEl, routes, chip.dataset.routeSlug);
+  });
+
+  // Dil dəyişəndə eyni data ilə yenidən çəkir, aktiv marşrutu saxlayır.
+  onLangChange((lang) => {
+    LANG = lang;
+    renderRoutes(chipsEl, cardEl, routes, cardEl.dataset.activeSlug);
   });
 }
 

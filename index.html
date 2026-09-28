@@ -40,21 +40,21 @@
       <header class="hero__nav container">
         <div class="hero__nav-start">
           <a class="hero__logo" href="#" aria-label="Icherisheher">
-            <img src="assets/img/hero-logo.svg" alt="Icherisheher — Administration of State Historical-Architectural Reserve" width="125" height="80">
+            <img src="assets/img/hero-logo.svg" data-i18n-alt="brand.logoAlt" alt="Icherisheher — Administration of State Historical-Architectural Reserve" width="125" height="80">
           </a>
 
-          <nav class="hero__links" aria-label="Primary">
-            <button class="hero__link" type="button">Explore<img class="hero__chevron" src="assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
-            <button class="hero__link" type="button">Things to do<img class="hero__chevron" src="assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
-            <button class="hero__link" type="button">Eat and sleep<img class="hero__chevron" src="assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
-            <button class="hero__link" type="button">What's on<img class="hero__chevron" src="assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
-            <button class="hero__link" type="button">Visitor Information<img class="hero__chevron" src="assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
+          <nav class="hero__links" data-i18n-aria-label="aria.primary" aria-label="Primary">
+            <button class="hero__link" type="button"><span data-i18n="nav.explore">Explore</span><img class="hero__chevron" src="assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
+            <button class="hero__link" type="button"><span data-i18n="nav.thingsToDo">Things to do</span><img class="hero__chevron" src="assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
+            <button class="hero__link" type="button"><span data-i18n="nav.eatSleep">Eat and sleep</span><img class="hero__chevron" src="assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
+            <button class="hero__link" type="button"><span data-i18n="nav.whatsOn">What's on</span><img class="hero__chevron" src="assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
+            <button class="hero__link" type="button"><span data-i18n="nav.visitorInfo">Visitor Information</span><img class="hero__chevron" src="assets/img/hero-icon-chevron-down.svg" alt="" width="16" height="16"></button>
           </nav>
         </div>
 
         <div class="hero__actions">
-          <!-- Dil seçici (Figma: 1641:11027, açıq vəziyyət 1641:12311). Hazırda yalnız UI —
-               real i18n tərcüməsi hələ bağlanmayıb (bax CLAUDE.md, API inteqrasiyası). -->
+          <!-- Dil seçici (Figma: 1641:11027, açıq vəziyyət 1641:12311). js/i18n.js + js/lang.js
+               ilə bağlanıb (bax CLAUDE.md, API inteqrasiyası). -->
           <div class="hero__lang-wrap" data-lang>
             <button class="hero__lang" type="button" data-lang-trigger aria-haspopup="listbox" aria-expanded="false">
               <span class="hero__flag" aria-hidden="true" data-lang-current-flag>🇬🇧</span>
@@ -70,38 +70,42 @@
                 <span class="hero__lang-option-label"><span class="hero__flag" aria-hidden="true">🇦🇿</span>AZ</span>
                 <img class="hero__lang-check" src="assets/img/hero-icon-check.svg" alt="" width="12" height="12">
               </button>
+              <button class="hero__lang-option" type="button" role="option" aria-selected="false" data-lang-code="RU" data-lang-flag="🇷🇺">
+                <span class="hero__lang-option-label"><span class="hero__flag" aria-hidden="true">🇷🇺</span>RU</span>
+                <img class="hero__lang-check" src="assets/img/hero-icon-check.svg" alt="" width="12" height="12">
+              </button>
             </div>
           </div>
-          <a class="hero__icon-btn" href="#" aria-label="WhatsApp">
+          <a class="hero__icon-btn" href="#" data-i18n-aria-label="aria.whatsapp" aria-label="WhatsApp">
             <img src="assets/img/hero-icon-whatsapp.svg" alt="" width="16" height="16">
           </a>
-          <button class="hero__icon-btn" type="button" aria-label="Search">
+          <button class="hero__icon-btn" type="button" data-i18n-aria-label="aria.search" aria-label="Search">
             <img src="assets/img/hero-icon-search.svg" alt="" width="16" height="16">
           </button>
-          <button class="hero__icon-btn" type="button" aria-label="Menu" data-nav-menu-trigger aria-haspopup="dialog" aria-expanded="false" aria-controls="nav-menu">
+          <button class="hero__icon-btn" type="button" data-i18n-aria-label="aria.menu" aria-label="Menu" data-nav-menu-trigger aria-haspopup="dialog" aria-expanded="false" aria-controls="nav-menu">
             <img src="assets/img/hero-icon-menu.svg" alt="" width="16" height="16">
           </button>
         </div>
       </header>
 
-      <h1 class="hero__title">Discover Icherisheher</h1>
+      <h1 class="hero__title" data-i18n="hero.title">Discover Icherisheher</h1>
     </div>
 
     <div class="hero__explore container" data-figma="1615:3171">
       <div class="hero__explore-main">
-        <p class="hero__explore-heading">What would you<br>like to explore?</p>
+        <p class="hero__explore-heading" data-i18n="hero.exploreHeading">What would you<br>like to explore?</p>
         <div class="hero__chips">
-          <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-tour.svg" alt="" width="14" height="18">Get your tour</button>
-          <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-city-pass.svg" alt="" width="19" height="19">City Pass</button>
-          <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-digimap.svg" alt="" width="17" height="17">Digi map</button>
-          <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-audioguide.svg" alt="" width="20" height="20">AI Audio guide</button>
-          <button class="chip" type="button">+4</button>
+          <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-tour.svg" alt="" width="14" height="18"><span data-i18n="hero.chip.tour">Get your tour</span></button>
+          <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-city-pass.svg" alt="" width="19" height="19"><span data-i18n="hero.chip.citypass">City Pass</span></button>
+          <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-digimap.svg" alt="" width="17" height="17"><span data-i18n="hero.chip.digimap">Digi map</span></button>
+          <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-audioguide.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.audioguide">AI Audio guide</span></button>
+          <button class="chip" type="button"><span data-i18n="hero.chip.more">+4</span></button>
         </div>
       </div>
       <div class="hero__explore-divider" aria-hidden="true"></div>
       <div class="hero__explore-aside">
-        <p class="hero__explore-aside-text">You have no idea what<br>to do in Icherisheher?</p>
-        <button class="btn-inspire" type="button"><img src="assets/img/hero-icon-sparkle.svg" alt="" width="24" height="24">Inspire me please!</button>
+        <p class="hero__explore-aside-text" data-i18n="hero.asideText">You have no idea what<br>to do in Icherisheher?</p>
+        <button class="btn-inspire" type="button"><img src="assets/img/hero-icon-sparkle.svg" alt="" width="24" height="24"><span data-i18n="hero.inspire">Inspire me please!</span></button>
       </div>
     </div>
 
@@ -109,18 +113,18 @@
     <div class="nav-menu" id="nav-menu" data-nav-menu hidden data-figma="1627:4777">
       <div class="nav-menu__scrim" data-nav-menu-close aria-hidden="true"></div>
 
-      <div class="nav-menu__panel block" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="nav-menu__panel block" role="dialog" aria-modal="true" data-i18n-aria-label="aria.menu" aria-label="Menu">
         <div class="nav-menu__topbar">
           <a class="nav-menu__logo" href="#" aria-label="Icherisheher">
-            <img src="assets/img/hero-logo-dark.svg" alt="Icherisheher — Administration of State Historical-Architectural Reserve" width="115" height="80">
+            <img src="assets/img/hero-logo-dark.svg" data-i18n-alt="brand.logoAlt" alt="Icherisheher — Administration of State Historical-Architectural Reserve" width="115" height="80">
           </a>
 
-          <nav class="nav-menu__toplinks" aria-label="Primary">
-            <span class="nav-menu__toplink">Explore</span>
-            <span class="nav-menu__toplink">Things to do</span>
-            <span class="nav-menu__toplink">Eat and sleep</span>
-            <span class="nav-menu__toplink">What's on</span>
-            <span class="nav-menu__toplink">Visitor Information</span>
+          <nav class="nav-menu__toplinks" data-i18n-aria-label="aria.primary" aria-label="Primary">
+            <span class="nav-menu__toplink" data-i18n="nav.explore">Explore</span>
+            <span class="nav-menu__toplink" data-i18n="nav.thingsToDo">Things to do</span>
+            <span class="nav-menu__toplink" data-i18n="nav.eatSleep">Eat and sleep</span>
+            <span class="nav-menu__toplink" data-i18n="nav.whatsOn">What's on</span>
+            <span class="nav-menu__toplink" data-i18n="nav.visitorInfo">Visitor Information</span>
           </nav>
 
           <div class="nav-menu__actions">
@@ -139,15 +143,19 @@
                   <span class="hero__lang-option-label"><span class="hero__flag" aria-hidden="true">🇦🇿</span>AZ</span>
                   <img class="hero__lang-check" src="assets/img/hero-icon-check.svg" alt="" width="12" height="12">
                 </button>
+                <button class="hero__lang-option" type="button" role="option" aria-selected="false" data-lang-code="RU" data-lang-flag="🇷🇺">
+                  <span class="hero__lang-option-label"><span class="hero__flag" aria-hidden="true">🇷🇺</span>RU</span>
+                  <img class="hero__lang-check" src="assets/img/hero-icon-check.svg" alt="" width="12" height="12">
+                </button>
               </div>
             </div>
-            <a class="nav-menu__icon-btn" href="#" aria-label="WhatsApp">
+            <a class="nav-menu__icon-btn" href="#" data-i18n-aria-label="aria.whatsapp" aria-label="WhatsApp">
               <img src="assets/img/hero-icon-whatsapp-dark.svg" alt="" width="16" height="16">
             </a>
-            <button class="nav-menu__icon-btn" type="button" aria-label="Search">
+            <button class="nav-menu__icon-btn" type="button" data-i18n-aria-label="aria.search" aria-label="Search">
               <img src="assets/img/hero-icon-search-dark.svg" alt="" width="16" height="16">
             </button>
-            <button class="nav-menu__icon-btn" type="button" aria-label="Close menu" data-nav-menu-close>
+            <button class="nav-menu__icon-btn" type="button" data-i18n-aria-label="aria.closeMenu" aria-label="Close menu" data-nav-menu-close>
               <img src="assets/img/hero-icon-close.svg" alt="" width="16" height="16">
             </button>
           </div>
@@ -157,75 +165,75 @@
         <div class="nav-menu__accordion">
           <div class="nav-menu__accordion-item">
             <button class="nav-menu__accordion-row" type="button" data-accordion-trigger aria-expanded="false">
-              <span>Explore</span>
+              <span data-i18n="nav.explore">Explore</span>
               <img class="nav-menu__accordion-chevron" src="assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16">
             </button>
             <ul class="nav-menu__accordion-panel" hidden>
-              <li>About Icherisheher</li>
-              <li>History</li>
-              <li>Top Sights</li>
-              <li>Culture &amp; Heritage</li>
-              <li>Museums &amp; Galleries</li>
-              <li>Architecture</li>
-              <li>Stories &amp; Legends</li>
+              <li data-i18n="col.aboutIcherisheher">About Icherisheher</li>
+              <li data-i18n="col.history">History</li>
+              <li data-i18n="col.topSights">Top Sights</li>
+              <li data-i18n="col.cultureHeritage">Culture &amp; Heritage</li>
+              <li data-i18n="col.museumsGalleries">Museums &amp; Galleries</li>
+              <li data-i18n="col.architecture">Architecture</li>
+              <li data-i18n="col.storiesLegends">Stories &amp; Legends</li>
             </ul>
           </div>
           <div class="nav-menu__accordion-item">
             <button class="nav-menu__accordion-row" type="button" data-accordion-trigger aria-expanded="false">
-              <span>Things to do</span>
+              <span data-i18n="nav.thingsToDo">Things to do</span>
               <img class="nav-menu__accordion-chevron" src="assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16">
             </button>
             <ul class="nav-menu__accordion-panel" hidden>
-              <li>Tours</li>
-              <li>Experiences</li>
-              <li>Shopping</li>
-              <li>Arts &amp; Crafts</li>
-              <li>Photography Spots</li>
-              <li>Family Activities</li>
-              <li>Explore Nearby</li>
+              <li data-i18n="col.tours">Tours</li>
+              <li data-i18n="col.experiences">Experiences</li>
+              <li data-i18n="col.shopping">Shopping</li>
+              <li data-i18n="col.artsCrafts">Arts &amp; Crafts</li>
+              <li data-i18n="col.photographySpots">Photography Spots</li>
+              <li data-i18n="col.familyActivities">Family Activities</li>
+              <li data-i18n="col.exploreNearby">Explore Nearby</li>
             </ul>
           </div>
           <div class="nav-menu__accordion-item">
             <button class="nav-menu__accordion-row" type="button" data-accordion-trigger aria-expanded="false">
-              <span>Eat and sleep</span>
+              <span data-i18n="nav.eatSleep">Eat and sleep</span>
               <img class="nav-menu__accordion-chevron" src="assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16">
             </button>
             <ul class="nav-menu__accordion-panel" hidden>
-              <li>Restaurants</li>
-              <li>Cafés</li>
-              <li>Traditional Cuisine</li>
-              <li>Rooftops &amp; Terraces</li>
-              <li>Hotels</li>
-              <li>Boutique Stays</li>
+              <li data-i18n="col.restaurants">Restaurants</li>
+              <li data-i18n="col.cafes">Cafés</li>
+              <li data-i18n="col.traditionalCuisine">Traditional Cuisine</li>
+              <li data-i18n="col.rooftopsTerraces">Rooftops &amp; Terraces</li>
+              <li data-i18n="col.hotels">Hotels</li>
+              <li data-i18n="col.boutiqueStays">Boutique Stays</li>
             </ul>
           </div>
           <div class="nav-menu__accordion-item">
             <button class="nav-menu__accordion-row" type="button" data-accordion-trigger aria-expanded="false">
-              <span>What's on</span>
+              <span data-i18n="nav.whatsOn">What's on</span>
               <img class="nav-menu__accordion-chevron" src="assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16">
             </button>
             <ul class="nav-menu__accordion-panel" hidden>
-              <li>Events Calendar</li>
-              <li>Exhibitions</li>
-              <li>Festivals</li>
-              <li>Concerts</li>
-              <li>Workshops</li>
-              <li>This Week</li>
+              <li data-i18n="col.eventsCalendar">Events Calendar</li>
+              <li data-i18n="col.exhibitions">Exhibitions</li>
+              <li data-i18n="col.festivals">Festivals</li>
+              <li data-i18n="col.concerts">Concerts</li>
+              <li data-i18n="col.workshops">Workshops</li>
+              <li data-i18n="col.thisWeek">This Week</li>
             </ul>
           </div>
           <div class="nav-menu__accordion-item">
             <button class="nav-menu__accordion-row" type="button" data-accordion-trigger aria-expanded="false">
-              <span>Visitor Information</span>
+              <span data-i18n="nav.visitorInfo">Visitor Information</span>
               <img class="nav-menu__accordion-chevron" src="assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16">
             </button>
             <ul class="nav-menu__accordion-panel" hidden>
-              <li>Getting Here</li>
-              <li>Getting Around</li>
-              <li>Tickets &amp; Prices</li>
-              <li>Visitor Information</li>
-              <li>Accessibility</li>
-              <li>Maps &amp; Guides</li>
-              <li>FAQ</li>
+              <li data-i18n="col.gettingHere">Getting Here</li>
+              <li data-i18n="col.gettingAround">Getting Around</li>
+              <li data-i18n="col.ticketsPrices">Tickets &amp; Prices</li>
+              <li data-i18n="nav.visitorInfo">Visitor Information</li>
+              <li data-i18n="col.accessibility">Accessibility</li>
+              <li data-i18n="col.mapsGuides">Maps &amp; Guides</li>
+              <li data-i18n="col.faq">FAQ</li>
             </ul>
           </div>
         </div>
@@ -233,61 +241,61 @@
         <!-- Sitemap (yalnız web, >768px) -->
         <div class="nav-menu__sitemap">
           <div class="nav-menu__col">
-            <p class="nav-menu__col-title">Explore</p>
+            <p class="nav-menu__col-title" data-i18n="nav.explore">Explore</p>
             <ul class="nav-menu__col-list">
-              <li>About Icherisheher</li>
-              <li>History</li>
-              <li>Top Sights</li>
-              <li>Culture &amp; Heritage</li>
-              <li>Museums &amp; Galleries</li>
-              <li>Architecture</li>
-              <li>Stories &amp; Legends</li>
+              <li data-i18n="col.aboutIcherisheher">About Icherisheher</li>
+              <li data-i18n="col.history">History</li>
+              <li data-i18n="col.topSights">Top Sights</li>
+              <li data-i18n="col.cultureHeritage">Culture &amp; Heritage</li>
+              <li data-i18n="col.museumsGalleries">Museums &amp; Galleries</li>
+              <li data-i18n="col.architecture">Architecture</li>
+              <li data-i18n="col.storiesLegends">Stories &amp; Legends</li>
             </ul>
           </div>
           <div class="nav-menu__col">
-            <p class="nav-menu__col-title">Things to do</p>
+            <p class="nav-menu__col-title" data-i18n="nav.thingsToDo">Things to do</p>
             <ul class="nav-menu__col-list">
-              <li>Tours</li>
-              <li>Experiences</li>
-              <li>Shopping</li>
-              <li>Arts &amp; Crafts</li>
-              <li>Photography Spots</li>
-              <li>Family Activities</li>
-              <li>Explore Nearby</li>
+              <li data-i18n="col.tours">Tours</li>
+              <li data-i18n="col.experiences">Experiences</li>
+              <li data-i18n="col.shopping">Shopping</li>
+              <li data-i18n="col.artsCrafts">Arts &amp; Crafts</li>
+              <li data-i18n="col.photographySpots">Photography Spots</li>
+              <li data-i18n="col.familyActivities">Family Activities</li>
+              <li data-i18n="col.exploreNearby">Explore Nearby</li>
             </ul>
           </div>
           <div class="nav-menu__col">
-            <p class="nav-menu__col-title">What's on</p>
+            <p class="nav-menu__col-title" data-i18n="nav.whatsOn">What's on</p>
             <ul class="nav-menu__col-list">
-              <li>Events Calendar</li>
-              <li>Exhibitions</li>
-              <li>Festivals</li>
-              <li>Concerts</li>
-              <li>Workshops</li>
-              <li>This Week</li>
+              <li data-i18n="col.eventsCalendar">Events Calendar</li>
+              <li data-i18n="col.exhibitions">Exhibitions</li>
+              <li data-i18n="col.festivals">Festivals</li>
+              <li data-i18n="col.concerts">Concerts</li>
+              <li data-i18n="col.workshops">Workshops</li>
+              <li data-i18n="col.thisWeek">This Week</li>
             </ul>
           </div>
           <div class="nav-menu__col">
-            <p class="nav-menu__col-title">Eat and sleep</p>
+            <p class="nav-menu__col-title" data-i18n="nav.eatSleep">Eat and sleep</p>
             <ul class="nav-menu__col-list">
-              <li>Restaurants</li>
-              <li>Cafés</li>
-              <li>Traditional Cuisine</li>
-              <li>Rooftops &amp; Terraces</li>
-              <li>Hotels</li>
-              <li>Boutique Stays</li>
+              <li data-i18n="col.restaurants">Restaurants</li>
+              <li data-i18n="col.cafes">Cafés</li>
+              <li data-i18n="col.traditionalCuisine">Traditional Cuisine</li>
+              <li data-i18n="col.rooftopsTerraces">Rooftops &amp; Terraces</li>
+              <li data-i18n="col.hotels">Hotels</li>
+              <li data-i18n="col.boutiqueStays">Boutique Stays</li>
             </ul>
           </div>
           <div class="nav-menu__col">
-            <p class="nav-menu__col-title">Visitor Information</p>
+            <p class="nav-menu__col-title" data-i18n="nav.visitorInfo">Visitor Information</p>
             <ul class="nav-menu__col-list">
-              <li>Getting Here</li>
-              <li>Getting Around</li>
-              <li>Tickets &amp; Prices</li>
-              <li>Visitor Information</li>
-              <li>Accessibility</li>
-              <li>Maps &amp; Guides</li>
-              <li>FAQ</li>
+              <li data-i18n="col.gettingHere">Getting Here</li>
+              <li data-i18n="col.gettingAround">Getting Around</li>
+              <li data-i18n="col.ticketsPrices">Tickets &amp; Prices</li>
+              <li data-i18n="nav.visitorInfo">Visitor Information</li>
+              <li data-i18n="col.accessibility">Accessibility</li>
+              <li data-i18n="col.mapsGuides">Maps &amp; Guides</li>
+              <li data-i18n="col.faq">FAQ</li>
             </ul>
           </div>
         </div>
@@ -301,27 +309,27 @@
             <a class="nav-menu__tile" href="#">
               <img class="nav-menu__tile-photo" src="assets/img/hero-menu-tile-popular-stays.jpg" alt="">
               <span class="nav-menu__tile-scrim" aria-hidden="true"></span>
-              <span class="nav-menu__tile-label">Popular stays</span>
+              <span class="nav-menu__tile-label" data-i18n="menu.tile.popularStays">Popular stays</span>
             </a>
             <a class="nav-menu__tile" href="#">
               <img class="nav-menu__tile-photo" src="assets/img/hero-menu-tile-happening-today.jpg" alt="">
               <span class="nav-menu__tile-scrim" aria-hidden="true"></span>
-              <span class="nav-menu__tile-label">Happening today</span>
+              <span class="nav-menu__tile-label" data-i18n="menu.tile.happeningToday">Happening today</span>
             </a>
             <a class="nav-menu__tile" href="#">
               <img class="nav-menu__tile-photo" src="assets/img/hero-menu-tile-best-restaurants.jpg" alt="">
               <span class="nav-menu__tile-scrim" aria-hidden="true"></span>
-              <span class="nav-menu__tile-label">Best restaurants</span>
+              <span class="nav-menu__tile-label" data-i18n="menu.tile.bestRestaurants">Best restaurants</span>
             </a>
             <a class="nav-menu__tile" href="#">
               <img class="nav-menu__tile-photo" src="assets/img/hero-menu-tile-hidden-gems.jpg" alt="">
               <span class="nav-menu__tile-scrim" aria-hidden="true"></span>
-              <span class="nav-menu__tile-label">Hidden gems</span>
+              <span class="nav-menu__tile-label" data-i18n="menu.tile.hiddenGems">Hidden gems</span>
             </a>
           </div>
           <div class="nav-menu__cta">
-            <p class="nav-menu__cta-text">Still no idea what<br>to do in Icheriseher?</p>
-            <button class="btn-inspire nav-menu__cta-btn" type="button"><img src="assets/img/hero-icon-sparkle.svg" alt="" width="24" height="24">Inspire me please!</button>
+            <p class="nav-menu__cta-text" data-i18n="menu.ctaText">Still no idea what<br>to do in Icheriseher?</p>
+            <button class="btn-inspire nav-menu__cta-btn" type="button"><img src="assets/img/hero-icon-sparkle.svg" alt="" width="24" height="24"><span data-i18n="hero.inspire">Inspire me please!</span></button>
           </div>
         </div>
       </div>
@@ -331,24 +339,24 @@
   <!-- ETAP 2 · UNESCO intro + foto kollaj · Figma: 1615:3596 (əvvəlki: 1523:5620) -->
   <section id="intro" class="intro-section" data-figma="1615:3596">
     <div class="intro__top container">
-      <p class="intro__eyebrow">Where History Still Lives</p>
-      <p class="intro__lead">Icherisheher is Baku&rsquo;s historic heart, surrounded by ancient walls and listed as a UNESCO World Heritage Site since 2000. <span class="intro__lead-muted">Home to landmarks like the Maiden Tower and Shirvanshah&rsquo;s Palace, the Old City remains a living neighborhood with more than 3,000 residents.</span></p>
+      <p class="intro__eyebrow" data-i18n="intro.eyebrow">Where History Still Lives</p>
+      <p class="intro__lead"><span data-i18n="intro.lead">Icherisheher is Baku&rsquo;s historic heart, surrounded by ancient walls and listed as a UNESCO World Heritage Site since 2000.</span> <span class="intro__lead-muted" data-i18n="intro.leadMuted">Home to landmarks like the Maiden Tower and Shirvanshah&rsquo;s Palace, the Old City remains a living neighborhood with more than 3,000 residents.</span></p>
       <div class="intro__ctas">
         <button class="intro__btn intro__btn--outline" type="button">
-          <img src="assets/img/hero-chip-city-pass.svg" alt="" width="20" height="20">City Pass
+          <img src="assets/img/hero-chip-city-pass.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.citypass">City Pass</span>
         </button>
-        <button class="intro__btn intro__btn--solid" type="button">Explore now</button>
+        <button class="intro__btn intro__btn--solid" type="button" data-i18n="intro.exploreNow">Explore now</button>
       </div>
     </div>
     <div class="intro__collage-wrap">
       <div class="intro__collage">
         <div class="intro__collage-track">
-          <img class="intro__photo intro__photo--statue" src="assets/img/intro-statue.jpg" alt="Historic monument in the Old City" width="205" height="204">
-          <img class="intro__photo intro__photo--tower" src="assets/img/intro-tower.jpg" alt="Maiden Tower at golden hour" width="245" height="327">
-          <img class="intro__photo intro__photo--instruments" src="assets/img/intro-instruments.jpg" alt="Traditional Azerbaijani musical instruments on display" width="272" height="280">
-          <img class="intro__photo intro__photo--dress" src="assets/img/intro-dress.jpg" alt="Traditional Azerbaijani dress on a mannequin" width="272" height="407">
-          <img class="intro__photo intro__photo--carpets" src="assets/img/intro-carpets.jpg" alt="Carpets displayed in an Old City courtyard" width="367" height="245">
-          <img class="intro__photo intro__photo--tourists" src="assets/img/intro-tourists.jpg" alt="Visitors exploring the Old City" width="231" height="308">
+          <img class="intro__photo intro__photo--statue" src="assets/img/intro-statue.jpg" data-i18n-alt="intro.photoAlt.statue" alt="Historic monument in the Old City" width="205" height="204">
+          <img class="intro__photo intro__photo--tower" src="assets/img/intro-tower.jpg" data-i18n-alt="intro.photoAlt.tower" alt="Maiden Tower at golden hour" width="245" height="327">
+          <img class="intro__photo intro__photo--instruments" src="assets/img/intro-instruments.jpg" data-i18n-alt="intro.photoAlt.instruments" alt="Traditional Azerbaijani musical instruments on display" width="272" height="280">
+          <img class="intro__photo intro__photo--dress" src="assets/img/intro-dress.jpg" data-i18n-alt="intro.photoAlt.dress" alt="Traditional Azerbaijani dress on a mannequin" width="272" height="407">
+          <img class="intro__photo intro__photo--carpets" src="assets/img/intro-carpets.jpg" data-i18n-alt="intro.photoAlt.carpets" alt="Carpets displayed in an Old City courtyard" width="367" height="245">
+          <img class="intro__photo intro__photo--tourists" src="assets/img/intro-tourists.jpg" data-i18n-alt="intro.photoAlt.tourists" alt="Visitors exploring the Old City" width="231" height="308">
         </div>
         <div class="intro__collage-track" aria-hidden="true">
           <img class="intro__photo intro__photo--statue" src="assets/img/intro-statue.jpg" alt="" width="205" height="204">
@@ -365,8 +373,8 @@
   <!-- ETAP 3 · Museums of Icherisheher & Gala · Figma: 1615:3450 (əvvəlki: 1523:5419)
        Kartlar data/museums.json-dan js/museums.js ilə render olunur (bax: API integration, CLAUDE.md). -->
   <section id="museums" class="museums-section container" data-figma="1615:3450">
-    <h2 class="museums__title">Museums of Icherisheher &amp; Gala</h2>
-    <a class="museums__view-all" href="#">View all museums</a>
+    <h2 class="museums__title" data-i18n="museums.title">Museums of Icherisheher &amp; Gala</h2>
+    <a class="museums__view-all" href="#" data-i18n="museums.viewAll">View all museums</a>
     <div class="museums__row" data-museums-row aria-live="polite"></div>
   </section>
 
@@ -374,19 +382,19 @@
        Çiplər və marşrut kartı data/routes.json-dan js/routes.js ilə render olunur. -->
   <section id="routes" class="routes-section container" data-figma="1615:3089">
     <div class="routes__intro">
-      <h2 class="routes__title">Ready-made routes,<br class="routes__br"> made for the time you have.</h2>
-      <p class="routes__lead">Pick how you travel and follow a mapped route through the Old City - every stop links to tickets, hours and directions.</p>
+      <h2 class="routes__title" data-i18n="routes.title">Ready-made routes,<br class="routes__br"> made for the time you have.</h2>
+      <p class="routes__lead" data-i18n="routes.lead">Pick how you travel and follow a mapped route through the Old City - every stop links to tickets, hours and directions.</p>
     </div>
-    <div class="routes__chips" data-routes-chips role="group" aria-label="Route filters"></div>
-    <a class="routes__all" href="#">All tours</a>
+    <div class="routes__chips" data-routes-chips role="group" data-i18n-aria-label="aria.routeFilters" aria-label="Route filters"></div>
+    <a class="routes__all" href="#" data-i18n="routes.allTours">All tours</a>
     <div class="routes__card" data-routes-card aria-live="polite"></div>
   </section>
 
   <!-- ETAP 5 · This season in the Old City · Figma: 1615:3017 (əvvəlki: 1523:4992)
        Tədbir kartları data/events.json-dan js/events.js ilə render olunur. -->
   <section id="season" class="season-section container" data-figma="1615:3017">
-    <h2 class="season__title">This season in the Old City</h2>
-    <a class="season__calendar" href="#">Full events calendar</a>
+    <h2 class="season__title" data-i18n="season.title">This season in the Old City</h2>
+    <a class="season__calendar" href="#" data-i18n="season.calendar">Full events calendar</a>
     <div class="season__grid" data-events-grid aria-live="polite"></div>
   </section>
 
@@ -395,15 +403,15 @@
        Kartlar data/news.json-dan js/news.js ilə render olunur; tab dəyişəndə
        yalnız uyğun "type" (review / news / announcement) göstərilir. -->
   <section id="resources" class="resources-section container" data-figma="1615:3675">
-    <h2 class="resources__title">Resources</h2>
+    <h2 class="resources__title" data-i18n="resources.title">Resources</h2>
 
-    <div class="resources__tabs" data-resources-tabs role="tablist" aria-label="Resources">
+    <div class="resources__tabs" data-resources-tabs role="tablist" data-i18n-aria-label="resources.title" aria-label="Resources">
       <button class="resources__tab" type="button" role="tab" id="resources-tab-review"
-              data-resources-tab="review" aria-controls="resources-panel" aria-selected="true">The Stories</button>
+              data-resources-tab="review" aria-controls="resources-panel" aria-selected="true" data-i18n="resources.tab.stories">The Stories</button>
       <button class="resources__tab" type="button" role="tab" id="resources-tab-news"
-              data-resources-tab="news" aria-controls="resources-panel" aria-selected="false">News</button>
+              data-resources-tab="news" aria-controls="resources-panel" aria-selected="false" data-i18n="resources.tab.news">News</button>
       <button class="resources__tab" type="button" role="tab" id="resources-tab-announcement"
-              data-resources-tab="announcement" aria-controls="resources-panel" aria-selected="false">Announcements</button>
+              data-resources-tab="announcement" aria-controls="resources-panel" aria-selected="false" data-i18n="resources.tab.announcements">Announcements</button>
     </div>
 
     <div class="resources__track" id="resources-panel" data-resources-track
@@ -419,23 +427,23 @@
        js/places.js-dəki CATEGORY_BY_DB / PLACE_CATEGORY_OVERRIDES
        cədvəllərində açıq şəkildə edilir — bax orada olan izahat. -->
   <section id="nearby" class="nearby-section block" data-figma="1615:3617">
-    <div class="nearby__map" data-places-map aria-label="Map of Icherisheher">
+    <div class="nearby__map" data-places-map data-i18n-aria-label="aria.mapOfIcherisheher" aria-label="Map of Icherisheher">
       <iframe title="Map of Icherisheher" loading="lazy" allowfullscreen
               referrerpolicy="no-referrer-when-downgrade"
               src="https://www.google.com/maps?q=40.3665,49.8352&amp;z=16&amp;hl=en&amp;output=embed"></iframe>
     </div>
 
     <div class="nearby__head">
-      <h2 class="nearby__title">See What&rsquo;s Nearby</h2>
+      <h2 class="nearby__title" data-i18n="nearby.title">See What&rsquo;s Nearby</h2>
 
-      <div class="nearby__chips" data-places-chips role="group" aria-label="Place categories">
-        <button class="nearby__chip is-active" type="button" aria-pressed="true" data-places-category="">All</button>
-        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="museum">Museum<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
-        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="shop">Shop<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
-        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="institutional">Institutional building<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
-        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="restaurant">Restaurant<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
-        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="hotel">Hotel<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
-        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="park">Park<img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+      <div class="nearby__chips" data-places-chips role="group" data-i18n-aria-label="aria.placeCategories" aria-label="Place categories">
+        <button class="nearby__chip is-active" type="button" aria-pressed="true" data-places-category="" data-i18n="nearby.chip.all">All</button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="museum"><span data-i18n="nearby.chip.museum">Museum</span><img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="shop"><span data-i18n="nearby.chip.shop">Shop</span><img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="institutional"><span data-i18n="nearby.chip.institutional">Institutional building</span><img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="restaurant"><span data-i18n="nearby.chip.restaurant">Restaurant</span><img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="hotel"><span data-i18n="nearby.chip.hotel">Hotel</span><img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="park"><span data-i18n="nearby.chip.park">Park</span><img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
       </div>
     </div>
 
@@ -444,14 +452,14 @@
     <div class="nearby__card" data-places-card aria-live="polite" hidden></div>
 
     <span class="nearby__credit">
-      <img src="assets/img/nearby-icon-gmaps.svg" alt="" width="20" height="20">Google maps
+      <img src="assets/img/nearby-icon-gmaps.svg" alt="" width="20" height="20"><span data-i18n="nearby.credit">Google maps</span>
     </span>
   </section>
 
   <!-- ETAP 8 · One QR. The whole Old City (City Pass) · Figma: 1615:2894 (əvvəlki: 1523:4878)
        Kartlar data/passes.json-dan js/passes.js ilə render olunur. -->
   <section id="citypass" class="citypass-section container" data-figma="1615:2894">
-    <h2 class="citypass__title">One QR. The whole Old City.</h2>
+    <h2 class="citypass__title" data-i18n="citypass.title">One QR. The whole Old City.</h2>
     <div class="citypass__row" data-passes-row aria-live="polite"></div>
   </section>
 
@@ -467,8 +475,8 @@
     <div class="appar-promo">
       <div class="appar-promo__col">
         <div class="appar-promo__copy">
-          <h2 class="appar-promo__title">Take Icherisheher with you</h2>
-          <p class="appar-promo__text">Your personal Old City guide in your pocket - works offline, includes audio guides in 6 languages, AR Time Machine at 10+ historical points, and exclusive in-app deals.</p>
+          <h2 class="appar-promo__title" data-i18n="appar.title">Take Icherisheher with you</h2>
+          <p class="appar-promo__text" data-i18n="appar.text">Your personal Old City guide in your pocket - works offline, includes audio guides in 6 languages, AR Time Machine at 10+ historical points, and exclusive in-app deals.</p>
         </div>
         <div class="appar-promo__badges">
           <div class="appar-qr">
@@ -477,28 +485,28 @@
           <div class="appar-stores">
             <a class="appar-store" href="#">
               <img src="assets/img/appar-icon-appstore.svg" alt="" width="24" height="24">
-              <span>App store</span>
+              <span data-i18n="appar.appstore">App store</span>
             </a>
             <a class="appar-store" href="#">
               <img src="assets/img/appar-icon-googleplay.svg" alt="" width="24" height="24">
-              <span>Google play</span>
+              <span data-i18n="appar.googleplay">Google play</span>
             </a>
           </div>
         </div>
       </div>
-      <img class="appar-promo__phone" src="assets/img/appar-phone-mockup.png" alt="Icherisheher app running on a phone" width="368" height="393">
+      <img class="appar-promo__phone" src="assets/img/appar-phone-mockup.png" data-i18n-alt="appar.phoneAlt" alt="Icherisheher app running on a phone" width="368" height="393">
     </div>
 
     <div class="appar-time">
       <div class="appar-time__scrim"></div>
       <div class="appar-time__content">
         <div class="appar-time__copy">
-          <h2 class="appar-time__title">AR Time Machine<br><span>at the Maiden Tower.</span></h2>
-          <p class="appar-time__text">Travel back to 12th-century Baku through augmented reality at 10 historical points across the Old City.</p>
+          <h2 class="appar-time__title" data-i18n="appar.time.title">AR Time Machine<br><span>at the Maiden Tower.</span></h2>
+          <p class="appar-time__text" data-i18n="appar.time.text">Travel back to 12th-century Baku through augmented reality at 10 historical points across the Old City.</p>
         </div>
         <div class="appar-time__actions">
-          <a class="appar-time__btn appar-time__btn--light" href="#">Explore</a>
-          <a class="appar-time__btn appar-time__btn--glass" href="#">Get your pass</a>
+          <a class="appar-time__btn appar-time__btn--light" href="#" data-i18n="appar.time.explore">Explore</a>
+          <a class="appar-time__btn appar-time__btn--glass" href="#" data-i18n="appar.time.getPass">Get your pass</a>
         </div>
       </div>
     </div>
@@ -532,11 +540,11 @@
       </div>
       <div class="social__followers">
         <p class="social__followers-count">41,1 K</p>
-        <p class="social__followers-label">followers</p>
+        <p class="social__followers-label" data-i18n="social.followers">followers</p>
       </div>
       <a class="social__follow" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
         <img class="social__follow-icon" src="assets/img/social-icon-instagram.svg" alt="">
-        <span>Follow</span>
+        <span data-i18n="social.follow">Follow</span>
       </a>
     </div>
 
@@ -567,7 +575,7 @@
 
     <a class="social__follow social__follow--mobile" href="https://www.instagram.com/icherisheher_living_history/" target="_blank" rel="noopener">
       <img class="social__follow-icon" src="assets/img/social-icon-instagram.svg" alt="">
-      <span>Follow</span>
+      <span data-i18n="social.follow">Follow</span>
     </a>
   </section>
 
@@ -579,79 +587,79 @@
        Nav linkləri hələ "#"-ə işarə edir (daxili səhifələr yoxdur). -->
   <footer id="footer" class="footer-section block" data-figma="1615:3201,1615:3389,1615:3439">
     <div class="footer__nav">
-      <nav class="footer__col" aria-label="Explore">
-        <p class="footer__heading">Explore</p>
+      <nav class="footer__col" data-i18n-aria-label="nav.explore" aria-label="Explore">
+        <p class="footer__heading" data-i18n="nav.explore">Explore</p>
         <ul class="footer__links">
-          <li><a href="#">About Icherisheher</a></li>
-          <li><a href="#">History</a></li>
-          <li><a href="#">Top Sights</a></li>
-          <li><a href="#">Culture &amp; Heritage</a></li>
-          <li><a href="#">Museums &amp; Galleries</a></li>
-          <li><a href="#">Architecture</a></li>
-          <li><a href="#">Stories &amp; Legends</a></li>
+          <li><a href="#" data-i18n="col.aboutIcherisheher">About Icherisheher</a></li>
+          <li><a href="#" data-i18n="col.history">History</a></li>
+          <li><a href="#" data-i18n="col.topSights">Top Sights</a></li>
+          <li><a href="#" data-i18n="col.cultureHeritage">Culture &amp; Heritage</a></li>
+          <li><a href="#" data-i18n="col.museumsGalleries">Museums &amp; Galleries</a></li>
+          <li><a href="#" data-i18n="col.architecture">Architecture</a></li>
+          <li><a href="#" data-i18n="col.storiesLegends">Stories &amp; Legends</a></li>
         </ul>
       </nav>
-      <nav class="footer__col" aria-label="Things to do">
-        <p class="footer__heading">Things to do</p>
+      <nav class="footer__col" data-i18n-aria-label="nav.thingsToDo" aria-label="Things to do">
+        <p class="footer__heading" data-i18n="nav.thingsToDo">Things to do</p>
         <ul class="footer__links">
-          <li><a href="#">Tours</a></li>
-          <li><a href="#">Experiences</a></li>
-          <li><a href="#">Shopping</a></li>
-          <li><a href="#">Arts &amp; Crafts</a></li>
-          <li><a href="#">Photography Spots</a></li>
-          <li><a href="#">Family Activities</a></li>
-          <li><a href="#">Explore Nearby</a></li>
+          <li><a href="#" data-i18n="col.tours">Tours</a></li>
+          <li><a href="#" data-i18n="col.experiences">Experiences</a></li>
+          <li><a href="#" data-i18n="col.shopping">Shopping</a></li>
+          <li><a href="#" data-i18n="col.artsCrafts">Arts &amp; Crafts</a></li>
+          <li><a href="#" data-i18n="col.photographySpots">Photography Spots</a></li>
+          <li><a href="#" data-i18n="col.familyActivities">Family Activities</a></li>
+          <li><a href="#" data-i18n="col.exploreNearby">Explore Nearby</a></li>
         </ul>
       </nav>
-      <nav class="footer__col" aria-label="What's on">
-        <p class="footer__heading">What&rsquo;s on</p>
+      <nav class="footer__col" data-i18n-aria-label="nav.whatsOn" aria-label="What's on">
+        <p class="footer__heading" data-i18n="nav.whatsOn">What&rsquo;s on</p>
         <ul class="footer__links">
-          <li><a href="#">Events Calendar</a></li>
-          <li><a href="#">Exhibitions</a></li>
-          <li><a href="#">Festivals</a></li>
-          <li><a href="#">Concerts</a></li>
-          <li><a href="#">Workshops</a></li>
-          <li><a href="#">This Week</a></li>
+          <li><a href="#" data-i18n="col.eventsCalendar">Events Calendar</a></li>
+          <li><a href="#" data-i18n="col.exhibitions">Exhibitions</a></li>
+          <li><a href="#" data-i18n="col.festivals">Festivals</a></li>
+          <li><a href="#" data-i18n="col.concerts">Concerts</a></li>
+          <li><a href="#" data-i18n="col.workshops">Workshops</a></li>
+          <li><a href="#" data-i18n="col.thisWeek">This Week</a></li>
         </ul>
       </nav>
-      <nav class="footer__col" aria-label="Eat and sleep">
-        <p class="footer__heading">Eat and sleep</p>
+      <nav class="footer__col" data-i18n-aria-label="nav.eatSleep" aria-label="Eat and sleep">
+        <p class="footer__heading" data-i18n="nav.eatSleep">Eat and sleep</p>
         <ul class="footer__links">
-          <li><a href="#">Restaurants</a></li>
-          <li><a href="#">Cafés</a></li>
-          <li><a href="#">Traditional Cuisine</a></li>
-          <li><a href="#">Rooftops &amp; Terraces</a></li>
-          <li><a href="#">Hotels</a></li>
-          <li><a href="#">Boutique Stays</a></li>
+          <li><a href="#" data-i18n="col.restaurants">Restaurants</a></li>
+          <li><a href="#" data-i18n="col.cafes">Cafés</a></li>
+          <li><a href="#" data-i18n="col.traditionalCuisine">Traditional Cuisine</a></li>
+          <li><a href="#" data-i18n="col.rooftopsTerraces">Rooftops &amp; Terraces</a></li>
+          <li><a href="#" data-i18n="col.hotels">Hotels</a></li>
+          <li><a href="#" data-i18n="col.boutiqueStays">Boutique Stays</a></li>
         </ul>
       </nav>
-      <nav class="footer__col" aria-label="Visitor Information">
-        <p class="footer__heading">Visitor Information</p>
+      <nav class="footer__col" data-i18n-aria-label="nav.visitorInfo" aria-label="Visitor Information">
+        <p class="footer__heading" data-i18n="nav.visitorInfo">Visitor Information</p>
         <ul class="footer__links">
-          <li><a href="#">Getting Here</a></li>
-          <li><a href="#">Getting Around</a></li>
-          <li><a href="#">Tickets &amp; Prices</a></li>
-          <li><a href="#">Visitor Information</a></li>
-          <li><a href="#">Accessibility</a></li>
-          <li><a href="#">Maps &amp; Guides</a></li>
-          <li><a href="#">FAQ</a></li>
+          <li><a href="#" data-i18n="col.gettingHere">Getting Here</a></li>
+          <li><a href="#" data-i18n="col.gettingAround">Getting Around</a></li>
+          <li><a href="#" data-i18n="col.ticketsPrices">Tickets &amp; Prices</a></li>
+          <li><a href="#" data-i18n="nav.visitorInfo">Visitor Information</a></li>
+          <li><a href="#" data-i18n="col.accessibility">Accessibility</a></li>
+          <li><a href="#" data-i18n="col.mapsGuides">Maps &amp; Guides</a></li>
+          <li><a href="#" data-i18n="col.faq">FAQ</a></li>
         </ul>
       </nav>
     </div>
 
     <div class="footer__info">
       <div class="footer__col">
-        <p class="footer__heading">Contact</p>
+        <p class="footer__heading" data-i18n="footer.contact">Contact</p>
         <div class="footer__info-lines">
           <p class="footer__info-line">+994 (00)000 00 00</p>
           <p class="footer__info-line">icerisheheradmin@gmail.com</p>
         </div>
       </div>
       <div class="footer__col">
-        <p class="footer__heading">Information offices</p>
+        <p class="footer__heading" data-i18n="footer.infoOffices">Information offices</p>
         <div class="footer__info-lines">
-          <p class="footer__info-line">Gazi Mahammad Street, 1095</p>
-          <p class="footer__info-line">08:00-18:00</p>
+          <p class="footer__info-line" data-i18n="footer.address">Gazi Mahammad Street, 1095</p>
+          <p class="footer__info-line" data-i18n="footer.hours">08:00-18:00</p>
         </div>
       </div>
     </div>
@@ -659,12 +667,13 @@
     <div class="footer__photo">
       <img class="footer__photo-img" src="assets/img/footer-panorama.png" alt="">
       <div class="footer__brand">
-        <img class="footer__logo" src="assets/img/footer-logo.svg" alt="Icherisheher — Administration of State Historical-Architectural Reserve" width="101" height="64">
-        <p class="footer__copyright">© 2026 Icharishahar</p>
+        <img class="footer__logo" src="assets/img/footer-logo.svg" data-i18n-alt="brand.logoAlt" alt="Icherisheher — Administration of State Historical-Architectural Reserve" width="101" height="64">
+        <p class="footer__copyright" data-i18n="footer.copyright">© 2026 Icharishahar</p>
       </div>
     </div>
   </footer>
 
+  <script type="module" src="js/i18n.js"></script>
   <script type="module" src="js/config.js"></script>
   <script type="module" src="js/lang.js"></script>
   <script type="module" src="js/nav-menu.js"></script>

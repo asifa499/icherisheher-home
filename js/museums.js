@@ -2,9 +2,11 @@
 // Data-driven kart render: öz backend-imizdən (icherisheher-api, Railway) çəkilir.
 // API sorğusu uğursuz olarsa (server yatıb, CORS və s.), avtomatik olaraq
 // local data/museums.json fallback-ına keçilir — səhifə heç vaxt boş qalmır.
+import { getLang, onLangChange, t } from "./i18n.js";
+
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/museums";
 const FALLBACK_URL = "data/museums.json";
-const LANG = "en"; // hazırkı dil: EN. Gələcəkdə i18n seçicisindən oxunacaq.
+let LANG = getLang();
 
 function pickText(field) {
   if (!field) return "";
@@ -47,7 +49,7 @@ function museumCardMarkup(museum) {
         </p>
         <a class="museums-card__cta" href="${museum.ticket_url}">
           <img src="assets/img/museum-icon-ticket-btn.svg" alt="" width="20" height="20">
-          Get a ticket
+          ${t("museums.getTicket")}
         </a>
       </div>
     </article>
@@ -86,21 +88,28 @@ async function initMuseums() {
   const row = document.querySelector("[data-museums-row]");
   if (!row) return;
 
+  let museums;
   try {
     const json = await fetchMuseums(API_URL, { cache: "no-store" });
-    const museums = unwrapMuseumsList(json);
-    renderMuseums(row, museums);
+    museums = unwrapMuseumsList(json);
   } catch (apiErr) {
     console.error("Museums API fetch failed, falling back to local JSON:", apiErr);
     try {
       const json = await fetchMuseums(FALLBACK_URL);
-      const museums = unwrapMuseumsList(json);
-      renderMuseums(row, museums);
+      museums = unwrapMuseumsList(json);
     } catch (fallbackErr) {
       console.error("Museums fallback fetch failed:", fallbackErr);
       renderFallback(row);
+      return;
     }
   }
+
+  renderMuseums(row, museums);
+  // Dil dəyişəndə kartları eyni data ilə yenidən çəkir — API-yə təkrar sorğu yoxdur.
+  onLangChange((lang) => {
+    LANG = lang;
+    renderMuseums(row, museums);
+  });
 }
 
 document.addEventListener("DOMContentLoaded", initMuseums);

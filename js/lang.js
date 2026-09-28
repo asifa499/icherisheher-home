@@ -1,11 +1,31 @@
-// Dil seçici (Figma 1641:11027/12311) — hazırda yalnız UI/vizual seçim.
-// Real i18n tərcüməsi hələ bağlanmayıb (bax CLAUDE.md, API inteqrasiyası).
+// Dil seçici (Figma 1641:11027/12311) — indi js/i18n.js-ə bağlıdır.
+// Səhifədə iki nüsxə var (hero nav + burger menyu paneli); ikisi də eyni
+// `getLang()`/`setLang()` mənbəyini paylaşdığı üçün biri ilə dəyişəndə
+// digəri də sinxron qalır.
+import { getLang, setLang, onLangChange } from "./i18n.js";
+
+const FLAGS = { en: "🇬🇧", az: "🇦🇿", ru: "🇷🇺" };
+const CODES = { en: "EN", az: "AZ", ru: "RU" };
+
+function syncWrap(wrap, lang) {
+  const currentFlag = wrap.querySelector("[data-lang-current-flag]");
+  const currentCode = wrap.querySelector("[data-lang-current-code]");
+  if (currentFlag) currentFlag.textContent = FLAGS[lang];
+  if (currentCode) currentCode.textContent = CODES[lang];
+  wrap.querySelectorAll("[data-lang-code]").forEach((option) => {
+    const active = option.dataset.langCode.toLowerCase() === lang;
+    option.classList.toggle("is-active", active);
+    option.setAttribute("aria-selected", active ? "true" : "false");
+  });
+}
+
+function syncAllWraps(lang) {
+  document.querySelectorAll("[data-lang]").forEach((wrap) => syncWrap(wrap, lang));
+}
 
 function wireLangSwitcher(wrap) {
   const trigger = wrap.querySelector("[data-lang-trigger]");
   const menu = wrap.querySelector("[data-lang-menu]");
-  const currentFlag = wrap.querySelector("[data-lang-current-flag]");
-  const currentCode = wrap.querySelector("[data-lang-current-code]");
   if (!trigger || !menu) return;
 
   function open() {
@@ -40,17 +60,12 @@ function wireLangSwitcher(wrap) {
 
   menu.querySelectorAll("[data-lang-code]").forEach((option) => {
     option.addEventListener("click", () => {
-      menu.querySelectorAll("[data-lang-code]").forEach((el) => {
-        el.classList.remove("is-active");
-        el.setAttribute("aria-selected", "false");
-      });
-      option.classList.add("is-active");
-      option.setAttribute("aria-selected", "true");
-      if (currentFlag) currentFlag.textContent = option.dataset.langFlag;
-      if (currentCode) currentCode.textContent = option.dataset.langCode;
+      setLang(option.dataset.langCode.toLowerCase());
       close();
     });
   });
 }
 
 document.querySelectorAll("[data-lang]").forEach(wireLangSwitcher);
+syncAllWraps(getLang());
+onLangChange(syncAllWraps);
