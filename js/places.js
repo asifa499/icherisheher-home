@@ -5,6 +5,7 @@
 import { getLang, onLangChange, t } from "./i18n.js";
 import { siteUrl, imageUrl, onReady } from "./base-url.js";
 import { picture } from "./picture.js";
+import { loadGoogleMap } from "./places-map.js";
 
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/places";
 const FALLBACK_URL = siteUrl("data/places.json");
@@ -42,6 +43,82 @@ function navigateMap(lat, lng, zoom) {
 
 function resetMap() {
   navigateMap(DEFAULT_MAP.lat, DEFAULT_MAP.lng, DEFAULT_MAP.zoom);
+}
+
+// ---------- Google Maps JS API (əsas) + açarsız iframe (fallback) ----------
+// gmap: hazır nəzarətçi (yoxsa null). pendingView: xəritə hazır olmamışdan
+// gələn son sorğu (məs. hash ilə açılış) — hazır olanda tətbiq olunur.
+// iframeTemplate: HTML-dəki ilkin iframe-in nüsxəsi, fallback-da bərpa olunur.
+let gmap = null;
+let pendingView = null;
+let iframeTemplate = null;
+let mapsPending = false; // Google Maps yüklənir (iframe müvəqqəti götürülüb)
+
+function mapShow(place, category) {
+  pendingView = { place, category };
+  if (gmap) {
+    gmap.show(place, category);
+  } else if (!mapsPending) {
+    // Google Maps rejimində deyilik (açar yoxdur / hələ başlanmayıb) — iframe.
+    if (place) navigateMap(place.lat, place.lng, DEFAULT_MAP.zoom);
+    else if (!category) resetMap();
+  }
+  // mapsPending və gmap yoxdur → Google Maps yüklənir, pendingView gözləyir.
+}
+
+function restoreIframe() {
+  const mapEl = document.querySelector("[data-places-map]");
+  if (!mapEl || !iframeTemplate || mapEl.querySelector("iframe")) return;
+  mapEl.append(iframeTemplate.cloneNode(true));
+  mapsPending = false;
+  const view = pendingView;
+  if (view && view.place) navigateMap(view.place.lat, view.place.lng, DEFAULT_MAP.zoom);
+}
+
+// Kart/başlıq xəritənin bir hissəsini örtür — məkan qalan boş sahənin
+// mərkəzinə düşsün deyə piksel sürüşməsi (px, xəritə mərkəzinə nisbətən).
+function mapInsets(mapEl, cardEl) {
+  if (cardEl.hidden) return { x: 0, y: 0 };
+  const m = mapEl.getBoundingClientRect();
+  const c = cardEl.getBoundingClientRect();
+  if (window.matchMedia("(min-width: 769px)").matches) {
+    return { x: (c.right - m.left) / 2, y: 0 };
+  }
+  const head = document.querySelector(".nearby__head").getBoundingClientRect();
+  const freeCenter = ((head.bottom - m.top) + (c.top - m.top)) / 2;
+  return { x: 0, y: freeCenter - m.height / 2 };
+}
+
+async function startGoogleMap(items, cardEl, onPick) {
+  const mapEl = document.querySelector("[data-places-map]");
+  const iframe = mapEl && mapEl.querySelector("iframe");
+  if (!mapEl || !iframe) return;
+
+  iframeTemplate = iframe.cloneNode(true);
+  mapsPending = true;
+  iframe.remove(); // lazy iframe hələ yüklənməyib — lazımsız sorğu getməsin
+
+  const places = items
+    .filter((item) => Number.isFinite(item.lat) && Number.isFinite(item.lng))
+    .map((item) => ({ place: { ...item, __label: pickText(item.name) }, cat: uiCategoryOf(item) || "landmark" }));
+  const byPlace = new Map(items.map((item) => [item.slug, item]));
+
+  let failed = false;
+  const ctl = await loadGoogleMap(mapEl, {
+    center: { lat: DEFAULT_MAP.lat, lng: DEFAULT_MAP.lng },
+    zoom: DEFAULT_MAP.zoom,
+    places,
+    onPick: (p) => onPick(byPlace.get(p.slug)),
+    getInsets: () => mapInsets(mapEl, cardEl),
+    onFallback: () => { failed = true; gmap?.destroy(); gmap = null; restoreIframe(); },
+  });
+
+  // Auth xətası controller qaytarılmamış gəlibsə (yarış), xəritəni burda sök.
+  if (failed) { ctl?.destroy(); restoreIframe(); return; }
+  if (!ctl) { restoreIframe(); return; }
+  gmap = ctl;
+  mapsPending = false;
+  if (pendingView) gmap.show(pendingView.place, pendingView.category);
 }
 
 // URL hash-i cari məkanın slug-una uyğunlaşdırır. `location.hash = …`
@@ -255,6 +332,8 @@ function placesOfCategory(items, category) {
 
 // Çiplər HTML-də statikdir (data gəlməsə də görünməlidirlər); burada yalnız
 // seçim vəziyyəti, kartın, xəritənin və URL hash-inin sinxronu idarə olunur.
+let onMarkerPick = () => {};
+
 function initChips(chipsEl, cardEl, items) {
   const chips = [...chipsEl.querySelectorAll("[data-places-category]")];
   const bySlug = new Map(items.map((item) => [item.slug, item]));
@@ -296,7 +375,7 @@ function initChips(chipsEl, cardEl, items) {
 
     if (place) {
       renderCard(cardEl, place);
-      navigateMap(place.lat, place.lng, DEFAULT_MAP.zoom);
+      mapShow(place, category);
       setHash(place.slug);
       return;
     }
@@ -307,13 +386,14 @@ function initChips(chipsEl, cardEl, items) {
       // öz "No places in this category yet." qaydası), xəritəyə toxunulmur
       // (naviqasiya ediləcək koordinat yoxdur, default görünüşdə qalır).
       renderCard(cardEl, null);
+      mapShow(null, category);
       setHash("");
       return;
     }
 
     // "All" — filtr yoxdur, kart tamamilə bağlanır, xəritə default görünüşə qayıdır.
     closeCard(cardEl);
-    resetMap();
+    mapShow(null, "");
     setHash("");
   }
 
@@ -335,6 +415,14 @@ function initChips(chipsEl, cardEl, items) {
     }
     selectCategory(chip);
   });
+
+  // Marker klikı: aktiv çip qalır (marker artıq həmin filtrə uyğundur; "All"-da
+  // isə filtr yaranmasın deyə çip dəyişmir).
+  onMarkerPick = (place) => {
+    if (!place) return;
+    const active = chips.find((el) => el.classList.contains("is-active")) || chips[0];
+    showPlace(active, place);
+  };
 
   // Kartdakı "×" kartı bağlayır və seçimi başlanğıc "All" vəziyyətinə qaytarır.
   cardEl.addEventListener("click", (event) => {
@@ -408,7 +496,11 @@ async function initPlaces() {
     }
   }
 
+  // Əvvəl xəritə başlayır (iframe-i götürür), sonra çiplər ilkin vəziyyəti
+  // pendingView-ə yazır; xəritə hazır olanda tətbiq olunur.
+  const mapStart = startGoogleMap(items, cardEl, (place) => onMarkerPick(place));
   initChips(chipsEl, cardEl, items);
+  await mapStart;
 }
 
 onReady(initPlaces);

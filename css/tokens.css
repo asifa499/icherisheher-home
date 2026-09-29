@@ -75,6 +75,10 @@
   --c-place-body:  #636260;  /* məkan kartı təsviri */
   --c-label:       #717178;  /* content/tertiary — "Open hours" etiketi */
   --c-value:       #414145;  /* content/secondary — etiketin dəyəri */
+  /* Nearby xəritə markerləri (Google Maps JS API) — Figma-da yoxdur, marka
+     palitrasından (brand/flame) qurulub; ölçülər öz qərarımızdır. */
+  --pin-size:        36px;
+  --pin-size-active: 44px;
 
   /* City Pass kartları (Etap 8, Figma 1615:2894) */
   --t-price:    32px; --t-price-lh:    28px;  /* kart qiyməti — 32px ölçü/28px sətirarası

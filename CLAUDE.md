@@ -184,6 +184,17 @@ footer sütunları, alt/aria-label-lar) `js/i18n.js`-dəki `DICT` obyektində
 
 ### Xəritə (Etap 7)
 
+> **2026-09-29 — Google Maps JS API:** xəritə indi Google Maps JavaScript API ilə
+> qurulur (`js/places-map.js`; açar, timeout və Snazzy "Ultra Light with Labels" stil
+> massivi `js/map-config.js`-də — açar referrer-məhdudiyyətlidir, repo-da qala bilər).
+> Markerlər `places` datasından, kateqoriyaya görə ikonlu pin-lərdir (`.nearby-pin`,
+> `css/nearby.css`; ölçülər `--pin-size*` tokenləri). Çip markerləri süzür, kart/hash/marker
+> klikı `panTo` ilə (kart örtdüyü sahə nəzərə alınır) hamar köçür, aktiv marker vurğulanır.
+> **Fallback:** açar yoxdursa, script 3 s-də yüklənməzsə, `gm_authFailure` və ya Google-un xəta
+> paneli (`BillingNotEnabledMapError` və s.) çıxarsa aşağıda təsvir olunan açarsız iframe bərpa
+> olunur. Google Cloud layihəsində Billing + Maps JavaScript API aktiv olmalıdır.
+> Aşağıdakı iframe/`navigateMap` təsviri artıq YALNIZ fallback rejiminə aiddir.
+
 - "See What's Nearby" bölməsindəki xəritə açar tələb etməyən Google Maps embed
   iframe-idir (`https://www.google.com/maps?q=<lat>,<lng>&z=<zoom>&output=embed`).
   Başlanğıc mərkəz/zoom `index.html`-dəki iframe URL-indədir (`DEFAULT_MAP`
