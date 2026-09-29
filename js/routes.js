@@ -4,12 +4,12 @@
 // local data/routes.json fallback-ı. /api/routes endpoint-i hələ
 // yoxdur, ona görə hazırda praktiki olaraq həmişə fallback işləyir.
 import { getLang, onLangChange, t } from "./i18n.js";
-import { siteUrl, onReady } from "./base-url.js";
+import { siteUrl, imageUrl, onReady } from "./base-url.js";
 import { picture } from "./picture.js";
 
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/routes";
 const FALLBACK_URL = siteUrl("data/routes.json");
-const IMG = siteUrl("assets/img/");
+const IMG = imageUrl("assets/img/");
 let LANG = getLang();
 
 function pickText(field) {
@@ -51,7 +51,7 @@ function cardMarkup(route) {
 
   return `
     <div class="routes-card__media">
-      ${picture(siteUrl(route.image), `<img class="routes-card__photo" src="${escapeHtml(siteUrl(route.image))}" alt="${escapeHtml(title)}"
+      ${picture(imageUrl(route.image), `<img class="routes-card__photo" src="${escapeHtml(imageUrl(route.image))}" alt="${escapeHtml(title)}"
            loading="lazy" decoding="async" width="464" height="352">`)}
       <div class="routes-card__badges">
         <span class="routes-card__badge">

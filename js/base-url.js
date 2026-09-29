@@ -19,6 +19,20 @@ export function siteUrl(path = "") {
   return BASE_URL + String(path).replace(/^\.?\//, "");
 }
 
+// Data-dan (API və ya data/*.json) gələn şəkil yolları üçün vahid resolver —
+// bütün render modulları (museums/routes/events/news/places/passes) bunu işlədir.
+// http(s):// ilə başlayan dəyər (məs. API-nin CDN/upload URL-i) olduğu kimi
+// qaytarılır, qalan hər şey ("assets/img/x.jpg", "./…", "/…") BASE_URL-ə
+// bağlanır. Boş/null dəyər boş sətir qaytarır.
+const HTTP_URL = /^https?:\/\//i;
+
+export function imageUrl(value) {
+  if (!value) return "";
+  const src = String(value);
+  if (HTTP_URL.test(src)) return src;
+  return BASE_URL + src.replace(/^\.?\/+/, "");
+}
+
 // Partial-lar (js/include.js) başlıq/footer-i inject edənə qədər gözləyir.
 // include.js yüklənməyibsə (məs. köhnə səhifə) dərhal həll olunur.
 export const includesReady = (window.ICH && window.ICH.includesReady) || Promise.resolve();

@@ -3,11 +3,11 @@
 // API sorğusu uğursuz olarsa (server yatıb, CORS və s.), avtomatik olaraq
 // local data/passes.json fallback-ına keçilir — səhifə heç vaxt boş qalmır.
 import { getLang, onLangChange, t } from "./i18n.js";
-import { siteUrl, onReady } from "./base-url.js";
+import { siteUrl, imageUrl, onReady } from "./base-url.js";
 
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/passes";
 const FALLBACK_URL = siteUrl("data/passes.json");
-const IMG = siteUrl("assets/img/");
+const IMG = imageUrl("assets/img/");
 let LANG = getLang();
 
 // Backend "/adult" kimi bir vahid etiketi qaytarmır (bu, məzmun sahəsi deyil,

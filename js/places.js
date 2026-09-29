@@ -3,12 +3,12 @@
 // eyni nümunə — əvvəl öz backend-imiz (icherisheher-api, Railway), alınmasa
 // local data/places.json fallback-ı.
 import { getLang, onLangChange, t } from "./i18n.js";
-import { siteUrl, onReady } from "./base-url.js";
+import { siteUrl, imageUrl, onReady } from "./base-url.js";
 import { picture } from "./picture.js";
 
 const API_URL = "https://icherisheher-api-production.up.railway.app/api/places";
 const FALLBACK_URL = siteUrl("data/places.json");
-const IMG = siteUrl("assets/img/");
+const IMG = imageUrl("assets/img/");
 let LANG = getLang();
 
 // Xəritə İçərişəhərin ümumi görünüşü (HTML-dəki ilkin <iframe src>-lə eyni) —
@@ -140,7 +140,7 @@ function photosMarkup(place, alt) {
   const images = resolvePhotos(place);
   if (!images.length) return "";
 
-  const tiles = images.map(siteUrl).map((src) => `
+  const tiles = images.map(imageUrl).map((src) => `
     <div class="nearby__photo">
       ${picture(src, `<img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" width="228" height="136">`)}
     </div>

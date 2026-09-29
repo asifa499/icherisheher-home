@@ -318,6 +318,10 @@ Build addımı yoxdur. Çox-səhifəli sayt üçün üç paylaşılan hissə:
   - **JS:** hər lokal yol `siteUrl("data/x.json")` / `siteUrl("assets/img/…")`-dən
     keçir (API-dən gələn nisbi `image` sahələri də). Mütləq URL-lər (`https:`, `/…`,
     `#…`) toxunulmur. `picture()` (`js/picture.js`) hər iki formanı tanıyır.
+  - **Şəkil yolları (data/API):** render modulları `image`/`images` sahələrini və
+    `IMG` ikon prefiksini `imageUrl()`-dən (`js/base-url.js`) keçirir: `http(s)://`
+    ilə başlayan dəyər olduğu kimi qalır, qalan hər şey (`assets/…`, `./…`, `/…`)
+    `BASE_URL`-ə bağlanır, boş/null → `""`.
   - **CSS:** `url("../assets/…")` CSS faylının özünə nisbidir — hər dərinlikdə işləyir.
   - **Statik HTML (`<head>` link-ləri, səhifənin öz `<img>`-ləri):** build olmadığı
     üçün sənəd-nisbi yazılır — kökdəki səhifədə `./`, bir səviyyə dərində `../`
