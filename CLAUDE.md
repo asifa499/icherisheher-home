@@ -10,9 +10,15 @@
 
 ## Figma mənbəyi
 
-- **Fayl:** `tJ0lCzuMMZdMygPz8nwZEs` ("Icherisheher-Web")
-- **Home web (1440px):** node `1615:2715` (2026-09-25-dən əvvəl: `1523:4706` — fayl daxilində yeni frame-ə köçürülüb)
-- **Home mobile (393px):** node `1627:2200` (əvvəlki: `1523:5735`)
+> **2026-09-30 — YENİ FAYL (yeganə dizayn mənbəyi):** dizayn komandası layihəni yeni Figma
+> faylına köçürüb. Köhnə fayl `tJ0lCzuMMZdMygPz8nwZEs` ("Icherisheher-Web") **OBSOLETDİR** —
+> ondan artıq oxunmur.
+
+- **Fayl:** `1Dt91grTLV8DqpAPEmusE2` ("Icherisheher-Web-New"); səhifələr: `1615:2714` ("✅ home page"), `3003:608` ("ui kit")
+- **Home web (1440px):** node `1615:2715` (link: `…/Icherisheher-Web-New?node-id=1615-2714` səhifənin özünə, frame-ə yox, işarə edir; web frame `1615:2715`)
+- **Home mobile (393px):** node `1627:2200` (link `node-id=1627-1058` mobil ekranlar konteyneridir — home frame, menyu və xəritə ekranları daxilində; 393×10533 home frame `1627:2200`)
+- Burger menyu: web `1627:4777`, mobil `1638:7180` (hər ikisi yeni faylda eyni ID ilə mövcuddur)
+- Yeni fayl köhnənin surəti kimi köçürülüb: bütün `1615:xxxx`/`1627:xxxx` ID-lər eyni qalıb; yeni olanlar yalnız wrapper-lər (`3020:*`, `3008/3009:*`) və "ui kit" səhifəsidir.
 - Hər `<section>`-ın `data-figma` atributunda öz node ID-si yazılıb. Bu atributları **heç vaxt silmə**.
 - Figma-dan oxumaq üçün Figma MCP connector istifadə olunur. Dəyər tərəddüdü olanda screenshot-a yox, node-un faktiki property-lərinə əsaslan.
 - **Bilinən MCP məhdudiyyəti:** bu fayl üçün `get_metadata` və (default) `get_design_context` böyük frame-lərdə (~9000px hündürlük) boş və ya kəsik (JSON parse xətası) cavab qaytarır. İşləyən yol: `get_design_context` `forceCode: true` + `excludeScreenshot: true` ilə tam kod dump-ı almaq (nəticə fayla yazılır), sonra `data-node-id` / `top-[…px]` / mətn məzmununa görə bölmələri əl ilə uyğunlaşdırmaq — screenshot yalnız vizual təsdiq üçün əlavə istifadə olunur.
@@ -56,9 +62,9 @@ assets/img/         — şəkillər, bölmə-prefiksli adlar: hero-bg.jpg, museu
 | 6 | Resources (tabs + kartlar) | 1615:3675 | ✅ |
 | 7 | See What's Nearby (xəritə) | 1615:3617 | ✅ |
 | 8 | City Pass (Core/Explorer/Premium) | 1615:2894 | ✅ |
-| 9 | App promo + AR Time Machine | 1615:3200, 1615:3372, 1615:3371, 1615:3353 | ✅ |
-| 10 | Sosial feed | 1615:3328, 1615:3344 | ✅ |
-| 11 | Footer + panoram foto | 1615:3201, 1615:3389, 1615:3439 | ✅ |
+| 9 | App promo + AR Time Machine | 3020:2169 (wrapper; əvvəl 1615:3200), 1615:3372, 1615:3371, 1615:3353 | ✅ |
+| 10 | Sosial feed | 1615:3328, 1615:3344 (wrapper `3020:2170` → `3020:2172`) | ✅ |
+| 11 | Footer + panoram foto | 1615:3201, 1615:3389, 1615:3439 (wrapper `3020:2172`) | ✅ |
 
 Etap tamamlananda bu cədvəldə statusu ✅ et və commit-ə daxil et.
 
@@ -109,6 +115,58 @@ istisnadır:
     Figma-nın faktiki node ikonlarından, ağ→tünd (#222) rəng fərqi ilə) — panel ağ fon
     üzərində olduğu üçün hero-nun ağ ikonları görünməz qalırdı. JS: `js/nav-menu.js` (aç/bağla,
     Escape, scrim klik, accordion toggle — `js/lang.js` konvensiyasını təqib edir).
+
+## Yeni Figma faylı — yenidən xəritələmə (2026-09-30)
+
+Fayl `1Dt91grTLV8DqpAPEmusE2`. Çəkmə yolu: `get_design_context` `forceCode:true` +
+`excludeScreenshot:true` (web ~188K simvol, mobil ~148K — nəticə fayla yazılır; `get_metadata`
+hər iki home frame-də yenə JSON parse xətası verir).
+
+**Node ID-lər:** 11 etapın hamısı yeni fayldakı faktiki layer-lərlə ad/məzmun/`top` üzrə
+uyğunlaşdırıldı — web və mobil üçün heç bir ID dəyişmədi, yeganə istisna: app promo panel fonu
+`1615:3200` yeni faylda yoxdur, yerinə wrapper `3020:2169` (top 6862, 1392×668) var; `index.html`
+və cədvəl bunu əks etdirir. Footer/sosial wrapper-ləri: `3020:2172` (top 7627) → `3020:2170` (sosial)
++ `1615:3201/3389/3439` (footer). Uyğunlaşdırıla bilməyən bölmə yoxdur.
+Yeni (etap cədvəlinə aid olmayan): `3020:1344` (hero "menu web" nav komponenti), `3008/3009:*`
+(nearby xəritə kartının daxili qrupları).
+
+**Dizayn tokenləri (yalnız `css/tokens.css`, dəyərlər):** köhnə → yeni
+- `--c-text-dark` `#221D17` → `#211C16` (citypass, app promo)
+- `--c-text-muted` `#AFAFAF` → `#ABABAB` (intro)
+- `--c-chip-peach` `#FFEEE5` → `#FEEEEB` (brand/light)
+- `--c-date-day-bg` `#F6DBCC` → `#FBCBC4` (brand/medium)
+- `--c-audio-peach` `#F7DCCD` → `#FEEEEB` (brand/light)
+- `--t-h2-lh` `44px` → `40px` (title4/medium 36/40)
+
+Yeni fayl rəng/tipoqrafiyanı paint/text style əvəzinə **dəyişənlərlə** verir (`brand/base #F3503A`,
+`brand/light #FEEEEB`, `brand/medium #FBCBC4`, `content/primary #1E1F21`, `content/secondary #414145`,
+`content/tertiary #717178`, `surface/primary #FAFAF5`, `surface/quaternary #E6E8EB`, `other/dark #222222`;
+mətn: title3 48/56, title4 36/40, title5 32/40, header 24/32, subheader 20/24, body 16/24, caption 14/20,
+hamısı letterSpacing −3%). Bunlardan `#F3503A`, `#FAFAF5`, `#717178`, `#414145`, `#FBCBC4`, `#222222`
+mövcud tokenlərlə eynidir; letter-spacing −0.03em CSS-də artıq var.
+
+**Təsdiqlənməmiş / Asifin qərarı lazım olanlar (token dəyişdirilmədi):**
+- `content/primary` `#1E1F21` (22 istifadə, o cümlədən intro mətni 1615:3601) üçün token yoxdur;
+  `--c-text-dark` indi `#211C16`-dır, intro isə `#1E1F21` istəyir → `--c-content-primary` tokeni
+  əlavə edib `intro.css`-i ona bağlamaq (bölmə səviyyəli, ayrıca tapşırıq).
+- `#E0E0E0` (Archives şəkil fonu), `#545557` (app promo mətni), `#E6E8EB` (`surface/quaternary`) yeni
+  dəyərlərdir, tokeni yoxdur — müvafiq bölmə rebuild olunanda əlavə olunacaq.
+- `--c-brand #886D46`, `--c-surface #EAEAEA` (yalnız mobildə 4 istifadə), `--c-gold`/`--c-flame`
+  (gradient — dəyişməyib) — web home-da `#886D46` heç yoxdur; saxlanıldı.
+- Mobil frame və menyu frame-ləri (1627:4777 / 1638:7180) hələ köhnə dəyərləri saxlayır
+  (`#FFEEE5` ×5 mobildə, `#221D17`, `#AFAFAF`) — web ilə uyğunsuz; dizayn komandası yeniləyənə qədər web etalondur.
+- `--t-h4` 24/28 vs Figma `header/*` 24/32 (web-də 6 istifadə 24/32, mobildə 24/28) — qeyri-müəyyən, toxunulmadı.
+
+**Quruluş fərqləri (yenidən qurulmayıb — Asifin baxışı üçün):**
+- **Archives to keep with you** (`1615:3864`, CityPass–App arası) — hələ əlavə edilməyib (əvvəlki qeyd qüvvədədir).
+- **Nearby çipləri:** Figma 11 çip göstərir (All, Museum, Shop, Institutional building, Restaurant, Hotel, Park,
+  **Mobility, Utilities, Art gallery, Tour agency, TIC**); saytda 7. Dörd-beş yeni kateqoriya üçün
+  `CATEGORY_BY_DB`/`PLACE_CATEGORY_OVERRIDES` qərarı lazımdır.
+- **Sosial feed + footer** bir davamlı boz blokdadır (`3020:2172` wrapper) — əvvəlki qeyd qüvvədədir.
+- Bölmə ardıcıllığı (hero → intro → museums → routes → season → resources → nearby → citypass →
+  [archives] → app → AR → social/footer) saytla üst-üstə düşür. Mətnlər (hero, intro, museums, routes,
+  season, citypass, app, AR, footer, resources) saytın mətnləri/datası ilə üst-üstə düşür.
+- Burger menyu frame-i (1627:4777) hero paneli/çiplərini köhnə rənglə göstərir (yuxarıya bax) — struktur dəyişməyib.
 
 ## Etap iş axını
 

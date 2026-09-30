@@ -1,6 +1,7 @@
 /* ============================================================
    Ä°Ã§É™riÅŸÉ™hÉ™r â€” Design Tokens
-   MÉ™nbÉ™: Figma "Icherisheher-Web" (tJ0lCzuMMZdMygPz8nwZEs)
+   MÉ™nbÉ™: Figma "Icherisheher-Web-New" (1Dt91grTLV8DqpAPEmusE2) — 2026-09-30-dan
+   yeganə mənbə; köhnə fayl tJ0lCzuMMZdMygPz8nwZEs OBSOLETDİR
    home_page: 1615:2715 (web 1440px) / 1627:2200 (mobile 393px)
    ÆvvÉ™lki node-lar (1523:4706 / 1523:5735) 2026-09-25-dÉ™ fayl daxilindÉ™ yeni
    frame-É™ kÃ¶Ã§Ã¼rÃ¼lÃ¼b — bax CLAUDE.md "Figma mÉ™nbÉ™yi".
@@ -28,10 +29,10 @@
                                 bu dəyər web home_page-də tapılmadı (istifadəsi görünmür),
                                 təsdiqlənməyənə qədər dəyişməyib */
   --c-text-soft:  #62615F;   /* yumÅŸaq mÉ™tn variantÄ± */
-  --c-text-dark:  #221D17;   /* isti-tÃ¼nd baÅŸlÄ±q variantÄ± — 2026-09-25: Figma-da #211C16-dan
+  --c-text-dark:  #211C16;   /* isti-tÃ¼nd baÅŸlÄ±q variantÄ± — 2026-09-25: Figma-da #211C16-dan
                                 #221D17-yə yenilənib (UNESCO intro mətni, node 1615:3601) */
   --c-ivory:      #FAFAF5;   /* aÃ§Ä±q mÉ™tn (tÃ¼nd fonda) */
-  --c-text-muted: #AFAFAF;   /* UNESCO intro — ötəri mətn rəngi (Etap 2) */
+  --c-text-muted: #ABABAB;   /* UNESCO intro — ötəri mətn rəngi (Etap 2) */
   --c-card-ring:  #F3503A;   /* Resources kart halqası (Etap 6) — bu node-da "orange" paint stili
                                 bu dəyəri qaytarır, home_page-dəki --c-orange (#FD6310) ilə eyni deyil.
                                 2026-09-25: yeni dizaynda bu dəyər (#F3503A) artıq CTA/border/qiymət
@@ -46,13 +47,13 @@
   --c-shadow-06:  rgba(0, 0, 0, 0.06);
   --c-glass-04:   rgba(255, 255, 255, 0.04);
   --c-hairline:   #ECECEC;   /* hero explore paneli ayırıcısı */
-  --c-chip-peach: #FFEEE5;   /* hero explore paneli çiplərinin fonu (2026-09-25, node 1615:3176) —
+  --c-chip-peach: #FEEEEB;   /* hero explore paneli çiplərinin fonu (2026-09-25, node 1615:3176) —
                                 çip mətn/ikon rəngi --c-card-ring (#F3503A) ilə eynidir */
   --c-cta-peach:  #FEE2D2;   /* museums kart "Get a ticket" CTA fonu (2026-09-25, node 1615:3486) —
                                 mətn/ikon rəngi də --c-card-ring (#F3503A) */
-  --c-date-day-bg:   #F6DBCC; /* season tədbir kartı — gün rəqəmi fonu (2026-09-25, node 1615:3030) */
+  --c-date-day-bg:   #FBCBC4; /* season tədbir kartı — gün rəqəmi fonu (2026-09-25, node 1615:3030) */
   --c-date-month-bg: #F2F0F0; /* eyni nişan — ay adı fonu (2026-09-25, node 1615:3032) */
-  --c-audio-peach:   #F7DCCD; /* nearby məkan kartı "Audio guide" düyməsinin fonu (2026-09-25,
+  --c-audio-peach:   #FEEEEB; /* nearby məkan kartı "Audio guide" düyməsinin fonu (2026-09-25,
                                 node 1615:3651) — mətn/ikon rəngi də --c-card-ring (#F3503A) */
   --c-gold:       #EE25A3;   /* "ai" gradient bitiş rəngi (Inspire me düyməsi) — 2026-09-25:
                                 Figma-da #F5B90E (qızılı) əvəzinə #EE25A3 (magenta) qaytarır
@@ -91,7 +92,7 @@
 
   /* Ã–lÃ§Ã¼ ÅŸkalasÄ± (Figma-dan: size/line-height) */
   --t-hero:      48px; --t-hero-lh:      56px;  /* hero baÅŸlÄ±q (Medium/Regular) */
-  --t-h2:        36px; --t-h2-lh:        44px;  /* bÃ¶lmÉ™ baÅŸlÄ±qlarÄ± (Medium) */
+  --t-h2:        36px; --t-h2-lh:        40px;  /* bÃ¶lmÉ™ baÅŸlÄ±qlarÄ± (Medium) */
   --t-h3:        28px; --t-h3-lh:        36px;  /* alt baÅŸlÄ±qlar (Medium) */
   --t-h4:        24px; --t-h4-lh:        28px;  /* kart baÅŸlÄ±qlarÄ± (Medium) */
   --t-h5:        22px; --t-h5-lh:        28px;
@@ -105,6 +106,18 @@
   --t-nav:       15px; --t-nav-lh:       24px;
   --t-date:      28px; --t-date-lh:      36px;  /* tədbir tarix nişanı — gün rəqəmi (Etap 5, Medium)
                                                   web və mobildə eyni qalır, ona görə --t-h3-dən ayrıdır */
+
+  /* 2026-09-30 (yeni Figma faylı, web home_page 1615:2715 etalon) — dəyişən token dəyərləri:
+       --c-text-dark  #221D17 → #211C16  (citypass 1615:2902, app promo 1615:3374; intro mətni
+                                          1615:3601 isə artıq content/primary #1E1F21 — ayrı token lazımdır,
+                                          bax CLAUDE.md "Yeni Figma faylı" bölməsi)
+       --c-text-muted #AFAFAF → #ABABAB  (intro, 1615:3601)
+       --c-chip-peach #FFEEE5 → #FEEEEB  (brand/light, 1615:3176)
+       --c-date-day-bg #F6DBCC → #FBCBC4 (brand/medium, 1615:3030)
+       --c-audio-peach #F7DCCD → #FEEEEB (brand/light, 1615:3651)
+       --t-h2-lh      44px → 40px       (title4/medium 36/40, web-də 7 istifadə)
+     Mobil frame (1627:2200) və burger menyu frame-ləri (1627:4777/1638:7180) hələ köhnə
+     dəyərləri (#FFEEE5, #221D17, #AFAFAF) saxlayır — dizayn komandasından yenilənmə gözlənilir. */
 
   /* ---------- Radius sistemi ---------- */
   --r-pill:  1000px;  /* Ã§iplÉ™r, dÃ¼ymÉ™lÉ™r (É™n Ã§ox iÅŸlÉ™nÉ™n) */
