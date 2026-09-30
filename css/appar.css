@@ -76,7 +76,7 @@
   width: 104px;
   height: 104px;
   border-radius: var(--r-md);
-  background: var(--c-black);
+  background: var(--c-card-ring); /* 2026-09-30: Figma "brand/base" #F3503A, əvvəllər --c-black idi */
 }
 
 .appar-stores {
@@ -91,7 +91,7 @@
   gap: 8px;
   padding: 12px 20px;
   border-radius: var(--r-pill);
-  background: var(--c-black);
+  background: var(--c-card-ring); /* 2026-09-30: Figma "brand/base" #F3503A, əvvəllər --c-black idi */
   border: 1px solid var(--c-glass-04);
   backdrop-filter: blur(var(--blur-nav));
   white-space: nowrap;
@@ -200,7 +200,7 @@
 
 .appar-time__btn--light {
   background: var(--c-white);
-  color: var(--c-black);
+  color: var(--c-content-primary); /* 2026-09-30: Figma "content/primary" #1E1F21, əvvəllər --c-black idi */
 }
 
 .appar-time__btn--glass {

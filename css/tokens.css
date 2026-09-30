@@ -37,7 +37,11 @@
                                 bu dəyəri qaytarır, home_page-dəki --c-orange (#FD6310) ilə eyni deyil.
                                 2026-09-25: yeni dizaynda bu dəyər (#F3503A) artıq CTA/border/qiymət
                                 mətni boyu dominant rəngdir (47 istifadə), --c-orange (#FD6310) isə
-                                yalnız Museums bölməsinin kiçik səhifələmə nöqtələrində qalıb (7 istifadə) */
+                                yalnız Museums bölməsinin kiçik səhifələmə nöqtələrində qalıb (7 istifadə).
+                                2026-09-30: "brand/base" olaraq da təsdiqləndi — App store/Google play
+                                düymələri, QR kod fonu (app-ar, 3020:2169) və sosial feed-in Follow
+                                düyməsi (3020:2172) bu rəngi işlədir, əvvəllər səhvən --c-black/
+                                --c-map-pill (qara) saxlanılmışdı */
 
   /* ÅžÃ¼ÅŸÉ™ effektli Ã§iplÉ™r (hero Ã¼zÉ™rindÉ™) */
   --c-glass-12:   rgba(255, 255, 255, 0.12);
@@ -66,6 +70,12 @@
                                 (2 vahid fərq), amma node property-si məhz bu dəyəri qaytarır,
                                 bağlı bir stil dəyişəninə bağlı olmadığı üçün ayrı token kimi
                                 saxlanılıb */
+  --c-content-primary: #1E1F21; /* "content/primary" — 2026-09-30: Explore düyməsinin mətni
+                                (app-ar, node 1615:3363) bu dəyəri qaytarır, --c-black (#222222)
+                                ilə deyil. CLAUDE.md-də bu token 22 istifadə üçün qərarsız kimi
+                                qeyd olunmuşdu (bax "Yeni Figma faylı" bölməsi) — burada YALNIZ
+                                bu düymə üçün əlavə edildi (bu tapşırığın hüdudu: düymə rəngləri),
+                                qalan 21 istifadə (məs. intro mətni) hələ --c-text-dark saxlayır */
 
   /* See What's Nearby — xəritə bloku (Etap 7, Figma 1615:3617) */
   --c-map-panel:   #E3E3E2;  /* blok fonu (web-də 89% şəffaflıqla) */

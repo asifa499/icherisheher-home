@@ -114,7 +114,7 @@
   gap: 10px;
   padding: 11px 20px;
   border-radius: var(--r-pill);
-  background: var(--c-map-pill);
+  background: var(--c-card-ring); /* 2026-09-30: Figma "brand/base" #F3503A, əvvəllər --c-map-pill (qara) idi */
   backdrop-filter: blur(var(--blur-nav));
   -webkit-backdrop-filter: blur(var(--blur-nav));
 }
@@ -125,7 +125,7 @@
   font-size: var(--t-body);
   line-height: var(--t-body-lh);
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--c-white); /* 2026-09-30: Figma "content/quinary" #FFF (tam matlıq), əvvəllər 80% şəffaf idi */
 }
 
 .social__follow--mobile { display: none; }
