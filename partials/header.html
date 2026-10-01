@@ -38,7 +38,7 @@
     <a class="hero__icon-btn" href="#" data-i18n-aria-label="aria.whatsapp" aria-label="WhatsApp">
       <img src="{{BASE}}assets/img/hero-icon-whatsapp.svg" alt="" width="16" height="16">
     </a>
-    <button class="hero__icon-btn" type="button" data-i18n-aria-label="aria.search" aria-label="Search">
+    <button class="hero__icon-btn" type="button" data-i18n-aria-label="aria.search" aria-label="Search" data-nav-search-trigger aria-haspopup="dialog" aria-expanded="false" aria-controls="nav-menu">
       <img src="{{BASE}}assets/img/hero-icon-search.svg" alt="" width="16" height="16">
     </button>
     <button class="hero__icon-btn" type="button" data-i18n-aria-label="aria.menu" aria-label="Menu" data-nav-menu-trigger aria-haspopup="dialog" aria-expanded="false" aria-controls="nav-menu">
@@ -57,16 +57,9 @@
         <img src="{{BASE}}assets/img/hero-logo-dark.svg" data-i18n-alt="brand.logoAlt" alt="Icherisheher — Administration of State Historical-Architectural Reserve" width="115" height="80">
       </a>
 
-      <nav class="nav-menu__toplinks" data-i18n-aria-label="aria.primary" aria-label="Primary">
-        <span class="nav-menu__toplink" data-i18n="nav.explore">Explore</span>
-        <span class="nav-menu__toplink" data-i18n="nav.thingsToDo">Things to do</span>
-        <span class="nav-menu__toplink" data-i18n="nav.eatSleep">Eat and sleep</span>
-        <span class="nav-menu__toplink" data-i18n="nav.whatsOn">What's on</span>
-        <span class="nav-menu__toplink" data-i18n="nav.visitorInfo">Visitor Information</span>
-      </nav>
 
       <div class="nav-menu__actions">
-        <div class="hero__lang-wrap" data-lang>
+        <div class="hero__lang-wrap nav-menu__menu-only" data-lang>
           <button class="hero__lang nav-menu__lang-btn" type="button" data-lang-trigger aria-haspopup="listbox" aria-expanded="false">
             <span class="hero__flag" aria-hidden="true" data-lang-current-flag>🇬🇧</span>
             <span data-lang-current-code>EN</span>
@@ -87,15 +80,41 @@
             </button>
           </div>
         </div>
-        <a class="nav-menu__icon-btn" href="#" data-i18n-aria-label="aria.whatsapp" aria-label="WhatsApp">
+        <a class="nav-menu__icon-btn nav-menu__menu-only" href="#" data-i18n-aria-label="aria.whatsapp" aria-label="WhatsApp">
           <img src="{{BASE}}assets/img/hero-icon-whatsapp-dark.svg" alt="" width="16" height="16">
         </a>
-        <button class="nav-menu__icon-btn" type="button" data-i18n-aria-label="aria.search" aria-label="Search">
+        <button class="nav-menu__icon-btn nav-menu__menu-only" type="button" data-i18n-aria-label="aria.search" aria-label="Search" data-nav-search-trigger>
           <img src="{{BASE}}assets/img/hero-icon-search-dark.svg" alt="" width="16" height="16">
         </button>
         <button class="nav-menu__icon-btn" type="button" data-i18n-aria-label="aria.closeMenu" aria-label="Close menu" data-nav-menu-close>
           <img src="{{BASE}}assets/img/hero-icon-close.svg" alt="" width="16" height="16">
         </button>
+      </div>
+    </div>
+
+    <!-- Axtarış rejimi (Figma web 1641:10612 · mobil 3047:14392). Overlay data-mode="search"
+         olanda görünür; menyu bölmələri (accordion/sitemap/ayırıcı) gizlənir. -->
+    <div class="nav-search" data-nav-search>
+      <form class="nav-search__field" role="search" action="#" data-nav-search-form>
+        <label class="nav-search__input-wrap">
+          <span class="nav-search__label" data-i18n="search.label">Search</span>
+          <input class="nav-search__input" type="search" name="q" autocomplete="off" data-i18n-placeholder="search.placeholder" placeholder="Maiden Tower, kebab, hamam…" data-nav-search-input>
+        </label>
+        <span class="nav-search__submit-wrap">
+          <button class="nav-search__submit" type="submit">
+            <img src="{{BASE}}assets/img/hero-icon-search-btn.svg" alt="" width="20" height="20">
+            <span data-i18n="search.submit">Search</span>
+          </button>
+        </span>
+      </form>
+
+      <div class="nav-search__popular">
+        <p class="nav-search__popular-title" data-i18n="search.popular">Popular searches</p>
+        <ul class="nav-search__popular-list">
+          <li><a href="#" data-i18n="search.popular.maidenTickets">Tickets to Maiden tower</a></li>
+          <li><a href="#" data-i18n="search.popular.whereToStay">Where to stay in Icherisheher</a></li>
+          <li><a href="#" data-i18n="search.popular.audioguides">Audioguides</a></li>
+        </ul>
       </div>
     </div>
 

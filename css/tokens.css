@@ -178,6 +178,7 @@
   --c-glass-20:     rgba(124, 124, 124, 0.2); /* panel ağ fonu üzərindəki şüşə düymələrin
                                                   sərhədi (hero-dəki --c-glass-04-ün ağ-fon qarşılığı) */
   --c-menu-divider: #D6D6D6; /* panel daxilindəki ayırıcı xətt */
+  --c-input-border: #CBCBCB; /* axtarış sahəsinin haşiyəsi (Figma 1646:17127 / 3047:14525) */
   --r-panel:        32px; /* overlay panelinin radiusu — web (1627:4777) və mobil (1638:7180)
                              eyni 32px qalır, --r-lg kimi 768px-də 24px-ə kiçilmir */
 }

@@ -17,7 +17,15 @@
 - **Fayl:** `1Dt91grTLV8DqpAPEmusE2` ("Icherisheher-Web-New"); səhifələr: `1615:2714` ("✅ home page"), `3003:608` ("ui kit")
 - **Home web (1440px):** node `1615:2715` (link: `…/Icherisheher-Web-New?node-id=1615-2714` səhifənin özünə, frame-ə yox, işarə edir; web frame `1615:2715`)
 - **Home mobile (393px):** node `3047:12604` (2026-10-01-dən; köhnə `1627:2200`/`1627:1058` silinib). Yeni frame köhnənin surətidir — bütün daxili node ID-lər yenidir (`3047:*`, düymələr `3065:*`), ona görə müqayisə mətn məzmununa görə aparılır.
-- Burger menyu: web `1627:4777`, mobil `1638:7180` (hər ikisi yeni faylda eyni ID ilə mövcuddur)
+- Burger menyu: web `1627:4777`, mobil `3047:13848` (bağlı) / `3047:14878` (accordion açıq); köhnə mobil `1638:7180`.
+- Axtarış overlay-i: web `1641:10403` (panel `1641:10612`), mobil `3047:14211` (panel `3047:14392`).
+  ✅ **2026-10-01 tətbiq edilib:** burger menyu ilə **eyni overlay** (`#nav-menu`, `partials/header.html`),
+  `data-mode="menu|search"` (`js/nav-menu.js`). Hero nav-dakı axtarış düyməsi overlay-i axtarış
+  rejimində açır, paneldəki axtarış düyməsi menyudan axtarışa keçir. Axtarış rejimində dil/WhatsApp/
+  axtarış düymələri (`.nav-menu__menu-only`), sitemap/accordion/ayırıcı gizlənir; web-də foto kart +
+  "Inspire me" sırası qalır, mobildə yoxdur. Forma hələ heç yerə göndərmir (nəticə səhifəsi/API yoxdur),
+  "Popular searches" linkləri `#`. Panel daxilindəki mətn nav linkləri Figma-dan silinib, saytdan da.
+  Mobil accordion açıq halı indi Figma-dadır (16/24 tünd siyahı, aralıq 16px, altında ayırıcı).
 - Yeni fayl köhnənin surəti kimi köçürülüb: bütün `1615:xxxx`/`1627:xxxx` ID-lər eyni qalıb; yeni olanlar yalnız wrapper-lər (`3020:*`, `3008/3009:*`) və "ui kit" səhifəsidir.
 - Hər `<section>`-ın `data-figma` atributunda öz node ID-si yazılıb. Bu atributları **heç vaxt silmə**.
 - Figma-dan oxumaq üçün Figma MCP connector istifadə olunur. Dəyər tərəddüdü olanda screenshot-a yox, node-un faktiki property-lərinə əsaslan.
