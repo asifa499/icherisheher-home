@@ -48,6 +48,8 @@ function wireNavMenu(root) {
     if (root.hidden) return;
     root.hidden = true;
     document.body.style.overflow = "";
+    // Növbəti açılışda axtarış sahəsi boş olsun (×, Escape, fona klik — hamısı buradan keçir)
+    if (searchForm) searchForm.reset();
     if (opener) {
       opener.setAttribute("aria-expanded", "false");
       opener.focus();
