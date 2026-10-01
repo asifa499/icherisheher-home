@@ -3,6 +3,7 @@
 // `getLang()`/`setLang()` mənbəyini paylaşdığı üçün biri ilə dəyişəndə
 // digəri də sinxron qalır.
 import { getLang, setLang, onLangChange } from "./i18n.js";
+import { includesReady } from "./base-url.js";
 
 const FLAGS = { en: "🇬🇧", az: "🇦🇿", ru: "🇷🇺" };
 const CODES = { en: "EN", az: "AZ", ru: "RU" };
@@ -65,6 +66,14 @@ function wireLangSwitcher(wrap) {
     });
   });
 }
+
+// Hər iki [data-lang] nüsxəsi partials/header.html-dədir. i18n.js-in öz
+// top-level `await includesReady`-inə güvənmək olmur: iOS Safari i18n.js
+// həm ayrıca <script type="module">, həm də bu modulun importu olanda bu
+// modulu o await bitməmiş icra edə bilir (header hələ DOM-da yoxdur → heç
+// nə bağlanmır, dropdown açılmır). Ona görə burada ayrıca gözlənilir —
+// nav-menu.js və config.js-dəki kimi.
+await includesReady;
 
 document.querySelectorAll("[data-lang]").forEach(wireLangSwitcher);
 syncAllWraps(getLang());
