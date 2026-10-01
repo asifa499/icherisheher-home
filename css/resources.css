@@ -42,27 +42,32 @@
   margin-top: 16px;
 }
 
-.resources__tab {
+.resources__tab {   /* ui kit button · md · neutral (3039:9251/9252) */
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
+  gap: var(--btn-gap);
+  padding: var(--btn-pad-md);
+  border: 1px solid var(--c-glass-04);
   border-radius: var(--r-pill);
-  background: var(--c-light-gray);
-  color: var(--c-black);
+  background: var(--c-btn-neutral);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
+  color: var(--c-content-primary);
   font-size: var(--t-body);
-  line-height: var(--t-body-lh);
+  line-height: var(--t-body-tight-lh);
   font-weight: 600;
   letter-spacing: -0.03em;
   white-space: nowrap;
-  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease);
 }
 
-/* Aktiv çip: fon yox, 2px brend haşiyə + brend mətn.
-   Figma-da haşiyə çipi 4px böyüdür, cərgə mərkəzə düzülür — eyni saxlanılıb. */
+/* Aktiv tab: ui kit button · md · outline (3039:9250) — fon yox, 1px brend
+   haşiyə + brend mətn; ölçü neutral variantla eynidir. */
 .resources__tab[aria-selected="true"] {
   background: transparent;
-  border: 2px solid var(--c-card-ring);
+  border-color: var(--c-card-ring);
   color: var(--c-card-ring);
 }
 
@@ -141,6 +146,7 @@
   font-size: var(--t-lead);
   line-height: var(--t-lead-lh);
   font-weight: 500;
+  letter-spacing: -0.03em;   /* 2026-10-01 (1615:3692) */
   color: var(--c-white);
 }
 
@@ -176,7 +182,7 @@
   .resources__tabs::-webkit-scrollbar { display: none; }
 
   .resources__tab {
-    padding: 6px 10px;
+    padding: 7px 11px;   /* +1px border = mobil 8/12 */
     font-size: var(--t-caption);
     line-height: var(--t-caption-lh);
   }

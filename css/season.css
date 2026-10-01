@@ -41,14 +41,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
+  gap: var(--btn-gap);
+  padding: var(--btn-pad-sm);       /* ui kit button · sm · neutral (3039:745) */
+  border: 1px solid var(--c-glass-04);
   border-radius: var(--r-pill);
-  background: var(--c-light-gray);
-  color: var(--c-black);
-  font-size: var(--t-body);
-  line-height: var(--t-body-lh);
+  background: var(--c-btn-neutral);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
+  color: var(--c-content-primary);
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
   font-weight: 600;
-  letter-spacing: -0.03em;
   white-space: nowrap;
   transition: background var(--dur) var(--ease);
 }
@@ -134,7 +137,7 @@
 }
 
 .event-card__day {
-  padding-block: 2px;
+  padding-block: 4px;               /* 2026-10-01: 2 → 4 (1615:3030) */
   background: var(--c-date-day-bg);
   color: var(--c-card-ring);
   font-size: var(--t-date);
@@ -147,6 +150,7 @@
   color: var(--c-gray);
   font-size: var(--t-body);
   line-height: var(--t-body-tight-lh);
+  font-weight: 600;                 /* 2026-10-01: Medium → SemiBold (1615:3033) */
 }
 
 /* ---------- Mətn sütunu ---------- */
@@ -160,9 +164,8 @@
 
 .event-card__category {
   font-size: var(--t-small);
-  line-height: var(--t-body-lh);
+  line-height: var(--t-small-lh);   /* 2026-10-01: 24 → 20, letter-spacing 0 (1615:3035) */
   font-weight: 600;
-  letter-spacing: -0.03em;
   text-transform: uppercase;
   color: var(--c-card-ring);
 }
@@ -172,7 +175,7 @@
   line-height: var(--t-lead-lh);
   font-weight: 500;
   letter-spacing: -0.03em;
-  color: var(--c-black);
+  color: var(--c-content-primary);  /* 2026-10-01: #222 → content/primary (1615:3036) */
 }
 
 .event-card__meta {

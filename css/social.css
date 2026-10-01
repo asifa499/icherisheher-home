@@ -84,14 +84,16 @@
 
 .social__name {
   font-size: var(--t-body);
-  line-height: var(--t-body-lh);
+  line-height: var(--t-body-tight-lh);   /* 2026-10-01: 24 → 20 (1615:3334) */
   font-weight: 500;
-  color: var(--c-black);
+  letter-spacing: -0.03em;
+  color: var(--c-content-primary);       /* 2026-10-01: black → content/primary (1615:3335) */
 }
 
 .social__handle {
   font-size: var(--t-body);
-  line-height: var(--t-body-lh);
+  line-height: var(--t-body-tight-lh);
+  letter-spacing: -0.03em;
   color: rgba(0, 0, 0, 0.6);
 }
 
@@ -100,31 +102,34 @@
   text-align: right;
   white-space: nowrap;
   font-size: var(--t-body);
-  line-height: var(--t-body-lh);
+  line-height: var(--t-body-tight-lh);   /* 2026-10-01: 24 → 20 (1615:3337) */
+  letter-spacing: -0.03em;
 }
 
 .social__followers-count { color: var(--c-black); }
 .social__followers-label { color: rgba(0, 0, 0, 0.5); }
 
-.social__follow {
+.social__follow {   /* ui kit button · md · ai gradient (3062:17106) — 2026-10-01: brand/base → gradient */
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 11px 20px;
+  gap: var(--btn-gap);
+  padding: var(--btn-pad-md);
+  border: 1px solid var(--c-glass-04);
   border-radius: var(--r-pill);
-  background: var(--c-card-ring); /* 2026-09-30: Figma "brand/base" #F3503A, əvvəllər --c-map-pill (qara) idi */
+  background: linear-gradient(267.71deg, var(--c-flame) 4.19%, var(--c-gold) 132.03%);
   backdrop-filter: blur(var(--blur-nav));
   -webkit-backdrop-filter: blur(var(--blur-nav));
 }
 
-.social__follow-icon { width: 24px; height: 24px; }
+.social__follow-icon { width: 20px; height: 20px; }
 
 .social__follow span {
   font-size: var(--t-body);
-  line-height: var(--t-body-lh);
+  line-height: var(--t-body-tight-lh);
   font-weight: 600;
+  letter-spacing: -0.03em;
   color: var(--c-white); /* 2026-09-30: Figma "content/quinary" #FFF (tam matlıq), əvvəllər 80% şəffaf idi */
 }
 

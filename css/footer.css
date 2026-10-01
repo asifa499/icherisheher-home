@@ -58,7 +58,7 @@
 
 .footer__heading {
   font-size: var(--t-body);
-  line-height: 20px;
+  line-height: var(--t-body-lh);   /* 2026-10-01: 20 → 24 (1615:3391) */
   font-weight: 600;
   color: var(--c-gray);
   letter-spacing: -0.48px;
@@ -74,8 +74,8 @@
 
 .footer__links a {
   font-size: var(--t-body);
-  line-height: var(--t-body-lh);
-  color: var(--c-black);
+  line-height: var(--t-body-tight-lh);   /* 2026-10-01: 24 → 20, #222 → content/primary (1615:3392) */
+  color: var(--c-content-primary);
   letter-spacing: -0.64px;
 }
 
@@ -96,10 +96,10 @@
 }
 
 .footer__info-line {
-  font-size: var(--t-h4);
-  line-height: var(--t-h4-lh);
+  font-size: var(--t-header);
+  line-height: var(--t-header-lh);       /* Figma header/medium 24/32 (1615:3442) */
   font-weight: 500;
-  color: var(--c-black);
+  color: var(--c-content-primary);       /* 2026-10-01: #222 → content/primary */
   letter-spacing: -0.96px;
   overflow-wrap: anywhere;
 }
@@ -139,13 +139,13 @@
 
 .footer__logo { width: 101px; height: 64px; max-width: none; }
 
-.footer__copyright {
+.footer__copyright {   /* body/semibold 16/20 (1615:3204) */
   margin-top: 16px;
-  font-size: 17px;
-  line-height: 23px;
-  font-weight: 500;
-  color: var(--c-black);
-  letter-spacing: -0.51px;
+  font-size: var(--t-body);
+  line-height: var(--t-body-tight-lh);
+  font-weight: 600;
+  color: var(--c-content-primary);
+  letter-spacing: -0.03em;
 }
 
 /* ---------- Responsive (mobil, 393px etalon) ---------- */

@@ -16,7 +16,7 @@
 
 - **Fayl:** `1Dt91grTLV8DqpAPEmusE2` ("Icherisheher-Web-New"); səhifələr: `1615:2714` ("✅ home page"), `3003:608` ("ui kit")
 - **Home web (1440px):** node `1615:2715` (link: `…/Icherisheher-Web-New?node-id=1615-2714` səhifənin özünə, frame-ə yox, işarə edir; web frame `1615:2715`)
-- **Home mobile (393px):** node `1627:2200` (link `node-id=1627-1058` mobil ekranlar konteyneridir — home frame, menyu və xəritə ekranları daxilində; 393×10533 home frame `1627:2200`)
+- **Home mobile (393px):** ⚠️ **2026-10-01: `1627:2200` və konteyner `1627:1058` fayldan silinib** (MCP "node not found") — mobil dizayn hazırda yoxdur, mövcud mobil CSS əvvəlki dizayna əsaslanır. Əvvəlki təsvir: node `1627:2200` (link `node-id=1627-1058` mobil ekranlar konteyneridir — home frame, menyu və xəritə ekranları daxilində; 393×10533 home frame `1627:2200`)
 - Burger menyu: web `1627:4777`, mobil `1638:7180` (hər ikisi yeni faylda eyni ID ilə mövcuddur)
 - Yeni fayl köhnənin surəti kimi köçürülüb: bütün `1615:xxxx`/`1627:xxxx` ID-lər eyni qalıb; yeni olanlar yalnız wrapper-lər (`3020:*`, `3008/3009:*`) və "ui kit" səhifəsidir.
 - Hər `<section>`-ın `data-figma` atributunda öz node ID-si yazılıb. Bu atributları **heç vaxt silmə**.
@@ -167,6 +167,41 @@ mövcud tokenlərlə eynidir; letter-spacing −0.03em CSS-də artıq var.
   [archives] → app → AR → social/footer) saytla üst-üstə düşür. Mətnlər (hero, intro, museums, routes,
   season, citypass, app, AR, footer, resources) saytın mətnləri/datası ilə üst-üstə düşür.
 - Burger menyu frame-i (1627:4777) hero paneli/çiplərini köhnə rənglə göstərir (yuxarıya bax) — struktur dəyişməyib.
+
+## Dizayn yenilənməsi — ui kit düymələri (2026-10-01)
+
+Eyni fayl/node (`1615:2715`). 2026-09-30 dump-ı ilə node-node diff edildi (bax: `get_design_context`
+forceCode). Əsas dəyişiklik: **bütün düymələr "ui kit" `button` komponentinin instance-ına keçib**
+(`3034:*`, `3039:*`, `3062:*`) — tokens.css-də `--btn-pad-md/sm`, `--btn-gap`, `--c-btn-neutral` ilə
+ifadə olunub (ölçü: md 46px = 12/16 + 16/20 semibold; sm 38px = 8/16 + 14/20 semibold; 1px sərhəd).
+
+**Tətbiq edilib:**
+- Hero: nav mətn linkləri (Explore / Things to do / … `1615:2845`) silindi (burger menyuda qalır);
+  explore paneli başlıqları 20 → 18px; çiplər + "Inspire me" → sm.
+- Bütün bölmələrin düymələri → md/sm (intro, museums, routes, season, resources, nearby, citypass,
+  app/AR, social). Neutral fon `#E5E5E5` → `rgba(0,0,0,.04)`; aktiv/outline haşiyə 2px → 1px.
+- App promo: App store/Google play brand/base → neutral (tünd mətn); QR plitəsi `#F3503A` 104px →
+  `rgba(0,0,0,.08)` 96px, QR özü tünd. AR: "Explore" ağ → primary; "Get your pass" → neutral.
+  Sosial "Follow" brand/base → ai gradient.
+- Tipoqrafiya: 16px gövdə mətnlərinin əksəriyyəti 24 → 20 sətirarası (body/medium 16/20); City Pass adı
+  22/28 → 24/32; tarix nişanı 28/36 → 24/32; nearby kart başlığı Host Grotesk → Vela Medium 24/32.
+- Token dəyərləri: `--c-label` #717178 → #818181, `--c-value`/`--c-place-body` → #545557
+  (content/secondary), `--c-place-title` → #1E1F21, `--c-cta-peach` #FEE2D2 → #FEEEEB, `--t-date`,
+  `--t-price-lh`; yeni: `--t-header`, `--c-content-secondary`, düymə tokenləri.
+- İkonlar (eyni fayl adları, yeni Hugeicons outline versiyası, 20×20): bilet
+  (`museum-icon-ticket-btn`, `hero-chip-city-pass`, `route-icon-pass`), `hero-chip-audioguide`,
+  `nearby-icon-audio`, `appar-icon-appstore/googleplay`, `appar-qr`.
+
+**Tətbiq edilməyib (Asifin qərarı / dizayn komandası):**
+- "Get your tour", "Digi map", "Inspire me" və yeni "Google maps" düymələrində ui kit-in **defolt
+  "spoon" ikonu** qalıb — dizayn səhvi kimi qiymətləndirildi, mövcud ikonlar saxlanıldı.
+- Nearby: köhnə tünd "Google maps" nişanı (`1615:3623`) yerində qalıb, üstünə ikinci, neutral
+  "Google maps" düyməsi (`3065:17176`) qoyulub — hansının qalacağı bəlli deyil, sayt dəyişmədi.
+- "Archives to keep with you" (`3051:16017`) yenidən dizayn olunub (karusel + ←/→ düymələri) —
+  saytda hələ yoxdur (əvvəlki qeyd qüvvədədir).
+- Burger menyu frame-i (`1627:4777`) yenilənməyib (köhnə 16/24 çiplər) — paylaşılan `.btn-inspire`
+  web home-a uyğun yeniləndi, menyunun qalanı toxunulmadı.
+- Mobil frame yoxdur (yuxarıya bax) — mobil override-lar yalnız 1px sərhədə görə paddinq üzrə düzəldi.
 
 ## Etap iş axını
 

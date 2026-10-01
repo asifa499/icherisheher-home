@@ -206,9 +206,9 @@
   border: 2px solid transparent;
   border-radius: var(--r-pill);
   background: var(--c-white);
-  color: var(--c-black);
+  color: var(--c-content-primary);
   font-size: var(--t-body);
-  line-height: var(--t-body-lh);
+  line-height: var(--t-body-tight-lh);   /* 2026-10-01: 24 → 20 (1615:3664) */
   font-weight: 600;
   letter-spacing: -0.03em;
   white-space: nowrap;
@@ -276,11 +276,11 @@
   gap: 16px;
 }
 
-.nearby__name {
-  font-size: var(--t-h3);
-  line-height: var(--t-h3-lh);
-  font-weight: 400;
-  letter-spacing: -0.02em;
+.nearby__name {   /* 2026-10-01: Host Grotesk 28/36 → Vela Sans Medium 24/32 (header/medium, 1615:3632) */
+  font-size: var(--t-header);
+  line-height: var(--t-header-lh);
+  font-weight: 500;
+  letter-spacing: -0.03em;
   color: var(--c-place-title);
 }
 
@@ -293,7 +293,8 @@
 
 .nearby__desc {
   font-size: var(--t-body);
-  line-height: var(--t-body-lh);
+  line-height: var(--t-body-tight-lh);   /* 2026-10-01: 24 → 20 (body/medium, 1615:3635) */
+  letter-spacing: -0.03em;
   color: var(--c-place-body);
 }
 
@@ -313,6 +314,7 @@
 .nearby__meta-label {
   font-size: var(--t-body);
   line-height: var(--t-body-tight-lh);
+  letter-spacing: -0.03em;
   color: var(--c-label);
 }
 
@@ -320,7 +322,7 @@
   font-size: var(--t-body);
   line-height: var(--t-body-tight-lh);
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   color: var(--c-value);
 }
 
@@ -355,31 +357,33 @@
 .nearby__actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;                       /* 2026-10-01: 12 → 8 (1615:3649) */
 }
 
+/* ui kit button · md — tinted (3039:9296) / primary (3039:9287) */
 .nearby__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: var(--btn-gap);
+  padding: var(--btn-pad-md);
+  border: 1px solid var(--c-glass-04);
   border-radius: var(--r-pill);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
   font-size: var(--t-body);
-  line-height: var(--t-body-lh);
+  line-height: var(--t-body-tight-lh);
   font-weight: 600;
   letter-spacing: -0.03em;
   white-space: nowrap;
 }
 
 .nearby__btn--ghost {
-  padding: 10px 16px;
   background: var(--c-audio-peach);
   color: var(--c-card-ring);
 }
 
 .nearby__btn--solid {
-  padding: 8px 14px;              /* +2px haşiyə = Figma 8/16 paddinqi */
-  border: 2px solid var(--c-card-ring);
   background: var(--c-card-ring);
   color: var(--c-white);
 }
@@ -458,9 +462,9 @@
 
   /* Mobildə "Audio guide" düyməsi dolğun fon yox, nazik haşiyə saxlayır
      (desktopdan fərqli, node 1627:2737) — 1.5px haşiyə üçün paddinq
-     kompensasiya olunur (10/16 → 8.5/14.5). */
+     kompensasiya olunur (ui kit md 12/16 + 1px → 11.5/15.5 + 1.5px). */
   .nearby__btn--ghost {
-    padding: 8.5px 14.5px;
+    padding: 11.5px 15.5px;
     background: transparent;
     border: 1.5px solid var(--c-card-ring);
   }

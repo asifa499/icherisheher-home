@@ -53,7 +53,8 @@
   --c-hairline:   #ECECEC;   /* hero explore paneli ayırıcısı */
   --c-chip-peach: #FEEEEB;   /* hero explore paneli çiplərinin fonu (2026-09-25, node 1615:3176) —
                                 çip mətn/ikon rəngi --c-card-ring (#F3503A) ilə eynidir */
-  --c-cta-peach:  #FEE2D2;   /* museums kart "Get a ticket" CTA fonu (2026-09-25, node 1615:3486) —
+  --c-cta-peach:  #FEEEEB;   /* museums kart "Get a ticket" CTA fonu — 2026-10-01: #FEE2D2 → brand/light
+                                #FEEEEB (ui kit tinted düymə, 3034:45115; City Pass "Buy" düymələri də) (əvvəl node 1615:3486) —
                                 mətn/ikon rəngi də --c-card-ring (#F3503A) */
   --c-date-day-bg:   #FBCBC4; /* season tədbir kartı — gün rəqəmi fonu (2026-09-25, node 1615:3030) */
   --c-date-month-bg: #F2F0F0; /* eyni nişan — ay adı fonu (2026-09-25, node 1615:3032) */
@@ -70,6 +71,8 @@
                                 (2 vahid fərq), amma node property-si məhz bu dəyəri qaytarır,
                                 bağlı bir stil dəyişəninə bağlı olmadığı üçün ayrı token kimi
                                 saxlanılıb */
+  --c-content-secondary: #545557; /* "content/secondary" (2026-10-01) — app promo mətni (1615:3375);
+                                --c-value / --c-place-body da bu dəyərdədir */
   --c-content-primary: #1E1F21; /* "content/primary" — 2026-09-30: Explore düyməsinin mətni
                                 (app-ar, node 1615:3363) bu dəyəri qaytarır, --c-black (#222222)
                                 ilə deyil. CLAUDE.md-də bu token 22 istifadə üçün qərarsız kimi
@@ -82,18 +85,18 @@
   --c-map-panel-m: #E0E0DF;  /* eyni blok, mobil variant (2026-09-25: unchanged, 1627:2714) */
   --c-map-pill:    #111112;  /* "Google maps" nişanı — content/primary */
   --c-map-pill-tx: #EDEDED;  /* həmin nişanın mətni */
-  --c-place-title: #272727;  /* məkan kartı başlığı */
-  --c-place-body:  #636260;  /* məkan kartı təsviri */
-  --c-label:       #717178;  /* content/tertiary — "Open hours" etiketi */
-  --c-value:       #414145;  /* content/secondary — etiketin dəyəri */
+  --c-place-title: #1E1F21;  /* məkan kartı başlığı — 2026-10-01: #272727 → content/primary #1E1F21 (1615:3632) */
+  --c-place-body:  #545557;  /* məkan kartı təsviri — 2026-10-01: #636260 → content/secondary #545557 (1615:3635) */
+  --c-label:       #818181;  /* content/tertiary — "Open hours" etiketi (2026-10-01: #717178 → #818181, 1615:3639) */
+  --c-value:       #545557;  /* content/secondary — etiketin dəyəri (2026-10-01: #414145 → #545557, 1615:3640) */
   /* Nearby xəritə markerləri (Google Maps JS API) — Figma-da yoxdur, marka
      palitrasından (brand/flame) qurulub; ölçülər öz qərarımızdır. */
   --pin-size:        36px;
   --pin-size-active: 44px;
 
   /* City Pass kartları (Etap 8, Figma 1615:2894) */
-  --t-price:    32px; --t-price-lh:    28px;  /* kart qiyməti — 32px ölçü/28px sətirarası
-                                                 Figma-da tam belədir (sıx başlıq effekti) */
+  --t-price:    32px; --t-price-lh:    40px;  /* kart qiyməti — 2026-10-01: sətirarası 28 → 40
+                                                 (1615:2905, title5 32/40) */
 
   /* ---------- Tipoqrafiya ----------
      Æsas ailÉ™: Vela Sans (Regular 400 / Medium 500 / SemiBold 600)
@@ -107,15 +110,18 @@
   --t-h4:        24px; --t-h4-lh:        28px;  /* kart baÅŸlÄ±qlarÄ± (Medium) */
   --t-h5:        22px; --t-h5-lh:        28px;
   --t-lead:      18px; --t-lead-lh:      24px;  /* Ã¶nÉ™ Ã§Ä±xan mÉ™tn (Medium) */
-  --t-panel:     20px; --t-panel-lh:     24px;  /* hero explore paneli başlığı (Medium) */
+  --t-panel:     20px; --t-panel-lh:     24px;  /* burger menyu CTA mətni (Medium). 2026-10-01: hero explore paneli
+                                                  başlıqları 18/24-ə keçdi (1615:3174) və --t-lead işlədir; menyu
+                                                  frame-i (1627:4777) hələ 20px saxlayır */
+  --t-header:    24px; --t-header-lh:    32px;  /* "header/medium" 24/32 — City Pass adı (1615:2900), nearby kart başlığı (1615:3632) */
   --t-statement: 32px; --t-statement-lh: 40px;  /* UNESCO intro mətni (Etap 2, Regular) */
   --t-body:      16px; --t-body-lh:      24px;  /* gÃ¶vdÉ™ (Regular) â€” dominant */
   --t-body-tight-lh: 20px;                      /* sÄ±x gÃ¶vdÉ™ (Ã§iplÉ™r, meta) */
   --t-small:     14px; --t-small-lh:     20px;
   --t-caption:   12px; --t-caption-lh:   16px;
   --t-nav:       15px; --t-nav-lh:       24px;
-  --t-date:      28px; --t-date-lh:      36px;  /* tədbir tarix nişanı — gün rəqəmi (Etap 5, Medium)
-                                                  web və mobildə eyni qalır, ona görə --t-h3-dən ayrıdır */
+  --t-date:      24px; --t-date-lh:      32px;  /* tədbir tarix nişanı — gün rəqəmi (Etap 5, Medium)
+                                                  2026-10-01: 28/36 → 24/32 (1615:3031) */
 
   /* 2026-09-30 (yeni Figma faylı, web home_page 1615:2715 etalon) — dəyişən token dəyərləri:
        --c-text-dark  #221D17 → #211C16  (citypass 1615:2902, app promo 1615:3374; intro mətni
@@ -128,6 +134,21 @@
        --t-h2-lh      44px → 40px       (title4/medium 36/40, web-də 7 istifadə)
      Mobil frame (1627:2200) və burger menyu frame-ləri (1627:4777/1638:7180) hələ köhnə
      dəyərləri (#FFEEE5, #221D17, #AFAFAF) saxlayır — dizayn komandasından yenilənmə gözlənilir. */
+
+  /* ---------- Düymələr (ui kit "button" komponenti, 2026-10-01) ----------
+     Yeni Figma-da bütün düymələr bir komponentin instance-ıdır: 1px sərhəd (dolğun
+     variantlarda --c-glass-04, outline-da --c-card-ring), backdrop-blur 40px,
+     ikon–mətn arası 4px. İki ölçü:
+       md — padding 12/16, mətn body/semibold 16/20 (−3%)  → hündürlük 46px
+       sm — padding  8/16, mətn caption/semibold 14/20 (0) → hündürlük 38px
+     Variantlar: primary (--c-card-ring fon, ağ mətn), tinted (--c-chip-peach fon,
+     --c-card-ring mətn), neutral (--c-btn-neutral fon, --c-content-primary mətn),
+     outline (şəffaf, --c-card-ring sərhəd/mətn), ai (--c-flame→--c-gold gradient). */
+  --c-btn-neutral: rgba(0, 0, 0, 0.04);  /* "alpha/black/04" — neutral düymə fonu (3034:45069 və s.);
+                                            əvvəlki --c-light-gray (#E5E5E5) fonunu əvəz edir */
+  --btn-pad-md: 12px 16px;
+  --btn-pad-sm: 8px 16px;
+  --btn-gap:    4px;
 
   /* ---------- Radius sistemi ---------- */
   --r-pill:  1000px;  /* Ã§iplÉ™r, dÃ¼ymÉ™lÉ™r (É™n Ã§ox iÅŸlÉ™nÉ™n) */

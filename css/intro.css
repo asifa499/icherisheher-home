@@ -42,28 +42,30 @@
 .intro__ctas {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;            /* 2026-10-01: 16 → 12 (1615:3603) */
 }
 
+/* ui kit button · md (3034:45043 outline, 3034:45060 primary) */
 .intro__btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
+  gap: var(--btn-gap);
+  padding: var(--btn-pad-md);
+  border: 1px solid var(--c-glass-04);
   border-radius: var(--r-pill);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
   font-size: var(--t-body);
-  line-height: var(--t-body-lh);
+  line-height: var(--t-body-tight-lh);
   font-weight: 600;
   letter-spacing: -0.03em;
   white-space: nowrap;
 }
 .intro__btn--outline {
-  border: 1.5px solid var(--c-card-ring);
+  border-color: var(--c-card-ring);
   color: var(--c-card-ring);
 }
 .intro__btn--solid {
-  padding: 8px 16px;
-  border: 2px solid var(--c-card-ring);
   background: var(--c-card-ring);
   color: var(--c-white);
 }

@@ -58,9 +58,9 @@
 
 .appar-promo__text {
   font-size: var(--t-body);
-  line-height: var(--t-body-lh);
+  line-height: var(--t-body-tight-lh);   /* 2026-10-01: 24 → 20 (1615:3375) */
   letter-spacing: -0.03em;
-  color: var(--c-text-soft);
+  color: var(--c-content-secondary);
 }
 
 .appar-promo__badges {
@@ -73,10 +73,10 @@
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  width: 104px;
-  height: 104px;
+  width: 96px;                    /* 2026-10-01: 104 → 96 (1615:3377) */
+  height: 96px;
   border-radius: var(--r-md);
-  background: var(--c-card-ring); /* 2026-09-30: Figma "brand/base" #F3503A, əvvəllər --c-black idi */
+  background: var(--c-shadow-08); /* 2026-10-01: brand/base → rgba(0,0,0,.08); QR özü indi tünd (#1E1F21) */
 }
 
 .appar-stores {
@@ -85,24 +85,25 @@
   gap: 8px;
 }
 
-.appar-store {
+.appar-store {   /* ui kit button · md · neutral (3062:17023 / 3062:17035) */
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
+  gap: var(--btn-gap);
+  padding: var(--btn-pad-md);
   border-radius: var(--r-pill);
-  background: var(--c-card-ring); /* 2026-09-30: Figma "brand/base" #F3503A, əvvəllər --c-black idi */
+  background: var(--c-btn-neutral);
   border: 1px solid var(--c-glass-04);
   backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
   white-space: nowrap;
 }
 
 .appar-store span {
-  font-size: 18px;
-  line-height: var(--t-body-lh);
+  font-size: var(--t-body);
+  line-height: var(--t-body-tight-lh);
   font-weight: 600;
   letter-spacing: -0.03em;
-  color: var(--c-map-pill-tx); /* #EDEDED — nearby bölməsindəki eyni ton */
+  color: var(--c-content-primary);
 }
 
 .appar-promo__phone {
@@ -170,7 +171,7 @@
 
 .appar-time__text {
   font-size: var(--t-body);
-  line-height: var(--t-body-lh);
+  line-height: var(--t-body-tight-lh);   /* 2026-10-01: 24 → 20 (1615:3361) */
   letter-spacing: -0.03em;
   color: rgba(255, 255, 255, 0.8);
   max-width: 455px;
@@ -182,29 +183,30 @@
   gap: 8px;
 }
 
-.appar-time__btn {
+.appar-time__btn {   /* ui kit button · md (3062:17069 primary / 3062:17048 neutral) */
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
+  gap: var(--btn-gap);
+  padding: var(--btn-pad-md);
   border-radius: var(--r-pill);
   border: 1px solid var(--c-glass-04);
   backdrop-filter: blur(var(--blur-nav));
   -webkit-backdrop-filter: blur(var(--blur-nav));
-  font-size: 15px;
-  line-height: var(--t-body-lh);
-  font-weight: 500;
-  letter-spacing: -0.02em;
+  font-size: var(--t-body);
+  line-height: var(--t-body-tight-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
   white-space: nowrap;
 }
 
-.appar-time__btn--light {
-  background: var(--c-white);
-  color: var(--c-content-primary); /* 2026-09-30: Figma "content/primary" #1E1F21, əvvəllər --c-black idi */
+.appar-time__btn--light {   /* "Explore" — 2026-10-01: ağ fon → primary (brand/base fon, ağ mətn) */
+  background: var(--c-card-ring);
+  color: var(--c-white);
 }
 
-.appar-time__btn--glass {
-  background: var(--c-glass-12);
+.appar-time__btn--glass {   /* "Get your pass" — 2026-10-01: --c-glass-12 → alpha/black/04 */
+  background: var(--c-btn-neutral);
   color: var(--c-white);
 }
 

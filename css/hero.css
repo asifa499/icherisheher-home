@@ -70,21 +70,8 @@
   height: 80px;
 }
 
-.hero__links {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-.hero__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  color: var(--c-white);
-  font-size: var(--t-nav);
-  line-height: var(--t-nav-lh);
-  white-space: nowrap;
-}
-.hero__chevron { width: 16px; height: 16px; }
+/* 2026-10-01: nav mətn linkləri (Explore / Things to do / …, node 1615:2845) Figma-dan
+   silinib — hero nav-da yalnız loqo + hərəkət düymələri qalır. Linklər burger menyudadır. */
 
 .hero__actions {
   display: flex;
@@ -188,8 +175,8 @@
   padding: 24px 32px;
 }
 .hero__explore-heading {
-  font-size: var(--t-panel);
-  line-height: var(--t-panel-lh);
+  font-size: var(--t-lead);
+  line-height: var(--t-lead-lh);
   font-weight: 500;
   letter-spacing: -0.03em;
   color: var(--c-black);
@@ -202,18 +189,20 @@
   gap: 10px;
 }
 
-.chip {
+.chip {   /* ui kit button · sm · tinted (3034:4798 və s.) */
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
+  gap: var(--btn-gap);
+  padding: var(--btn-pad-sm);
+  border: 1px solid var(--c-glass-04);
   border-radius: var(--r-pill);
   background: var(--c-chip-peach);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
   color: var(--c-card-ring);
-  font-size: var(--t-body);
-  line-height: var(--t-body-lh);
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
   font-weight: 600;
-  letter-spacing: -0.03em;
   white-space: nowrap;
 }
 .chip__icon { display: block; flex-shrink: 0; }
@@ -235,27 +224,28 @@
   gap: 16px;
 }
 .hero__explore-aside-text {
-  font-size: var(--t-panel);
-  line-height: var(--t-panel-lh);
+  font-size: var(--t-lead);
+  line-height: var(--t-lead-lh);
   font-weight: 500;
   letter-spacing: -0.03em;
   color: var(--c-black);
 }
 
-.btn-inspire {
+.btn-inspire {   /* ui kit button · sm · ai (3034:4169) */
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--btn-gap);
   align-self: flex-start;
-  padding: 8px 16px;
+  padding: var(--btn-pad-sm);
   border-radius: var(--r-pill);
-  border: 1px solid var(--c-flame);
-  background: linear-gradient(265.43deg, var(--c-flame) 4.19%, var(--c-gold) 132.03%);
+  border: 1px solid var(--c-glass-04);
+  background: linear-gradient(265.18deg, var(--c-flame) 4.19%, var(--c-gold) 132.03%);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
   color: var(--c-white);
-  font-size: var(--t-body);
-  line-height: var(--t-body-lh);
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
   font-weight: 600;
-  letter-spacing: -0.03em;
 }
 
 /* ============================================================
@@ -469,7 +459,6 @@
     padding-top: var(--page-pad);
   }
   .hero__logo img { width: 96px; height: 62px; }
-  .hero__links { display: none; }
   /* Figma mobil (node 1627:2330): dil düyməsi "EN" mətnini saxlayır, yalnız
      chevron 16px→12px kiçilir — digər ikon-düymələr (whatsapp/axtarış/menyu)
      kimi kvadrat ikon-yalnız görünüşə düşmür. */
@@ -495,10 +484,6 @@
   }
   .hero__explore-aside {
     width: auto;
-  }
-  .btn-inspire {
-    font-size: var(--t-small);
-    line-height: var(--t-small-lh);
   }
 
   /* ---------- Burger menyu overlay (mobil) ---------- */
