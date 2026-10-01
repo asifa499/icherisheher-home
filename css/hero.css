@@ -471,7 +471,11 @@
   .hero__explore {
     flex-direction: column;
     margin-top: -48px;
-    border-radius: var(--r-md);
+    /* Mobil Figma (3047:12754): panel 393 kanvasda 334px enində, radius 32px —
+       .container-in 329px-i md çiplərin Figma-dakı kimi sıralanmasına yetmir
+       (Digi map + AI Audio guide bir sətirdə). 361px blokdan 2 × 13.5px. */
+    width: calc(100% - 27px);
+    border-radius: var(--r-panel);
   }
   .hero__explore-main,
   .hero__explore-aside {
@@ -484,6 +488,21 @@
   }
   .hero__explore-aside {
     width: auto;
+  }
+  /* Mobil Figma (3047:12604, 2026-10-01): başlıqlar 20/24 qalır (web-də 18),
+     çiplər və "Inspire me" sm yox, md ölçüdədir — 12/16 + 16/20 → 46px
+     (3065:18098–18102, 3065:18207). */
+  .hero__explore-heading,
+  .hero__explore-aside-text {
+    font-size: var(--t-panel);
+    line-height: var(--t-panel-lh);
+  }
+  .chip,
+  .hero__explore .btn-inspire {
+    padding: var(--btn-pad-md);
+    font-size: var(--t-body);
+    line-height: var(--t-body-tight-lh);
+    letter-spacing: -0.03em;
   }
 
   /* ---------- Burger menyu overlay (mobil) ---------- */

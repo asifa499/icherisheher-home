@@ -16,7 +16,7 @@
 
 - **Fayl:** `1Dt91grTLV8DqpAPEmusE2` ("Icherisheher-Web-New"); səhifələr: `1615:2714` ("✅ home page"), `3003:608` ("ui kit")
 - **Home web (1440px):** node `1615:2715` (link: `…/Icherisheher-Web-New?node-id=1615-2714` səhifənin özünə, frame-ə yox, işarə edir; web frame `1615:2715`)
-- **Home mobile (393px):** ⚠️ **2026-10-01: `1627:2200` və konteyner `1627:1058` fayldan silinib** (MCP "node not found") — mobil dizayn hazırda yoxdur, mövcud mobil CSS əvvəlki dizayna əsaslanır. Əvvəlki təsvir: node `1627:2200` (link `node-id=1627-1058` mobil ekranlar konteyneridir — home frame, menyu və xəritə ekranları daxilində; 393×10533 home frame `1627:2200`)
+- **Home mobile (393px):** node `3047:12604` (2026-10-01-dən; köhnə `1627:2200`/`1627:1058` silinib). Yeni frame köhnənin surətidir — bütün daxili node ID-lər yenidir (`3047:*`, düymələr `3065:*`), ona görə müqayisə mətn məzmununa görə aparılır.
 - Burger menyu: web `1627:4777`, mobil `1638:7180` (hər ikisi yeni faylda eyni ID ilə mövcuddur)
 - Yeni fayl köhnənin surəti kimi köçürülüb: bütün `1615:xxxx`/`1627:xxxx` ID-lər eyni qalıb; yeni olanlar yalnız wrapper-lər (`3020:*`, `3008/3009:*`) və "ui kit" səhifəsidir.
 - Hər `<section>`-ın `data-figma` atributunda öz node ID-si yazılıb. Bu atributları **heç vaxt silmə**.
@@ -193,15 +193,21 @@ ifadə olunub (ölçü: md 46px = 12/16 + 16/20 semibold; sm 38px = 8/16 + 14/20
   `nearby-icon-audio`, `appar-icon-appstore/googleplay`, `appar-qr`.
 
 **Tətbiq edilməyib (Asifin qərarı / dizayn komandası):**
-- "Get your tour", "Digi map", "Inspire me" və yeni "Google maps" düymələrində ui kit-in **defolt
-  "spoon" ikonu** qalıb — dizayn səhvi kimi qiymətləndirildi, mövcud ikonlar saxlanıldı.
+- ~~"spoon" ikonu~~ — səhv diaqnoz idi: MCP kod dump-ı instance-larda **icon swap override-ını
+  itirir** (əsas komponentin "spoon" vektorunu qaytarır). Düzgün ikon üçün instance node-un
+  ÖZÜNÜ çək (məs. `get_design_context` `I3065:18098;3034:44962` → `flag-01`). Bu yolla
+  `hero-chip-tour` (flag-01), `hero-chip-digimap` (maps-search), `hero-icon-sparkle` (ai-magic,
+  Figma-da şaquli çevrilmiş) yeniləndi.
 - Nearby: köhnə tünd "Google maps" nişanı (`1615:3623`) yerində qalıb, üstünə ikinci, neutral
   "Google maps" düyməsi (`3065:17176`) qoyulub — hansının qalacağı bəlli deyil, sayt dəyişmədi.
 - "Archives to keep with you" (`3051:16017`) yenidən dizayn olunub (karusel + ←/→ düymələri) —
   saytda hələ yoxdur (əvvəlki qeyd qüvvədədir).
 - Burger menyu frame-i (`1627:4777`) yenilənməyib (köhnə 16/24 çiplər) — paylaşılan `.btn-inspire`
   web home-a uyğun yeniləndi, menyunun qalanı toxunulmadı.
-- Mobil frame yoxdur (yuxarıya bax) — mobil override-lar yalnız 1px sərhədə görə paddinq üzrə düzəldi.
+- **Mobil (`3047:12604`):** dizayn komandası yalnız **hero explore panelini** yeniləyib — çiplər və
+  "Inspire me" mobildə **md** ölçüdədir (46px, 16/20; web-də sm), başlıqlar 20/24 qalır, panel 334px
+  enində + radius 32px. Mobil frame-in qalan bölmələri hələ köhnə düymə stilindədir (`#E5E5E5` fon,
+  10/20 paddinq) — saytda onlar web-in yeni ui kit stilini izləyir (dizayn yeniləyəndə yoxlanmalı).
 
 ## Etap iş axını
 
