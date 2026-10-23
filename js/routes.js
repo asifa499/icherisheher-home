@@ -50,7 +50,7 @@ function cardMarkup(tour) {
         ${picture(src, `<img class="routes-card__photo" src="${escapeHtml(src)}" alt="${escapeHtml(title)}" loading="lazy" decoding="async" width="368" height="354">`)}
         <div class="routes-card__scrim" aria-hidden="true"></div>
         <div class="routes-card__overlay">
-          <h3 class="routes-card__title">${escapeHtml(title)}</h3>
+          <h3 class="routes-card__title"${tour.title_width ? ` style="max-width:${Number(tour.title_width)}px"` : ""}>${escapeHtml(title)}</h3>
           <div class="routes-card__badges">
             <span class="routes-card__badge"><img src="${IMG}${TYPE_ICON[tour.type] || TYPE_ICON.walk}" alt="" width="16" height="16">${escapeHtml(t("routes.type." + tour.type))}</span>
             <span class="routes-card__badge"><img src="${IMG}museum-icon-clock.svg" alt="" width="16" height="16">${escapeHtml(tour.working_hours)}</span>

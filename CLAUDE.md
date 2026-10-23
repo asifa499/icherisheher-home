@@ -278,6 +278,10 @@ Escape bağlayır, eyni anda biri açıqdır. Etiket linkləri hələ `#` (həd�
 `css/base.css`-in sonundakı `img[src*="/<ad>.svg"] { object-fit: none }` siyahısı onları təbii ölçüdə mərkəzdə saxlayır — yeni belə
 ikon əlavə edəndə siyahıya yaz. Mock tur datasında 4 kartın hamısı "First time" tab-ındadır (Figma-da 4 kart göstərilir).
 
+**Routes foto kropları (2026-10-23):** `routes-{dine,palace,night,qala}.jpg/.webp` Figma `40000068:4848`-dəki dəqiq kadr həndəsəsi ilə
+əvvəlcədən kəsilib (368×354 @2x; "qala" kartı üfüqi çevrilir + 20% qara overlay, əvvəlki şəkil səhv/solğun idi). Başlıq eni Figma-da
+kartdan-karta fərqlidir (323/323/186/186) — `data/routes.json`-da `title_width` sahəsi. Şəkil dəyişəndə kropu bu həndəsə ilə yenidən çıxar.
+
 ## Etap iş axını
 
 1. Asif "Etap N" deyir.
