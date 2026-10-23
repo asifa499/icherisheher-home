@@ -33,6 +33,7 @@
                                 #221D17-yə yenilənib (UNESCO intro mətni, node 1615:3601) */
   --c-ivory:      #FAFAF5;   /* aÃ§Ä±q mÉ™tn (tÃ¼nd fonda) */
   --c-text-muted: #ABABAB;   /* UNESCO intro — ötəri mətn rəngi (Etap 2) */
+  --c-brand-base: #F3503A;   /* "brand/base" (yeni Figma 2026-10-23) — "Get a Quote" fonu; --c-card-ring ilə eyni dəyər */
   --c-card-ring:  #F3503A;   /* Resources kart halqası (Etap 6) — bu node-da "orange" paint stili
                                 bu dəyəri qaytarır, home_page-dəki --c-orange (#FD6310) ilə eyni deyil.
                                 2026-09-25: yeni dizaynda bu dəyər (#F3503A) artıq CTA/border/qiymət
@@ -101,11 +102,12 @@
   /* ---------- Tipoqrafiya ----------
      Æsas ailÉ™: Vela Sans (Regular 400 / Medium 500 / SemiBold 600)
      Fayllar assets/fonts/ altÄ±nda self-host olunacaq. */
+  --font-display: "Smooch Sans", "Vela Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif; /* 2026-10-23 yeni Figma: hero + bölmə başlıqları (Bold) */
   --font-main: "Vela Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 
   /* Ã–lÃ§Ã¼ ÅŸkalasÄ± (Figma-dan: size/line-height) */
-  --t-hero:      48px; --t-hero-lh:      56px;  /* hero baÅŸlÄ±q (Medium/Regular) */
-  --t-h2:        36px; --t-h2-lh:        40px;  /* bÃ¶lmÉ™ baÅŸlÄ±qlarÄ± (Medium) */
+  --t-hero:      64px; --t-hero-lh:      72px;  /* hero baÅŸlÄ±q (Medium/Regular) */
+  --t-h2:        48px; --t-h2-lh:        56px;  /* bÃ¶lmÉ™ baÅŸlÄ±qlarÄ± (Medium) */
   --t-h3:        28px; --t-h3-lh:        36px;  /* alt baÅŸlÄ±qlar (Medium) */
   --t-h4:        24px; --t-h4-lh:        28px;  /* kart baÅŸlÄ±qlarÄ± (Medium) */
   --t-h5:        22px; --t-h5-lh:        28px;

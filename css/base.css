@@ -27,6 +27,25 @@
   font-display: swap;
 }
 
+/* Smooch Sans SemiBold/Bold (600–700) — yeni dizayn başlıq şrifti (2026-10-23, Google Fonts, OFL).
+   Yalnız latın + latın-genişlənmiş (ə, ş, ç, ö, ü, ğ, ı); kiril yoxdur — RU başlıqlar Vela-ya düşür. */
+@font-face {
+  font-family: "Smooch Sans";
+  src: url("../assets/fonts/SmoochSans-latin-ext.woff2") format("woff2");
+  font-weight: 600 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Smooch Sans";
+  src: url("../assets/fonts/SmoochSans-latin.woff2") format("woff2");
+  font-weight: 600 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
@@ -97,9 +116,10 @@ ul, ol { list-style: none; }
 
 /* ---------- Ãœmumi baÅŸlÄ±q stili ---------- */
 .section-title {
+  font-family: var(--font-display);
   font-size: var(--t-h2);
   line-height: var(--t-h2-lh);
-  font-weight: 500;
+  font-weight: 600;
   color: var(--c-black);
 }
 
@@ -109,8 +129,8 @@ ul, ol { list-style: none; }
 @media (max-width: 768px) {
   :root {
     --page-pad: 16px;
-    --t-hero: 32px; --t-hero-lh: 40px;
-    --t-h2: 28px;   --t-h2-lh: 36px;
+    --t-hero: 48px; --t-hero-lh: 56px;   /* Smooch Sans condensed — mobil frame hələ köhnə, təxmini */
+    --t-h2: 36px;   --t-h2-lh: 40px;
     --t-h3: 24px;   --t-h3-lh: 32px;
     --r-xl: 32px;
     --r-lg: 24px;

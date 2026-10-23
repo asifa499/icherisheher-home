@@ -217,6 +217,22 @@ ifadə olunub (ölçü: md 46px = 12/16 + 16/20 semibold; sm 38px = 8/16 + 14/20
   enində + radius 32px. Mobil frame-in qalan bölmələri hələ köhnə düymə stilindədir (`#E5E5E5` fon,
   10/20 paddinq) — saytda onlar web-in yeni ui kit stilini izləyir (dizayn yeniləyəndə yoxlanmalı).
 
+## YENİ DİZAYN (2026-10-23) — fayl `zD5KChgQjY4CpaiwX1Gtg2` ("Latest-Icherisheher-Web-New")
+
+Home web frame: **`40000068:4655`** (1440×8968). Əvvəlki fayl (`1Dt91grTLV8DqpAPEmusE2`) artıq mənbə deyil.
+Bölmə node ID-ləri `40000068:*` seriyasındadır (hələ `data-figma`-ya köçürülməyib — mərhələli rebuild gedir).
+Dump yolu eynidir (`get_design_context` `forceCode:true`). Bu dizayn **tam redizayndır** (Smooch Sans başlıqları,
+yeni düymə/çip stilləri, yeni "Digital Collections" bölməsi, "AI Audio Guide", yeni footer sütunları).
+Mərhələlər: **1** ✅ fondasiya + hero/nav · **2** intro, museums, routes, season, resources · **3** nearby, City Pass,
+Digital Collections · **4** app promo, AI Audio Guide, sosial feed, footer, burger menyu, mobil.
+
+**Mərhələ 1 (tətbiq edilib):** Smooch Sans (variable, 600–700, latın+latın-ext, `assets/fonts/SmoochSans-*.woff2`; kiril yoxdur
+→ RU başlıqlar Vela-ya düşür). Yeni tokenlər: `--font-display`, `--c-brand-base` (#F3503A), `--t-hero` 64/72, `--t-h2` 48/56
+(Smooch SemiBold, −0.03em; bütün bölmə başlıqları). Hero nav-a "Download App" + "Get a Quote" düymələri (`.hero__btn`,
+mobildə gizli — mobil frame hələ köhnədir), çip "City Pass" → "Tickets & Pass". Linklər hələ `#`.
+**Qalan fərqlər (sonrakı mərhələlər):** hero "+4" çipi açılan etiket popover-i (Monuments & Landmarks, Museums, Events, Tours &
+Routes, Hidden gems, Local Masters, BukharArt, Visitor Services, Centre for Traditional Arts, Qala Reserve) — davranış sonra.
+
 ## Etap iş axını
 
 1. Asif "Etap N" deyir.
