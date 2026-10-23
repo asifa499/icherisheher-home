@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1,
+    "slug": "traditional-dress",
+    "image": "assets/img/intro-dress.jpg",
+    "title": null,
+    "description": null,
+    "tabs": [
+      "photo"
+    ],
+    "position": "50% 50%"
+  },
+  {
+    "id": 2,
+    "slug": "couple-painting",
+    "image": "assets/img/dcoll-painting.jpg",
+    "title": null,
+    "description": null,
+    "tabs": [
+      "photo",
+      "artworks"
+    ],
+    "position": "50% 50%"
+  },
+  {
+    "id": 3,
+    "slug": "miniature-portrait",
+    "image": "assets/img/dcoll-miniature.jpg",
+    "title": null,
+    "description": null,
+    "tabs": [
+      "photo",
+      "artworks"
+    ],
+    "position": "58% 50%"
+  },
+  {
+    "id": 4,
+    "slug": "masterclass-jahongir-ashurov",
+    "image": "assets/img/dcoll-masterclass.jpg",
+    "title": {
+      "en": "A Meeting & Masterclass with Jahongir Ashurov",
+      "az": "Cahongir Aşurovla görüş və master-klass",
+      "ru": "Встреча и мастер-класс с Джахонгиром Ашуровым"
+    },
+    "description": {
+      "en": "A meeting and masterclass with Uzbek artist and renowned master of Eastern miniature art, Jahongir Ashurov...",
+      "az": "Özbək rəssam və Şərq miniatür sənətinin tanınmış ustadı Cahongir Aşurovla görüş və master-klass...",
+      "ru": "Встреча и мастер-класс с узбекским художником, известным мастером восточной миниатюры Джахонгиром Ашуровым..."
+    },
+    "link": "#",
+    "tabs": [
+      "photo"
+    ],
+    "position": "50% 50%"
+  },
+  {
+    "id": 5,
+    "slug": "traditional-instruments",
+    "image": "assets/img/intro-instruments.jpg",
+    "title": null,
+    "description": null,
+    "tabs": [
+      "photo"
+    ],
+    "position": "50% 50%"
+  },
+  {
+    "id": 6,
+    "slug": "exhibition-easels",
+    "image": "assets/img/dcoll-easels.jpg",
+    "title": null,
+    "description": null,
+    "tabs": [
+      "photo"
+    ],
+    "position": "50% 50%"
+  }
+]

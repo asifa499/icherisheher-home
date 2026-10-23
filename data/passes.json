@@ -16,16 +16,59 @@
     "price": 19,
     "currency": "AZN",
     "features": [
-      { "included": true, "label": { "az": "9 muzeyin hamısına giriş", "en": "Entry to all 9 museums", "ru": "Вход во все 9 музеев" } },
-      { "included": true, "label": { "az": "Pulsuz gəzinti turu + 1 tematik tur", "en": "Free walking tour + 1 themed tour", "ru": "Бесплатная пешая экскурсия + 1 тематический тур" } },
-      { "included": true, "label": { "az": "Genişləndirilmiş audio bələdçi (15 obyekt)", "en": "Extended audio guide (15 sites)", "ru": "Расширенный аудиогид (15 объектов)" } },
-      { "included": false, "label": { "az": "Tərəfdaş kafelərdə 20% endirim", "en": "20% discount in partner cafés", "ru": "Скидка 20% в кафе-партнёрах" } },
-      { "included": false, "label": { "az": "Qız Qalasında növbəsiz giriş", "en": "Skip-the-line at Maiden Tower", "ru": "Без очереди в Девичью башню" } },
-      { "included": false, "label": { "az": "AR Time Machine təcrübəsi", "en": "AR Time Machine experience", "ru": "Опыт AR Time Machine" } }
+      {
+        "included": true,
+        "label": {
+          "az": "9 muzeyin hamısına giriş",
+          "en": "Entry to all 9 museums",
+          "ru": "Вход во все 9 музеев"
+        }
+      },
+      {
+        "included": true,
+        "label": {
+          "az": "Pulsuz gəzinti turu + 1 tematik tur",
+          "en": "Free walking tour + 1 themed tour",
+          "ru": "Бесплатная пешая экскурсия + 1 тематический тур"
+        }
+      },
+      {
+        "included": true,
+        "label": {
+          "az": "Genişləndirilmiş audio bələdçi (15 obyekt)",
+          "en": "Extended audio guide (15 sites)",
+          "ru": "Расширенный аудиогид (15 объектов)"
+        }
+      },
+      {
+        "included": false,
+        "label": {
+          "az": "Tərəfdaş kafelərdə 20% endirim",
+          "en": "20% discount in partner cafés",
+          "ru": "Скидка 20% в кафе-партнёрах"
+        }
+      },
+      {
+        "included": false,
+        "label": {
+          "az": "Qız Qalasında növbəsiz giriş",
+          "en": "Skip-the-line at Maiden Tower",
+          "ru": "Без очереди в Девичью башню"
+        }
+      },
+      {
+        "included": false,
+        "label": {
+          "az": "AR Time Machine təcrübəsi",
+          "en": "AR Time Machine experience",
+          "ru": "Опыт AR Time Machine"
+        }
+      }
     ],
     "is_featured": false,
     "buy_url": "#",
-    "sort_order": 1
+    "sort_order": 1,
+    "old_price": 25
   },
   {
     "id": 2,
@@ -44,16 +87,59 @@
     "price": 42,
     "currency": "AZN",
     "features": [
-      { "included": true, "label": { "az": "9 muzeyin hamısına giriş", "en": "Entry to all 9 museums", "ru": "Вход во все 9 музеев" } },
-      { "included": true, "label": { "az": "Pulsuz gəzinti turu + 1 tematik tur", "en": "Free walking tour + 1 themed tour", "ru": "Бесплатная пешая экскурсия + 1 тематический тур" } },
-      { "included": true, "label": { "az": "Genişləndirilmiş audio bələdçi (15 obyekt)", "en": "Extended audio guide (15 sites)", "ru": "Расширенный аудиогид (15 объектов)" } },
-      { "included": true, "label": { "az": "Qız Qalasında növbəsiz giriş", "en": "Skip-the-line at Maiden Tower", "ru": "Без очереди в Девичью башню" } },
-      { "included": true, "label": { "az": "Tərəfdaş kafelərdə 20% endirim", "en": "20% discount in partner cafés", "ru": "Скидка 20% в кафе-партнёрах" } },
-      { "included": false, "label": { "az": "AR Time Machine təcrübəsi", "en": "AR Time Machine experience", "ru": "Опыт AR Time Machine" } }
+      {
+        "included": true,
+        "label": {
+          "az": "9 muzeyin hamısına giriş",
+          "en": "Entry to all 9 museums",
+          "ru": "Вход во все 9 музеев"
+        }
+      },
+      {
+        "included": true,
+        "label": {
+          "az": "Pulsuz gəzinti turu + 1 tematik tur",
+          "en": "Free walking tour + 1 themed tour",
+          "ru": "Бесплатная пешая экскурсия + 1 тематический тур"
+        }
+      },
+      {
+        "included": true,
+        "label": {
+          "az": "Genişləndirilmiş audio bələdçi (15 obyekt)",
+          "en": "Extended audio guide (15 sites)",
+          "ru": "Расширенный аудиогид (15 объектов)"
+        }
+      },
+      {
+        "included": true,
+        "label": {
+          "az": "Qız Qalasında növbəsiz giriş",
+          "en": "Skip-the-line at Maiden Tower",
+          "ru": "Без очереди в Девичью башню"
+        }
+      },
+      {
+        "included": true,
+        "label": {
+          "az": "Tərəfdaş kafelərdə 20% endirim",
+          "en": "20% discount in partner cafés",
+          "ru": "Скидка 20% в кафе-партнёрах"
+        }
+      },
+      {
+        "included": false,
+        "label": {
+          "az": "AR Time Machine təcrübəsi",
+          "en": "AR Time Machine experience",
+          "ru": "Опыт AR Time Machine"
+        }
+      }
     ],
     "is_featured": true,
     "buy_url": "#",
-    "sort_order": 2
+    "sort_order": 2,
+    "old_price": 70
   },
   {
     "id": 3,
@@ -72,15 +158,58 @@
     "price": 79,
     "currency": "AZN",
     "features": [
-      { "included": true, "label": { "az": "9 muzeyin hamısına giriş", "en": "Entry to all 9 museums", "ru": "Вход во все 9 музеев" } },
-      { "included": true, "label": { "az": "Pulsuz gəzinti turu + 1 tematik tur", "en": "Free walking tour + 1 themed tour", "ru": "Бесплатная пешая экскурсия + 1 тематический тур" } },
-      { "included": true, "label": { "az": "Genişləndirilmiş audio bələdçi (15 obyekt)", "en": "Extended audio guide (15 sites)", "ru": "Расширенный аудиогид (15 объектов)" } },
-      { "included": true, "label": { "az": "Qız Qalasında növbəsiz giriş", "en": "Skip-the-line at Maiden Tower", "ru": "Без очереди в Девичью башню" } },
-      { "included": true, "label": { "az": "Tərəfdaş kafelərdə 20% endirim", "en": "20% discount in partner cafés", "ru": "Скидка 20% в кафе-партнёрах" } },
-      { "included": true, "label": { "az": "AR Time Machine təcrübəsi", "en": "AR Time Machine experience", "ru": "Опыт AR Time Machine" } }
+      {
+        "included": true,
+        "label": {
+          "az": "9 muzeyin hamısına giriş",
+          "en": "Entry to all 9 museums",
+          "ru": "Вход во все 9 музеев"
+        }
+      },
+      {
+        "included": true,
+        "label": {
+          "az": "Pulsuz gəzinti turu + 1 tematik tur",
+          "en": "Free walking tour + 1 themed tour",
+          "ru": "Бесплатная пешая экскурсия + 1 тематический тур"
+        }
+      },
+      {
+        "included": true,
+        "label": {
+          "az": "Genişləndirilmiş audio bələdçi (15 obyekt)",
+          "en": "Extended audio guide (15 sites)",
+          "ru": "Расширенный аудиогид (15 объектов)"
+        }
+      },
+      {
+        "included": true,
+        "label": {
+          "az": "Qız Qalasında növbəsiz giriş",
+          "en": "Skip-the-line at Maiden Tower",
+          "ru": "Без очереди в Девичью башню"
+        }
+      },
+      {
+        "included": true,
+        "label": {
+          "az": "Tərəfdaş kafelərdə 20% endirim",
+          "en": "20% discount in partner cafés",
+          "ru": "Скидка 20% в кафе-партнёрах"
+        }
+      },
+      {
+        "included": true,
+        "label": {
+          "az": "AR Time Machine təcrübəsi",
+          "en": "AR Time Machine experience",
+          "ru": "Опыт AR Time Machine"
+        }
+      }
     ],
     "is_featured": false,
     "buy_url": "#",
-    "sort_order": 3
+    "sort_order": 3,
+    "old_price": 144
   }
 ]

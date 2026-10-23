@@ -130,6 +130,17 @@
   white-space: nowrap;
 }
 
+/* Köhnə (üstündən xətt çəkilmiş) qiymət — 2026-10-23 yeni Figma: 24/32, brand/base */
+.pass-card__price-old {
+  font-size: var(--t-header);
+  line-height: var(--t-header-lh);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--c-brand-base);
+  text-decoration: line-through;
+  white-space: nowrap;
+}
+
 .pass-card__price-unit {
   font-size: var(--t-lead);
   line-height: var(--t-body-lh);

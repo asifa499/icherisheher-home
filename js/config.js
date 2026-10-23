@@ -22,6 +22,7 @@ const SECTION_ID_BY_FLAG = {
   resources: "resources",
   nearby: "nearby",
   citypass: "citypass",
+  collections: "collections",
   appar: "app-ar",
   social: "social",
   footer: "footer",

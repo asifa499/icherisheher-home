@@ -195,6 +195,51 @@
 }
 .nearby__chips::-webkit-scrollbar { display: none; }
 
+/* 2026-10-23: 12 çip — sağda ağ solğunlaşma + 32px ox düyməsi (Figma 40000068, "Frame" 44px zolaq) */
+.nearby__chips-wrap { position: relative; }
+.nearby__chips-fade {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.8) 6%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+.nearby__chips-fade[hidden] { display: none; }
+.nearby__chips-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-pill);
+  background: var(--c-light-gray);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* Xəritəni tam ekrana açan düymə (sağ yuxarı, 44px şüşə) */
+.nearby__expand {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-pill);
+  background: var(--c-glass-12);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
+  cursor: pointer;
+}
+
 /* routes/resources ilə eyni texnika: passiv çipdə də 2px şəffaf
    haşiyə var ki, aktiv olanda sətir yerini dəyişməsin. */
 .nearby__chip {

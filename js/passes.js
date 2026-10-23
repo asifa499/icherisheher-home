@@ -51,7 +51,8 @@ function passCardMarkup(pass) {
         <p class="pass-card__tagline">${description}</p>
       </div>
       <p class="pass-card__price">
-        <span class="pass-card__price-value">${symbol} ${pass.price}</span>
+        <span class="pass-card__price-value">${pass.price} ${symbol}</span>
+        ${pass.old_price ? `<span class="pass-card__price-old">${pass.old_price} ${symbol}</span>` : ""}
         <span class="pass-card__price-unit">${unit}</span>
       </p>
       <ul class="pass-card__features">

@@ -239,6 +239,15 @@ sürüşdürür, "Get Directions" outline + "Get a ticket" solid `--c-brand-base
 sxemi (`type, mode, working_hours, rating, short_description, address, price, image, book_url, tags`) tələb edir, əks halda
 `data/routes.json`-a düşür (hazırda həmişə fallback). Backend yenilənənə qədər data mock-dur (Figma placeholder mətni).
 Season və resources Figma ilə artıq üst-üstə düşür (dəyişiklik yoxdur).
+**Mərhələ 3 (tətbiq edilib, 2026-10-23):** nearby — 12 çip (yeni: Mobility, Utilities, Art gallery, Tour agency, TIC; bunlara uyğun
+məkan olmadığı üçün "No places in this category yet." boş vəziyyəti açılır — `CATEGORY_BY_DB`/overrides qərarı hələ gözlənilir),
+sağda solğunlaşma + ox düyməsi (`js/nearby-ui.js`), xəritə sağ-yuxarı "expand" düyməsi (Fullscreen API). City Pass — qiymət
+"19 ₼" + qırmızı üstü xətli köhnə qiymət (`old_price`, hələ yalnız `data/passes.json`-da; **backend `/api/passes` bu sahəni
+vermir**), yeni qırmızı check/boz cross ikonları. **Yeni bölmə "Icherisheher Digital Collections"** (`#collections`, node
+`40000068:5610`, CityPass–App arası): `data/collections.json` + `js/collections.js` + `css/collections.css`; tab-lar (`tabs`
+massivi üzrə süzür), "Explore Collection", 272px kart cərgəsi (növbə ilə 64px sürüşmə), başlığı olan kart hover-da açılır;
+feature flag `collections` (`js/config.js`). Backend endpoint (`/api/collections`) yoxdur — local fallback. Yalnız masterclass
+kartının mətni Figma-da var, qalan kartlar başlıqsızdır.
 **Qalan fərqlər (sonrakı mərhələlər):** hero "+4" çipi açılan etiket popover-i (Monuments & Landmarks, Museums, Events, Tours &
 Routes, Hidden gems, Local Masters, BukharArt, Visitor Services, Centre for Traditional Arts, Qala Reserve) — davranış sonra.
 

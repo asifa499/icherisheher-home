@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="css/resources.css">
   <link rel="stylesheet" href="css/nearby.css">
   <link rel="stylesheet" href="css/citypass.css">
+  <link rel="stylesheet" href="css/collections.css">
   <link rel="stylesheet" href="css/appar.css">
   <link rel="stylesheet" href="css/social.css">
   <link rel="stylesheet" href="css/footer.css">
@@ -202,7 +203,8 @@
     <div class="nearby__head">
       <h2 class="nearby__title" data-i18n="nearby.title">See What&rsquo;s Nearby</h2>
 
-      <div class="nearby__chips" data-places-chips role="group" data-i18n-aria-label="aria.placeCategories" aria-label="Place categories">
+      <div class="nearby__chips-wrap">
+        <div class="nearby__chips" data-places-chips role="group" data-i18n-aria-label="aria.placeCategories" aria-label="Place categories">
         <button class="nearby__chip is-active" type="button" aria-pressed="true" data-places-category="" data-i18n="nearby.chip.all">All</button>
         <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="museum"><span data-i18n="nearby.chip.museum">Museum</span><img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
         <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="shop"><span data-i18n="nearby.chip.shop">Shop</span><img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
@@ -210,12 +212,23 @@
         <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="restaurant"><span data-i18n="nearby.chip.restaurant">Restaurant</span><img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
         <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="hotel"><span data-i18n="nearby.chip.hotel">Hotel</span><img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
         <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="park"><span data-i18n="nearby.chip.park">Park</span><img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="mobility"><span data-i18n="nearby.chip.mobility">Mobility</span><img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="utilities"><span data-i18n="nearby.chip.utilities">Utilities</span><img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="art-gallery"><span data-i18n="nearby.chip.artGallery">Art gallery</span><img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="tour-agency"><span data-i18n="nearby.chip.tourAgency">Tour agency</span><img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        <button class="nearby__chip" type="button" aria-pressed="false" data-places-category="tic"><span data-i18n="nearby.chip.tic">TIC</span><img class="nearby__chip-x" src="assets/img/nearby-icon-xmark.svg" alt="" width="20" height="20" data-places-clear></button>
+        </div>
+        <div class="nearby__chips-fade" aria-hidden="true">
+          <button class="nearby__chips-next" type="button" tabindex="-1" data-chips-next><img src="assets/img/nearby-icon-arrow-right.svg" alt="" width="16" height="16"></button>
+        </div>
       </div>
     </div>
 
     <!-- Başlanğıcda kart bağlıdır: "All" görünüşündə yalnız xəritə görünür,
          kart kateqoriya çipinə basılanda açılır. -->
     <div class="nearby__card" data-places-card aria-live="polite" hidden></div>
+
+    <button class="nearby__expand" type="button" data-nearby-expand data-i18n-aria-label="aria.expandMap" aria-label="Expand map"><img src="assets/img/nearby-icon-expand.svg" alt="" width="20" height="20"></button>
 
     <span class="nearby__credit">
       <img src="assets/img/nearby-icon-gmaps.svg" alt="" width="20" height="20"><span data-i18n="nearby.credit">Google maps</span>
@@ -237,6 +250,16 @@
   <!-- ETAP 9 · App promo + AR Time Machine · Figma: 3020:2169 (panel bg; əvvəl 1615:3200) + 1615:3372
        (mətn+nişanlar) + 1615:3371 (telefon mokapı) + 1615:3353 (AR bloku, tam)
        (əvvəlki: 1523:5169 + 1523:5341 + 1523:5340 + 1523:5322) -->
+  <!-- YENİ (2026-10-23) · Icherisheher Digital Collections · Figma: 40000068:5610 (CityPass–App arası)
+       Kartlar data/collections.json-dan js/collections.js ilə render olunur. -->
+  <section id="collections" class="collections-section container" data-figma="40000068:5610">
+    <h2 class="collections__title" data-i18n="collections.title">Icherisheher Digital Collections</h2>
+    <div class="collections__tabs" data-collections-tabs role="group" data-i18n-aria-label="aria.collectionTabs" aria-label="Collection filters">
+      <a class="collections__explore" href="#"><img src="assets/img/dcoll-icon-arrow.svg" alt="" width="16" height="16"><span data-i18n="collections.explore">Explore Collection</span></a>
+    </div>
+    <div class="collections__row" data-collections-row aria-live="polite"></div>
+  </section>
+
   <section id="app-ar" class="appar-section block" data-figma="3020:2169,1615:3372,1615:3371,1615:3353">
     <div class="appar-promo">
       <div class="appar-promo__col">
@@ -292,6 +315,8 @@
   <script type="module" src="js/events.js"></script>
   <script type="module" src="js/news.js"></script>
   <script type="module" src="js/places.js"></script>
+  <script type="module" src="js/nearby-ui.js"></script>
   <script type="module" src="js/passes.js"></script>
+  <script type="module" src="js/collections.js"></script>
 </body>
 </html>

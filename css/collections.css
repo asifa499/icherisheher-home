@@ -1,0 +1,134 @@
+/* ============================================================
+   Icherisheher Digital Collections — yeni Figma (2026-10-23)
+   Node 40000068:5610 (1136 × 592): ortalanmış başlıq + tab-lar, altında 272px-lik
+   şəkil cərgəsi; ardıcıl şəkillər növbə ilə 64px yuxarı/aşağı sürüşür (top 156/220).
+   Başlığı olan kart (masterclass) Figma-da ağ kartdır: şəkil 296px + başlıq/təsvir;
+   saytda hover/focus-da açılır.
+   ============================================================ */
+
+.collections-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-top: 64px;
+  margin-bottom: 24px;
+}
+
+.collections__title {
+  font-family: var(--font-display);
+  font-size: var(--t-h2);
+  line-height: var(--t-h2-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--c-content-primary);
+  text-align: center;
+}
+
+.collections__tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.collections__tab,
+.collections__explore {   /* Figma: 10/20 padding, 16/24 SemiBold, #E5E5E5 / aktiv 2px brand haşiyə */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border: 2px solid transparent;
+  border-radius: var(--r-pill);
+  background: var(--c-light-gray);
+  color: var(--c-black);
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+.collections__tab.is-active {
+  background: transparent;
+  border-color: var(--c-brand-base);
+  color: var(--c-brand-base);
+}
+.collections__explore img { width: 16px; height: 16px; }
+
+.collections__row {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 80px;     /* hover kartı 64px aşağı uzana bilsin */
+  margin-top: 8px;
+  /* hər iki kənardan canvas-a "bleed": Figma-da ilk kart solda yarı görünür, ikinci kart başlıqla eyni xəttdədir
+     (js/collections.js ilkin scrollLeft-i bir kart qədər verir) */
+  margin-inline: calc(-1 * max(var(--page-pad), (100vw - var(--content-w)) / 2));
+  padding-inline: max(var(--page-pad), (100vw - var(--content-w)) / 2);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.collections__row::-webkit-scrollbar { display: none; }
+
+.collections-card {
+  flex: 0 0 272px;
+  display: block;
+  border-radius: var(--r-sm);
+  background: var(--c-white);
+  overflow: hidden;
+  transition: height var(--dur) var(--ease);
+}
+.collections-card:nth-child(even) { margin-top: 64px; }   /* (156 / 220 növbələşməsi) */
+
+.collections-card__media { height: 372px; }
+.collections-card__photo { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: var(--r-sm); }
+
+.collections-card--caption .collections-card__media { transition: height var(--dur) var(--ease); }
+.collections-card__caption {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 0;
+  padding: 0 12px;
+  opacity: 0;
+  transition: max-height var(--dur) var(--ease), opacity var(--dur) var(--ease), padding var(--dur) var(--ease);
+}
+.collections-card--caption:hover .collections-card__media,
+.collections-card--caption:focus-visible .collections-card__media { height: 296px; }
+.collections-card--caption:hover .collections-card__caption,
+.collections-card--caption:focus-visible .collections-card__caption { max-height: 140px; padding: 12px; opacity: 1; }
+
+.collections-card__title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: var(--t-lead);
+  line-height: var(--t-lead-lh);
+  letter-spacing: -0.03em;
+  color: var(--c-black);
+}
+.collections-card__title img { flex-shrink: 0; margin-top: 4px; }
+.collections-card__desc {
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+  letter-spacing: -0.03em;
+  color: var(--c-gray);
+}
+
+.collections__row[data-state="error"]::before {
+  content: "";
+}
+
+@media (max-width: 768px) {
+  .collections-section { margin-top: 40px; align-items: flex-start; }
+  .collections__title { text-align: left; }
+  .collections__tabs { justify-content: flex-start; }
+  .collections-card { flex-basis: 200px; }
+  .collections-card__media { height: 280px; }
+  .collections-card:nth-child(even) { margin-top: 32px; }
+  .collections-card--caption:hover .collections-card__media { height: 224px; }
+}
