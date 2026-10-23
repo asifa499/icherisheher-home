@@ -1,4 +1,4 @@
-<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="17.9164" height="16.2508" viewBox="0 0 17.9164 16.2508" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="17.9164" height="16.2508" viewBox="0 0 17.9164 16.2508" fill="none" xmlns="http://www.w3.org/2000/svg"><g transform="matrix(1 0 0 -1 0 16.2508)">
 <g id="elements">
 <path id="Vector" d="M4.79226 3.12581L2.29167 0.625" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" stroke="#F3503A"/>
 <path id="Vector 8472" d="M11.4583 9.79248L10.625 8.95915" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" stroke="#F3503A"/>
@@ -6,4 +6,4 @@
 <path id="Vector 8471" d="M15.625 13.9591L13.125 11.4591" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" stroke="#F3503A"/>
 <path id="Vector 8469" d="M8.95833 7.29248L0.625 15.6258C0.625 12.4244 1.89677 9.35404 4.16053 7.09028L6.45833 4.79248L8.95833 7.29248ZM8.95833 7.29248L15.625 0.625812" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" stroke="#F3503A"/>
 </g>
-</svg>
+</g></svg>

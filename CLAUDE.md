@@ -282,6 +282,12 @@ ikon əlavə edəndə siyahıya yaz. Mock tur datasında 4 kartın hamısı "Fir
 əvvəlcədən kəsilib (368×354 @2x; "qala" kartı üfüqi çevrilir + 20% qara overlay, əvvəlki şəkil səhv/solğun idi). Başlıq eni Figma-da
 kartdan-karta fərqlidir (323/323/186/186) — `data/routes.json`-da `title_width` sahəsi. Şəkil dəyişəndə kropu bu həndəsə ilə yenidən çıxar.
 
+**İkon fix (2026-10-23):** Figma MCP kod dump-ında bəzi ikonlar `-rotate-180 -scale-x-100` wrapper-i ilə gəlir (yəni SVG faylı
+şaquli çevrilmiş saxlanır) — onları birbaşa yazanda baş-aşağı görünür. Düzəldilənlər (SVG-nin içində `matrix(1 0 0 -1 0 H)` ilə
+çevrilib): `route-icon-{castle,restaurant,user}`, `tag-{monuments,eat-drink,museums,visitor,bukharart}`. Yeni ikon çəkəndə dump-da
+wrapper-ə bax. `tag-masters` ↔ `tag-bukharart` faylları səhv yerdə idi (Local Masters = store-location, BukharArt = adzan) — düzəldildi.
+**UI kit:** Figma "ui kit" səhifəsi `3003:608` (29061×11786 — çox böyükdür; konkret komponent node-ları verildikdə oxunur).
+
 ## Etap iş axını
 
 1. Asif "Etap N" deyir.
