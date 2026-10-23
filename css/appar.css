@@ -48,12 +48,13 @@
   gap: 8px;
 }
 
-.appar-promo__title {
-  font-size: var(--t-hero);
-  line-height: var(--t-hero-lh);
-  font-weight: 500;
-  letter-spacing: -0.04em;
-  color: var(--c-text-dark);
+.appar-promo__title {   /* 2026-10-23: Smooch Sans SemiBold 48/56 (40000068:5272) */
+  font-family: var(--font-display);
+  font-size: var(--t-h2);
+  line-height: var(--t-h2-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--c-content-primary);
 }
 
 .appar-promo__text {
@@ -66,7 +67,7 @@
 .appar-promo__badges {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;   /* 2026-10-23: 16 → 8 (40000068) */
 }
 
 .appar-qr {
@@ -117,12 +118,12 @@
 .appar-time {
   position: relative;
   margin-top: -24px;
-  height: 489px;
+  height: 488px;
   border-radius: var(--r-xl);
   overflow: hidden;
-  background: var(--c-black) url("../assets/img/appar-tower-bg.jpg") center 62% / cover no-repeat;
+  background: var(--c-black) url("../assets/img/appar-audio-bg.jpg") 87% 74% / cover no-repeat;
   /* WebP (image-set type() dəstəklənməyən brauzerlərdə yuxarıdakı JPG qalır) */
-  background-image: image-set(url("../assets/img/appar-tower-bg.webp") type("image/webp"), url("../assets/img/appar-tower-bg.jpg") type("image/jpeg"));
+  background-image: image-set(url("../assets/img/appar-audio-bg.webp") type("image/webp"), url("../assets/img/appar-audio-bg.jpg") type("image/jpeg"));
   isolation: isolate;
 }
 
@@ -135,7 +136,8 @@
      blur: 12" dəyəri CSS backdrop-filter-ə birbaşa px kimi köçürüləndə (12px)
      şəkli qeyri-mütənasib tündləşdirir/bulandırır — canlı müqayisədə test
      edilib, 3px vizual olaraq Figma-nın faktiki görünüşünə uyğun gəlir. */
-  background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
+  /* 2026-10-23: yeni foto solda açıq daşlıdır, ağ mətn oxunmurdu — Figma render-i daha tünddür; zəif tünd qradient əlavə olundu */
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
 }
@@ -157,11 +159,12 @@
   max-width: 455px;
 }
 
-.appar-time__title {
-  font-size: var(--t-hero);
-  line-height: var(--t-hero-lh);
-  font-weight: 500;
-  letter-spacing: -0.04em;
+.appar-time__title {   /* 2026-10-23: "AI Audio Guide" — Smooch Sans SemiBold 48/56 */
+  font-family: var(--font-display);
+  font-size: var(--t-h2);
+  line-height: var(--t-h2-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
   color: var(--c-white);
 }
 
@@ -173,7 +176,7 @@
   font-size: var(--t-body);
   line-height: var(--t-body-tight-lh);   /* 2026-10-01: 24 → 20 (1615:3361) */
   letter-spacing: -0.03em;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--c-white);
   max-width: 455px;
 }
 
@@ -200,8 +203,8 @@
   white-space: nowrap;
 }
 
-.appar-time__btn--light {   /* "Explore" — 2026-10-01: ağ fon → primary (brand/base fon, ağ mətn) */
-  background: var(--c-card-ring);
+.appar-time__btn--light {   /* "Icherisheher Audio Guide" — primary (brand/base fon, ağ mətn) */
+  background: var(--c-brand-base);
   color: var(--c-white);
 }
 
@@ -238,8 +241,8 @@
 
   .appar-promo__title,
   .appar-time__title {
-    font-size: 24px;
-    line-height: 32px;
+    font-size: 32px;
+    line-height: 40px;
   }
 
   .appar-promo__phone {

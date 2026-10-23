@@ -248,6 +248,14 @@ vermir**), yeni qırmızı check/boz cross ikonları. **Yeni bölmə "Icherisheh
 massivi üzrə süzür), "Explore Collection", 272px kart cərgəsi (növbə ilə 64px sürüşmə), başlığı olan kart hover-da açılır;
 feature flag `collections` (`js/config.js`). Backend endpoint (`/api/collections`) yoxdur — local fallback. Yalnız masterclass
 kartının mətni Figma-da var, qalan kartlar başlıqsızdır.
+**Mərhələ 4 (tətbiq edilib, 2026-10-23):** app promo (başlıq Smooch SemiBold 48/56, yeni telefon mockup-ı — Figma-dakı 4000×3000
+foto kropdan çıxarılıb, yeni QR, badge boşluğu 8px), **"AR Time Machine" → "AI Audio Guide"** (yeni qulaqlıq fonu
+`appar-audio-bg`, düymələr "Museum Audio Guide" glass + "Icherisheher Audio Guide" brand; foto solda açıq olduğundan
+Figma-dan fərqli olaraq zəif tünd qradient + tam ağ mətn əlavə edildi), **footer** (5 yeni sütun Explore/Visit/Tickets & Pass/
+About & Media/Legal — açarlar `fh.*`/`fl.*`; Contact/Information offices/Follow us (Tiktok/Youtube/Facebook ikonları),
+əlaqə sətri 18/24). Sosial feed Figma ilə artıq üst-üstə düşür. Burger menyu dəyişdirilmədi: yeni faylda menyu frame-i yoxdur
+(sitemap hələ köhnə `col.*` linklərini göstərir — yeni footer sütunları ilə uyğunlaşdırmaq üçün Asifdən menyu dizaynı gözlənilir).
+Footer linkləri hələ `#`. **Mobil frame hələ yenilənməyib** — bütün mobil tərtibat təxminidir.
 **Qalan fərqlər (sonrakı mərhələlər):** hero "+4" çipi açılan etiket popover-i (Monuments & Landmarks, Museums, Events, Tours &
 Routes, Hidden gems, Local Masters, BukharArt, Visitor Services, Centre for Traditional Arts, Qala Reserve) — davranış sonra.
 

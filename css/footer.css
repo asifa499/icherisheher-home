@@ -79,6 +79,25 @@
   letter-spacing: -0.64px;
 }
 
+/* 2026-10-23: "Follow us" — ikon + mətn (Figma 24px ikon, 18/24 Medium) */
+.footer__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+.footer__social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--t-lead);
+  line-height: var(--t-lead-lh);
+  font-weight: 500;
+  color: var(--c-content-primary);
+  letter-spacing: -0.03em;
+}
+.footer__social-link img { width: 24px; height: 24px; object-fit: none; }
+
 .footer__links a:hover { text-decoration: underline; }
 
 /* ---------- Əlaqə + informasiya ofisləri (1523:5408) ---------- */
@@ -96,11 +115,11 @@
 }
 
 .footer__info-line {
-  font-size: var(--t-header);
-  line-height: var(--t-header-lh);       /* Figma header/medium 24/32 (1615:3442) */
+  font-size: var(--t-lead);
+  line-height: var(--t-lead-lh);         /* 2026-10-23: header 24/32 → 18/24 Medium (40000068) */
   font-weight: 500;
-  color: var(--c-content-primary);       /* 2026-10-01: #222 → content/primary */
-  letter-spacing: -0.96px;
+  color: var(--c-content-primary);
+  letter-spacing: -0.03em;
   overflow-wrap: anywhere;
 }
 
