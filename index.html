@@ -86,7 +86,7 @@
         <p class="hero__explore-heading" data-i18n="hero.exploreHeading">What would you<br>like to explore?</p>
         <div class="hero__chips">
           <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-tour.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.tour">Get your tour</span></button>
-          <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-city-pass.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.tickets">Tickets &amp; Pass</span></button>
+          <button class="chip" type="button" data-scroll-to="citypass"><img class="chip__icon" src="assets/img/hero-chip-city-pass.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.tickets">Tickets &amp; Pass</span></button>
           <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-digimap.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.digimap">Digi map</span></button>
           <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-audioguide.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.audioguide">AI Audio guide</span></button>
           <button class="chip" type="button"><span data-i18n="hero.chip.more">+4</span></button>
@@ -106,10 +106,10 @@
       <p class="intro__eyebrow" data-i18n="intro.eyebrow">Where History Still Lives</p>
       <p class="intro__lead"><span data-i18n="intro.lead">Icherisheher is Baku&rsquo;s historic heart, surrounded by ancient walls and listed as a UNESCO World Heritage Site since 2000.</span> <span class="intro__lead-muted" data-i18n="intro.leadMuted">Home to landmarks like the Maiden Tower and Shirvanshah&rsquo;s Palace, the Old City remains a living neighborhood with more than 3,000 residents.</span></p>
       <div class="intro__ctas">
-        <button class="intro__btn intro__btn--outline" type="button">
+        <button class="intro__btn intro__btn--outline" type="button" data-scroll-to="citypass">
           <img src="assets/img/hero-chip-city-pass.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.tickets">Tickets &amp; Pass</span>
         </button>
-        <button class="intro__btn intro__btn--solid" type="button"><span data-i18n="intro.exploreNow">Explore now</span><span class="intro__badge">10</span></button>
+        <button class="intro__btn intro__btn--solid" type="button" data-scroll-to="nearby"><span data-i18n="intro.exploreNow">Explore now</span><span class="intro__badge">10</span></button>
       </div>
     </div>
     <div class="intro__collage-wrap">
@@ -139,8 +139,8 @@
   <section id="museums" class="museums-section container" data-figma="1615:3450">
     <h2 class="museums__title" data-i18n="museums.title">Museums of Icherisheher &amp; Gala</h2>
     <div class="museums__actions">
-      <a class="museums__pass" href="#" data-i18n="museums.getPass">Get Your Pass</a>
-      <a class="museums__view-all" href="#"><img src="assets/img/museum-icon-arrow-ur.svg" alt="" width="14" height="14"><span data-i18n="museums.viewAll">View all museums</span></a>
+      <a class="museums__pass" href="#citypass" data-scroll-to="citypass" data-i18n="museums.getPass">Get Your Pass</a>
+      <a class="museums__view-all" href="#museums" data-scroll-to="museums"><img src="assets/img/museum-icon-arrow-ur.svg" alt="" width="14" height="14"><span data-i18n="museums.viewAll">View all museums</span></a>
     </div>
     <div class="museums__row" data-museums-row aria-live="polite"></div>
   </section>
@@ -309,6 +309,7 @@
   <script type="module" src="js/config.js"></script>
   <script type="module" src="js/lang.js"></script>
   <script type="module" src="js/nav-menu.js"></script>
+  <script type="module" src="js/scroll-links.js"></script>
   <!-- Bölmə skriptləri (yalnız bu səhifədəki bölmələr) -->
   <script type="module" src="js/museums.js"></script>
   <script type="module" src="js/routes.js"></script>

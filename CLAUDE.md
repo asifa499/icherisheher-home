@@ -259,6 +259,14 @@ Footer linkləri hələ `#`. **Mobil frame hələ yenilənməyib** — bütün m
 **Qalan fərqlər (sonrakı mərhələlər):** hero "+4" çipi açılan etiket popover-i (Monuments & Landmarks, Museums, Events, Tours &
 Routes, Hidden gems, Local Masters, BukharArt, Visitor Services, Centre for Traditional Arts, Qala Reserve) — davranış sonra.
 
+### Düymə davranışları (2026-10-23)
+`js/scroll-links.js`: `[data-scroll-to="<id>"]` → hamar scroll (hash dəyişmir; hədəf səhifədə yoxdursa linkin `href`-i işləyir).
+Tətbiq: "Download App" → `#app-ar`; hero çipi "Tickets & Pass", intro "Tickets & Pass", muzey "Get Your Pass" → `#citypass`;
+intro "Explore now" → `#nearby`; "View all museums" → `#museums`. Artıq işləyənlər: dil, menyu/axtarış overlay, nearby,
+tab/süzgəclər, muzey oxları/"Get Directions"/"Get a ticket", Instagram "Follow". **URL/nömrə gözlənilir (hələ `#`):** WhatsApp,
+App store/Google play, Get a Quote, hero çipləri (Get your tour, Digi map, AI Audio guide, +4 popover), Inspire me, routes
+"Book Now", City Pass "Buy", events calendar, Explore Collection, AI Audio Guide düymələri, footer/menyu linkləri, sosial ikonlar.
+
 ## Etap iş axını
 
 1. Asif "Etap N" deyir.
