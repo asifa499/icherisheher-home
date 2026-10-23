@@ -272,6 +272,12 @@ radius 24/24/4/24, çipin üstündə sağ kənarla düzülür: Eat & Drink, Muse
 `40000068:5656` (669px panel, 10 peach etiket, CTA sırasının üstündə mərkəzdə; "Explore now" artıq scroll etmir). Kənara klik/
 Escape bağlayır, eyni anda biri açıqdır. Etiket linkləri hələ `#` (hədəf səhifələr/filtrlər sonrakı mərhələdə).
 
+**Routes fix (2026-10-23, Figma `40000068:4848`):** kart ikonları Figma ilə eyniləşdi — ünvan (`location-01`), qiymət (`money-02`,
+əvvəl səhv olaraq bilet ikonu idi; museums kartında da), saat (`time-02`) yeniləndi. **Qayda:** Figma MCP-dən çəkilən "elements" ikonları
+çərçivəsiz glyph-dir (`preserveAspectRatio="none"`, məs. 17.9×16.25) və slota (20/16px) `<img width/height` ilə sığdırılanda əyilirdi;
+`css/base.css`-in sonundakı `img[src*="/<ad>.svg"] { object-fit: none }` siyahısı onları təbii ölçüdə mərkəzdə saxlayır — yeni belə
+ikon əlavə edəndə siyahıya yaz. Mock tur datasında 4 kartın hamısı "First time" tab-ındadır (Figma-da 4 kart göstərilir).
+
 ## Etap iş axını
 
 1. Asif "Etap N" deyir.

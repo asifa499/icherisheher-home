@@ -67,7 +67,7 @@ function cardMarkup(tour) {
         <p class="routes-card__desc">${escapeHtml(pickText(tour.short_description))}</p>
         <div class="routes-card__facts">
           <p class="routes-card__meta"><img src="${IMG}museum-icon-pin.svg" alt="" width="20" height="20">${escapeHtml(pickText(tour.address))}</p>
-          <p class="routes-card__meta"><img src="${IMG}museum-icon-ticket.svg" alt="" width="20" height="20">${escapeHtml(pickText(tour.price))}</p>
+          <p class="routes-card__meta"><img src="${IMG}museum-icon-money.svg" alt="" width="20" height="20">${escapeHtml(pickText(tour.price))}</p>
         </div>
         <a class="routes-card__cta" href="${escapeHtml(tour.book_url || "#")}">${escapeHtml(t("routes.bookNow"))}</a>
       </div>

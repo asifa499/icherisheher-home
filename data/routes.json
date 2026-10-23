@@ -102,6 +102,7 @@
     "image": "assets/img/routes-night.jpg",
     "book_url": "#",
     "tags": [
+      "first-time",
       "private"
     ],
     "sort_order": 3
@@ -137,6 +138,7 @@
     "image": "assets/img/routes-qala.jpg",
     "book_url": "#",
     "tags": [
+      "first-time",
       "group",
       "qala"
     ],

@@ -52,7 +52,7 @@ function museumCardMarkup(museum) {
           ${address}
         </p>
         <p class="museums-card__meta">
-          <img src="${IMG}museum-icon-ticket.svg" alt="" width="20" height="20">
+          <img src="${IMG}museum-icon-money.svg" alt="" width="20" height="20">
           ${museum.ticket_price}
         </p>
         <div class="museums-card__actions">

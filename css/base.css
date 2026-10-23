@@ -136,3 +136,39 @@ ul, ol { list-style: none; }
     --r-lg: 24px;
   }
 }
+
+/* Figma-dan çəkilən "elements" ikonları çərçivəsiz kəsilmiş glyph-dir (məs. 17.9×16.25) və SVG-də
+   preserveAspectRatio="none" var — 20px/16px slota sığdırılanda uzanıb əyilir. object-fit:none onları
+   təbii ölçüdə slotun ortasında saxlayır (Figma-dakı inset düzülüşü). Yeni belə ikon əlavə edəndə siyahıya yaz. */
+img[src*="/hero-chip-tour.svg"],
+img[src*="/hero-icon-download.svg"],
+img[src*="/hero-icon-quote.svg"],
+img[src*="/hero-icon-whatsapp.svg"],
+img[src*="/hero-icon-whatsapp-dark.svg"],
+img[src*="/museum-icon-arrow-left.svg"],
+img[src*="/museum-icon-arrow-right.svg"],
+img[src*="/museum-icon-directions.svg"],
+img[src*="/museum-icon-ticket-white.svg"],
+img[src*="/museum-icon-pin.svg"],
+img[src*="/museum-icon-money.svg"],
+img[src*="/social-icon-instagram.svg"],
+img[src*="/route-icon-castle.svg"],
+img[src*="/route-icon-group.svg"],
+img[src*="/route-icon-restaurant.svg"],
+img[src*="/route-icon-user.svg"],
+img[src*="/route-icon-walk.svg"],
+img[src*="/footer-icon-youtube.svg"],
+img[src*="/tag-arts.svg"],
+img[src*="/tag-bukharart.svg"],
+img[src*="/tag-eat-drink.svg"],
+img[src*="/tag-events.svg"],
+img[src*="/tag-gems.svg"],
+img[src*="/tag-masters.svg"],
+img[src*="/tag-monuments.svg"],
+img[src*="/tag-museums.svg"],
+img[src*="/tag-museums2.svg"],
+img[src*="/tag-routes.svg"],
+img[src*="/tag-stay.svg"],
+img[src*="/tag-visitor.svg"] {
+  object-fit: none;
+}
