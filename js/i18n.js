@@ -135,6 +135,10 @@ const DICT = {
 
   "museums.title": { en: "Museums of Icherisheher & Gala", az: "İçərişəhər və Qalanın muzeyləri", ru: "Музеи Ичеришехер и Гала" },
   "museums.viewAll": { en: "View all museums", az: "Bütün muzeylərə bax", ru: "Смотреть все музеи" },
+  "museums.getPass": { en: "Get Your Pass", az: "Pass əldə et", ru: "Получить Pass" },
+  "museums.getDirections": { en: "Get Directions", az: "Yol tarifi", ru: "Маршрут" },
+  "museums.prev": { en: "Previous", az: "Əvvəlki", ru: "Назад" },
+  "museums.next": { en: "Next", az: "Növbəti", ru: "Далее" },
   "museums.getTicket": { en: "Get a ticket", az: "Bilet al", ru: "Купить билет" },
 
   "routes.title": {
@@ -148,6 +152,16 @@ const DICT = {
     ru: "Выберите способ передвижения и следуйте размеченному маршруту по Старому городу — на каждой остановке есть ссылки на билеты, часы работы и маршрут.",
   },
   "routes.allTours": { en: "All tours", az: "Bütün turlar", ru: "Все туры" },
+  "routes.tab.firstTime": { en: "First time", az: "İlk dəfə", ru: "Впервые" },
+  "routes.tab.group": { en: "Group Tours", az: "Qrup turları", ru: "Групповые туры" },
+  "routes.tab.private": { en: "Private Tours", az: "Fərdi turlar", ru: "Индивидуальные туры" },
+  "routes.tab.qala": { en: "Qala Tours", az: "Qala turları", ru: "Туры Гала" },
+  "routes.type.restaurant": { en: "Restaurant", az: "Restoran", ru: "Ресторан" },
+  "routes.type.museums": { en: "Museums", az: "Muzeylər", ru: "Музеи" },
+  "routes.type.walk": { en: "Walk", az: "Gəzinti", ru: "Прогулка" },
+  "routes.mode.private": { en: "Private", az: "Fərdi", ru: "Индивидуально" },
+  "routes.mode.group": { en: "Group", az: "Qrup", ru: "Группа" },
+  "routes.bookNow": { en: "Book Now", az: "İndi sifariş et", ru: "Забронировать" },
   "routes.getPass": { en: "Get a Pass", az: "Pas əldə et", ru: "Получить пропуск" },
 
   "season.title": { en: "This season in the Old City", az: "Bu mövsüm Köhnə Şəhərdə", ru: "В этом сезоне в Старом городе" },

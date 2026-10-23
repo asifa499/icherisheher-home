@@ -95,148 +95,156 @@
   margin-top: 16px;
 }
 
-/* ---------- Marşrut kartı ---------- */
-.routes__card {
+/* ---------- Tur kartları (2026-10-23, Figma 40000068:4848) ----------
+   Yeni dizaynda marşrut bloku museums kimi üfüqi kart cərgəsidir (368px kart, 354px şəkil);
+   köhnə "şəkil + dayanacaq siyahısı" kartı silindi. Rating nişanı şəklin sol-altındadır. */
+.routes__row {
   grid-area: card;
   display: flex;
-  align-items: stretch;
+  gap: 16px;
   margin-top: 24px;
-  border-radius: var(--r-md);
-  overflow: hidden;
+  margin-right: calc(-1 * max(var(--page-pad), (100vw - var(--content-w)) / 2));
+  padding-right: max(var(--page-pad), (100vw - var(--content-w)) / 2);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.routes__row::-webkit-scrollbar { display: none; }
+
+.routes-card {
+  flex: 0 0 368px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 24px;
+  border-radius: var(--r-lg);
   background: var(--c-white);
 }
 
 .routes-card__media {
   position: relative;
-  flex: 0 1 464px;
-  min-width: 0;
-  border-radius: var(--r-md);
+  height: 354px;
+  border-radius: var(--r-lg);
   overflow: hidden;
 }
-
-.routes-card__photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.routes-card__badges {
+.routes-card__photo { width: 100%; height: 100%; object-fit: cover; }
+.routes-card__scrim {
   position: absolute;
-  left: 24px;
-  bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  inset: 0;
+  background: linear-gradient(175deg, rgba(0, 0, 0, 0.3) 9%, rgba(0, 0, 0, 0) 87%);
 }
+.routes-card__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+}
+.routes-card__title {
+  font-size: var(--t-header);
+  line-height: var(--t-header-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--c-white);
+}
+.routes-card__badges { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .routes-card__badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 3px 11px 3px 9px;   /* +1px border = Figma 4/12/4/10 paddinqi */
+  gap: 4px;
+  padding: 6px 8px;
   border-radius: var(--r-pill);
-  background: var(--c-glass-16);
+  background: var(--c-glass-12);
   border: 1px solid var(--c-glass-04);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
   color: var(--c-white);
-  font-size: var(--t-small);
-  line-height: var(--t-body-lh);
+  font-size: var(--t-caption);
+  line-height: var(--t-caption-lh);
+  font-weight: 500;
   white-space: nowrap;
 }
-.routes-card__badge img { flex-shrink: 0; }
+.routes-card__badge img { width: 16px; height: 16px; flex-shrink: 0; }
+.routes-card__badge--rating {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  font-weight: 400;
+  color: var(--c-white);
+}
+.routes-card__google {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--c-white);
+}
+.routes-card__google img { width: 12px; height: 12px; }
+.routes-card__badge .routes-card__star { padding: 1.33px; }
 
 .routes-card__body {
-  flex: 1 1 auto;
-  min-width: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-  padding: 24px;
-}
-
-.routes-card__stops {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.routes-card__stop {
-  display: flex;
-  align-items: flex-start;
   gap: 16px;
+  padding: 0 24px;
 }
-
-.routes-card__marker {
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  border: 1.5px solid var(--c-orange);
-  border-radius: var(--r-pill);
-  color: var(--c-orange);
+.routes-card__desc {
   font-size: var(--t-body);
-  line-height: 1;
-  font-weight: 500;
-  letter-spacing: -0.03em;
+  line-height: var(--t-body-lh);
+  letter-spacing: -0.02em;
+  color: var(--c-text-soft);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-
-.routes-card__stop-text {
+.routes-card__meta {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-}
-
-.routes-card__stop-name {
-  font-size: var(--t-lead);
-  line-height: var(--t-lead-lh);
+  align-items: center;
+  gap: 6px;
+  font-size: var(--t-body);
+  line-height: var(--t-body-tight-lh);
   letter-spacing: -0.03em;
-  color: var(--c-black);
+  color: var(--c-content-secondary);
 }
+.routes-card__meta img { width: 20px; height: 20px; flex-shrink: 0; }
+.routes-card__facts { display: flex; flex-direction: column; gap: 8px; }
 
-.routes-card__stop-desc {
-  font-size: var(--t-small);
-  line-height: var(--t-small-lh);
-  letter-spacing: -0.03em;
-  color: var(--c-gray);
-}
-
-.routes-card__cta {   /* ui kit button · md · primary (3039:9272) */
-  align-self: flex-start;
-  display: inline-flex;
+.routes-card__cta {   /* ui kit button · md · brand/light */
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--btn-gap);
   padding: var(--btn-pad-md);
   border: 1px solid var(--c-glass-04);
   border-radius: var(--r-pill);
-  background: var(--c-card-ring);
-  backdrop-filter: blur(var(--blur-nav));
-  -webkit-backdrop-filter: blur(var(--blur-nav));
-  color: var(--c-white);
+  background: var(--c-cta-peach);
+  color: var(--c-brand-base);
   font-size: var(--t-body);
   line-height: var(--t-body-tight-lh);
   font-weight: 600;
   letter-spacing: -0.03em;
 }
-.routes-card__cta img { flex-shrink: 0; }
 
 /* ---------- Fallback (JS-siz / fetch alınmayanda) ---------- */
-.routes__card[data-state="error"] {
+.routes__row[data-state="error"] {
   display: block;
   padding: 24px;
   color: var(--c-gray);
   font-size: var(--t-small);
   line-height: var(--t-small-lh);
 }
-.routes__card[data-state="error"]::before {
+.routes__row[data-state="error"]::before {
   content: "Marşrutlar yüklənmədi. Bir az sonra yenidən cəhd edin.";
 }
 
-/* ---------- Responsive (mobil, 393px etalon) ---------- */
+
+/* ---------- Responsive (mobil: mobil frame hələ yenilənməyib) ---------- */
 @media (max-width: 768px) {
   .routes-section {
     grid-template-columns: 1fr;
@@ -249,50 +257,17 @@
 
   .routes__intro { gap: 4px; }
 
-  .routes__title {
-    font-size: var(--t-h4);
-    line-height: var(--t-h4-lh);
-  }
-
-  /* Figma mobil variantda başlıq "routes," sözündən sonra sətri kəsir. */
-  .routes__br { display: inline; }
-
   .routes__lead {
     font-size: var(--t-small);
     line-height: var(--t-small-lh);
   }
 
-  .routes__chip {
-    padding: 7px 11px;            /* +1px border = mobil Figma 8/12 paddinqi */
-    font-size: var(--t-caption);
-    line-height: var(--t-caption-lh);
-  }
+  .routes__all { justify-self: center; }
 
-  /* "All tours" mobil variantda kartın altına, mərkəzə düşür. Paddinqi
-     desktop ilə eynidir (Figma-da kiçilmir), yalnız mətn 16px→14px düşür. */
-  .routes__all {
-    justify-self: center;
-    font-size: var(--t-small);
-    line-height: var(--t-small-lh);
-  }
-
-  .routes__card {
-    flex-direction: column;
-    margin-top: 16px;
-  }
-
-  .routes-card__media {
-    flex: 0 0 auto;
-    width: 100%;
-    height: 281px;
-  }
-
-  .routes-card__badges {
-    left: 16px;
-    bottom: 16px;
-  }
-
-  .routes-card__body { padding: 20px; }
-
-  .routes-card__stop { gap: 12px; }
+  .routes__row { gap: 8px; margin-top: 16px; }
+  .routes-card { flex-basis: 300px; border-radius: var(--r-md); }
+  .routes-card__media { height: 288px; border-radius: var(--r-md); }
+  .routes-card__overlay { padding: 16px; }
+  .routes-card__badge--rating { left: 16px; bottom: 16px; }
+  .routes-card__body { padding: 0 16px; }
 }

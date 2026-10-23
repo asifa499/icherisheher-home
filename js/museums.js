@@ -34,10 +34,15 @@ function museumCardMarkup(museum) {
               ${museum.working_hours}
             </span>
             <span class="museums-card__badge">
-              <img src="${IMG}museum-icon-star.svg" alt="" width="16" height="16">
+              <span class="museums-card__google" aria-hidden="true"><img src="${IMG}museum-icon-google.svg" alt="" width="12" height="12"></span>
               ${museum.rating.toFixed(1)}
+              <img class="museums-card__star" src="${IMG}museum-icon-star-gold.svg" alt="" width="14" height="14">
             </span>
           </div>
+        </div>
+        <div class="museums-card__nav">
+          <button class="museums-card__arrow" type="button" data-museums-prev aria-label="${t("museums.prev")}"><img src="${IMG}museum-icon-arrow-left.svg" alt="" width="20" height="20"></button>
+          <button class="museums-card__arrow" type="button" data-museums-next aria-label="${t("museums.next")}"><img src="${IMG}museum-icon-arrow-right.svg" alt="" width="20" height="20"></button>
         </div>
       </div>
       <div class="museums-card__body">
@@ -50,10 +55,16 @@ function museumCardMarkup(museum) {
           <img src="${IMG}museum-icon-ticket.svg" alt="" width="20" height="20">
           ${museum.ticket_price}
         </p>
-        <a class="museums-card__cta" href="${museum.ticket_url}">
-          <img src="${IMG}museum-icon-ticket-btn.svg" alt="" width="20" height="20">
-          ${t("museums.getTicket")}
-        </a>
+        <div class="museums-card__actions">
+          <a class="museums-card__cta museums-card__cta--outline" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address + ", Baku")}" target="_blank" rel="noopener">
+            <img src="${IMG}museum-icon-directions.svg" alt="" width="20" height="20">
+            ${t("museums.getDirections")}
+          </a>
+          <a class="museums-card__cta" href="${museum.ticket_url}">
+            <img src="${IMG}museum-icon-ticket-white.svg" alt="" width="20" height="20">
+            ${t("museums.getTicket")}
+          </a>
+        </div>
       </div>
     </article>
   `;
@@ -108,6 +119,14 @@ async function initMuseums() {
   }
 
   renderMuseums(row, museums);
+  // Kart oxları: cərgəni bir kart qədər sürüşdürür (davranış sonra dəqiqləşdirilə bilər).
+  row.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-museums-prev], [data-museums-next]");
+    if (!btn) return;
+    const card = btn.closest(".museums-card");
+    const step = card.offsetWidth + 16;
+    row.scrollBy({ left: btn.hasAttribute("data-museums-next") ? step : -step, behavior: "smooth" });
+  });
   // Dil dəyişəndə kartları eyni data ilə yenidən çəkir — API-yə təkrar sorğu yoxdur.
   onLangChange((lang) => {
     LANG = lang;

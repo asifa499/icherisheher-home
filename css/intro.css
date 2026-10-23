@@ -35,7 +35,7 @@
   font-weight: 400;
   letter-spacing: -0.03em;
   text-align: center;
-  color: var(--c-text-dark);
+  color: var(--c-content-primary);
 }
 .intro__lead-muted { color: var(--c-text-muted); }
 
@@ -66,8 +66,23 @@
   color: var(--c-card-ring);
 }
 .intro__btn--solid {
-  background: var(--c-card-ring);
+  background: var(--c-brand-base);
   color: var(--c-white);
+}
+/* "Explore now" sayğac nişanı (Figma 40000068:5025 — ağ pill, 1.5px brand haşiyə, 20px) */
+.intro__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  min-width: 20px;
+  padding: 0 4px;
+  border: 1.5px solid var(--c-brand-base);
+  border-radius: var(--r-pill);
+  background: var(--c-white);
+  color: var(--c-brand-base);
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
 }
 
 /* ---------- Foto kollaj (kənarlara "bleed" edən, sağdan-sola avtomatik sürüşən zolaq) ---------- */

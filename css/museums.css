@@ -32,22 +32,42 @@
   color: var(--c-black);
 }
 
-.museums__view-all {   /* ui kit button · sm · neutral (3034:45069) */
+.museums__actions {   /* 2026-10-23: "Get Your Pass" + "View all museums" yan-yana (40000068:5297) */
   grid-area: link;
   justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.museums__pass {   /* ui kit button · sm · brand/base */
   display: inline-flex;
   align-items: center;
-  gap: var(--btn-gap);
   padding: var(--btn-pad-sm);
   border: 1px solid var(--c-glass-04);
   border-radius: var(--r-pill);
-  background: var(--c-btn-neutral);
-  backdrop-filter: blur(var(--blur-nav));
-  -webkit-backdrop-filter: blur(var(--blur-nav));
-  color: var(--c-content-primary);
+  background: var(--c-brand-base);
+  color: var(--c-white);
   font-size: var(--t-small);
   line-height: var(--t-small-lh);
   font-weight: 600;
+  white-space: nowrap;
+}
+
+.museums__view-all {   /* Figma bu düyməni hələ köhnə üslubda saxlayır: #E5E5E5, 36px, 10/20 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 36px;
+  padding: 10px 20px;
+  border-radius: var(--r-pill);
+  background: var(--c-light-gray);
+  color: var(--c-black);
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
   white-space: nowrap;
 }
 
@@ -139,6 +159,41 @@
   white-space: nowrap;
 }
 .museums-card__badge img { width: 16px; height: 16px; }
+/* Google reytinq nişanı: ağ dairə içində "G" + qızılı ulduz (40000068:5309 qrupu) */
+.museums-card__google {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--c-white);
+  flex-shrink: 0;
+}
+.museums-card__google img { width: 12px; height: 12px; }
+.museums-card__badge .museums-card__star { width: 16px; height: 16px; padding: 1.33px; flex-shrink: 0; }
+
+/* Prev/next oxları — şəklin sağ alt küncü (40px, 12% ağ şüşə) */
+.museums-card__nav {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  gap: 4px;
+}
+.museums-card__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--c-glass-04);
+  background: var(--c-glass-12);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
+  cursor: pointer;
+}
 
 .museums-card__body {
   display: flex;
@@ -177,16 +232,24 @@
   padding: var(--btn-pad-md);
   border: 1px solid var(--c-glass-04);
   border-radius: var(--r-pill);
-  background: var(--c-cta-peach);
+  background: var(--c-brand-base);
   backdrop-filter: blur(var(--blur-nav));
   -webkit-backdrop-filter: blur(var(--blur-nav));
-  color: var(--c-card-ring);
+  color: var(--c-white);
   font-size: var(--t-body);
   line-height: var(--t-body-tight-lh);
   font-weight: 600;
   letter-spacing: -0.03em;
 }
+.museums-card__cta--outline {
+  background: transparent;
+  border-color: var(--c-brand-base);
+  color: var(--c-brand-base);
+}
 .museums-card__cta img { width: 20px; height: 20px; }
+
+.museums-card__actions { display: flex; gap: 8px; }
+.museums-card__actions .museums-card__cta { flex: 1 0 0; min-width: 0; white-space: nowrap; }
 
 /* ---------- Fallback (JS-siz / fetch alınmayanda) ---------- */
 .museums__row[data-state="error"]::before {
@@ -206,13 +269,15 @@
       "link";
     row-gap: 16px;
   }
-  .museums__view-all { justify-self: center; }
+  .museums__actions { justify-self: center; }
 
   .museums__row { gap: 8px; }
 
   .museums-card { flex-basis: 300px; border-radius: var(--r-md); padding-bottom: 20px; }
   .museums-card__media { height: 288px; border-radius: var(--r-md); }
   .museums-card__overlay { padding: 16px; gap: 8px; }
+  .museums-card__nav { right: 16px; bottom: 16px; }
+  .museums-card__actions { flex-direction: column; }
   .museums-card__title { font-size: 18px; line-height: 24px; }
   .museums-card__body { padding: 0 16px; gap: 12px; }
 }

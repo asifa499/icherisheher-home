@@ -1,4 +1,4 @@
-// Etap 4 — Ready-made routes
+// Etap 4 — Ready-made routes (2026-10-23: yeni dizayn — tab-lı tur kartları cərgəsi, sxem data/routes.json-da)
 // Data-driven marşrut bloku: js/museums.js ilə eyni nümunə —
 // əvvəl öz backend-imiz (icherisheher-api, Railway), alınmasa
 // local data/routes.json fallback-ı. /api/routes endpoint-i hələ
@@ -23,67 +23,67 @@ function escapeHtml(value) {
   ));
 }
 
-function chipMarkup(route, isActive) {
+const TABS = [
+  { key: "first-time", label: "routes.tab.firstTime" },
+  { key: "group", label: "routes.tab.group" },
+  { key: "private", label: "routes.tab.private" },
+  { key: "qala", label: "routes.tab.qala" },
+];
+const TYPE_ICON = { restaurant: "route-icon-restaurant.svg", museums: "route-icon-castle.svg", walk: "route-icon-walk.svg" };
+const MODE_ICON = { private: "route-icon-user.svg", group: "route-icon-group.svg" };
+
+function tabMarkup(tab, isActive) {
   return `
     <button class="routes__chip${isActive ? " is-active" : ""}" type="button"
-            data-route-slug="${escapeHtml(route.slug)}"
-            aria-pressed="${isActive ? "true" : "false"}">
-      ${escapeHtml(pickText(route.title))}
+            data-route-tab="${tab.key}" aria-pressed="${isActive ? "true" : "false"}">
+      ${escapeHtml(t(tab.label))}
     </button>
   `;
 }
 
-function stopMarkup(stop, index) {
+function cardMarkup(tour) {
+  const title = pickText(tour.title);
+  const src = imageUrl(tour.image);
   return `
-    <li class="routes-card__stop">
-      <span class="routes-card__marker" aria-hidden="true">${index + 1}</span>
-      <span class="routes-card__stop-text">
-        <span class="routes-card__stop-name">${escapeHtml(pickText(stop.name))}</span>
-        <span class="routes-card__stop-desc">${escapeHtml(pickText(stop.description))}</span>
-      </span>
-    </li>
-  `;
-}
-
-function cardMarkup(route) {
-  const title = pickText(route.title);
-  const stops = [...route.stops].sort((a, b) => a.sort_order - b.sort_order);
-
-  return `
-    <div class="routes-card__media">
-      ${picture(imageUrl(route.image), `<img class="routes-card__photo" src="${escapeHtml(imageUrl(route.image))}" alt="${escapeHtml(title)}"
-           loading="lazy" decoding="async" width="464" height="352">`)}
-      <div class="routes-card__badges">
-        <span class="routes-card__badge">
-          <img src="${IMG}route-icon-clock.svg" alt="" width="16" height="16">
-          ${escapeHtml(pickText(route.duration))}
-        </span>
-        <span class="routes-card__badge">
-          <img src="${IMG}route-icon-distance.svg" alt="" width="20" height="20">
-          ${escapeHtml(pickText(route.distance))}
+    <article class="routes-card" data-slug="${escapeHtml(tour.slug)}">
+      <div class="routes-card__media">
+        ${picture(src, `<img class="routes-card__photo" src="${escapeHtml(src)}" alt="${escapeHtml(title)}" loading="lazy" decoding="async" width="368" height="354">`)}
+        <div class="routes-card__scrim" aria-hidden="true"></div>
+        <div class="routes-card__overlay">
+          <h3 class="routes-card__title">${escapeHtml(title)}</h3>
+          <div class="routes-card__badges">
+            <span class="routes-card__badge"><img src="${IMG}${TYPE_ICON[tour.type] || TYPE_ICON.walk}" alt="" width="16" height="16">${escapeHtml(t("routes.type." + tour.type))}</span>
+            <span class="routes-card__badge"><img src="${IMG}museum-icon-clock.svg" alt="" width="16" height="16">${escapeHtml(tour.working_hours)}</span>
+            <span class="routes-card__badge"><img src="${IMG}${MODE_ICON[tour.mode] || MODE_ICON.group}" alt="" width="16" height="16">${escapeHtml(t("routes.mode." + tour.mode))}</span>
+          </div>
+        </div>
+        <span class="routes-card__badge routes-card__badge--rating">
+          <span class="routes-card__google" aria-hidden="true"><img src="${IMG}museum-icon-google.svg" alt="" width="12" height="12"></span>
+          ${Number(tour.rating).toFixed(1)}
+          <img class="routes-card__star" src="${IMG}museum-icon-star-gold.svg" alt="" width="16" height="16">
         </span>
       </div>
-    </div>
-    <div class="routes-card__body">
-      <ol class="routes-card__stops">
-        ${stops.map(stopMarkup).join("")}
-      </ol>
-      <a class="routes-card__cta" href="${escapeHtml(route.pass_url || "#")}">
-        <img src="${IMG}route-icon-pass.svg" alt="" width="20" height="20">
-        ${t("routes.getPass")}
-      </a>
-    </div>
+      <div class="routes-card__body">
+        <p class="routes-card__desc">${escapeHtml(pickText(tour.short_description))}</p>
+        <div class="routes-card__facts">
+          <p class="routes-card__meta"><img src="${IMG}museum-icon-pin.svg" alt="" width="20" height="20">${escapeHtml(pickText(tour.address))}</p>
+          <p class="routes-card__meta"><img src="${IMG}museum-icon-ticket.svg" alt="" width="20" height="20">${escapeHtml(pickText(tour.price))}</p>
+        </div>
+        <a class="routes-card__cta" href="${escapeHtml(tour.book_url || "#")}">${escapeHtml(t("routes.bookNow"))}</a>
+      </div>
+    </article>
   `;
 }
 
-function renderRoutes(chipsEl, cardEl, routes, activeSlug) {
-  const sorted = [...routes].sort((a, b) => a.sort_order - b.sort_order);
-  const active = sorted.find((r) => r.slug === activeSlug) || sorted[0];
+// activeTab: "first-time" | "group" | "private" | "qala" | "all" ("All tours" düyməsi süzgəci götürür)
+function renderRoutes(chipsEl, rowEl, tours, activeTab = "first-time") {
+  const sorted = [...tours].sort((a, b) => a.sort_order - b.sort_order);
+  const visible = activeTab === "all" ? sorted : sorted.filter((x) => (x.tags || []).includes(activeTab));
 
-  chipsEl.innerHTML = sorted.map((r) => chipMarkup(r, r.slug === active.slug)).join("");
-  cardEl.innerHTML = cardMarkup(active);
-  cardEl.removeAttribute("data-state");
-  cardEl.dataset.activeSlug = active.slug;
+  chipsEl.innerHTML = TABS.map((tab) => tabMarkup(tab, tab.key === activeTab)).join("");
+  rowEl.innerHTML = visible.map(cardMarkup).join("");
+  rowEl.removeAttribute("data-state");
+  rowEl.dataset.activeTab = activeTab;
 }
 
 function renderError(chipsEl, cardEl) {
@@ -105,21 +105,27 @@ function unwrapRoutesList(json) {
   if (!Array.isArray(list) || list.length === 0) {
     throw new Error("Routes payload is empty or in an unrecognized shape");
   }
+  // 2026-10-23: backend (icherisheher-api) hələ köhnə sxemi (title/duration/stops) qaytarır —
+  // yeni tur kartı sxemi (type/mode/address/price) olmayan cavab fallback-a düşür.
+  if (!list.every((x) => x && x.type && x.mode && x.address)) {
+    throw new Error("Routes payload uses the legacy schema (no tour card fields)");
+  }
   return list;
 }
 
 async function initRoutes() {
   const chipsEl = document.querySelector("[data-routes-chips]");
-  const cardEl = document.querySelector("[data-routes-card]");
+  const cardEl = document.querySelector("[data-routes-row]");
+  const allEl = document.querySelector("[data-routes-all]");
   if (!chipsEl || !cardEl) return;
 
-  let routes;
+  let tours;
   try {
-    routes = unwrapRoutesList(await fetchRoutes(API_URL, { cache: "no-store" }));
+    tours = unwrapRoutesList(await fetchRoutes(API_URL, { cache: "no-store" }));
   } catch (apiErr) {
     console.error("Routes API fetch failed, falling back to local JSON:", apiErr);
     try {
-      routes = unwrapRoutesList(await fetchRoutes(FALLBACK_URL));
+      tours = unwrapRoutesList(await fetchRoutes(FALLBACK_URL));
     } catch (fallbackErr) {
       console.error("Routes fallback fetch failed:", fallbackErr);
       renderError(chipsEl, cardEl);
@@ -127,21 +133,23 @@ async function initRoutes() {
     }
   }
 
-  renderRoutes(chipsEl, cardEl, routes);
+  renderRoutes(chipsEl, cardEl, tours);
 
-  // Çiplər göstərilən marşrutu dəyişir. Figma-da bu keçid üçün
-  // prototip/variant yoxdur (yalnız 1-ci marşrutun məzmunu çəkilib),
-  // davranış dizaynın məntiqindən götürülüb.
+  // Tab-lar kartları `tags` üzrə süzür; "All tours" süzgəci götürür.
   chipsEl.addEventListener("click", (event) => {
-    const chip = event.target.closest("[data-route-slug]");
-    if (!chip || chip.classList.contains("is-active")) return;
-    renderRoutes(chipsEl, cardEl, routes, chip.dataset.routeSlug);
+    const tab = event.target.closest("[data-route-tab]");
+    if (!tab || tab.classList.contains("is-active")) return;
+    renderRoutes(chipsEl, cardEl, tours, tab.dataset.routeTab);
+  });
+  allEl?.addEventListener("click", (event) => {
+    event.preventDefault();
+    renderRoutes(chipsEl, cardEl, tours, "all");
   });
 
-  // Dil dəyişəndə eyni data ilə yenidən çəkir, aktiv marşrutu saxlayır.
+  // Dil dəyişəndə eyni data ilə yenidən çəkir, aktiv tab-ı saxlayır.
   onLangChange((lang) => {
     LANG = lang;
-    renderRoutes(chipsEl, cardEl, routes, cardEl.dataset.activeSlug);
+    renderRoutes(chipsEl, cardEl, tours, cardEl.dataset.activeTab);
   });
 }
 

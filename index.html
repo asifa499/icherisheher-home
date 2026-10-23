@@ -108,7 +108,7 @@
         <button class="intro__btn intro__btn--outline" type="button">
           <img src="assets/img/hero-chip-city-pass.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.tickets">Tickets &amp; Pass</span>
         </button>
-        <button class="intro__btn intro__btn--solid" type="button" data-i18n="intro.exploreNow">Explore now</button>
+        <button class="intro__btn intro__btn--solid" type="button"><span data-i18n="intro.exploreNow">Explore now</span><span class="intro__badge">10</span></button>
       </div>
     </div>
     <div class="intro__collage-wrap">
@@ -137,7 +137,10 @@
        Kartlar data/museums.json-dan js/museums.js ilə render olunur (bax: API integration, CLAUDE.md). -->
   <section id="museums" class="museums-section container" data-figma="1615:3450">
     <h2 class="museums__title" data-i18n="museums.title">Museums of Icherisheher &amp; Gala</h2>
-    <a class="museums__view-all" href="#" data-i18n="museums.viewAll">View all museums</a>
+    <div class="museums__actions">
+      <a class="museums__pass" href="#" data-i18n="museums.getPass">Get Your Pass</a>
+      <a class="museums__view-all" href="#"><img src="assets/img/museum-icon-arrow-ur.svg" alt="" width="14" height="14"><span data-i18n="museums.viewAll">View all museums</span></a>
+    </div>
     <div class="museums__row" data-museums-row aria-live="polite"></div>
   </section>
 
@@ -149,8 +152,8 @@
       <p class="routes__lead" data-i18n="routes.lead">Pick how you travel and follow a mapped route through the Old City - every stop links to tickets, hours and directions.</p>
     </div>
     <div class="routes__chips" data-routes-chips role="group" data-i18n-aria-label="aria.routeFilters" aria-label="Route filters"></div>
-    <a class="routes__all" href="#" data-i18n="routes.allTours">All tours</a>
-    <div class="routes__card" data-routes-card aria-live="polite"></div>
+    <a class="routes__all" href="#" data-routes-all data-i18n="routes.allTours">All tours</a>
+    <div class="routes__row" data-routes-row aria-live="polite"></div>
   </section>
 
   <!-- ETAP 5 · This season in the Old City · Figma: 1615:3017 (əvvəlki: 1523:4992)

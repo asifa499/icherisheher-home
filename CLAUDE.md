@@ -230,6 +230,15 @@ Digital Collections · **4** app promo, AI Audio Guide, sosial feed, footer, bur
 → RU başlıqlar Vela-ya düşür). Yeni tokenlər: `--font-display`, `--c-brand-base` (#F3503A), `--t-hero` 64/72, `--t-h2` 48/56
 (Smooch SemiBold, −0.03em; bütün bölmə başlıqları). Hero nav-a "Download App" + "Get a Quote" düymələri (`.hero__btn`,
 mobildə gizli — mobil frame hələ köhnədir), çip "City Pass" → "Tickets & Pass". Linklər hələ `#`.
+**Mərhələ 2 (tətbiq edilib, 2026-10-23):** intro (Explore now sayğac nişanı "10", mətn `--c-content-primary`), museums
+(başlıqda "Get Your Pass" + oxlu "View all museums"; kartda Google reytinq nişanı, prev/next oxları — cərgəni kart qədər
+sürüşdürür, "Get Directions" outline + "Get a ticket" solid `--c-brand-base`), **routes tam yenidən quruldu** — köhnə
+"şəkil + dayanacaq" kartı əvəzinə museums tipli tur kartı cərgəsi (tab-lar First time/Group/Private/Qala `tags` üzrə süzür,
+"All tours" süzgəci götürür; kartda tip/saat/mode çipləri, rating, ünvan, qiymət, "Book Now").
+**DİQQƏT — backend:** `icherisheher-api` `/api/routes` hələ KÖHNƏ sxemi qaytarır (title/duration/stops); `js/routes.js` yeni
+sxemi (`type, mode, working_hours, rating, short_description, address, price, image, book_url, tags`) tələb edir, əks halda
+`data/routes.json`-a düşür (hazırda həmişə fallback). Backend yenilənənə qədər data mock-dur (Figma placeholder mətni).
+Season və resources Figma ilə artıq üst-üstə düşür (dəyişiklik yoxdur).
 **Qalan fərqlər (sonrakı mərhələlər):** hero "+4" çipi açılan etiket popover-i (Monuments & Landmarks, Museums, Events, Tours &
 Routes, Hidden gems, Local Masters, BukharArt, Visitor Services, Centre for Traditional Arts, Qala Reserve) — davranış sonra.
 
