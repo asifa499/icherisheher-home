@@ -701,3 +701,47 @@
   }
   .nav-search__submit img { width: 20px; height: 20px; }
 }
+
+/* ---------- "+4" açılan etiket paneli (2026-10-23, Figma 40000068:5646) ----------
+   Ağ panel, radius 24/24/4(sağ-alt)/24 — sağ-alt künc "+4" çipinə bitişir, ona görə çipin üstündə, sağ kənarla düzülür. */
+.hero__more { position: relative; display: inline-flex; }
+.hero__more-pop {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 4px);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 156px;
+  padding: 16px;
+  background: var(--c-white);
+  border: 1px solid rgba(124, 124, 124, 0.2);
+  border-radius: var(--r-md) var(--r-md) 4px var(--r-md);
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.06));
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
+}
+.hero__more-pop[hidden] { display: none; }
+
+/* ortaq etiket elementləri: hero paneli (.tag-link, mətn kimi) və intro paneli (.tag-chip, peach pill) */
+.tag-link,
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--c-brand-base);
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.tag-link img,
+.tag-chip img { width: 20px; height: 20px; flex-shrink: 0; }
+.tag-chip {
+  gap: 4px;
+  padding: 8px 16px;
+  border: 1px solid var(--c-glass-04);
+  border-radius: var(--r-pill);
+  background: var(--c-chip-peach);
+}

@@ -267,6 +267,11 @@ tab/süzgəclər, muzey oxları/"Get Directions"/"Get a ticket", Instagram "Foll
 App store/Google play, Get a Quote, hero çipləri (Get your tour, Digi map, AI Audio guide, +4 popover), Inspire me, routes
 "Book Now", City Pass "Buy", events calendar, Explore Collection, AI Audio Guide düymələri, footer/menyu linkləri, sosial ikonlar.
 
+**Popover-lar (2026-10-23, `js/popovers.js`, `[data-popover-trigger]`):** hero "+4" → Figma `40000068:5646` (156px ağ panel,
+radius 24/24/4/24, çipin üstündə sağ kənarla düzülür: Eat & Drink, Museums, Stay, Qala Reserve); intro "Explore now" →
+`40000068:5656` (669px panel, 10 peach etiket, CTA sırasının üstündə mərkəzdə; "Explore now" artıq scroll etmir). Kənara klik/
+Escape bağlayır, eyni anda biri açıqdır. Etiket linkləri hələ `#` (hədəf səhifələr/filtrlər sonrakı mərhələdə).
+
 ## Etap iş axını
 
 1. Asif "Etap N" deyir.

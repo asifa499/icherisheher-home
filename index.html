@@ -89,7 +89,15 @@
           <button class="chip" type="button" data-scroll-to="citypass"><img class="chip__icon" src="assets/img/hero-chip-city-pass.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.tickets">Tickets &amp; Pass</span></button>
           <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-digimap.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.digimap">Digi map</span></button>
           <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-audioguide.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.audioguide">AI Audio guide</span></button>
-          <button class="chip" type="button"><span data-i18n="hero.chip.more">+4</span></button>
+          <div class="hero__more">
+            <button class="chip" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="hero-more-pop" data-popover-trigger="hero-more-pop"><span data-i18n="hero.chip.more">+4</span></button>
+            <div class="hero__more-pop" id="hero-more-pop" hidden data-figma="40000068:5646">
+              <a class="tag-link" href="#"><img src="assets/img/tag-eat-drink.svg" alt="" width="20" height="20"><span data-i18n="tag.eatDrink">Eat &amp; Drink</span></a>
+              <a class="tag-link" href="#"><img src="assets/img/tag-museums.svg" alt="" width="20" height="20"><span data-i18n="tag.museums">Museums</span></a>
+              <a class="tag-link" href="#"><img src="assets/img/tag-stay.svg" alt="" width="20" height="20"><span data-i18n="tag.stay">Stay</span></a>
+              <a class="tag-link" href="#"><img src="assets/img/tag-qala.svg" alt="" width="20" height="20"><span data-i18n="tag.qala">Qala Reserve</span></a>
+            </div>
+          </div>
         </div>
       </div>
       <div class="hero__explore-divider" aria-hidden="true"></div>
@@ -109,7 +117,19 @@
         <button class="intro__btn intro__btn--outline" type="button" data-scroll-to="citypass">
           <img src="assets/img/hero-chip-city-pass.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.tickets">Tickets &amp; Pass</span>
         </button>
-        <button class="intro__btn intro__btn--solid" type="button" data-scroll-to="nearby"><span data-i18n="intro.exploreNow">Explore now</span><span class="intro__badge">10</span></button>
+        <button class="intro__btn intro__btn--solid" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="intro-explore-pop" data-popover-trigger="intro-explore-pop"><span data-i18n="intro.exploreNow">Explore now</span><span class="intro__badge">10</span></button>
+        <div class="intro__explore-pop" id="intro-explore-pop" hidden data-figma="40000068:5656">
+          <a class="tag-chip" href="#"><img src="assets/img/tag-monuments.svg" alt="" width="20" height="20"><span data-i18n="tag.monuments">Monuments &amp; Landmarks</span></a>
+          <a class="tag-chip" href="#"><img src="assets/img/tag-museums2.svg" alt="" width="20" height="20"><span data-i18n="tag.museums">Museums</span></a>
+          <a class="tag-chip" href="#"><img src="assets/img/tag-events.svg" alt="" width="20" height="20"><span data-i18n="tag.events">Events</span></a>
+          <a class="tag-chip" href="#"><img src="assets/img/tag-routes.svg" alt="" width="20" height="20"><span data-i18n="tag.toursRoutes">Tours &amp; Routes</span></a>
+          <a class="tag-chip" href="#"><img src="assets/img/tag-gems.svg" alt="" width="20" height="20"><span data-i18n="tag.hiddenGems">Hidden gems</span></a>
+          <a class="tag-chip" href="#"><img src="assets/img/tag-masters.svg" alt="" width="20" height="20"><span data-i18n="tag.localMasters">Local Masters</span></a>
+          <a class="tag-chip" href="#"><img src="assets/img/tag-bukharart.svg" alt="" width="20" height="20"><span data-i18n="tag.bukharart">BukharArt</span></a>
+          <a class="tag-chip" href="#"><img src="assets/img/tag-visitor.svg" alt="" width="20" height="20"><span data-i18n="tag.visitorServices">Visitor Services</span></a>
+          <a class="tag-chip" href="#"><img src="assets/img/tag-arts.svg" alt="" width="20" height="20"><span data-i18n="tag.centreArts">Icherisheher Centre for Traditional Arts</span></a>
+          <a class="tag-chip" href="#"><img src="assets/img/tag-qala.svg" alt="" width="20" height="20"><span data-i18n="tag.qala">Qala Reserve</span></a>
+        </div>
       </div>
     </div>
     <div class="intro__collage-wrap">
@@ -310,6 +330,7 @@
   <script type="module" src="js/lang.js"></script>
   <script type="module" src="js/nav-menu.js"></script>
   <script type="module" src="js/scroll-links.js"></script>
+  <script type="module" src="js/popovers.js"></script>
   <!-- Bölmə skriptləri (yalnız bu səhifədəki bölmələr) -->
   <script type="module" src="js/museums.js"></script>
   <script type="module" src="js/routes.js"></script>
