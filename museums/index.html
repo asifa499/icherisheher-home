@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Museums — Icherisheher</title>
+  <meta name="description" content="Discover all museums of Icherisheher, the Old City of Baku: opening hours, addresses, ticket prices and tickets.">
+  <link rel="canonical" href="https://asifa499.github.io/icherisheher-home/museums/">
+  <meta name="theme-color" content="#886D46">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Icherisheher">
+  <meta property="og:title" content="Museums — Icherisheher">
+  <meta property="og:description" content="Discover all museums of Icherisheher, the Old City of Baku: opening hours, addresses, ticket prices and tickets.">
+  <meta property="og:url" content="https://asifa499.github.io/icherisheher-home/museums/">
+  <meta property="og:image" content="https://asifa499.github.io/icherisheher-home/assets/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="../favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+
+  <link rel="preconnect" href="https://icherisheher-api-production.up.railway.app" crossorigin>
+  <link rel="preload" as="image" href="../assets/img/museums-hero.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="font" href="../assets/fonts/VelaSans-Regular.woff2" type="font/woff2" crossorigin>
+
+  <!-- Paylaşılan stillər: tokens + base + header (hero.css) + footer (social.css, footer.css) -->
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/hero.css">
+  <link rel="stylesheet" href="../css/social.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <link rel="stylesheet" href="../css/museums.css">
+  <link rel="stylesheet" href="../css/museums-page.css">
+
+  <!-- Header/footer partial-ları (klassik skript, defer YOX — bax js/include.js) -->
+  <script src="../js/include.js"></script>
+
+  <script>
+    window.ICH.pageDict = {
+      "page.museums.title": { en: "Icherisheher Museums", az: "İçərişəhər muzeyləri", ru: "Музеи Ичеришехер" },
+      "page.museums.home": { en: "Home", az: "Ana səhifə", ru: "Главная" },
+      "page.museums.crumb": { en: "Museums", az: "Muzeylər", ru: "Музеи" },
+      "page.museums.discover1": { en: "Discover all museums of", az: "İçərişəhərin bütün", ru: "Откройте для себя все музеи" },
+      "page.museums.discover2": { en: "Icharishahar", az: "muzeylərini kəşf et", ru: "Ичеришехер" },
+      "page.museums.intro": {
+        en: "If you are a lover of rare objects, Icherisheher is sure to win you over. You can admire the magnificent collection of minerals or fascinating artefacts of The Maiden Tower, The Palace of the Shirvanshahs and the Sirataghli religious-architectural complex, or beautiful design and Azerbaijani craftsmanship in the collections of the Museum of Decorative Arts.",
+        az: "Nadir əşyaların pərəstişkarısınızsa, İçərişəhər sizi mütləq özünə cəlb edəcək. Qız Qalasının, Şirvanşahlar sarayının və Sırataghlı dini-memarlıq kompleksinin heyrətamiz mineral kolleksiyasına və maraqlı artefaktlarına, yaxud Dekorativ-Tətbiqi Sənət Muzeyinin kolleksiyalarındakı gözəl dizayna və Azərbaycan sənətkarlığına heyran ola bilərsiniz.",
+        ru: "Если вы любитель редких предметов, Ичеришехер непременно покорит вас. Вы можете полюбоваться великолепной коллекцией минералов и удивительными артефактами Девичьей башни, Дворца Ширваншахов и религиозно-архитектурного комплекса Сыраталы, а также прекрасным дизайном и азербайджанским мастерством в коллекциях Музея декоративно-прикладного искусства.",
+      },
+      "page.museums.time": { en: "Time", az: "Vaxt", ru: "Время" },
+      "page.museums.group": { en: "Group size", az: "Qrup ölçüsü", ru: "Размер группы" },
+      "page.museums.map": { en: "Map", az: "Xəritə", ru: "Карта" },
+      "page.museums.up": { en: "Up", az: "Yuxarı", ru: "Вверх" },
+      "page.museums.showMore": { en: "Show {n} more", az: "Daha {n} göstər", ru: "Показать ещё {n}" },
+      "page.museums.empty": { en: "Museums could not be loaded. Please try again later.", az: "Muzeylər yüklənmədi. Bir az sonra yenidən cəhd edin.", ru: "Не удалось загрузить музеи. Повторите попытку позже." },
+      "page.museums.banner1": { en: "Explore our", az: "4 saatlıq", ru: "Откройте наш" },
+      "page.museums.banner2": { en: "4 hour City Pass", az: "City Pass-ı kəşf et", ru: "4-часовой City Pass" },
+      "page.museums.bannerText": {
+        en: "Travel back to 12th-century Baku through augmented reality at 10 historical points across the Old City.",
+        az: "Köhnə şəhərin 10 tarixi nöqtəsində artırılmış reallıq vasitəsilə XII əsr Bakısına səyahət edin.",
+        ru: "Отправьтесь в Баку XII века с помощью дополненной реальности в 10 исторических точках Старого города.",
+      },
+      "page.museums.explore": { en: "Explore", az: "Kəşf et", ru: "Узнать" },
+      "page.museums.getPass": { en: "Get your pass", az: "Pass əldə et", ru: "Получить Pass" },
+    };
+  </script>
+</head>
+<body>
+
+  <!-- Figma web 3047:11862 · mobil 3047:11273 (museums_page).
+       id="hero"/"museums" QƏSDƏN yoxdur: həmin feature flag-lar yalnız Home bölmələrini gizləyir. -->
+  <section class="hero-section block mp-hero-section" data-figma="3047:12422">
+    <div class="hero mp-hero">
+      <div class="hero__bg mp-hero__bg" aria-hidden="true"></div>
+      <div class="hero__scrim-top" aria-hidden="true"></div>
+      <div class="hero__scrim-bottom" aria-hidden="true"></div>
+
+      <div data-include="header"></div>
+
+      <div class="mp-hero__content">
+        <div class="mp-hero__text">
+          <nav class="mp-crumbs" aria-label="Breadcrumb">
+            <a href="../" data-i18n="page.museums.home">Home</a>
+            <img src="../assets/img/museum-icon-arrow-right.svg" alt="" width="16" height="16">
+            <span aria-current="page" data-i18n="page.museums.crumb">Museums</span>
+          </nav>
+          <h1 class="mp-hero__title" data-i18n="page.museums.title">Icherisheher Museums</h1>
+        </div>
+        <!-- Story şeridi: API-dən gələn muzeylərlə (js/museums-page.js) doldurulur -->
+        <div class="mp-stories" data-mp-stories aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <main id="main">
+    <section id="museums-list" class="container mp-list" data-figma="3047:11863">
+      <header class="mp-list__head">
+        <h2 class="mp-list__title"><span data-i18n="page.museums.discover1">Discover all museums of</span><br><span data-i18n="page.museums.discover2">Icharishahar</span></h2>
+        <p class="mp-list__intro" data-i18n="page.museums.intro">If you are a lover of rare objects, Icherisheher is sure to win you over.</p>
+      </header>
+      <div class="mp-filters">
+        <button class="mp-filter" type="button"><span data-i18n="page.museums.time">Time</span><img src="../assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16"></button>
+        <button class="mp-filter" type="button"><span data-i18n="page.museums.group">Group size</span><img src="../assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16"></button>
+        <a class="mp-filter" href="../#nearby"><img src="../assets/img/museums-icon-map-dark.svg" alt="" width="16" height="16"><span data-i18n="page.museums.map">Map</span></a>
+      </div>
+      <div class="mp-grid" data-mp-grid aria-live="polite"></div>
+      <div class="mp-more" data-mp-more hidden>
+        <button class="mp-more__up" type="button" data-mp-up><img src="../assets/img/museums-icon-arrow-up.svg" alt="" width="16" height="16"><span data-i18n="page.museums.up">Up</span></button>
+        <button class="mp-more__btn" type="button" data-mp-show-more></button>
+      </div>
+    </section>
+
+    <section class="mp-banner" data-figma="3047:12050">
+      <div class="mp-banner__bg" aria-hidden="true"></div>
+      <div class="mp-banner__copy">
+        <h2 class="mp-banner__title"><span data-i18n="page.museums.banner1">Explore our</span><br><span data-i18n="page.museums.banner2">4 hour City Pass</span></h2>
+        <p class="mp-banner__text" data-i18n="page.museums.bannerText">Travel back to 12th-century Baku through augmented reality at 10 historical points across the Old City.</p>
+        <div class="mp-banner__btns">
+          <a class="mp-banner__btn mp-banner__btn--brand" href="../#citypass" data-i18n="page.museums.explore">Explore</a>
+          <a class="mp-banner__btn" href="../#citypass" data-i18n="page.museums.getPass">Get your pass</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sosial feed + footer: partials/footer.html -->
+  <div data-include="footer"></div>
+
+  <!-- Paylaşılan (hər səhifədə) -->
+  <script type="module" src="../js/i18n.js"></script>
+  <script type="module" src="../js/config.js"></script>
+  <script type="module" src="../js/lang.js"></script>
+  <script type="module" src="../js/nav-menu.js"></script>
+  <script type="module" src="../js/scroll-links.js"></script>
+  <script type="module" src="../js/museums-page.js"></script>
+</body>
+</html>

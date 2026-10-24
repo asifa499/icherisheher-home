@@ -259,6 +259,15 @@ Footer linkləri hələ `#`. **Mobil frame hələ yenilənməyib** — bütün m
 **Qalan fərqlər (sonrakı mərhələlər):** hero "+4" çipi açılan etiket popover-i (Monuments & Landmarks, Museums, Events, Tours &
 Routes, Hidden gems, Local Masters, BukharArt, Visitor Services, Centre for Traditional Arts, Qala Reserve) — davranış sonra.
 
+### Museums səhifəsi (2026-10-24) — `/museums/`
+Figma web `3047:11862`, mobil `3047:11273` (fayl `zD5KChgQjY4CpaiwX1Gtg2`). Fayllar: `museums/index.html`, `css/museums-page.css`
+(badge stilləri `css/museums.css`-dən), `js/museums-page.js`. **Bütün data** `GET /api/museums`-dən (uğursuz olarsa `data/museums.json`):
+kartlar + hero "story" şeridi (aktiv kart böyük). Mobildə 4 kart, qalanı "Show N more" ilə (4-dən çox muzey olanda). Hero fonu/banner
+`assets/img/museums-hero|banner.*` (Figma-dan). **Yönləndirmələr:** Home "View all museums", hero "+4" və intro "Explore now" popover-lərindəki
+"Museums", footer "Museums", burger menyu "Museums & Galleries" → `museums/`. **Açıq qalanlar:** "Time"/"Group size" düymələri yalnız
+vizualdır (Figma-da seçim siyahısı yoxdur); "Map" → Home `#nearby`; Figma 8 muzey göstərir, API 4; Get a ticket `ticket_url` (hazırda `#`);
+Figma hero dump-ı kəsildiyi üçün hero story ölçüləri ekran görüntüsündən təxmini ölçülüb; `museums-icon-arrow-up/map-dark.svg` əl ilə çəkilib.
+
 ### Düymə davranışları (2026-10-23)
 `js/scroll-links.js`: `[data-scroll-to="<id>"]` → hamar scroll (hash dəyişmir; hədəf səhifədə yoxdursa linkin `href`-i işləyir).
 Tətbiq: "Download App" → `#app-ar`; hero çipi "Tickets & Pass", intro "Tickets & Pass", muzey "Get Your Pass" → `#citypass`;

@@ -1,0 +1,324 @@
+/* ============================================================
+   Museums page — /museums/
+   Figma: web 3047:11862 (1440) · mobil 3047:11273 (393)
+   Header/footer paylaşılan partial-lardır; hero fonu və foto kartlar bu səhifəyə xasdır.
+   Muzey kartı badge-ləri (.museums-card__badge/google/star) css/museums.css-dən gəlir.
+   ============================================================ */
+
+/* ---------- Hero ---------- */
+.mp-hero__bg {
+  background: var(--c-surface) url("../assets/img/museums-hero.jpg") center / cover no-repeat;
+  background-image: image-set(url("../assets/img/museums-hero.webp") type("image/webp"), url("../assets/img/museums-hero.jpg") type("image/jpeg"));
+}
+
+.mp-hero__content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-inline: max(var(--page-pad), (100% - var(--content-w)) / 2);
+  min-height: 0;
+  color: var(--c-white);
+}
+.mp-hero__text { align-self: center; padding-top: 48px; }
+
+.mp-crumbs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+}
+.mp-crumbs a:hover { text-decoration: underline; }
+.mp-crumbs span { opacity: 0.8; }
+.mp-crumbs img { width: 16px; height: 16px; }
+
+.mp-hero__title {
+  max-width: 420px;
+  font-family: var(--font-display);
+  font-size: var(--t-hero);
+  line-height: var(--t-hero-lh);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Story şeridi: aktiv kart böyük, qalanları dar şaquli plitə */
+.mp-stories {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  margin-right: calc(-1 * max(var(--page-pad), (100vw - var(--content-w)) / 2));
+  overflow: hidden;
+}
+.mp-story {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 128px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: width var(--dur) var(--ease);
+}
+.mp-story.is-active { width: 272px; }
+.mp-story__media {
+  display: block;
+  height: 247px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transition: height var(--dur) var(--ease);
+}
+.mp-story.is-active .mp-story__media { height: 195px; }
+.mp-story__media img { width: 100%; height: 100%; object-fit: cover; }
+.mp-story__cap { display: none; flex-direction: column; gap: 4px; }
+.mp-story.is-active .mp-story__cap { display: flex; }
+.mp-story__name { font-size: var(--t-body); line-height: var(--t-body-lh); font-weight: 500; }
+.mp-story__desc {
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+  opacity: 0.8;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- Siyahı ---------- */
+.mp-list { margin-top: 80px; margin-bottom: 24px; }
+
+.mp-list__head { display: flex; flex-direction: column; gap: 8px; }
+.mp-list__title {
+  font-size: var(--t-h2);
+  line-height: var(--t-h2-lh);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--c-black);
+}
+.mp-list__intro {
+  font-size: var(--t-lead);
+  line-height: var(--t-lead-lh);
+  letter-spacing: -0.03em;
+  color: var(--c-gray);
+}
+
+.mp-filters {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 24px 0;
+}
+.mp-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: var(--btn-pad-md);
+  border: 1px solid var(--c-glass-04);
+  border-radius: var(--r-pill);
+  background: var(--c-light-gray);
+  color: var(--c-content-primary);
+  font-family: inherit;
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  cursor: pointer;
+}
+
+.mp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.mp-grid[data-state="error"] { display: block; color: var(--c-gray); padding: 24px 0; }
+
+/* ---------- Kart ---------- */
+.mp-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 24px;
+  border-radius: var(--r-lg);
+  background: var(--c-white);
+}
+.mp-card__media {
+  position: relative;
+  height: 354px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.mp-card__photo { width: 100%; height: 100%; object-fit: cover; }
+.mp-card__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(176deg, rgba(0, 0, 0, 0.3) 9%, rgba(0, 0, 0, 0) 87%);
+}
+.mp-card__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+}
+.mp-card__title {
+  font-size: var(--t-header);
+  line-height: var(--t-header-lh);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--c-white);
+}
+.mp-card__badges { display: flex; gap: 8px; align-items: center; }
+.mp-card__body { display: flex; flex-direction: column; gap: 12px; padding-inline: 24px; }
+.mp-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+  color: var(--c-text-soft);
+}
+.mp-card__meta img { width: 20px; height: 20px; flex-shrink: 0; }
+.mp-card__cta {   /* ui kit button · md · brand/light (tinted) */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap);
+  margin-top: 4px;
+  padding: var(--btn-pad-md);
+  border-radius: var(--r-pill);
+  background: var(--c-cta-peach);
+  color: var(--c-brand-base);
+  font-size: var(--t-body);
+  line-height: var(--t-body-tight-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.mp-card__cta img { width: 20px; height: 20px; }
+
+/* ---------- Show more / Up (yalnız mobil) ---------- */
+.mp-more { display: none; }
+
+/* ---------- City Pass banner ---------- */
+.mp-banner {
+  position: relative;
+  height: 489px;
+  margin: 80px var(--page-pad) 24px;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--c-black);
+  isolation: isolate;
+  color: var(--c-white);
+}
+.mp-banner__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--c-surface) url("../assets/img/museums-banner.jpg") center / cover no-repeat;
+  background-image: image-set(url("../assets/img/museums-banner.webp") type("image/webp"), url("../assets/img/museums-banner.jpg") type("image/jpeg"));
+}
+.mp-banner__copy {
+  position: absolute;
+  top: 50%;
+  left: max(var(--page-pad), calc((100% - var(--content-w)) / 2 - 24px));
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 455px;
+  max-width: calc(100% - 2 * var(--page-pad));
+}
+.mp-banner__title {
+  font-size: var(--t-h2);
+  line-height: var(--t-h2-lh);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+.mp-banner__title span:last-child { color: var(--c-ivory); }
+.mp-banner__text { color: rgba(255, 255, 255, 0.8); }
+.mp-banner__btns { display: flex; gap: 8px; }
+.mp-banner__btn {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--btn-pad-md);
+  border: 1px solid var(--c-glass-04);
+  border-radius: var(--r-pill);
+  background: var(--c-btn-neutral);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
+  color: var(--c-white);
+  font-size: var(--t-body);
+  line-height: var(--t-body-tight-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.mp-banner__btn--brand { background: var(--c-brand-base); }
+
+/* ---------- Mobil (393 etalon) ---------- */
+@media (max-width: 768px) {
+  .mp-hero { height: auto; min-height: 640px; }
+  .mp-hero__content {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+    padding: 0 var(--page-pad) 24px;
+    gap: 24px;
+  }
+  .mp-hero__text { padding-top: 0; }
+  .mp-hero__title { max-width: none; font-size: 40px; line-height: 48px; }
+  .mp-stories { margin-right: calc(-1 * var(--page-pad)); }
+  .mp-story { width: 64px; }
+  .mp-story.is-active { width: 272px; }
+  .mp-story__media { height: 184px; }
+  .mp-story.is-active .mp-story__media { height: 195px; }
+
+  .mp-list { margin-top: 40px; }
+  .mp-list__title { font-size: 28px; line-height: 32px; }
+  .mp-list__intro {   /* Figma mobil mətni 2 sətirdə kəsir */
+    font-size: var(--t-body);
+    line-height: var(--t-body-lh);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .mp-filters { justify-content: flex-end; margin: 16px 0; }
+  .mp-filter { padding: var(--btn-pad-sm); }
+
+  .mp-grid { grid-template-columns: 1fr; }
+  .mp-card { border-radius: var(--r-md); }
+  .mp-card__media { height: 288px; border-radius: var(--r-md); }
+  .mp-card__overlay { padding: 16px; }
+  .mp-card__body { padding-inline: 16px; }
+  .mp-grid:not(.is-expanded) .mp-card:nth-child(n+5) { display: none; }
+
+  .mp-more { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
+  .mp-more[hidden], .mp-more.is-expanded .mp-more__btn { display: none; }
+  .mp-more__up, .mp-more__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: var(--btn-pad-md);
+    border: 1px solid var(--c-light-gray);
+    border-radius: var(--r-pill);
+    background: var(--c-btn-neutral);
+    color: var(--c-content-primary);
+    font-family: inherit;
+    font-size: var(--t-body);
+    line-height: var(--t-body-tight-lh);
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .mp-more__btn { border-color: transparent; }
+  .mp-more.is-expanded[hidden] { display: none; }
+
+  .mp-banner { height: 420px; margin: 40px var(--page-pad) 24px; border-radius: var(--r-lg); }
+  .mp-banner__copy { top: auto; bottom: 24px; left: 16px; right: 16px; transform: none; width: auto; max-width: none; text-align: center; align-items: center; }
+  .mp-banner__title { font-size: 32px; line-height: 40px; }
+}
