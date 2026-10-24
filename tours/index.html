@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tours — Icherisheher</title>
+  <meta name="description" content="Tours and routes in Icherisheher, the Old City of Baku: restaurant, walking, historical and thematic tours with hours, prices and tickets.">
+  <link rel="canonical" href="https://asifa499.github.io/icherisheher-home/tours/">
+  <meta name="theme-color" content="#886D46">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Icherisheher">
+  <meta property="og:title" content="Tours — Icherisheher">
+  <meta property="og:description" content="Tours and routes in Icherisheher, the Old City of Baku: restaurant, walking, historical and thematic tours with hours, prices and tickets.">
+  <meta property="og:url" content="https://asifa499.github.io/icherisheher-home/tours/">
+  <meta property="og:image" content="https://asifa499.github.io/icherisheher-home/assets/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="../favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+
+  <link rel="preconnect" href="https://icherisheher-api-production.up.railway.app" crossorigin>
+  <link rel="preload" as="image" href="../assets/img/tours-hero.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="font" href="../assets/fonts/VelaSans-Regular.woff2" type="font/woff2" crossorigin>
+
+  <!-- Paylaşılan stillər: tokens + base + header (hero.css) + footer (social.css, footer.css) -->
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/hero.css">
+  <link rel="stylesheet" href="../css/social.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <!-- Muzey kartı badge-ləri + hero story şeridi/kart/banner stilləri museums səhifəsi ilə paylaşılır -->
+  <link rel="stylesheet" href="../css/museums.css">
+  <link rel="stylesheet" href="../css/museums-page.css">
+  <link rel="stylesheet" href="../css/citypass.css">
+  <link rel="stylesheet" href="../css/tours-page.css">
+
+  <!-- Header/footer partial-ları (klassik skript, defer YOX — bax js/include.js) -->
+  <script src="../js/include.js"></script>
+
+  <script>
+    window.ICH.pageDict = {
+      "page.tours.title": { en: "Tours in Icherisheher", az: "İçərişəhərdə turlar", ru: "Туры по Ичеришехер" },
+      "page.tours.home": { en: "Home", az: "Ana səhifə", ru: "Главная" },
+      "page.tours.crumb": { en: "Tours", az: "Turlar", ru: "Туры" },
+      "page.tours.listTitle": { en: "All experiences at our section tickets", az: "Bölmə biletlərimizdəki bütün təcrübələr", ru: "Все впечатления по билетам нашего раздела" },
+      "page.tours.filter.all": { en: "All", az: "Hamısı", ru: "Все" },
+      "page.tours.filter.historical": { en: "Historical", az: "Tarixi", ru: "Исторические" },
+      "page.tours.filter.walk": { en: "Walk", az: "Gəzinti", ru: "Прогулка" },
+      "page.tours.filter.thematic": { en: "Thematic", az: "Tematik", ru: "Тематические" },
+      "page.tours.filter.restaurant": { en: "Restaurant", az: "Restoran", ru: "Ресторан" },
+      "page.tours.filter.food": { en: "Food", az: "Yemək", ru: "Еда" },
+      "page.tours.time": { en: "Time", az: "Vaxt", ru: "Время" },
+      "page.tours.group": { en: "Group size", az: "Qrup ölçüsü", ru: "Размер группы" },
+      "page.tours.empty": { en: "Tours could not be loaded. Please try again later.", az: "Turlar yüklənmədi. Bir az sonra yenidən cəhd edin.", ru: "Не удалось загрузить туры. Повторите попытку позже." },
+      "page.tours.emptyCategory": { en: "No tours in this category yet.", az: "Bu kateqoriyada hələ tur yoxdur.", ru: "В этой категории пока нет туров." },
+      "page.tours.build.title": { en: "Build my route", az: "Marşrutumu qur", ru: "Построить маршрут" },
+      "page.tours.build.text": {
+        en: "Tell us what you're drawn to, how many hours you have, and how far you feel like walking — we'll shape a route through Icherisher around it.",
+        az: "Sizi nə cəlb etdiyini, neçə saatınız olduğunu və nə qədər gəzmək istədiyinizi bildirin — İçərişəhərdə marşrutu buna uyğun quraq.",
+        ru: "Расскажите, что вас привлекает, сколько у вас времени и как далеко вы готовы идти — мы построим маршрут по Ичеришехер под вас.",
+      },
+      "page.tours.build.ai": { en: "Generate with AI", az: "AI ilə yarat", ru: "Создать с ИИ" },
+      "page.tours.build.go": { en: "Build the tour", az: "Turu qur", ru: "Построить тур" },
+      "page.tours.build.participants": { en: "№ of participants", az: "İştirakçı sayı", ru: "№ участников" },
+      "page.tours.build.date": { en: "Date", az: "Tarix", ru: "Дата" },
+      "page.tours.build.time": { en: "Time", az: "Vaxt", ru: "Время" },
+      "page.tours.build.duration": { en: "Duration", az: "Müddət", ru: "Длительность" },
+      "page.tours.build.walk": { en: "How much do you want to walk", az: "Nə qədər gəzmək istəyirsiniz", ru: "Сколько вы хотите пройти" },
+      "page.tours.build.walk.easy": { en: "Easy stroll", az: "Rahat gəzinti", ru: "Лёгкая прогулка" },
+      "page.tours.build.walk.easyKm": { en: "~1 km total", az: "cəmi ~1 km", ru: "всего ~1 км" },
+      "page.tours.build.walk.comfortable": { en: "Comfortable", az: "Rahat", ru: "Комфортно" },
+      "page.tours.build.walk.comfortableKm": { en: "~3 km total", az: "cəmi ~3 km", ru: "всего ~3 км" },
+      "page.tours.build.walk.explorer": { en: "Explorer", az: "Kəşfiyyatçı", ru: "Исследователь" },
+      "page.tours.build.walk.explorerKm": { en: "~5 km+ total", az: "cəmi ~5 km+", ru: "всего ~5 км+" },
+      "page.tours.build.see": { en: "What do you want to see", az: "Nəyi görmək istəyirsiniz", ru: "Что вы хотите увидеть" },
+      "page.tours.build.see.all": { en: "All", az: "Hamısı", ru: "Всё" },
+      "page.tours.build.see.architecture": { en: "Architecture", az: "Memarlıq", ru: "Архитектура" },
+      "page.tours.build.see.museum": { en: "Museum", az: "Muzey", ru: "Музей" },
+      "page.tours.build.see.institutional": { en: "Institutional building", az: "İnstitusional bina", ru: "Институциональное здание" },
+      "page.tours.ar1": { en: "AR Time Machine", az: "AR Zaman Maşını", ru: "AR Машина времени" },
+      "page.tours.ar2": { en: "at the Maiden Tower.", az: "Qız Qalasında.", ru: "у Девичьей башни." },
+      "page.tours.arText": {
+        en: "Travel back to 12th-century Baku through augmented reality at 10 historical points across the Old City.",
+        az: "Köhnə şəhərin 10 tarixi nöqtəsində artırılmış reallıq vasitəsilə XII əsr Bakısına səyahət edin.",
+        ru: "Отправьтесь в Баку XII века с помощью дополненной реальности в 10 исторических точках Старого города.",
+      },
+      "page.tours.explore": { en: "Explore", az: "Kəşf et", ru: "Узнать" },
+      "page.tours.getPass": { en: "Get your pass", az: "Pass əldə et", ru: "Получить Pass" },
+    };
+  </script>
+</head>
+<body>
+
+  <!-- Figma web 3047:9421 · mobil 3047:10547 (tours_page).
+       id="hero"/"routes"/"citypass" QƏSDƏN yoxdur: həmin feature flag-lar yalnız Home bölmələrini gizləyir. -->
+  <section class="hero-section block mp-hero-section" data-figma="3047:10156">
+    <div class="hero mp-hero">
+      <div class="hero__bg mp-hero__bg tp-hero__bg" aria-hidden="true"></div>
+      <div class="hero__scrim-top" aria-hidden="true"></div>
+      <div class="hero__scrim-bottom" aria-hidden="true"></div>
+
+      <div data-include="header"></div>
+
+      <div class="mp-hero__content">
+        <div class="mp-hero__text">
+          <nav class="mp-crumbs" aria-label="Breadcrumb">
+            <a href="../" data-i18n="page.tours.home">Home</a>
+            <img src="../assets/img/museum-icon-arrow-right.svg" alt="" width="16" height="16">
+            <span aria-current="page" data-i18n="page.tours.crumb">Tours</span>
+          </nav>
+          <h1 class="mp-hero__title tp-hero__title" data-i18n="page.tours.title">Tours in Icherisheher</h1>
+        </div>
+        <!-- Story şeridi: API-dən gələn turlarla (js/tours-page.js) doldurulur -->
+        <div class="mp-stories" data-tp-stories aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <main id="main">
+    <section id="tours-list" class="container mp-list tp-list" data-figma="3047:9422">
+      <h2 class="mp-list__title" data-i18n="page.tours.listTitle">All experiences at our section tickets</h2>
+      <div class="tp-filters">
+        <div class="tp-chips" data-tp-chips role="group"></div>
+        <div class="tp-filters__side">
+          <button class="mp-filter" type="button"><span data-i18n="page.tours.time">Time</span><img src="../assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16"></button>
+          <button class="mp-filter" type="button"><span data-i18n="page.tours.group">Group size</span><img src="../assets/img/hero-icon-chevron-down-dark.svg" alt="" width="16" height="16"></button>
+        </div>
+      </div>
+      <div class="mp-grid tp-grid" data-tp-grid aria-live="polite"></div>
+    </section>
+
+    <!-- Build my route — Figma 3047:9469 (forma hələ heç yerə göndərmir: backend/AI endpoint-i yoxdur) -->
+    <section class="container tp-build" data-figma="3047:9469">
+      <div class="tp-build__head">
+        <div class="tp-build__copy">
+          <h2 class="tp-build__title" data-i18n="page.tours.build.title">Build my route</h2>
+          <p class="tp-build__text" data-i18n="page.tours.build.text">Tell us what you're drawn to, how many hours you have, and how far you feel like walking — we'll shape a route through Icherisher around it.</p>
+        </div>
+        <div class="tp-build__actions">
+          <button class="tp-build__ai" type="button" data-i18n="page.tours.build.ai">Generate with AI</button>
+          <button class="tp-build__go" type="button"><img src="../assets/img/hero-icon-sparkle.svg" alt="" width="20" height="20"><span data-i18n="page.tours.build.go">Build the tour</span></button>
+        </div>
+      </div>
+      <form class="tp-form" data-tp-form onsubmit="return false">
+        <div class="tp-form__fields">
+          <label class="tp-field"><span data-i18n="page.tours.build.participants">№ of participants</span><input type="text" inputmode="numeric" placeholder="0"></label>
+          <label class="tp-field"><span data-i18n="page.tours.build.date">Date</span><input type="text" placeholder="01.01.2026"></label>
+          <label class="tp-field"><span data-i18n="page.tours.build.time">Time</span><input type="text" placeholder="00:00"></label>
+          <label class="tp-field"><span data-i18n="page.tours.build.duration">Duration</span><input type="text" placeholder="0 h"></label>
+        </div>
+        <div class="tp-form__group">
+          <p class="tp-form__label" data-i18n="page.tours.build.walk">How much do you want to walk</p>
+          <div class="tp-form__chips" data-tp-single>
+            <button class="tp-pill is-active" type="button" aria-pressed="true"><span data-i18n="page.tours.build.walk.easy">Easy stroll</span><small data-i18n="page.tours.build.walk.easyKm">~1 km total</small><img class="tp-pill__x" src="../assets/img/tours-icon-xmark-white.svg" alt="" width="16" height="16"></button>
+            <button class="tp-pill" type="button" aria-pressed="false"><span data-i18n="page.tours.build.walk.comfortable">Comfortable</span><small data-i18n="page.tours.build.walk.comfortableKm">~3 km total</small></button>
+            <button class="tp-pill" type="button" aria-pressed="false"><span data-i18n="page.tours.build.walk.explorer">Explorer</span><small data-i18n="page.tours.build.walk.explorerKm">~5 km+ total</small></button>
+          </div>
+        </div>
+        <div class="tp-form__group">
+          <p class="tp-form__label" data-i18n="page.tours.build.see">What do you want to see</p>
+          <div class="tp-form__chips" data-tp-multi>
+            <button class="tp-pill is-active" type="button" aria-pressed="true"><span data-i18n="page.tours.build.see.all">All</span><img class="tp-pill__x" src="../assets/img/tours-icon-xmark-white.svg" alt="" width="16" height="16"></button>
+            <button class="tp-pill" type="button" aria-pressed="false"><span data-i18n="page.tours.build.see.architecture">Architecture</span></button>
+            <button class="tp-pill" type="button" aria-pressed="false"><span data-i18n="page.tours.build.see.museum">Museum</span></button>
+            <button class="tp-pill" type="button" aria-pressed="false"><span data-i18n="page.tours.build.see.institutional">Institutional building</span></button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- City Pass kartları — Home ilə eyni (js/passes.js, css/citypass.css) -->
+    <section class="citypass-section container" data-figma="3047:9921">
+      <h2 class="citypass__title" data-i18n="citypass.title">One QR. The whole Old City.</h2>
+      <div class="citypass__row" data-passes-row aria-live="polite"></div>
+    </section>
+
+    <section class="mp-banner" data-figma="3047:10300">
+      <div class="mp-banner__bg tp-banner__bg" aria-hidden="true"></div>
+      <div class="mp-banner__copy">
+        <h2 class="mp-banner__title"><span data-i18n="page.tours.ar1">AR Time Machine</span><br><span data-i18n="page.tours.ar2">at the Maiden Tower.</span></h2>
+        <p class="mp-banner__text" data-i18n="page.tours.arText">Travel back to 12th-century Baku through augmented reality at 10 historical points across the Old City.</p>
+        <div class="mp-banner__btns">
+          <a class="mp-banner__btn mp-banner__btn--brand" href="../#citypass" data-i18n="page.tours.explore">Explore</a>
+          <a class="mp-banner__btn" href="../#citypass" data-i18n="page.tours.getPass">Get your pass</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sosial feed + footer: partials/footer.html -->
+  <div data-include="footer"></div>
+
+  <!-- Paylaşılan (hər səhifədə) -->
+  <script type="module" src="../js/i18n.js"></script>
+  <script type="module" src="../js/config.js"></script>
+  <script type="module" src="../js/lang.js"></script>
+  <script type="module" src="../js/nav-menu.js"></script>
+  <script type="module" src="../js/scroll-links.js"></script>
+  <script type="module" src="../js/passes.js"></script>
+  <script type="module" src="../js/tours-page.js"></script>
+</body>
+</html>

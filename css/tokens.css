@@ -21,6 +21,7 @@
   --c-page-bg:    #F5F4F2;   /* home_page frame fill (web). 2026-09-25: mobil frame-in
                                 (home_page_mobile, 1627:2200) öz fonu #EFEEED oxunur — kiçik
                                 fərq, təsdiqlənməyənə qədər tək dəyər saxlanılır */
+  --c-panel-soft: rgba(227, 227, 226, 0.89); /* Tours "Build my route" paneli (3047:9469) */
   --c-footer-bg:  #E1E1E0;   /* Frame 610 (footer bloku, web). 2026-09-25: mobildə footer fonu
                                 #E4E4E3 oxunur (node 1627:2760) — kiçik fərq, təsdiqlənməyənə
                                 qədər tək dəyər saxlanılır */

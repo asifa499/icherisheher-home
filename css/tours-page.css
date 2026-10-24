@@ -1,0 +1,197 @@
+/* ============================================================
+   Tours page — /tours/
+   Figma: web 3047:9421 (1440) · mobil 3047:10547 (393)
+   Hero, story şeridi, kart və banner stilləri css/museums-page.css-dən (.mp-*) paylaşılır;
+   burada yalnız Tours-a xas hissələr: hero foto, süzgəc çipləri, "Build my route", banner foto.
+   ============================================================ */
+
+/* ---------- Hero / banner foto ---------- */
+.tp-hero__bg {
+  background: var(--c-surface) url("../assets/img/tours-hero.jpg") center / cover no-repeat;
+  background-image: image-set(url("../assets/img/tours-hero.webp") type("image/webp"), url("../assets/img/tours-hero.jpg") type("image/jpeg"));
+}
+.tp-banner__bg {
+  background: var(--c-surface) url("../assets/img/appar-audio-bg.jpg") 87% 74% / cover no-repeat;
+  background-image: image-set(url("../assets/img/appar-audio-bg.webp") type("image/webp"), url("../assets/img/appar-audio-bg.jpg") type("image/jpeg"));
+}
+
+/* Figma web: başlıq 2 sətir ("Tours in" / "Icherisheher"), mobildə tək sətir */
+.tp-hero__title { max-width: 300px; }
+
+/* ---------- Siyahı + süzgəclər ---------- */
+.tp-list { margin-top: 80px; }
+
+.tp-filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 24px 0;
+}
+.tp-filters .mp-filter { margin: 0; }
+.tp-filters__side { display: flex; gap: 8px; flex-shrink: 0; }
+.tp-chips { display: flex; gap: 8px; min-width: 0; }
+
+.tp-chip {
+  flex-shrink: 0;
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  border-radius: var(--r-pill);
+  background: var(--c-light-gray);
+  color: var(--c-black);
+  font-family: inherit;
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  cursor: pointer;
+}
+.tp-chip.is-active { border-color: var(--c-brand-base); background: transparent; color: var(--c-brand-base); }
+
+.tp-grid[data-state="empty"] { display: block; color: var(--c-gray); padding: 24px 0; }
+
+/* ---------- Build my route ---------- */
+.tp-build {
+  margin-top: 80px;
+  padding: 32px;
+  border-radius: var(--r-lg);
+  background: var(--c-panel-soft);
+}
+.tp-build__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+.tp-build__title {
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  color: var(--c-black);
+}
+.tp-build__text {
+  width: 555px;
+  max-width: 100%;
+  margin-top: 16px;
+  font-weight: 500;
+  color: var(--c-content-secondary);
+}
+.tp-build__actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+
+.tp-build__ai {   /* ui kit button · md · "ai" gradient outline + gradient text */
+  padding: 10px 20px;
+  border: 2px solid var(--c-flame);
+  border-radius: var(--r-pill);
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  cursor: pointer;
+  color: transparent;
+  background-image: linear-gradient(265deg, var(--c-flame) 4%, var(--c-gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.tp-build__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: var(--btn-pad-md);
+  border: 1px solid var(--c-glass-04);
+  border-radius: var(--r-pill);
+  background: var(--c-black);
+  color: var(--c-white);
+  font-family: inherit;
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+  font-weight: 600;
+  cursor: pointer;
+}
+.tp-build__go img { width: 20px; height: 20px; }
+
+.tp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 24px;
+  padding: 32px;
+  border-radius: var(--r-lg);
+  background: var(--c-white);
+}
+.tp-form__fields { display: flex; gap: 32px; }
+.tp-field { display: flex; flex-direction: column; gap: 8px; font-size: var(--t-body); line-height: var(--t-body-tight-lh); color: var(--c-text-soft); }
+.tp-field input {
+  width: 84px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: var(--c-btn-neutral);
+  font: inherit;
+  font-size: var(--t-small);
+  color: var(--c-gray);
+}
+.tp-field:nth-child(2) input { width: 112px; }
+.tp-field input:focus-visible { outline: 2px solid var(--c-brand-base); outline-offset: 1px; color: var(--c-black); }
+
+.tp-form__group { display: flex; flex-direction: column; gap: 12px; }
+.tp-form__label { font-size: var(--t-lead); line-height: 22px; letter-spacing: -0.03em; color: var(--c-text-soft); }
+.tp-form__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.tp-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 16px;
+  border: 1px solid var(--c-glass-04);
+  border-radius: var(--r-pill);
+  background: var(--c-btn-neutral);
+  color: var(--c-black);
+  font-family: inherit;
+  font-size: var(--t-body);
+  line-height: var(--t-body-tight-lh);
+  font-weight: 500;
+  cursor: pointer;
+}
+.tp-pill small { font-size: var(--t-small); line-height: var(--t-small-lh); font-weight: 400; color: var(--c-text-soft); }
+.tp-pill__x { display: none; width: 16px; height: 16px; }
+.tp-pill.is-active { background: var(--c-brand-base); color: var(--c-white); }
+.tp-pill.is-active small { color: var(--c-white); }
+.tp-pill.is-active .tp-pill__x { display: block; }
+
+/* ---------- City Pass (Home ilə eyni kartlar) ---------- */
+.tp-build + .citypass-section { margin-top: 80px; }
+
+/* ---------- Mobil (393 etalon) ---------- */
+@media (max-width: 768px) {
+  .tp-hero__title { max-width: none; }
+  .tp-list { margin-top: 40px; }
+
+  .tp-filters { margin: 16px calc(-1 * var(--page-pad)); padding-inline: var(--page-pad); overflow-x: auto; scrollbar-width: none; }
+  .tp-filters::-webkit-scrollbar { display: none; }
+  .tp-filters__side { display: none; }
+  .tp-chip { padding: 8px 16px; font-size: var(--t-small); line-height: var(--t-small-lh); }
+
+  /* Kartlar üfüqi sürüşən cərgədir (Figma mobil 3047:10547) */
+  .tp-grid {
+    display: flex;
+    gap: 8px;
+    margin-inline: calc(-1 * var(--page-pad));
+    padding-inline: var(--page-pad);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .tp-grid::-webkit-scrollbar { display: none; }
+  .tp-grid[data-state="empty"], .tp-grid[data-state="error"] { display: block; }
+  .tp-card { flex: 0 0 300px; scroll-snap-align: start; }
+  .mp-grid:not(.is-expanded) .tp-card:nth-child(n+5) { display: flex; }
+
+  .tp-build { margin-top: 40px; padding: 16px; border-radius: var(--r-md); }
+  .tp-build__head { flex-direction: column; gap: 16px; }
+  .tp-build__title { font-size: 32px; line-height: 40px; }
+  .tp-build__text { width: auto; margin-top: 8px; color: var(--c-gray); }
+  .tp-build__actions { width: 100%; }
+  .tp-build__ai, .tp-build__go { white-space: nowrap; }
+  .tp-form { padding: 16px; gap: 16px; }
+  .tp-form__fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .tp-field input, .tp-field:nth-child(2) input { width: 100%; }
+
+  .tp-build + .citypass-section { margin-top: 40px; }
+}

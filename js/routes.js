@@ -116,7 +116,6 @@ function unwrapRoutesList(json) {
 async function initRoutes() {
   const chipsEl = document.querySelector("[data-routes-chips]");
   const cardEl = document.querySelector("[data-routes-row]");
-  const allEl = document.querySelector("[data-routes-all]");
   if (!chipsEl || !cardEl) return;
 
   let tours;
@@ -135,15 +134,11 @@ async function initRoutes() {
 
   renderRoutes(chipsEl, cardEl, tours);
 
-  // Tab-lar kartları `tags` üzrə süzür; "All tours" süzgəci götürür.
+  // Tab-lar kartları `tags` üzrə süzür ("All tours" düyməsi indi /tours/ səhifəsinə aparır).
   chipsEl.addEventListener("click", (event) => {
     const tab = event.target.closest("[data-route-tab]");
     if (!tab || tab.classList.contains("is-active")) return;
     renderRoutes(chipsEl, cardEl, tours, tab.dataset.routeTab);
-  });
-  allEl?.addEventListener("click", (event) => {
-    event.preventDefault();
-    renderRoutes(chipsEl, cardEl, tours, "all");
   });
 
   // Dil dəyişəndə eyni data ilə yenidən çəkir, aktiv tab-ı saxlayır.

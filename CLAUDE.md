@@ -268,6 +268,19 @@ kartlar + hero "story" şeridi (aktiv kart böyük). Mobildə 4 kart, qalanı "S
 vizualdır (Figma-da seçim siyahısı yoxdur); "Map" → Home `#nearby`; Figma 8 muzey göstərir, API 4; Get a ticket `ticket_url` (hazırda `#`);
 Figma hero dump-ı kəsildiyi üçün hero story ölçüləri ekran görüntüsündən təxmini ölçülüb; `museums-icon-arrow-up/map-dark.svg` əl ilə çəkilib.
 
+### Tours səhifəsi (2026-10-24) — `/tours/`
+Figma web `3047:9421`, mobil `3047:10547` (fayl `zD5KChgQjY4CpaiwX1Gtg2`). Fayllar: `tours/index.html`, `css/tours-page.css`
+(hero/story/kart/banner `.mp-*` stilləri `css/museums-page.css`-dən paylaşılır), `js/tours-page.js`. **Bütün data** `GET /api/routes`-dən
+(köhnə sxem və ya xəta olarsa `data/routes.json`): hero story şeridi + 3 sütunlu kart grid-i (mobildə üfüqi sürüşən cərgə). Səhifədə
+həmçinin "Build my route" formu (hələ heç yerə göndərmir — yalnız çip seçimi), City Pass kartları (`js/passes.js`, Home ilə eyni) və
+AR Time Machine bannerı (`appar-audio-bg`). **Yönləndirmələr:** Home "All tours", hero "Get your tour" çipi, "Tours & Routes" etiketi,
+footer "Tours", burger menyu "Tours" (iki yerdə) → `tours/`. `js/routes.js`-dən "All tours" süzgəc davranışı çıxarılıb.
+**Süzgəc çipləri** (All/Historical/Walk/Thematic/Restaurant/Food) kartın `type`/`mode`/`tags` sahələri ilə uyğunlaşır
+(`FILTERS`, `js/tours-page.js`): Historical = `museums` tipi, Food = `restaurant` tipi, Thematic yalnız `thematic` tag-ı ilə — hazırda boşdur.
+**Açıq qalanlar:** "Time"/"Group size" yalnız vizualdır; "Generate with AI"/"Build the tour" backend-siz (Figma-da yazı səhvi "Biuld"
+düzəldilib); Figma-da "Popular" nişanı və 6 kart var, API 4 tur verir; mobil frame-dəki app promo bölməsi əlavə edilməyib;
+hero foto `tours-hero.*` Figma `3047:10158` kadrından (güzgülənmiş) kəsilib; "Book/Get a ticket" `book_url` hələ `#`.
+
 ### Düymə davranışları (2026-10-23)
 `js/scroll-links.js`: `[data-scroll-to="<id>"]` → hamar scroll (hash dəyişmir; hədəf səhifədə yoxdursa linkin `href`-i işləyir).
 Tətbiq: "Download App" → `#app-ar`; hero çipi "Tickets & Pass", intro "Tickets & Pass", muzey "Get Your Pass" → `#citypass`;
