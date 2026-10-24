@@ -44,41 +44,53 @@
   letter-spacing: -0.02em;
 }
 
-/* Story şeridi: aktiv kart böyük, qalanları dar şaquli plitə */
+/* Story şeridi: sağdan-sola sonsuz marquee (Home intro kollajı ilə eyni texnika) */
 .mp-stories {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  flex: 1 1 0;
   min-width: 0;
+  align-self: center;
   margin-right: calc(-1 * max(var(--page-pad), (100vw - var(--content-w)) / 2));
   overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 32px);
+  mask-image: linear-gradient(to right, transparent, #000 32px);
 }
+.mp-stories__belt {
+  display: flex;
+  width: max-content;
+  animation: mp-marquee calc(var(--mp-count, 4) * 9s) linear infinite;
+  will-change: transform;
+}
+.mp-stories:hover .mp-stories__belt,
+.mp-stories:focus-within .mp-stories__belt { animation-play-state: paused; }
+.mp-stories__track { display: flex; flex-shrink: 0; align-items: flex-start; gap: 16px; padding-right: 16px; }
+@keyframes mp-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mp-stories { overflow-x: auto; }
+  .mp-stories__belt { animation: none; }
+  .mp-stories__track[aria-hidden] { display: none; }
+}
+
 .mp-story {
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  width: 128px;
-  padding: 0;
-  border: 0;
-  background: none;
+  gap: 12px;
+  width: 272px;
   color: inherit;
-  text-align: left;
-  cursor: pointer;
-  transition: width var(--dur) var(--ease);
 }
-.mp-story.is-active { width: 272px; }
+.mp-story:nth-child(even) .mp-story__media { height: 247px; }
 .mp-story__media {
   display: block;
-  height: 247px;
+  height: 195px;
   border-radius: var(--r-md);
   overflow: hidden;
-  transition: height var(--dur) var(--ease);
 }
-.mp-story.is-active .mp-story__media { height: 195px; }
-.mp-story__media img { width: 100%; height: 100%; object-fit: cover; }
-.mp-story__cap { display: none; flex-direction: column; gap: 4px; }
-.mp-story.is-active .mp-story__cap { display: flex; }
+.mp-story__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+.mp-story:hover .mp-story__media img { transform: scale(1.06); }
+.mp-story__cap { display: flex; flex-direction: column; gap: 4px; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45); }
 .mp-story__name { font-size: var(--t-body); line-height: var(--t-body-lh); font-weight: 500; }
 .mp-story__desc {
   font-size: var(--t-small);
@@ -91,6 +103,7 @@
 }
 
 /* ---------- Siyahı ---------- */
+.mp-card { scroll-margin-top: 24px; }
 .mp-list { margin-top: 80px; margin-bottom: 24px; }
 
 .mp-list__head { display: flex; flex-direction: column; gap: 8px; }
@@ -272,11 +285,9 @@
   }
   .mp-hero__text { padding-top: 0; }
   .mp-hero__title { max-width: none; font-size: 40px; line-height: 48px; }
-  .mp-stories { margin-right: calc(-1 * var(--page-pad)); }
-  .mp-story { width: 64px; }
-  .mp-story.is-active { width: 272px; }
-  .mp-story__media { height: 184px; }
-  .mp-story.is-active .mp-story__media { height: 195px; }
+  .mp-stories { flex: none; width: auto; margin-right: calc(-1 * var(--page-pad)); }
+  .mp-story { width: 240px; }
+  .mp-story__media, .mp-story:nth-child(even) .mp-story__media { height: 184px; }
 
   .mp-list { margin-top: 40px; }
   .mp-list__title { font-size: 28px; line-height: 32px; }

@@ -20,7 +20,7 @@ function cardMarkup(m) {
   const rating = typeof m.rating === "number" ? m.rating.toFixed(1) : "";
   const badge = (inner) => `<span class="museums-card__badge">${inner}</span>`;
   return `
-    <article class="mp-card" data-id="${m.id}" data-slug="${esc(m.slug)}">
+    <article class="mp-card" id="${esc(m.slug)}" data-id="${m.id}" data-slug="${esc(m.slug)}">
       <div class="mp-card__media">
         ${picture(src, `<img class="mp-card__photo" src="${esc(src)}" alt="${name}" loading="lazy" decoding="async" width="368" height="354">`)}
         <div class="mp-card__scrim" aria-hidden="true"></div>
@@ -40,19 +40,37 @@ function cardMarkup(m) {
     </article>`;
 }
 
-function storyMarkup(m, i) {
-  const name = esc(pickText(m.name));
+function storyMarkup(m, caption) {
+  const name = esc(pickText(caption?.title) || pickText(m.name));
+  const text = esc(pickText(caption?.text) || pickText(m.short_description));
   const src = imageUrl(m.image);
   return `
-    <button class="mp-story${i === 0 ? " is-active" : ""}" type="button" data-story="${i}" aria-pressed="${i === 0}" aria-label="${name}">
+    <a class="mp-story" href="#${esc(m.slug)}" data-story-slug="${esc(m.slug)}">
       <span class="mp-story__media">
         ${picture(src, `<img src="${esc(src)}" alt="" loading="lazy" decoding="async" width="272" height="195">`)}
       </span>
       <span class="mp-story__cap">
         <span class="mp-story__name">${name}</span>
-        <span class="mp-story__desc">${esc(pickText(m.short_description))}</span>
+        <span class="mp-story__desc">${text}</span>
       </span>
-    </button>`;
+    </a>`;
+}
+
+// Hero şeridi: Home intro kollajı kimi sonsuz marquee — track iki dəfə təkrarlanır,
+// translateX(-50%) görünməz tikişli dövr verir; hover/fokusda dayanır.
+function renderStories(el, museums, captions) {
+  const track = museums.map((m) => storyMarkup(m, captions[m.slug])).join("");
+  el.innerHTML = `<div class="mp-stories__belt" style="--mp-count:${museums.length}"><div class="mp-stories__track">${track}</div><div class="mp-stories__track" aria-hidden="true">${track}</div></div>`;
+  el.querySelectorAll(".mp-stories__track[aria-hidden] .mp-story").forEach((a) => a.setAttribute("tabindex", "-1"));
+}
+
+async function loadCaptions() {
+  try {
+    const res = await fetch(siteUrl("data/museums-stories.json"));
+    return res.ok ? await res.json() : {};
+  } catch {
+    return {};
+  }
 }
 
 async function fetchList(url, options) {
@@ -80,17 +98,13 @@ function init() {
   if (!grid) return;
   const moreBtn = more.querySelector("[data-mp-show-more]");
   let museums = [];
+  let captions = {};
 
   function render() {
     const sorted = [...museums].sort((a, b) => a.sort_order - b.sort_order);
     grid.innerHTML = sorted.map(cardMarkup).join("");
     grid.removeAttribute("data-state");
-    const active = stories.querySelector(".is-active")?.dataset.story || 0;
-    stories.innerHTML = sorted.map(storyMarkup).join("");
-    stories.querySelectorAll(".mp-story").forEach((el, i) => {
-      el.classList.toggle("is-active", i === Number(active));
-      el.setAttribute("aria-pressed", String(i === Number(active)));
-    });
+    renderStories(stories, sorted, captions);
     // "Show N more" yalnız mobildə (CSS), 4-dən çox muzey olanda
     const hidden = Math.max(0, sorted.length - MOBILE_INITIAL);
     more.hidden = hidden === 0;
@@ -99,15 +113,6 @@ function init() {
     more.classList.remove("is-expanded");
   }
 
-  stories.addEventListener("click", (e) => {
-    const btn = e.target.closest(".mp-story");
-    if (!btn) return;
-    stories.querySelectorAll(".mp-story").forEach((el) => {
-      const on = el === btn;
-      el.classList.toggle("is-active", on);
-      el.setAttribute("aria-pressed", String(on));
-    });
-  });
   moreBtn.addEventListener("click", () => {
     grid.classList.add("is-expanded");
     more.classList.add("is-expanded");
@@ -116,8 +121,9 @@ function init() {
     document.getElementById("museums-list").scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
-  loadMuseums().then((list) => {
+  Promise.all([loadMuseums(), loadCaptions()]).then(([list, caps]) => {
     museums = list;
+    captions = caps;
     render();
     onLangChange((lang) => { LANG = lang; render(); });
   }).catch((err) => {

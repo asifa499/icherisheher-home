@@ -1,0 +1,18 @@
+{
+  "underground-hammam": {
+    "title": { "en": "A bath beneath the Old City", "az": "Köhnə şəhərin altında hamam", "ru": "Баня под Старым городом" },
+    "text": { "en": "Step down into a 15th-century hammam where light falls through the vaulted ceiling.", "az": "XV əsr hamamına enin — işıq tağlı tavandan düşür.", "ru": "Спуститесь в баню XV века, где свет падает сквозь сводчатый потолок." }
+  },
+  "sirataghli-complex": {
+    "title": { "en": "Stones that remember", "az": "Yaddaşı olan daşlar", "ru": "Камни, которые помнят" },
+    "text": { "en": "Ancient carved figures stand guard in the courtyard of the old bazaar square.", "az": "Qədim oyma fiqurlar köhnə bazar meydanının həyətində keşik çəkir.", "ru": "Древние резные фигуры стоят на страже во дворе старой базарной площади." }
+  },
+  "maiden-tower": {
+    "title": { "en": "The tower above the sea", "az": "Dənizin üstündəki qala", "ru": "Башня над морем" },
+    "text": { "en": "Climb the spiral stairs of the symbol of Baku and watch the city open up below.", "az": "Bakının rəmzinin spiral pillələri ilə qalxın və şəhərin necə açıldığını izləyin.", "ru": "Поднимитесь по винтовой лестнице символа Баку и наблюдайте, как раскрывается город." }
+  },
+  "shirvanshahs-palace": {
+    "title": { "en": "A palace of the Shirvanshahs", "az": "Şirvanşahlar sarayı", "ru": "Дворец Ширваншахов" },
+    "text": { "en": "Walk through the arched courtyards where rulers once held court.", "az": "Hökmdarların nə vaxtsa qəbul keçirdiyi tağlı həyətlərdən keçin.", "ru": "Пройдите по арочным дворам, где когда-то правили властители." }
+  }
+}
