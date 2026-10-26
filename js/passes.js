@@ -34,7 +34,7 @@ function featureMarkup(feature) {
   `;
 }
 
-// Home-da kartın "Buy" düyməsi API-nin buy_url-i əvəzinə cərgənin data-buy-href
+// Home və Tours-da kartın "Buy" düyməsi API-nin buy_url-i əvəzinə cərgənin data-buy-href
 // səhifəsinə (Tours) yönləndirir; atribut yoxdursa (Tours/Pass səhifələri) buy_url işlədilir.
 let BUY_HREF = "";
 
