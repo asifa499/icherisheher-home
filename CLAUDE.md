@@ -628,3 +628,4 @@ Build addımı yoxdur. Çox-səhifəli sayt üçün üç paylaşılan hissə:
 - **Layout:** kanvas 1440 · blok 1392 · məzmun 1136 · kənar 24 (mobil 16)
 
 **2026-10-26:** "AR Time Machine / Explore our museums" banner bölməsi (`.mp-banner`) Museums, Tours və Pass səhifələrindən silindi (asset `museums-banner.*` da).
+**2026-10-26:** Həmin yerə "AI Audio Guide" bloku (Figma `40000073:2432`, Home `.appar-time` ilə eyni markup, `css/appar.css` + `.mp-audio` modifikatoru `css/museums-page.css`-də) əlavə edildi; düymələr hələ `#`.

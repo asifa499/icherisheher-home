@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="../css/footer.css">
   <link rel="stylesheet" href="../css/museums.css">
   <link rel="stylesheet" href="../css/museums-page.css">
+  <link rel="stylesheet" href="../css/appar.css">
 
   <!-- Header/footer partial-ları (klassik skript, defer YOX — bax js/include.js) -->
   <script src="../js/include.js"></script>
@@ -101,6 +102,22 @@
       <div class="mp-more" data-mp-more hidden>
         <button class="mp-more__up" type="button" data-mp-up><img src="../assets/img/museums-icon-arrow-up.svg" alt="" width="16" height="16"><span data-i18n="page.museums.up">Up</span></button>
         <button class="mp-more__btn" type="button" data-mp-show-more></button>
+      </div>
+    </section>
+    <!-- AI Audio Guide — Figma 40000073:2432 (Home app-ar bölməsindəki .appar-time ilə eyni blok) -->
+    <section class="block appar-section mp-audio" data-figma="40000073:2432">
+      <div class="appar-time">
+        <div class="appar-time__scrim"></div>
+        <div class="appar-time__content">
+          <div class="appar-time__copy">
+            <h2 class="appar-time__title" data-i18n="appar.time.title">AI Audio Guide</h2>
+            <p class="appar-time__text" data-i18n="appar.time.text">Travel back to 12th-century Baku through augmented reality at 10 historical points across the Old City.</p>
+          </div>
+          <div class="appar-time__actions">
+            <a class="appar-time__btn appar-time__btn--glass" href="#" data-i18n="appar.time.explore">Museum Audio Guide</a>
+            <a class="appar-time__btn appar-time__btn--light" href="#" data-i18n="appar.time.getPass">Icherisheher Audio Guide</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>

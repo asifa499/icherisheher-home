@@ -218,8 +218,13 @@
 /* ---------- Show more / Up (yalnız mobil) ---------- */
 .mp-more { display: none; }
 
+/* ---------- AI Audio Guide bloku (css/appar.css-dəki .appar-time; app promo olmadan tək) ---------- */
+.appar-section.mp-audio { margin-top: 80px; margin-bottom: 24px; }
+.mp-audio .appar-time { margin-top: 0; }
+
 /* ---------- Mobil (393 etalon) ---------- */
 @media (max-width: 768px) {
+  .appar-section.mp-audio { margin-top: 40px; }
   .mp-hero { height: auto; min-height: 640px; }
   .mp-hero__content {
     flex-direction: column;
