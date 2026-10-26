@@ -11,6 +11,8 @@ const HIDDEN_CLASS = "section-hidden";
 // Most keys match the section id 1:1; two don't, following the API's own
 // resource naming: "events" is the "season" section (Etap 5, same resource
 // as js/events.js), and "appar" (no hyphen) is the "app-ar" section (Etap 9).
+// A value may be an array of ids: "inspire" hides the hero's "Inspire me" aside
+// together with the divider next to it.
 // FAIL-OPEN: missing/unreachable config, timeout or a missing flag all leave
 // the section visible — only an explicit `false` hides it.
 const SECTION_ID_BY_FLAG = {
@@ -23,6 +25,7 @@ const SECTION_ID_BY_FLAG = {
   nearby: "nearby",
   citypass: "citypass",
   collections: "collections",
+  inspire: ["inspire", "inspire-divider"],
   appar: "app-ar",
   social: "social",
   footer: "footer",
@@ -31,10 +34,12 @@ const SECTION_ID_BY_FLAG = {
 function applyConfig(config) {
   const sections = config && config.sections;
   if (!sections || typeof sections !== "object") return;
-  Object.entries(SECTION_ID_BY_FLAG).forEach(([flagKey, sectionId]) => {
+  Object.entries(SECTION_ID_BY_FLAG).forEach(([flagKey, target]) => {
     if (sections[flagKey] !== false) return;
-    const section = document.getElementById(sectionId);
-    if (section) section.classList.add(HIDDEN_CLASS);
+    [].concat(target).forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add(HIDDEN_CLASS);
+    });
   });
 }
 

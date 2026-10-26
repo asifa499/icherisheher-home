@@ -471,7 +471,7 @@ Railway) çağırır. Cavab formatı `{ "sections": { "<flag>": true|false, ... 
 `false` olan hər flag `SECTION_ID_BY_FLAG` map-i (`js/config.js`) vasitəsilə
 uyğun `<section>` (və ya `<footer>`) `id`-sinə köçürülür və o element
 `.section-hidden` sinfi (`display:none`, `css/base.css`) ilə gizlədilir —
-DOM-dan silinmir. Əksər flag açarları bölmə `id`-si ilə eynidir, iki istisna
+DOM-dan silinmir (map dəyəri `id` massivi də ola bilər). Əksər flag açarları bölmə `id`-si ilə eynidir, iki istisna
 API-nin öz resurs adlandırmasını izləyir:
 
 | Flag açarı (API) | Bölmə `id` | Bölmə |
@@ -484,6 +484,8 @@ API-nin öz resurs adlandırmasını izləyir:
 | `resources` | `resources` | Resources (tabs + kartlar) |
 | `nearby` | `nearby` | See What's Nearby (xəritə) |
 | `citypass` | `citypass` | City Pass |
+| `collections` | `collections` | Icherisheher Digital Collections |
+| `inspire` | `inspire` + `inspire-divider` | Hero explore panelinin sağ hissəsi ("You have no idea what to do…?" + "Inspire me please!") və onun şaquli ayırıcısı — flag `false` olanda hər ikisi gizlənir, çip sütunu bütün eni tutur |
 | `appar` | `app-ar` | App promo + AR Time Machine (defisiz) |
 | `social` | `social` | Sosial feed |
 | `footer` | `footer` | Footer + panoram foto |
