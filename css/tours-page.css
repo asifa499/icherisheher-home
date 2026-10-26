@@ -1,18 +1,14 @@
 /* ============================================================
    Tours page — /tours/
    Figma: web 3047:9421 (1440) · mobil 3047:10547 (393)
-   Hero, story şeridi, kart və banner stilləri css/museums-page.css-dən (.mp-*) paylaşılır;
-   burada yalnız Tours-a xas hissələr: hero foto, süzgəc çipləri, "Build my route", banner foto.
+   Hero, story şeridi, kart stilləri css/museums-page.css-dən (.mp-*) paylaşılır;
+   burada yalnız Tours-a xas hissələr: hero foto, süzgəc çipləri, "Build my route".
    ============================================================ */
 
-/* ---------- Hero / banner foto ---------- */
+/* ---------- Hero foto ---------- */
 .tp-hero__bg {
   background: var(--c-surface) url("../assets/img/tours-hero.jpg") center / cover no-repeat;
   background-image: image-set(url("../assets/img/tours-hero.webp") type("image/webp"), url("../assets/img/tours-hero.jpg") type("image/jpeg"));
-}
-.tp-banner__bg {
-  background: var(--c-surface) url("../assets/img/appar-audio-bg.jpg") 87% 74% / cover no-repeat;
-  background-image: image-set(url("../assets/img/appar-audio-bg.webp") type("image/webp"), url("../assets/img/appar-audio-bg.jpg") type("image/jpeg"));
 }
 
 /* Figma web: başlıq 2 sətir ("Tours in" / "Icherisheher"), mobildə tək sətir */

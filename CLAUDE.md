@@ -262,18 +262,18 @@ Routes, Hidden gems, Local Masters, BukharArt, Visitor Services, Centre for Trad
 ### Museums səhifəsi (2026-10-24) — `/museums/`
 Figma web `3047:11862`, mobil `3047:11273` (fayl `zD5KChgQjY4CpaiwX1Gtg2`). Fayllar: `museums/index.html`, `css/museums-page.css`
 (badge stilləri `css/museums.css`-dən), `js/museums-page.js`. **Bütün data** `GET /api/museums`-dən (uğursuz olarsa `data/museums.json`):
-kartlar + hero "story" şeridi (aktiv kart böyük). Mobildə 4 kart, qalanı "Show N more" ilə (4-dən çox muzey olanda). Hero fonu/banner
-`assets/img/museums-hero|banner.*` (Figma-dan). **Yönləndirmələr:** Home "View all museums", hero "+4" və intro "Explore now" popover-lərindəki
+kartlar + hero "story" şeridi (aktiv kart böyük). Mobildə 4 kart, qalanı "Show N more" ilə (4-dən çox muzey olanda). Hero fonu
+`assets/img/museums-hero.*` (Figma-dan). **Yönləndirmələr:** Home "View all museums", hero "+4" və intro "Explore now" popover-lərindəki
 "Museums", footer "Museums", burger menyu "Museums & Galleries" → `museums/`. **Açıq qalanlar:** "Time"/"Group size" düymələri yalnız
 vizualdır (Figma-da seçim siyahısı yoxdur); "Map" → Home `#nearby`; Figma 8 muzey göstərir, API 4; Get a ticket `ticket_url` (hazırda `#`);
 Figma hero dump-ı kəsildiyi üçün hero story ölçüləri ekran görüntüsündən təxmini ölçülüb; `museums-icon-arrow-up/map-dark.svg` əl ilə çəkilib.
 
 ### Tours səhifəsi (2026-10-24) — `/tours/`
 Figma web `3047:9421`, mobil `3047:10547` (fayl `zD5KChgQjY4CpaiwX1Gtg2`). Fayllar: `tours/index.html`, `css/tours-page.css`
-(hero/story/kart/banner `.mp-*` stilləri `css/museums-page.css`-dən paylaşılır), `js/tours-page.js`. **Bütün data** `GET /api/routes`-dən
+(hero/story/kart `.mp-*` stilləri `css/museums-page.css`-dən paylaşılır), `js/tours-page.js`. **Bütün data** `GET /api/routes`-dən
 (köhnə sxem və ya xəta olarsa `data/routes.json`): hero story şeridi + 3 sütunlu kart grid-i (mobildə üfüqi sürüşən cərgə). Səhifədə
 həmçinin "Build my route" formu (hələ heç yerə göndərmir — yalnız çip seçimi), City Pass kartları (`js/passes.js`, Home ilə eyni) və
-AR Time Machine bannerı (`appar-audio-bg`). **Yönləndirmələr:** Home "All tours", hero "Get your tour" çipi, "Tours & Routes" etiketi,
+**Yönləndirmələr:** Home "All tours", hero "Get your tour" çipi, "Tours & Routes" etiketi,
 footer "Tours", burger menyu "Tours" (iki yerdə) → `tours/`. `js/routes.js`-dən "All tours" süzgəc davranışı çıxarılıb.
 **Süzgəc çipləri** (All/Historical/Walk/Thematic/Restaurant/Food) kartın `type`/`mode`/`tags` sahələri ilə uyğunlaşır
 (`FILTERS`, `js/tours-page.js`): Historical = `museums` tipi, Food = `restaurant` tipi, Thematic yalnız `thematic` tag-ı ilə — hazırda boşdur.
@@ -283,11 +283,11 @@ hero foto `tours-hero.*` Figma `3047:10158` kadrından (güzgülənmiş) kəsili
 
 ### Icherisheher Pass səhifəsi (2026-10-26) — `/pass/`
 Figma web `3124:23263`, mobil `3143:26010` (fayl `zD5KChgQjY4CpaiwX1Gtg2`). Fayllar: `pass/index.html`, `css/pass-page.css`
-(hero/banner `.mp-*` `css/museums-page.css`-dən, pass kartları `css/citypass.css` + `js/passes.js`-dən paylaşılır), `js/pass-page.js`.
+(hero `.mp-*` `css/museums-page.css`-dən, pass kartları `css/citypass.css` + `js/passes.js`-dən paylaşılır), `js/pass-page.js`.
 **Data:** `GET /api/passes` (uğursuz olarsa `data/passes.json`) — `js/passes.js` kartları render edir və cavabı `window.ICH.passes` +
 `ich:passes` hadisəsi ilə `pass-page.js`-ə ötürür (təkrar sorğu yoxdur): hero statistikası (ən ucuz qiymət "from", ən qısa müddət "use time"),
 tab adları. **Yönləndirmələr:** Home hero çipi və intro "Tickets & Pass" → `pass/`; footer "Icherisheher Pass" → `pass/`; Home City Pass
-kartlarındakı "Buy … Pass" (Home və Tours), museums "Get Your Pass", "Get your pass" bannerləri, footer "Buy Tickets" → `pass/` (`data-buy-href="pass/"` cərgə atributu; Pass səhifəsində API `buy_url` qalır).
+kartlarındakı "Buy … Pass" (Home və Tours), museums "Get Your Pass", footer "Buy Tickets" → `pass/` (`data-buy-href="pass/"` cərgə atributu; Pass səhifəsində API `buy_url` qalır).
 **Açıq qalanlar:** API pass-a muzey siyahısı vermir — "What each pass opens" tab sayları (5/13/17), hero "13 museums" və 5 obyektin
 siyahısı dizayndan statikdir (`TAB_META`/`SITES`, `js/pass-page.js`); Explorer/Premium siyahıları Figma-da yoxdur, Core ilə eynidir.
 FAQ-da yalnız 1-ci cavab Figma-dadır; 2–3-cü cavablar "How it works" mətnindən götürülüb, 4–5-ci (paylaşma/geri ödəniş) info ofisinə
@@ -626,3 +626,5 @@ Build addımı yoxdur. Çox-səhifəli sayt üçün üç paylaşılan hissə:
 - **Şrift:** Vela Sans — body 16/24 Regular · h2 36/44 Medium · hero 48/56 · small 14/20 · caption 12/16
 - **Radius:** pill 1000 · xl 48 · lg 32 · md 24 · sm 12 · xs 8
 - **Layout:** kanvas 1440 · blok 1392 · məzmun 1136 · kənar 24 (mobil 16)
+
+**2026-10-26:** "AR Time Machine / Explore our museums" banner bölməsi (`.mp-banner`) Museums, Tours və Pass səhifələrindən silindi (asset `museums-banner.*` da).
