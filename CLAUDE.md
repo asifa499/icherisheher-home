@@ -281,6 +281,19 @@ footer "Tours", burger menyu "Tours" (iki yerdə) → `tours/`. `js/routes.js`-d
 düzəldilib); Figma-da "Popular" nişanı və 6 kart var, API 4 tur verir; mobil frame-dəki app promo bölməsi əlavə edilməyib;
 hero foto `tours-hero.*` Figma `3047:10158` kadrından (güzgülənmiş) kəsilib; "Book/Get a ticket" `book_url` hələ `#`.
 
+### Icherisheher Pass səhifəsi (2026-10-26) — `/pass/`
+Figma web `3124:23263`, mobil `3143:26010` (fayl `zD5KChgQjY4CpaiwX1Gtg2`). Fayllar: `pass/index.html`, `css/pass-page.css`
+(hero/banner `.mp-*` `css/museums-page.css`-dən, pass kartları `css/citypass.css` + `js/passes.js`-dən paylaşılır), `js/pass-page.js`.
+**Data:** `GET /api/passes` (uğursuz olarsa `data/passes.json`) — `js/passes.js` kartları render edir və cavabı `window.ICH.passes` +
+`ich:passes` hadisəsi ilə `pass-page.js`-ə ötürür (təkrar sorğu yoxdur): hero statistikası (ən ucuz qiymət "from", ən qısa müddət "use time"),
+tab adları. **Yönləndirmələr:** Home hero çipi və intro "Tickets & Pass" → `pass/`; footer "Icherisheher Pass" → `pass/`; Home City Pass
+kartlarındakı "Buy … Pass" → `tours/` (`data-buy-href="tours/"` cərgə atributu; Tours/Pass səhifələrində API `buy_url` qalır).
+**Açıq qalanlar:** API pass-a muzey siyahısı vermir — "What each pass opens" tab sayları (5/13/17), hero "13 museums" və 5 obyektin
+siyahısı dizayndan statikdir (`TAB_META`/`SITES`, `js/pass-page.js`); Explorer/Premium siyahıları Figma-da yoxdur, Core ilə eynidir.
+FAQ-da yalnız 1-ci cavab Figma-dadır; 2–3-cü cavablar "How it works" mətnindən götürülüb, 4–5-ci (paylaşma/geri ödəniş) info ofisinə
+yönləndirir (real qayda Asifdən gözlənilir). "How it works" maketləri CSS ilə sxematik çəkilib; hero fotosu Figma-dan kəsilib
+(`pass-hero.*`, tilt-shift blur tətbiq edilməyib). Qeyd: "Get Your Pass" (museums) hələ Home `#citypass`-a scroll edir.
+
 ### Düymə davranışları (2026-10-23)
 `js/scroll-links.js`: `[data-scroll-to="<id>"]` → hamar scroll (hash dəyişmir; hədəf səhifədə yoxdursa linkin `href`-i işləyir).
 Tətbiq: "Download App" → `#app-ar`; hero çipi "Tickets & Pass", intro "Tickets & Pass", muzey "Get Your Pass" → `#citypass`;

@@ -86,7 +86,7 @@
         <p class="hero__explore-heading" data-i18n="hero.exploreHeading">What would you<br>like to explore?</p>
         <div class="hero__chips">
           <a class="chip" href="tours/"><img class="chip__icon" src="assets/img/hero-chip-tour.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.tour">Get your tour</span></a>
-          <button class="chip" type="button" data-scroll-to="citypass"><img class="chip__icon" src="assets/img/hero-chip-city-pass.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.tickets">Tickets &amp; Pass</span></button>
+          <a class="chip" href="pass/"><img class="chip__icon" src="assets/img/hero-chip-city-pass.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.tickets">Tickets &amp; Pass</span></a>
           <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-digimap.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.digimap">Digi map</span></button>
           <button class="chip" type="button"><img class="chip__icon" src="assets/img/hero-chip-audioguide.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.audioguide">AI Audio guide</span></button>
           <div class="hero__more">
@@ -114,9 +114,9 @@
       <p class="intro__eyebrow" data-i18n="intro.eyebrow">Where History Still Lives</p>
       <p class="intro__lead"><span data-i18n="intro.lead">Icherisheher is Baku&rsquo;s historic heart, surrounded by ancient walls and listed as a UNESCO World Heritage Site since 2000.</span> <span class="intro__lead-muted" data-i18n="intro.leadMuted">Home to landmarks like the Maiden Tower and Shirvanshah&rsquo;s Palace, the Old City remains a living neighborhood with more than 3,000 residents.</span></p>
       <div class="intro__ctas">
-        <button class="intro__btn intro__btn--outline" type="button" data-scroll-to="citypass">
+        <a class="intro__btn intro__btn--outline" href="pass/">
           <img src="assets/img/hero-chip-city-pass.svg" alt="" width="20" height="20"><span data-i18n="hero.chip.tickets">Tickets &amp; Pass</span>
-        </button>
+        </a>
         <button class="intro__btn intro__btn--solid" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="intro-explore-pop" data-popover-trigger="intro-explore-pop"><span data-i18n="intro.exploreNow">Explore now</span><span class="intro__badge">10</span></button>
         <div class="intro__explore-pop" id="intro-explore-pop" hidden data-figma="40000068:5656">
           <a class="tag-chip" href="#"><img src="assets/img/tag-monuments.svg" alt="" width="20" height="20"><span data-i18n="tag.monuments">Monuments &amp; Landmarks</span></a>
@@ -259,7 +259,7 @@
        Kartlar data/passes.json-dan js/passes.js ilə render olunur. -->
   <section id="citypass" class="citypass-section container" data-figma="1615:2894">
     <h2 class="citypass__title" data-i18n="citypass.title">One QR. The whole Old City.</h2>
-    <div class="citypass__row" data-passes-row aria-live="polite"></div>
+    <div class="citypass__row" data-passes-row data-buy-href="tours/" aria-live="polite"></div>
   </section>
 
   <!-- 2026-09-25 Figma yoxlaması: CityPass ilə App promo arasında YENİ bir bölmə peyda olub —

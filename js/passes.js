@@ -34,6 +34,10 @@ function featureMarkup(feature) {
   `;
 }
 
+// Home-da kartın "Buy" düyməsi API-nin buy_url-i əvəzinə cərgənin data-buy-href
+// səhifəsinə (Tours) yönləndirir; atribut yoxdursa (Tours/Pass səhifələri) buy_url işlədilir.
+let BUY_HREF = "";
+
 function passCardMarkup(pass) {
   const name = pickText(pass.name);
   const description = pickText(pass.description);
@@ -58,7 +62,7 @@ function passCardMarkup(pass) {
       <ul class="pass-card__features">
         ${pass.features.map(featureMarkup).join("")}
       </ul>
-      <a class="pass-card__buy" href="${pass.buy_url}">
+      <a class="pass-card__buy" href="${BUY_HREF || pass.buy_url}">
         <img src="${IMG}museum-icon-ticket-btn.svg" alt="" width="20" height="20">${t("citypass.buy")} ${name}
       </a>
     </article>
@@ -106,6 +110,7 @@ function unwrapPassesList(json) {
 async function initPasses() {
   const row = document.querySelector("[data-passes-row]");
   if (!row) return;
+  if (row.dataset.buyHref) BUY_HREF = siteUrl(row.dataset.buyHref);
 
   let passes;
   try {
@@ -124,6 +129,10 @@ async function initPasses() {
   }
 
   renderPasses(row, passes);
+  // Pass səhifəsi (js/pass-page.js) eyni API cavabını təkrar sorğusuz istifadə edir.
+  window.ICH = window.ICH || {};
+  window.ICH.passes = passes;
+  document.dispatchEvent(new CustomEvent("ich:passes", { detail: passes }));
   onLangChange((lang) => {
     LANG = lang;
     renderPasses(row, passes);

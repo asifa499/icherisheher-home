@@ -1,0 +1,309 @@
+/* ============================================================
+   Icherisheher Pass page — /pass/
+   Figma: web 3124:23263 (1440) · mobil 3143:26010 (393)
+   Hero/banner stilləri css/museums-page.css-dən (.mp-*), pass kartları css/citypass.css-dən paylaşılır;
+   burada yalnız bu səhifəyə xas hissələr: hero foto/sağ sütun, "What each pass opens", "How it works", FAQ.
+   ============================================================ */
+
+/* ---------- Hero ---------- */
+.pp-hero__bg {
+  background: var(--c-surface) url("../assets/img/pass-hero.jpg") center / cover no-repeat;
+  background-image: image-set(url("../assets/img/pass-hero.webp") type("image/webp"), url("../assets/img/pass-hero.jpg") type("image/jpeg"));
+}
+.pp-hero__title { max-width: 401px; }
+
+.pp-hero__content { align-items: flex-end; padding-bottom: 96px; }
+.pp-hero__content .mp-hero__text { align-self: flex-end; padding-top: 0; }
+.pp-hero__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 512px;
+  max-width: 100%;
+  margin-right: 8px;
+}
+.pp-hero__lead {
+  font-size: var(--t-body);
+  line-height: var(--t-body-lh);
+}
+
+.pp-stats { display: flex; gap: 8px; margin-left: -8px; }
+.pp-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  width: 130px;
+  padding: 16px;
+  border: 1px solid var(--c-glass-04);
+  border-radius: var(--r-md);
+  background: var(--c-glass-12);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
+  white-space: nowrap;
+}
+.pp-stat strong {
+  font-size: var(--t-header);
+  line-height: var(--t-header-lh);
+  font-weight: 700;
+}
+.pp-stat span { font-size: var(--t-body); line-height: var(--t-body-lh); }
+
+/* ---------- Ümumi başlıq ---------- */
+.pp-h2 {
+  font-family: var(--font-display);
+  font-size: var(--t-h2);
+  line-height: var(--t-h2-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--c-black);
+}
+
+.pp-cards { margin-top: 80px; }
+.pp-opens, .pp-how, .pp-faq { margin-top: 80px; }
+
+/* ---------- What each pass opens ---------- */
+.pp-tabs { display: flex; gap: 8px; margin: 16px 0 24px; overflow-x: auto; scrollbar-width: none; }
+.pp-tabs::-webkit-scrollbar { display: none; }
+.pp-tab {
+  flex-shrink: 0;
+  padding: var(--btn-pad-md);
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  background: var(--c-btn-neutral);
+  color: var(--c-content-primary);
+  font-family: inherit;
+  font-size: var(--t-body);
+  line-height: var(--t-body-tight-lh);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  cursor: pointer;
+}
+.pp-tab.is-active { border-color: var(--c-brand-base); background: transparent; color: var(--c-brand-base); }
+
+.pp-sites { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.pp-site {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px;
+  border-radius: var(--r-md);
+  background: var(--c-ivory);
+}
+.pp-site__media { flex-shrink: 0; width: 80px; height: 80px; border-radius: var(--r-sm); overflow: hidden; }
+.pp-site__media img { width: 100%; height: 100%; object-fit: cover; }
+.pp-site__body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.pp-site__type {
+  color: var(--c-brand-base);
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.pp-site__name {
+  font-size: var(--t-lead);
+  line-height: var(--t-lead-lh);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--c-content-primary);
+}
+.pp-more { display: none; }
+
+/* ---------- How it works ---------- */
+.pp-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+  list-style: none;
+  padding: 0;
+}
+.pp-step {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border-radius: var(--r-md);
+  background: var(--c-ivory);
+}
+.pp-step__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-top: 8px;
+  border: 1px solid var(--c-orange);
+  border-radius: var(--r-pill);
+  color: var(--c-orange);
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+}
+.pp-step__title {
+  font-size: var(--t-lead);
+  line-height: var(--t-lead-lh);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--c-content-primary);
+}
+.pp-step__text { color: var(--c-label); font-size: var(--t-small); line-height: var(--t-small-lh); }
+
+/* Sxematik illüstrasiyalar (Figma-da kiçik UI maketləri) — saf CSS */
+.pp-mock {
+  position: relative;
+  height: 144px;
+  padding: 8px;
+  border-radius: var(--r-sm);
+  background: var(--c-surface);
+  overflow: hidden;
+  font-size: var(--t-caption);
+  line-height: var(--t-caption-lh);
+  color: var(--c-gray);
+}
+.pp-mock__tag {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+  border-radius: var(--r-sm);
+  background: var(--c-white);
+  color: var(--c-content-primary);
+  box-shadow: 0 1px 2px var(--c-shadow-10);
+}
+.pp-mock__tag::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--c-brand-base); }
+.pp-mock__tag--left { left: -4px; top: 44px; }
+.pp-mock__tag--right { right: 4px; top: 8px; }
+
+.pp-mock__list { display: flex; flex-direction: column; gap: 6px; padding: 4px; border-radius: var(--r-sm); background: var(--c-white); }
+.pp-mock__row { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: var(--r-xs); }
+.pp-mock__row.is-active { border: 2px solid var(--c-brand-base); }
+.pp-mock__dot { width: 12px; height: 12px; border-radius: 50%; background: var(--c-gray); }
+.pp-mock__row.is-active .pp-mock__dot { background: var(--c-brand-base); }
+.pp-mock__lines { display: flex; flex: 1; flex-direction: column; gap: 3px; }
+.pp-mock__lines b { height: 3px; border-radius: 2px; background: var(--c-light-gray); }
+.pp-mock__lines b:first-child { width: 70%; }
+.pp-mock__row.is-active .pp-mock__lines b:first-child { background: var(--c-brand-base); }
+.pp-mock__row em {
+  padding: 0 6px;
+  border-radius: var(--r-pill);
+  background: var(--c-gray);
+  color: var(--c-white);
+  font-style: normal;
+  font-size: 10px;
+  line-height: 14px;
+}
+.pp-mock__row.is-active em { background: var(--c-brand-base); }
+
+.pp-mock__card { display: flex; align-items: center; gap: 8px; padding: 8px; border-radius: var(--r-xs); background: var(--c-white); }
+.pp-mock__card i { width: 12px; height: 8px; border-radius: 2px; background: var(--c-light-gray); }
+.pp-mock__amount { display: block; margin: 20px 4px 0; text-align: right; color: var(--c-content-primary); }
+.pp-mock__pay {
+  position: absolute;
+  inset: auto 8px 8px;
+  padding: 6px 0;
+  border-radius: var(--r-xs);
+  background: var(--c-brand-base);
+  color: var(--c-white);
+  text-align: center;
+}
+
+.pp-mock--qr, .pp-mock--scan { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+.pp-mock__qr { display: flex; padding: 4px; border-radius: var(--r-xs); background: var(--c-light-gray); }
+.pp-mock__qr img { width: 48px; height: 48px; }
+.pp-mock__caption { font-size: 10px; line-height: 14px; }
+.pp-mock__beam { position: absolute; left: 16px; right: 16px; top: 50%; height: 2px; background: var(--c-brand-base); box-shadow: 0 0 6px var(--c-brand-base); }
+.pp-mock__ok {
+  position: absolute;
+  right: 8px;
+  bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--c-brand-base);
+}
+
+/* ---------- FAQ ---------- */
+.pp-faq__list { display: flex; flex-direction: column; gap: 8px; margin-top: 24px; }
+.pp-qa {
+  padding: 24px;
+  border: 2px solid transparent;
+  border-radius: var(--r-md);
+  background: var(--c-ivory);
+}
+.pp-qa.is-open { border-color: var(--c-brand-base); }
+.pp-qa__q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--c-black);
+  font-family: inherit;
+  font-size: var(--t-lead);
+  line-height: var(--t-lead-lh);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  text-align: left;
+  cursor: pointer;
+}
+.pp-qa__icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background: url("../assets/img/pass-icon-plus.svg") center / 12px no-repeat;
+}
+.pp-qa.is-open .pp-qa__icon { background-image: url("../assets/img/pass-icon-minus.svg"); }
+.pp-qa__a { display: none; max-width: 959px; margin-top: 8px; color: var(--c-label); }
+.pp-qa.is-open .pp-qa__a { display: block; }
+
+/* ---------- Mobil (393 etalon) ---------- */
+@media (max-width: 768px) {
+  .pp-hero__content { align-items: stretch; padding-bottom: 24px; }
+  .pp-hero__content .mp-hero__text { align-self: auto; }
+  .pp-hero__title { max-width: none; }
+  .pp-hero__aside { width: auto; margin-right: 0; flex-direction: column-reverse; gap: 16px; }
+  .pp-stats { margin-left: 0; }
+  .pp-stat { flex: 1 1 0; width: auto; padding: 12px 16px; }
+
+  .pp-cards, .pp-opens, .pp-how, .pp-faq { margin-top: 40px; }
+  .pp-h2 { font-size: 32px; line-height: 40px; }
+
+  .pp-sites { grid-template-columns: 1fr; gap: 8px; }
+  .pp-sites:not(.is-expanded) .pp-site:nth-child(n+4) { display: none; }
+  .pp-more { display: flex; justify-content: center; margin-top: 16px; }
+  .pp-more[hidden] { display: none; }
+  .pp-more__btn {
+    padding: var(--btn-pad-md);
+    border: 1px solid transparent;
+    border-radius: var(--r-pill);
+    background: var(--c-btn-neutral);
+    color: var(--c-content-primary);
+    font-family: inherit;
+    font-size: var(--t-body);
+    line-height: var(--t-body-tight-lh);
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .pp-steps {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-inline: calc(-1 * var(--page-pad));
+    padding-inline: var(--page-pad);
+    scrollbar-width: none;
+  }
+  .pp-steps::-webkit-scrollbar { display: none; }
+  .pp-step { flex: 0 0 78%; scroll-snap-align: start; }
+
+  .pp-qa { padding: 16px; }
+  .pp-qa__q { font-size: var(--t-body); line-height: var(--t-body-tight-lh); }
+}

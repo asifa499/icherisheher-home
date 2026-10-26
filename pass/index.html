@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Icherisheher Pass — Icherisheher</title>
+  <meta name="description" content="Icherisheher Pass: one QR for every museum inside the Old City walls. Compare Core, Explorer and Premium passes, see what each opens and buy online.">
+  <link rel="canonical" href="https://asifa499.github.io/icherisheher-home/pass/">
+  <meta name="theme-color" content="#886D46">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Icherisheher">
+  <meta property="og:title" content="Icherisheher Pass — Icherisheher">
+  <meta property="og:description" content="Icherisheher Pass: one QR for every museum inside the Old City walls. Compare Core, Explorer and Premium passes, see what each opens and buy online.">
+  <meta property="og:url" content="https://asifa499.github.io/icherisheher-home/pass/">
+  <meta property="og:image" content="https://asifa499.github.io/icherisheher-home/assets/img/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="../favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+
+  <link rel="preconnect" href="https://icherisheher-api-production.up.railway.app" crossorigin>
+  <link rel="preload" as="image" href="../assets/img/pass-hero.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="font" href="../assets/fonts/VelaSans-Regular.woff2" type="font/woff2" crossorigin>
+
+  <!-- Paylaşılan stillər: tokens + base + header (hero.css) + footer (social.css, footer.css) -->
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/hero.css">
+  <link rel="stylesheet" href="../css/social.css">
+  <link rel="stylesheet" href="../css/footer.css">
+  <!-- Hero/banner stilləri museums səhifəsi ilə, City Pass kartları Home ilə paylaşılır -->
+  <link rel="stylesheet" href="../css/museums-page.css">
+  <link rel="stylesheet" href="../css/citypass.css">
+  <link rel="stylesheet" href="../css/pass-page.css">
+
+  <!-- Header/footer partial-ları (klassik skript, defer YOX — bax js/include.js) -->
+  <script src="../js/include.js"></script>
+
+  <script>
+    window.ICH.pageDict = {
+      "page.pass.home": { en: "Home", az: "Ana səhifə", ru: "Главная" },
+      "page.pass.crumb": { en: "Icherisheher Pass", az: "İçərişəhər Pass", ru: "Icherisheher Pass" },
+      "page.pass.title": { en: "Icherisheher Pass", az: "İçərişəhər Pass", ru: "Icherisheher Pass" },
+      "page.pass.lead": {
+        en: "Pay once and walk into every museum inside the walls. No queue at each ticket desk, no counting small notes between courtyards.",
+        az: "Bir dəfə ödəyin və divarların içindəki hər muzeyə daxil olun. Hər kassada növbə yoxdur, həyətlər arasında xırda pul saymaq yoxdur.",
+        ru: "Заплатите один раз и заходите в любой музей внутри стен. Без очереди в каждой кассе и без мелочи между дворами.",
+      },
+      "page.pass.stat.museums": { en: "museums", az: "muzey", ru: "музеев" },
+      "page.pass.stat.use": { en: "use time", az: "istifadə müddəti", ru: "время действия" },
+      "page.pass.stat.from": { en: "from", az: "başlayaraq", ru: "от" },
+      "page.pass.opens": { en: "What each pass opens", az: "Hər pass nəyi açır", ru: "Что открывает каждый пропуск" },
+      "page.pass.museums": { en: "museums", az: "muzey", ru: "музеев" },
+      "page.pass.loadMore": { en: "Load more", az: "Daha çox", ru: "Показать ещё" },
+      "page.pass.how": { en: "How it works", az: "Necə işləyir", ru: "Как это работает" },
+      "page.pass.step1.title": { en: "Choose a pass", az: "Pass seçin", ru: "Выберите пропуск" },
+      "page.pass.step1.text": { en: "Pick the one that matches how long you have. You can change it before you pay", az: "Vaxtınıza uyğun olanı seçin. Ödənişdən əvvəl dəyişə bilərsiniz", ru: "Выберите подходящий по времени. Можно изменить до оплаты" },
+      "page.pass.step2.title": { en: "Pay online", az: "Onlayn ödəyin", ru: "Оплатите онлайн" },
+      "page.pass.step2.text": { en: "Card payment through the standard checkout. A confirmation arrives by email", az: "Standart ödəniş səhifəsində kartla ödəniş. Təsdiq e-poçtla gəlir", ru: "Оплата картой через стандартную кассу. Подтверждение придёт по e-mail" },
+      "page.pass.step3.title": { en: "Get your QR", az: "QR kodunuzu alın", ru: "Получите QR" },
+      "page.pass.step3.text": { en: "Your pass appears on screen and in the email. Nothing to print, nothing to collect", az: "Pass ekranda və e-poçtda görünür. Çap etmək, götürmək lazım deyil", ru: "Пропуск появится на экране и в письме. Ничего печатать и забирать не нужно" },
+      "page.pass.step4.title": { en: "Show it at the door", az: "Girişdə göstərin", ru: "Покажите на входе" },
+      "page.pass.step4.text": { en: "Staff scan the code at each entrance. The first scan starts your 24 hours", az: "Əməkdaşlar hər girişdə kodu skan edir. İlk skan 24 saatınızı başladır", ru: "Сотрудники сканируют код на каждом входе. Первое сканирование запускает ваши 24 часа" },
+      "page.pass.mock.hours": { en: "24 hours", az: "24 saat", ru: "24 часа" },
+      "page.pass.mock.secure": { en: "Secure", az: "Təhlükəsiz", ru: "Безопасно" },
+      "page.pass.mock.pay": { en: "Pay 42 AZN", az: "42 AZN ödə", ru: "Оплатить 42 AZN" },
+      "page.pass.mock.sent": { en: "Sent to e-mail", az: "E-poçta göndərildi", ru: "Отправлено на e-mail" },
+      "page.pass.mock.valid": { en: "Explorer • valid 24 hours", az: "Explorer • 24 saat etibarlıdır", ru: "Explorer • действует 24 часа" },
+      "page.pass.mock.entry": { en: "Entry recorded • 12:34", az: "Giriş qeyd edildi • 12:34", ru: "Вход отмечен • 12:34" },
+      "page.pass.faq": { en: "Questions, answered", az: "Suallar və cavablar", ru: "Вопросы и ответы" },
+      "page.pass.faq.1.q": { en: "How do I use it at each museum?", az: "Hər muzeydə necə istifadə edim?", ru: "Как пользоваться в каждом музее?" },
+      "page.pass.faq.1.a": {
+        en: "Show the QR code at the entrance and it will be scanned. The code is in your confirmation email and on your phone — no need to print anything. One scan per museum; the pass stays valid for the rest of the 24 hours.",
+        az: "QR kodu girişdə göstərin, skan olunacaq. Kod təsdiq e-poçtunuzda və telefonunuzdadır — heç nə çap etmək lazım deyil. Hər muzeydə bir skan; pass qalan 24 saat ərzində etibarlı qalır.",
+        ru: "Покажите QR-код на входе — его отсканируют. Код есть в письме с подтверждением и в телефоне, печатать ничего не нужно. Одно сканирование на музей; пропуск действует все оставшиеся 24 часа.",
+      },
+      "page.pass.faq.2.q": { en: "What if my phone dies?", az: "Telefonum sönərsə nə olacaq?", ru: "Что если телефон разрядится?" },
+      "page.pass.faq.2.a": {
+        en: "The code is also in your confirmation email, so you can open it on any other device.",
+        az: "Kod təsdiq e-poçtunuzda da var, onu istənilən başqa cihazda aça bilərsiniz.",
+        ru: "Код есть и в письме с подтверждением — его можно открыть на любом другом устройстве.",
+      },
+      "page.pass.faq.3.q": { en: "Where do I collect it?", az: "Onu harada götürürəm?", ru: "Где его получить?" },
+      "page.pass.faq.3.a": {
+        en: "Nowhere — your pass appears on screen and in the email. Nothing to print, nothing to collect.",
+        az: "Heç harada — pass ekranda və e-poçtda görünür. Çap etmək, götürmək lazım deyil.",
+        ru: "Нигде — пропуск появится на экране и в письме. Ничего печатать и забирать не нужно.",
+      },
+      "page.pass.faq.4.q": { en: "Can two people share one pass?", az: "İki nəfər bir passdan istifadə edə bilər?", ru: "Можно ли использовать один пропуск вдвоём?" },
+      "page.pass.faq.5.q": { en: "Can I change the date or get a refund?", az: "Tarixi dəyişə və ya geri ödəniş ala bilərəm?", ru: "Можно ли изменить дату или вернуть деньги?" },
+      "page.pass.faq.office": {
+        en: "Please ask at our information office, Gazi Mahammad Street 1095, open 08:00–18:00.",
+        az: "Zəhmət olmasa məlumat ofisimizə müraciət edin: Qazi Məhəmməd küçəsi 1095, 08:00–18:00.",
+        ru: "Пожалуйста, обратитесь в наш информационный офис: ул. Гази Магомеда, 1095, 08:00–18:00.",
+      },
+      "page.pass.ar1": { en: "AR Time Machine", az: "AR Zaman Maşını", ru: "AR Машина времени" },
+      "page.pass.ar2": { en: "at the Maiden Tower.", az: "Qız Qalasında.", ru: "у Девичьей башни." },
+      "page.pass.arText": {
+        en: "Travel back to 12th-century Baku through augmented reality at 10 historical points across the Old City.",
+        az: "Köhnə şəhərin 10 tarixi nöqtəsində artırılmış reallıq vasitəsilə XII əsr Bakısına səyahət edin.",
+        ru: "Отправьтесь в Баку XII века с помощью дополненной реальности в 10 исторических точках Старого города.",
+      },
+      "page.pass.explore": { en: "Explore", az: "Kəşf et", ru: "Узнать" },
+      "page.pass.getPass": { en: "Get your pass", az: "Pass əldə et", ru: "Получить Pass" },
+      "page.pass.error": { en: "Passes could not be loaded. Please try again later.", az: "Pass-lar yüklənmədi. Bir az sonra yenidən cəhd edin.", ru: "Не удалось загрузить пропуска. Повторите попытку позже." },
+    };
+  </script>
+</head>
+<body>
+
+  <!-- Figma web 3124:23263 · mobil 3143:26010 (Icherisheher Pass).
+       id="hero"/"citypass" QƏSDƏN yoxdur: həmin feature flag-lar yalnız Home bölmələrini gizləyir. -->
+  <section class="hero-section block mp-hero-section" data-figma="3124:23263">
+    <div class="hero mp-hero">
+      <div class="hero__bg mp-hero__bg pp-hero__bg" aria-hidden="true"></div>
+      <div class="hero__scrim-top" aria-hidden="true"></div>
+      <div class="hero__scrim-bottom" aria-hidden="true"></div>
+
+      <div data-include="header"></div>
+
+      <div class="mp-hero__content pp-hero__content">
+        <div class="mp-hero__text">
+          <nav class="mp-crumbs" aria-label="Breadcrumb">
+            <a href="../" data-i18n="page.pass.home">Home</a>
+            <img src="../assets/img/museum-icon-arrow-right.svg" alt="" width="16" height="16">
+            <span aria-current="page" data-i18n="page.pass.crumb">Icherisheher Pass</span>
+          </nav>
+          <h1 class="mp-hero__title pp-hero__title" data-i18n="page.pass.title">Icherisheher Pass</h1>
+        </div>
+        <div class="pp-hero__aside">
+          <p class="pp-hero__lead" data-i18n="page.pass.lead">Pay once and walk into every museum inside the walls. No queue at each ticket desk, no counting small notes between courtyards.</p>
+          <div class="pp-stats" data-pp-stats>
+            <div class="pp-stat"><strong data-pp-stat="museums">13</strong><span data-i18n="page.pass.stat.museums">museums</span></div>
+            <div class="pp-stat"><strong data-pp-stat="use">24h</strong><span data-i18n="page.pass.stat.use">use time</span></div>
+            <div class="pp-stat"><strong data-pp-stat="from">19 ₼</strong><span data-i18n="page.pass.stat.from">from</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main id="main">
+    <!-- Pass kartları — API /api/passes (js/passes.js, css/citypass.css) -->
+    <section id="pass-cards" class="citypass-section container pp-cards" data-figma="3124:23400">
+      <h2 class="citypass__title" data-i18n="citypass.title">One QR. The whole Old City.</h2>
+      <div class="citypass__row" data-passes-row aria-live="polite"></div>
+    </section>
+
+    <!-- What each pass opens -->
+    <section class="container pp-opens" data-figma="3124:23600">
+      <h2 class="pp-h2" data-i18n="page.pass.opens">What each pass opens</h2>
+      <div class="pp-tabs" data-pp-tabs role="group"></div>
+      <div class="pp-sites" data-pp-sites aria-live="polite"></div>
+      <div class="pp-more" data-pp-more hidden>
+        <button class="pp-more__btn" type="button" data-i18n="page.pass.loadMore">Load more</button>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="container pp-how" data-figma="3124:23700">
+      <h2 class="pp-h2" data-i18n="page.pass.how">How it works</h2>
+      <ol class="pp-steps">
+        <li class="pp-step">
+          <div class="pp-step__art pp-mock pp-mock--choose" aria-hidden="true">
+            <div class="pp-mock__list">
+              <div class="pp-mock__row"><i class="pp-mock__dot"></i><span class="pp-mock__lines"><b></b><b></b></span><em>19 ₼</em></div>
+              <div class="pp-mock__row is-active"><i class="pp-mock__dot"></i><span class="pp-mock__lines"><b></b><b></b></span><em>42 ₼</em></div>
+              <div class="pp-mock__row"><i class="pp-mock__dot"></i><span class="pp-mock__lines"><b></b><b></b></span><em>79 ₼</em></div>
+            </div>
+            <span class="pp-mock__tag pp-mock__tag--left" data-i18n="page.pass.mock.hours">24 hours</span>
+          </div>
+          <span class="pp-step__num">1</span>
+          <h3 class="pp-step__title" data-i18n="page.pass.step1.title">Choose a pass</h3>
+          <p class="pp-step__text" data-i18n="page.pass.step1.text">Pick the one that matches how long you have. You can change it before you pay</p>
+        </li>
+        <li class="pp-step">
+          <div class="pp-step__art pp-mock pp-mock--pay" aria-hidden="true">
+            <div class="pp-mock__card"><i></i><span>•••• •••• •••• 1212</span></div>
+            <span class="pp-mock__amount">42.00 AZN</span>
+            <span class="pp-mock__tag pp-mock__tag--left" data-i18n="page.pass.mock.secure">Secure</span>
+            <span class="pp-mock__pay" data-i18n="page.pass.mock.pay">Pay 42 AZN</span>
+          </div>
+          <span class="pp-step__num">2</span>
+          <h3 class="pp-step__title" data-i18n="page.pass.step2.title">Pay online</h3>
+          <p class="pp-step__text" data-i18n="page.pass.step2.text">Card payment through the standard checkout. A confirmation arrives by email</p>
+        </li>
+        <li class="pp-step">
+          <div class="pp-step__art pp-mock pp-mock--qr" aria-hidden="true">
+            <span class="pp-mock__qr"><img src="../assets/img/appar-qr.svg" alt="" width="56" height="56"></span>
+            <span class="pp-mock__tag pp-mock__tag--right" data-i18n="page.pass.mock.sent">Sent to e-mail</span>
+            <span class="pp-mock__caption" data-i18n="page.pass.mock.valid">Explorer • valid 24 hours</span>
+          </div>
+          <span class="pp-step__num">3</span>
+          <h3 class="pp-step__title" data-i18n="page.pass.step3.title">Get your QR</h3>
+          <p class="pp-step__text" data-i18n="page.pass.step3.text">Your pass appears on screen and in the email. Nothing to print, nothing to collect</p>
+        </li>
+        <li class="pp-step">
+          <div class="pp-step__art pp-mock pp-mock--scan" aria-hidden="true">
+            <span class="pp-mock__qr"><img src="../assets/img/appar-qr.svg" alt="" width="56" height="56"></span>
+            <span class="pp-mock__beam"></span>
+            <span class="pp-mock__ok"><img src="../assets/img/hero-icon-check.svg" alt="" width="16" height="16"></span>
+            <span class="pp-mock__caption" data-i18n="page.pass.mock.entry">Entry recorded • 12:34</span>
+          </div>
+          <span class="pp-step__num">4</span>
+          <h3 class="pp-step__title" data-i18n="page.pass.step4.title">Show it at the door</h3>
+          <p class="pp-step__text" data-i18n="page.pass.step4.text">Staff scan the code at each entrance. The first scan starts your 24 hours</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- FAQ -->
+    <section class="container pp-faq" data-figma="3124:23850">
+      <h2 class="pp-h2" data-i18n="page.pass.faq">Questions, answered</h2>
+      <div class="pp-faq__list" data-pp-faq>
+        <div class="pp-qa is-open">
+          <button class="pp-qa__q" type="button" aria-expanded="true"><span data-i18n="page.pass.faq.1.q">How do I use it at each museum?</span><i class="pp-qa__icon"></i></button>
+          <p class="pp-qa__a" data-i18n="page.pass.faq.1.a">Show the QR code at the entrance and it will be scanned. The code is in your confirmation email and on your phone — no need to print anything. One scan per museum; the pass stays valid for the rest of the 24 hours.</p>
+        </div>
+        <div class="pp-qa">
+          <button class="pp-qa__q" type="button" aria-expanded="false"><span data-i18n="page.pass.faq.2.q">What if my phone dies?</span><i class="pp-qa__icon"></i></button>
+          <p class="pp-qa__a" data-i18n="page.pass.faq.2.a">The code is also in your confirmation email, so you can open it on any other device.</p>
+        </div>
+        <div class="pp-qa">
+          <button class="pp-qa__q" type="button" aria-expanded="false"><span data-i18n="page.pass.faq.3.q">Where do I collect it?</span><i class="pp-qa__icon"></i></button>
+          <p class="pp-qa__a" data-i18n="page.pass.faq.3.a">Nowhere — your pass appears on screen and in the email. Nothing to print, nothing to collect.</p>
+        </div>
+        <div class="pp-qa">
+          <button class="pp-qa__q" type="button" aria-expanded="false"><span data-i18n="page.pass.faq.4.q">Can two people share one pass?</span><i class="pp-qa__icon"></i></button>
+          <p class="pp-qa__a" data-i18n="page.pass.faq.office">Please ask at our information office, Gazi Mahammad Street 1095, open 08:00–18:00.</p>
+        </div>
+        <div class="pp-qa">
+          <button class="pp-qa__q" type="button" aria-expanded="false"><span data-i18n="page.pass.faq.5.q">Can I change the date or get a refund?</span><i class="pp-qa__icon"></i></button>
+          <p class="pp-qa__a" data-i18n="page.pass.faq.office">Please ask at our information office, Gazi Mahammad Street 1095, open 08:00–18:00.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mp-banner" data-figma="3124:24000">
+      <div class="mp-banner__bg" aria-hidden="true"></div>
+      <div class="mp-banner__copy">
+        <h2 class="mp-banner__title"><span data-i18n="page.pass.ar1">AR Time Machine</span><br><span data-i18n="page.pass.ar2">at the Maiden Tower.</span></h2>
+        <p class="mp-banner__text" data-i18n="page.pass.arText">Travel back to 12th-century Baku through augmented reality at 10 historical points across the Old City.</p>
+        <div class="mp-banner__btns">
+          <a class="mp-banner__btn mp-banner__btn--brand" href="../#app-ar" data-i18n="page.pass.explore">Explore</a>
+          <a class="mp-banner__btn" href="#pass-cards" data-scroll-to="pass-cards" data-i18n="page.pass.getPass">Get your pass</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sosial feed + footer: partials/footer.html -->
+  <div data-include="footer"></div>
+
+  <!-- Paylaşılan (hər səhifədə) -->
+  <script type="module" src="../js/i18n.js"></script>
+  <script type="module" src="../js/config.js"></script>
+  <script type="module" src="../js/lang.js"></script>
+  <script type="module" src="../js/nav-menu.js"></script>
+  <script type="module" src="../js/scroll-links.js"></script>
+  <script type="module" src="../js/passes.js"></script>
+  <script type="module" src="../js/pass-page.js"></script>
+</body>
+</html>
